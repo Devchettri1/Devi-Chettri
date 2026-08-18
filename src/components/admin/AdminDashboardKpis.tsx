@@ -11,6 +11,7 @@ import {
   CheckCircle2,
   FileText,
   Activity,
+  Gauge,
 } from 'lucide-react';
 import { AuditLogEntry } from '../../types';
 
@@ -138,6 +139,22 @@ export const AdminDashboardKpis: React.FC<AdminDashboardKpisProps> = ({ stats, o
                 <div className="text-[11px] text-slate-400">Configure base & seasonal rates</div>
               </div>
               <Users className="w-4 h-4 text-teal-400" />
+            </button>
+
+            <button
+              onClick={() => onNavigateTab('performance')}
+              className="p-3 bg-indigo-950/40 hover:bg-indigo-900/60 border border-indigo-700/60 rounded-xl text-left flex items-center justify-between transition-colors group"
+            >
+              <div>
+                <div className="text-xs font-bold text-indigo-300 group-hover:text-indigo-200 flex items-center gap-1.5">
+                  <span>Speed & Web Vitals</span>
+                  <span className="text-[9px] bg-indigo-900 text-indigo-200 px-1.5 py-0.2 rounded font-mono font-bold">
+                    Monitor
+                  </span>
+                </div>
+                <div className="text-[11px] text-slate-400">Track Core Web Vitals & heavy images</div>
+              </div>
+              <Gauge className="w-4 h-4 text-indigo-400" />
             </button>
           </div>
         </div>

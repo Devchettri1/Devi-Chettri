@@ -24,10 +24,13 @@ import {
   ArrowRight,
   Lightbulb,
   CheckCheck,
+  Gauge,
+  Activity,
 } from 'lucide-react';
 import { SeoSettings, SeoPageMeta, TourPackage, CabOption } from '../../types';
 import { DEFAULT_SEO_SETTINGS, TOUR_PACKAGES, CAB_OPTIONS } from '../../data/travelData';
 import { AdminSitemapGenerator } from './AdminSitemapGenerator';
+import { AdminPerformanceMonitor } from './AdminPerformanceMonitor';
 
 interface AdminSeoManagerProps {
   seoSettings?: SeoSettings;
@@ -80,7 +83,7 @@ export const AdminSeoManager: React.FC<AdminSeoManagerProps> = ({
 }) => {
   const [localSeo, setLocalSeo] = useState<SeoSettings>(() => ({ ...DEFAULT_SEO_SETTINGS, ...seoSettings }));
   const [selectedPage, setSelectedPage] = useState<keyof SeoSettings>('home');
-  const [activeSubView, setActiveSubView] = useState<'editor' | 'serp-preview' | 'sitemap-generator' | 'sitemap-schema'>('editor');
+  const [activeSubView, setActiveSubView] = useState<'editor' | 'serp-preview' | 'sitemap-generator' | 'sitemap-schema' | 'performance'>('editor');
   const [previewDevice, setPreviewDevice] = useState<'desktop' | 'mobile'>('desktop');
 
   // Package & Cab Context Selection State for Meta Description suggestions
@@ -452,6 +455,18 @@ export const AdminSeoManager: React.FC<AdminSeoManagerProps> = ({
             >
               <FileCode2 className="w-3.5 h-3.5" />
               <span>Schema.org JSON-LD</span>
+            </button>
+            <button
+              onClick={() => setActiveSubView('performance')}
+              className={`px-3 py-1.5 rounded-lg font-bold transition-all flex items-center gap-1.5 ${
+                activeSubView === 'performance' ? 'bg-indigo-500 text-slate-950 shadow' : 'text-indigo-300 hover:text-indigo-200 hover:bg-slate-800'
+              }`}
+            >
+              <Gauge className="w-3.5 h-3.5 text-indigo-400" />
+              <span>Core Web Vitals & Assets</span>
+              <span className="text-[9px] bg-indigo-950 text-indigo-200 border border-indigo-700/60 px-1.5 py-0.2 rounded font-mono font-bold">
+                Speed
+              </span>
             </button>
           </div>
 
@@ -1329,6 +1344,11 @@ export const AdminSeoManager: React.FC<AdminSeoManagerProps> = ({
             </div>
           </div>
         </div>
+      )}
+
+      {/* ================= SUB-VIEW 5: PERFORMANCE & CORE WEB VITALS MONITOR ================= */}
+      {activeSubView === 'performance' && (
+        <AdminPerformanceMonitor onRefresh={onRefresh} />
       )}
     </div>
   );

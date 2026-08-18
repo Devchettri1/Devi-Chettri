@@ -54,6 +54,7 @@ import { AdminUsersAudit } from './admin/AdminUsersAudit';
 import { AdminMediaLibrary } from './admin/AdminMediaLibrary';
 import { AdminNavigation } from './admin/AdminNavigation';
 import { AdminSeoManager } from './admin/AdminSeoManager';
+import { AdminPerformanceMonitor } from './admin/AdminPerformanceMonitor';
 
 interface OwnerDashboardModalProps {
   leads: LeadSubmission[];
@@ -114,6 +115,9 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
       if (['seo', 'seo-manager', 'keywords', 'metadata'].includes(initialTab)) {
         setActiveSection('seo');
         setActiveSubTab('metadata');
+      } else if (['performance', 'web-vitals', 'speed', 'core-web-vitals'].includes(initialTab)) {
+        setActiveSection('dashboard');
+        setActiveSubTab('performance');
       } else if (['navigation', 'header-links', 'footer-links', 'menu'].includes(initialTab)) {
         setActiveSection('navigation');
         setActiveSubTab('header-links');
@@ -528,6 +532,7 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
         { key: 'bookings', label: 'Bookings' },
         { key: 'revenue', label: 'Revenue' },
         { key: 'todays-leads', label: "Today's Leads" },
+        { key: 'performance', label: 'Speed & Web Vitals' },
       ],
     },
     {
@@ -776,6 +781,15 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
                   } else if (tabKey === 'packages') {
                     setActiveSection('packages');
                     setActiveSubTab('edit');
+                  } else if (tabKey === 'destinations') {
+                    setActiveSection('destinations');
+                    setActiveSubTab('gangtok');
+                  } else if (tabKey === 'hotels') {
+                    setActiveSection('hotels');
+                    setActiveSubTab('hotel-list');
+                  } else if (tabKey === 'performance') {
+                    setActiveSection('dashboard');
+                    setActiveSubTab('performance');
                   }
                 }}
               />
@@ -876,6 +890,10 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
                     ))}
                   </div>
                 </div>
+              )}
+
+              {activeSubTab === 'performance' && (
+                <AdminPerformanceMonitor onRefresh={fetchAllBackendData} />
               )}
             </div>
           )}
