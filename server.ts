@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import fs from 'fs';
 import dotenv from 'dotenv';
 import { GoogleGenAI } from '@google/genai';
 import { DEFAULT_SEO_SETTINGS } from './src/data/travelData';
@@ -1718,6 +1719,75 @@ app.post('/api/admin/seo', (req, res) => {
     return res.json({ success: true, seo: seoDatabase });
   }
   res.status(400).json({ error: 'Invalid SEO payload' });
+});
+
+// SITEMAP GET ROUTE (SERVES SITEMAP.XML)
+app.get('/sitemap.xml', (req, res) => {
+  try {
+    const publicSitemapPath = path.join(process.cwd(), 'public', 'sitemap.xml');
+    if (fs.existsSync(publicSitemapPath)) {
+      const xmlContent = fs.readFileSync(publicSitemapPath, 'utf8');
+      res.type('application/xml; charset=utf-8').send(xmlContent);
+      return;
+    }
+  } catch (e) {
+    console.error('Error reading sitemap.xml:', e);
+  }
+  
+  // Fallback dynamic generator response if file not yet written
+  const defaultSitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://offbeatdestination.in/</loc><changefreq>daily</changefreq><priority>1.00</priority></url>
+  <url><loc>https://offbeatdestination.in/#packages</loc><changefreq>daily</changefreq><priority>0.95</priority></url>
+  <url><loc>https://offbeatdestination.in/#cabs</loc><changefreq>daily</changefreq><priority>0.90</priority></url>
+  <url><loc>https://offbeatdestination.in/#destinations</loc><changefreq>daily</changefreq><priority>0.90</priority></url>
+  <url><loc>https://offbeatdestination.in/#blog</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+</urlset>`;
+  res.type('application/xml; charset=utf-8').send(defaultSitemap);
+});
+
+// SITEMAP API: SAVE TO SERVER / PUBLIC DIRECTORY
+app.post('/api/admin/seo/sitemap', (req, res) => {
+  try {
+    const { xmlContent, totalUrls, imageCount, baseUrl } = req.body;
+    if (!xmlContent || typeof xmlContent !== 'string') {
+      return res.status(400).json({ error: 'Invalid XML content provided' });
+    }
+
+    const publicDir = path.join(process.cwd(), 'public');
+    if (!fs.existsSync(publicDir)) {
+      fs.mkdirSync(publicDir, { recursive: true });
+    }
+    const sitemapPath = path.join(publicDir, 'sitemap.xml');
+    fs.writeFileSync(sitemapPath, xmlContent, 'utf8');
+
+    // Also write to dist/sitemap.xml if dist directory exists
+    const distDir = path.join(process.cwd(), 'dist');
+    if (fs.existsSync(distDir)) {
+      try {
+        fs.writeFileSync(path.join(distDir, 'sitemap.xml'), xmlContent, 'utf8');
+      } catch (err) {
+        // non-blocking
+      }
+    }
+
+    logAuditAction(
+      'Owner Admin',
+      'ADMIN',
+      'REBUILD_SITEMAP',
+      `Rebuilt sitemap.xml with ${totalUrls || 'multiple'} URLs & ${imageCount || 0} image schemas for ${baseUrl || 'offbeatdestination.in'}`
+    );
+
+    return res.json({
+      success: true,
+      message: 'sitemap.xml saved to server successfully',
+      path: '/sitemap.xml',
+      timestamp: new Date().toISOString(),
+    });
+  } catch (error: any) {
+    console.error('Error saving sitemap.xml:', error);
+    return res.status(500).json({ error: 'Failed to write sitemap.xml to disk', details: error.message });
+  }
 });
 
 // SEO KEYWORD GENERATOR (GEMINI POWERED)

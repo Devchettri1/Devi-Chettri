@@ -27,6 +27,7 @@ import {
 } from 'lucide-react';
 import { SeoSettings, SeoPageMeta, TourPackage, CabOption } from '../../types';
 import { DEFAULT_SEO_SETTINGS, TOUR_PACKAGES, CAB_OPTIONS } from '../../data/travelData';
+import { AdminSitemapGenerator } from './AdminSitemapGenerator';
 
 interface AdminSeoManagerProps {
   seoSettings?: SeoSettings;
@@ -79,7 +80,7 @@ export const AdminSeoManager: React.FC<AdminSeoManagerProps> = ({
 }) => {
   const [localSeo, setLocalSeo] = useState<SeoSettings>(() => ({ ...DEFAULT_SEO_SETTINGS, ...seoSettings }));
   const [selectedPage, setSelectedPage] = useState<keyof SeoSettings>('home');
-  const [activeSubView, setActiveSubView] = useState<'editor' | 'serp-preview' | 'sitemap-schema'>('editor');
+  const [activeSubView, setActiveSubView] = useState<'editor' | 'serp-preview' | 'sitemap-generator' | 'sitemap-schema'>('editor');
   const [previewDevice, setPreviewDevice] = useState<'desktop' | 'mobile'>('desktop');
 
   // Package & Cab Context Selection State for Meta Description suggestions
@@ -432,13 +433,25 @@ export const AdminSeoManager: React.FC<AdminSeoManagerProps> = ({
               <span>SERP & Social Preview</span>
             </button>
             <button
+              onClick={() => setActiveSubView('sitemap-generator')}
+              className={`px-3 py-1.5 rounded-lg font-bold transition-all flex items-center gap-1.5 ${
+                activeSubView === 'sitemap-generator' ? 'bg-cyan-500 text-slate-950 shadow' : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Globe className="w-3.5 h-3.5" />
+              <span>Sitemap.xml Generator</span>
+              <span className="text-[9px] bg-emerald-950 text-emerald-300 border border-emerald-700/60 px-1.5 py-0.2 rounded font-mono font-bold">
+                Generator
+              </span>
+            </button>
+            <button
               onClick={() => setActiveSubView('sitemap-schema')}
               className={`px-3 py-1.5 rounded-lg font-bold transition-all flex items-center gap-1.5 ${
                 activeSubView === 'sitemap-schema' ? 'bg-cyan-500 text-slate-950 shadow' : 'text-slate-400 hover:text-slate-200'
               }`}
             >
               <FileCode2 className="w-3.5 h-3.5" />
-              <span>Schema & Sitemap</span>
+              <span>Schema.org JSON-LD</span>
             </button>
           </div>
 
@@ -1207,7 +1220,17 @@ export const AdminSeoManager: React.FC<AdminSeoManagerProps> = ({
         </div>
       )}
 
-      {/* View 3: Schema & Sitemap */}
+      {/* View 3: Dynamic Sitemap Generator */}
+      {activeSubView === 'sitemap-generator' && (
+        <AdminSitemapGenerator
+          packages={packages}
+          cabs={cabs}
+          seoSettings={localSeo}
+          onRefresh={onRefresh}
+        />
+      )}
+
+      {/* View 4: Schema & Sitemap Structure */}
       {activeSubView === 'sitemap-schema' && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* JSON-LD Schema */}
