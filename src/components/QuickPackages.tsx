@@ -836,13 +836,15 @@ export const QuickPackages: React.FC<QuickPackagesProps> = ({
                           const el = document.getElementById('day-by-day-itinerary-section');
                           if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         }}
-                        className={`text-[11px] px-2.5 py-1.5 rounded-lg font-medium border transition-colors ${
+                        className={`text-[11px] px-2.5 py-1.5 rounded-lg font-medium border transition-colors flex items-center gap-1 ${
                           activeItineraryId === pkg.id
                             ? 'bg-cyan-500 text-slate-950 border-cyan-400 font-bold'
                             : 'bg-[#060B18] text-slate-300 border-slate-800 hover:bg-[#0E1738]'
                         }`}
+                        title="View Interactive Google Map Circuit & Day Plan"
                       >
-                        <span>Day Plan</span>
+                        <Compass className="w-3 h-3 text-cyan-400" />
+                        <span>Circuit Map</span>
                       </button>
 
                       {onQuickBookPackage && (
