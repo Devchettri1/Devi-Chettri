@@ -756,7 +756,7 @@ export const INITIAL_USERS: StaffUser[] = [
   {
     id: 'usr-101',
     name: 'Devi Charan Chettri',
-    email: 'info@offbeatdestination.in',
+    email: 'chettridev12@gmail.com',
     role: 'OWNER',
     status: 'Active',
     lastLogin: new Date().toISOString(),

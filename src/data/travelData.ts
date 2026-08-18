@@ -10,6 +10,7 @@ export const AGENCY_DETAILS = {
   phoneSecondary: "+91 98513 70773",
   whatsappNumber: "916296102341",
   email: "info@offbeatdestination.in",
+  ownerEmail: "chettridev12@gmail.com",
   domain: "offbeatdestination.in",
   websiteUrl: "https://offbeatdestination.in",
   googleMapsUrl: "https://maps.app.goo.gl/yMzj2AQ8QBGrzBQm7",
@@ -2811,12 +2812,12 @@ export const CAB_OPTIONS: CabOption[] = [
     model: "Swift Dzire / Toyota Etios",
     type: "4-Seater Sedan",
     capacity: "4 Passengers + 2 Luggage",
-    bestFor: "Couples, NJP/IXB drops, Gangtok & Darjeeling Local (NOT Allowed for North Sikkim / Nathula Pass)",
+    bestFor: "Couples, NJP/IXB transfers, Gangtok & Darjeeling Local (Permit charges applied as per govt rate)",
     ratePerDay: 3200,
     njpIxbPickupRate: 2800,
     image: "/src/assets/images/innova_mountain_drive_1785681104445.jpg",
     features: [
-      "❌ Strictly NOT PERMITTED for North Sikkim or Nathula Pass permits",
+      "🏛️ Permit charges applied as per official govt rate for hill circuits",
       "Comfortable 4-seater executive sedan with boot space",
       "Clean air-conditioned interior for Gangtok local & Darjeeling transfers",
       "Hill-certified polite local chauffeur"
@@ -2827,12 +2828,12 @@ export const CAB_OPTIONS: CabOption[] = [
     model: "WagonR / Swift / Alto",
     type: "4-Seater Hatchback",
     capacity: "3-4 Passengers + 1-2 Bags",
-    bestFor: "Budget Travelers, Gangtok Town Point Drops (NOT Allowed for North Sikkim / Nathula Pass)",
+    bestFor: "Budget Travelers, Gangtok Town Point Drops (Permit charges applied as per govt rate)",
     ratePerDay: 2500,
     njpIxbPickupRate: 2200,
     image: "/src/assets/images/innova_mountain_drive_1785681104445.jpg",
     features: [
-      "❌ Strictly NOT PERMITTED for North Sikkim or Nathula Pass permits",
+      "🏛️ Permit charges applied as per official govt rate for local trips",
       "Compact and nimble for smooth Gangtok town point drops",
       "Most economical choice for budget-conscious local travelers",
       "Punctual local Sikkim driver"

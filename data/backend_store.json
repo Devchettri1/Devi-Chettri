@@ -1,0 +1,1427 @@
+{
+  "destinations": [
+    {
+      "id": "dest-sikkim-gangtok",
+      "name": "Gangtok",
+      "slug": "gangtok",
+      "region": "East Sikkim",
+      "heroImage": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "shortDescription": "The vibrant capital city offering views of Mt. Kanchenjunga, ancient monasteries, and ropeways.",
+      "fullOverview": "Gangtok is the heart of Sikkim, blending modern amenities with traditional Buddhist hospitality. Situated at 5,410 ft, it is the starting gateway for Tsomgo Lake, Nathula Pass, and North Sikkim.",
+      "bestTimeToVisit": "March to June & September to December",
+      "recommendedDuration": "2 to 3 Nights",
+      "keyAttractions": [
+        "Tsomgo Lake",
+        "Nathula Pass",
+        "Rumtek Monastery",
+        "MG Marg",
+        "Ban Jhakri Falls",
+        "Ganesh Tok"
+      ],
+      "travelTips": [
+        "Nathula Pass requires army permit 1 day in advance",
+        "Carry original Govt ID proofs"
+      ],
+      "active": true
+    },
+    {
+      "id": "dest-north-sikkim",
+      "name": "North Sikkim (Lachung & Yumthang)",
+      "slug": "north-sikkim",
+      "region": "North Sikkim",
+      "heroImage": "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+      "shortDescription": "Snow peaks, hot springs, rhododendron blooms, and high-altitude Zero Point (15,300 ft).",
+      "fullOverview": "North Sikkim is a pristine wilderness accessible via protected area permits. Featuring Lachung village, Yumthang Valley of Flowers, Zero Point, and Lachen with Gurudongmar Lake.",
+      "bestTimeToVisit": "April to June & October to December",
+      "recommendedDuration": "2 to 3 Nights",
+      "keyAttractions": [
+        "Yumthang Valley",
+        "Zero Point (Yumesamdong)",
+        "Lachung Monastery",
+        "Chungthang Dam"
+      ],
+      "travelTips": [
+        "Protected Area Permits mandatory",
+        "Children below 5 years & senior citizens check altitude tolerance"
+      ],
+      "active": true
+    },
+    {
+      "id": "dest-pelling",
+      "name": "Pelling & West Sikkim",
+      "slug": "pelling",
+      "region": "West Sikkim",
+      "heroImage": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "shortDescription": "India's first Glass Skywalk, historic Rabdentse Palace ruins, and closest Kanchenjunga views.",
+      "fullOverview": "Located at 7,200 ft, Pelling offers breathtaking views of Kanchenjunga. Home to Pemayangtse Monastery, Khecheopalri Sacred Lake, and Chenrezig Glass Skywalk.",
+      "bestTimeToVisit": "October to May",
+      "recommendedDuration": "2 Nights",
+      "keyAttractions": [
+        "Pelling Glass Skywalk",
+        "Pemayangtse Monastery",
+        "Rabdentse Palace Ruins",
+        "Khecheopalri Lake",
+        "Rimbi Waterfall"
+      ],
+      "travelTips": [
+        "Visit Glass Skywalk early morning for clear views"
+      ],
+      "active": true
+    },
+    {
+      "id": "dest-silk-route",
+      "name": "Old Silk Route & Zuluk",
+      "slug": "silk-route",
+      "region": "Silk Route",
+      "heroImage": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "shortDescription": "Historic ancient trade path with 32 hairpin loops at Thambi View Point and high mountain passes.",
+      "fullOverview": "The Old Silk Route connects India with Tibet. Known for Zuluk homestays, Nathang Valley at 13,500 ft, Kupup Elephant Lake, and Old Baba Mandir.",
+      "bestTimeToVisit": "October to May (Snow in Winter)",
+      "recommendedDuration": "2 Nights",
+      "keyAttractions": [
+        "Thambi View Point (32 Loops)",
+        "Zuluk",
+        "Nathang Valley",
+        "Kupup Elephant Lake",
+        "Old Baba Mandir"
+      ],
+      "travelTips": [
+        "Siliguri/Gangtok permits required",
+        "Experience authentic homestay food"
+      ],
+      "active": true
+    },
+    {
+      "id": "dest-darjeeling",
+      "name": "Darjeeling & Mirik",
+      "slug": "darjeeling",
+      "region": "Darjeeling",
+      "heroImage": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "shortDescription": "Queen of the Hills, iconic UNESCO Toy Train, World-famous Tea Gardens, and Tiger Hill Sunrise.",
+      "fullOverview": "Darjeeling is renowned for its panoramic views of Kanchenjunga, colonial architecture, Glenary's Bakery, and aromatic orthodox black tea.",
+      "bestTimeToVisit": "October to May",
+      "recommendedDuration": "2 Nights",
+      "keyAttractions": [
+        "Tiger Hill Sunrise",
+        "Batasia Loop & Toy Train",
+        "Happy Valley Tea Estate",
+        "Chowrasta Mall Road",
+        "Japanese Peace Pagoda"
+      ],
+      "travelTips": [
+        "Wake up at 3:30 AM for Tiger Hill sunrise",
+        "Enjoy high tea at Glenary's"
+      ],
+      "active": true
+    }
+  ],
+  "hotels": [
+    {
+      "id": "hotel-mayfair-gangtok",
+      "name": "Mayfair Spa Resort & Casino",
+      "destination": "Gangtok",
+      "category": "5 Star Heritage Luxury",
+      "roomTypes": [
+        "Deluxe Cottage",
+        "Grand Villa",
+        "Imperial Suite"
+      ],
+      "basePricePerNight": 8500,
+      "seasonalPricePerNight": 10500,
+      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "amenities": [
+        "Spa & Wellness",
+        "Casino",
+        "Swimming Pool",
+        "Multi-Cuisine Dining",
+        "Free Wi-Fi",
+        "Valley View"
+      ],
+      "description": "Award-winning luxury heritage resort set in lush tropical pine forests with monk statues and royal Sikkimese architecture.",
+      "active": true
+    },
+    {
+      "id": "hotel-sterling-gangtok",
+      "name": "Sterling Gangtok (Dzongu View)",
+      "destination": "Gangtok",
+      "category": "4 Star Premium",
+      "roomTypes": [
+        "Classic Room",
+        "Privilege Suite",
+        "Family Room"
+      ],
+      "basePricePerNight": 5500,
+      "seasonalPricePerNight": 6800,
+      "image": "/src/assets/images/ravangla_buddha_park_1785680605794.jpg",
+      "amenities": [
+        "Dzongu Valley View",
+        "Kid Zone",
+        "Bonfire & Folk Dance",
+        "Multi-Cuisine Restaurant",
+        "Wi-Fi"
+      ],
+      "description": "Premier resort in Gangtok with scenic views of Dzongu Valley and Kanchenjunga range, ideal for families and leisure.",
+      "active": true
+    },
+    {
+      "id": "hotel-summit-denzong-gangtok",
+      "name": "Summit Denzong Hotel & Spa",
+      "destination": "Gangtok",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Executive Room",
+        "Deluxe Valley View",
+        "Suite"
+      ],
+      "basePricePerNight": 3500,
+      "seasonalPricePerNight": 4200,
+      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "amenities": [
+        "Mountain View",
+        "Metta Spa",
+        "Alpenglow Restaurant",
+        "Power Backup",
+        "Free Wi-Fi"
+      ],
+      "description": "Comfortable 3-star deluxe hotel offering clear views of Mt Kanchenjunga and easy walking access to MG Marg.",
+      "active": true
+    },
+    {
+      "id": "hotel-summit-golden-crescent-gangtok",
+      "name": "Summit Golden Crescent",
+      "destination": "Gangtok",
+      "category": "4 Star Premium",
+      "roomTypes": [
+        "Deluxe Room",
+        "Super Deluxe Room",
+        "Presidential Suite"
+      ],
+      "basePricePerNight": 4800,
+      "seasonalPricePerNight": 5600,
+      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "amenities": [
+        "Valley View Terrace",
+        "Spa Center",
+        "Multi-Cuisine Buffet",
+        "Elevator",
+        "Travel Desk"
+      ],
+      "description": "Sophisticated 4-star boutique hotel near Gangtok center with panoramic valley balconies.",
+      "active": true
+    },
+    {
+      "id": "hotel-udaan-woodberry-gangtok",
+      "name": "Udaan Woodberry Residences",
+      "destination": "Gangtok",
+      "category": "4 Star Premium",
+      "roomTypes": [
+        "Deluxe Valley View",
+        "Executive Suite"
+      ],
+      "basePricePerNight": 4600,
+      "seasonalPricePerNight": 5400,
+      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "amenities": [
+        "Valley View Dining",
+        "100% Pure Veg Options",
+        "Tea/Coffee Maker",
+        "Geyser & Room Heater"
+      ],
+      "description": "Charming boutique property overlooking Gangtok valley with exceptional hospitality and pure vegetarian meals.",
+      "active": true
+    },
+    {
+      "id": "hotel-udaan-alpine-gangtok",
+      "name": "Udaan Alpine Resort",
+      "destination": "Gangtok",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Alpine Deluxe Room",
+        "Super Deluxe Room"
+      ],
+      "basePricePerNight": 3800,
+      "seasonalPricePerNight": 4500,
+      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "amenities": [
+        "Pine Forest View",
+        "Vegetarian Dining",
+        "Wi-Fi",
+        "Parking",
+        "24/7 Hot Water"
+      ],
+      "description": "Peaceful hilltop resort stay surrounded by mountain mist and lush pine greenery.",
+      "active": true
+    },
+    {
+      "id": "hotel-rufina-gangtok-heritage",
+      "name": "Rufina Gangtok Heritage",
+      "destination": "Gangtok",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Standard Deluxe",
+        "Family Deluxe"
+      ],
+      "basePricePerNight": 2800,
+      "seasonalPricePerNight": 3500,
+      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "amenities": [
+        "Central Location",
+        "North Indian Dining",
+        "Clean Rooms",
+        "Power Backup"
+      ],
+      "description": "Dependable value hotel in central Gangtok with quick access to taxi stands and shopping.",
+      "active": true
+    },
+    {
+      "id": "hotel-voyage-gangtok-regency",
+      "name": "Voyage Gangtok Regency",
+      "destination": "Gangtok",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Regency Deluxe",
+        "Valley View Suite"
+      ],
+      "basePricePerNight": 3400,
+      "seasonalPricePerNight": 4100,
+      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "amenities": [
+        "MG Marg Proximity",
+        "In-House Restaurant",
+        "Elevator",
+        "Travel Service"
+      ],
+      "description": "Modern urban stay situated close to MG Marg promenade.",
+      "active": true
+    },
+    {
+      "id": "hotel-jain-royal-gangtok",
+      "name": "Hotel Jain Group Royal Residency",
+      "destination": "Gangtok",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Deluxe Valley View",
+        "Super Deluxe Room",
+        "Family Suite"
+      ],
+      "basePricePerNight": 3800,
+      "seasonalPricePerNight": 4500,
+      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "amenities": [
+        "100% Pure Veg Restaurant",
+        "Strict Jain Kitchen",
+        "Free Wi-Fi",
+        "Room Heater",
+        "Valley View"
+      ],
+      "description": "Premier 100% pure vegetarian & strict Jain hotel in Gangtok serving delicious onion-garlic-free meals with mountain views.",
+      "active": true
+    },
+    {
+      "id": "hotel-jain-valley-view-gangtok",
+      "name": "Jain Group Valley View Resort",
+      "destination": "Gangtok",
+      "category": "4 Star Premium",
+      "roomTypes": [
+        "Executive Valley Suite",
+        "Royal Suite"
+      ],
+      "basePricePerNight": 5200,
+      "seasonalPricePerNight": 6400,
+      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "amenities": [
+        "Pure Veg & Jain Restaurant",
+        "Spa Services",
+        "Balcony Views",
+        "Travel Desk",
+        "Power Backup"
+      ],
+      "description": "Luxury boutique stay overlooking Gangtok valley with 100% pure vegetarian culinary excellence.",
+      "active": true
+    },
+    {
+      "id": "hotel-rare-himalayas-gangtok",
+      "name": "Rare Himalayas Norbu Retreat",
+      "destination": "Gangtok",
+      "category": "5 Star Experiential Luxury",
+      "roomTypes": [
+        "Norbu Mountain Suite",
+        "Bespoke Forest Villa",
+        "Presidential Himalayan View Suite"
+      ],
+      "basePricePerNight": 7200,
+      "seasonalPricePerNight": 8800,
+      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "amenities": [
+        "Panoramic Kanchenjunga Balcony",
+        "Organic Farm Dining",
+        "Heated Wooden Floors",
+        "Tea Lounge",
+        "Personal Concierge"
+      ],
+      "description": "Boutique eco-luxury retreat blending handcrafted Sikkimese timber architecture with 5-star mountain indulgence and organic gastronomy.",
+      "active": true
+    },
+    {
+      "id": "hotel-trickocity-grand-gangtok",
+      "name": "Trickocity Grand MG Marg",
+      "destination": "Gangtok",
+      "category": "4 Star Premium",
+      "roomTypes": [
+        "Executive Deluxe Room",
+        "Skyline Mountain Suite",
+        "Family Grand Room"
+      ],
+      "basePricePerNight": 4400,
+      "seasonalPricePerNight": 5300,
+      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "amenities": [
+        "Steps from MG Marg",
+        "Rooftop Mountain View Cafe",
+        "Optical Wi-Fi",
+        "24/7 Geyser & Heating",
+        "Buffet Breakfast"
+      ],
+      "description": "Vibrant boutique hotel located 2 minutes from MG Marg, featuring panoramic rooftop dining, heated rooms, and personalized travel desks.",
+      "active": true
+    },
+    {
+      "id": "hotel-sun-mount-gangtok",
+      "name": "Hotel Sun Mount Gangtok",
+      "destination": "Gangtok",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Deluxe Valley View Room",
+        "Super Deluxe Mountain Room",
+        "Sun Mount Executive Suite"
+      ],
+      "basePricePerNight": 2900,
+      "seasonalPricePerNight": 3600,
+      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "amenities": [
+        "Sunny Valley View Balcony",
+        "Walking Distance to MG Marg",
+        "Multi-Cuisine Dining",
+        "24/7 Hot Water Geyser",
+        "Free Wi-Fi",
+        "Power Backup"
+      ],
+      "description": "Popular deluxe hotel in central Gangtok known for its sunlit valley-view rooms, warm Sikkimese hospitality, and immediate access to MG Marg promenade.",
+      "active": true
+    },
+    {
+      "id": "hotel-gangtok-prime",
+      "name": "Gangtok Prime Hotel & Spa",
+      "destination": "Gangtok",
+      "category": "4 Star Premium",
+      "roomTypes": [
+        "Prime Executive Room",
+        "Kanchenjunga Luxury Suite",
+        "Prime Family Suite"
+      ],
+      "basePricePerNight": 4600,
+      "seasonalPricePerNight": 5600,
+      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "amenities": [
+        "Panoramic Mountain Balconies",
+        "Prime Spa & Wellness Center",
+        "Multi-Cuisine & Pure Veg Kitchen",
+        "High-Speed Wi-Fi",
+        "Central Heating",
+        "Elevator Access"
+      ],
+      "description": "Premium executive hotel in Gangtok combining modern luxury suites, in-house spa rejuvenation, and panoramic balconies overlooking the Kanchenjunga range.",
+      "active": true
+    },
+    {
+      "id": "hotel-hungry-jack-gangtok",
+      "name": "Hotel Hungry Jack Gangtok",
+      "destination": "Gangtok",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Deluxe Room",
+        "Super Deluxe Valley View",
+        "Family Comfort Suite"
+      ],
+      "basePricePerNight": 2700,
+      "seasonalPricePerNight": 3400,
+      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "amenities": [
+        "Famous Multi-Cuisine Restaurant",
+        "Prompt Room Service",
+        "Central MG Marg Proximity",
+        "24/7 Hot Running Water",
+        "Wi-Fi & Cable TV",
+        "Travel Desk"
+      ],
+      "description": "Iconic and well-known hotel in Gangtok featuring a famous in-house restaurant, comfortable spacious rooms, and warm, budget-friendly mountain hospitality.",
+      "active": true
+    },
+    {
+      "id": "hotel-crestora-grand-gangtok",
+      "name": "Crestora Grand Hotel & Spa Gangtok",
+      "destination": "Gangtok",
+      "category": "4 Star Premium",
+      "roomTypes": [
+        "Crestora Alpine Deluxe",
+        "Kanchenjunga Executive Suite",
+        "Royal Family Suite"
+      ],
+      "basePricePerNight": 4200,
+      "seasonalPricePerNight": 5100,
+      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "amenities": [
+        "Floor-to-Ceiling Mountain Glass",
+        "Rooftop Sunset Lounge & Bonfire",
+        "Central Heating",
+        "Pure Veg & Multi-Cuisine Dining",
+        "Elevator",
+        "Fast Wi-Fi"
+      ],
+      "description": "Contemporary alpine boutique luxury hotel in Gangtok with breathtaking views of Mt Kanchenjunga, heated rooms, and fine multi-cuisine & Jain dining.",
+      "active": true
+    },
+    {
+      "id": "hotel-mayfair-darjeeling",
+      "name": "Mayfair Hill Resort & Spa",
+      "destination": "Darjeeling",
+      "category": "5 Star Heritage Luxury",
+      "roomTypes": [
+        "Executive Room",
+        "Heritage Suite"
+      ],
+      "basePricePerNight": 8200,
+      "seasonalPricePerNight": 9800,
+      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "amenities": [
+        "Opposite Governor House",
+        "Tea Lounge",
+        "Spa & Gym",
+        "Library",
+        "Kanchenjunga View"
+      ],
+      "description": "Palatial hill estate overlooking Darjeeling valley with royal wooden interiors and Victorian tea gardens.",
+      "active": true
+    },
+    {
+      "id": "hotel-sterling-darjeeling",
+      "name": "Sterling Darjeeling (Ghoom Heights)",
+      "destination": "Darjeeling",
+      "category": "4 Star Premium",
+      "roomTypes": [
+        "Classic Room",
+        "Privilege Suite",
+        "Kanchenjunga View Suite"
+      ],
+      "basePricePerNight": 5400,
+      "seasonalPricePerNight": 6600,
+      "image": "/src/assets/images/darjeeling_toy_train_1785681122611.jpg",
+      "amenities": [
+        "Highest Elevation View",
+        "Toy Train Route",
+        "Children Play Area",
+        "Multi-Cuisine Buffet"
+      ],
+      "description": "Set on Ghoom Monastery hill, offering snow peak sunrise views and direct access to Toy Train heritage line.",
+      "active": true
+    },
+    {
+      "id": "hotel-elgin-darjeeling",
+      "name": "The Elgin Heritage Hotel",
+      "destination": "Darjeeling",
+      "category": "5 Star Heritage Luxury",
+      "roomTypes": [
+        "Deluxe Heritage Room",
+        "Suite"
+      ],
+      "basePricePerNight": 7800,
+      "seasonalPricePerNight": 9200,
+      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "amenities": [
+        "Colonial Lounge",
+        "Oak Panel Dining",
+        "High Tea Lounge",
+        "Fireplace",
+        "Garden Walk"
+      ],
+      "description": "125-year-old royal summer residence turned luxury heritage hotel in the heart of Darjeeling near Mall Road.",
+      "active": true
+    },
+    {
+      "id": "hotel-summit-grace-darjeeling",
+      "name": "Summit Grace Hotel & Spa",
+      "destination": "Darjeeling",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Deluxe Room",
+        "Kanchenjunga View Suite"
+      ],
+      "basePricePerNight": 3600,
+      "seasonalPricePerNight": 4400,
+      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "amenities": [
+        "Kanchenjunga View",
+        "Spa",
+        "Multi-Cuisine Restaurant",
+        "Heated Blanket",
+        "Tea Station"
+      ],
+      "description": "Peaceful stay on Gandhi Road with clear morning views of Mt Kanchenjunga.",
+      "active": true
+    },
+    {
+      "id": "hotel-udaan-dekeling-darjeeling",
+      "name": "Udaan Dekeling Resort",
+      "destination": "Darjeeling",
+      "category": "4 Star Premium",
+      "roomTypes": [
+        "Heritage Deluxe Room",
+        "Kanchenjunga Suite"
+      ],
+      "basePricePerNight": 4800,
+      "seasonalPricePerNight": 5800,
+      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "amenities": [
+        "Near Mall Road",
+        "Pure Veg Dining",
+        "Panoramic Balcony",
+        "Wi-Fi",
+        "Fireplace"
+      ],
+      "description": "A grand colonial wooden manor converted into a boutique luxury resort near Darjeeling Chowrasta.",
+      "active": true
+    },
+    {
+      "id": "hotel-rufina-darjeeling-mall",
+      "name": "Rufina Darjeeling Mall Road",
+      "destination": "Darjeeling",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Deluxe Room",
+        "Family Suite"
+      ],
+      "basePricePerNight": 2900,
+      "seasonalPricePerNight": 3600,
+      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "amenities": [
+        "Steps from Mall Road",
+        "Hot Water 24/7",
+        "Home Style Dining"
+      ],
+      "description": "Ultra-convenient budget deluxe hotel situated right at Darjeeling Mall Road.",
+      "active": true
+    },
+    {
+      "id": "hotel-voyage-glenburn-darjeeling",
+      "name": "Voyage Glenburn Tea Estate Stay",
+      "destination": "Darjeeling",
+      "category": "5 Star Heritage Luxury",
+      "roomTypes": [
+        "Planters Suite",
+        "Garden Suite"
+      ],
+      "basePricePerNight": 7500,
+      "seasonalPricePerNight": 8900,
+      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "amenities": [
+        "Tea Garden Walks",
+        "Private Tea Tasting",
+        "Gourmet Meals",
+        "River Bungalow View"
+      ],
+      "description": "Exclusive heritage estate stay surrounded by 1,000 acres of lush tea plantations and rivers.",
+      "active": true
+    },
+    {
+      "id": "hotel-jain-mount-conifer-darjeeling",
+      "name": "Jain Group Hotel Mount Conifer",
+      "destination": "Darjeeling",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Kanchenjunga View Deluxe",
+        "Heritage Family Suite"
+      ],
+      "basePricePerNight": 3600,
+      "seasonalPricePerNight": 4200,
+      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "amenities": [
+        "100% Pure Veg Dining",
+        "Near Mall Road",
+        "Kanchenjunga View",
+        "Free Wi-Fi",
+        "Hot Water 24/7"
+      ],
+      "description": "Charming pure vegetarian property near Darjeeling Mall Road featuring dedicated Jain dining and clear snow-cap mountain views.",
+      "active": true
+    },
+    {
+      "id": "hotel-rare-himalayas-darjeeling",
+      "name": "Rare Himalayas Pinecrest Manor",
+      "destination": "Darjeeling",
+      "category": "4 Star Heritage Luxury",
+      "roomTypes": [
+        "Heritage Pine Suite",
+        "Colonial Valley View Room"
+      ],
+      "basePricePerNight": 6800,
+      "seasonalPricePerNight": 8200,
+      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "amenities": [
+        "Colonial Fireplace",
+        "Tea Tasting Salon",
+        "Panoramic Snow Peak Views",
+        "Heated Rooms",
+        "Fine Dining"
+      ],
+      "description": "Restored heritage sanctuary set amid whispering pine groves with clear views of Mt Kanchenjunga and exclusive high-tea experiences.",
+      "active": true
+    },
+    {
+      "id": "hotel-trickocity-highpoint-darjeeling",
+      "name": "Trickocity Highpoint Retreat & Rooftop",
+      "destination": "Darjeeling",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Highpoint Deluxe",
+        "Sunrise Mountain Suite"
+      ],
+      "basePricePerNight": 3700,
+      "seasonalPricePerNight": 4500,
+      "image": "/src/assets/images/darjeeling_toy_train_1785681122611.jpg",
+      "amenities": [
+        "Rooftop Sunrise Deck",
+        "Mall Road Walking Distance",
+        "Multi-Cuisine Cafe",
+        "Electric Blanket",
+        "Fast Wi-Fi"
+      ],
+      "description": "Stylish contemporary hotel near Darjeeling Mall Road offering expansive sunrise terraces over the Kanchenjunga valley.",
+      "active": true
+    },
+    {
+      "id": "hotel-crestora-pineview-darjeeling",
+      "name": "Crestora Pineview Manor Darjeeling",
+      "destination": "Darjeeling",
+      "category": "4 Star Premium",
+      "roomTypes": [
+        "Crestora Pine Suite",
+        "Heritage Kanchenjunga Room",
+        "Family Luxury Suite"
+      ],
+      "basePricePerNight": 4400,
+      "seasonalPricePerNight": 5400,
+      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "amenities": [
+        "Pine Valley & Snow Views",
+        "Walking Distance to Chowrasta Mall",
+        "Central Room Heating",
+        "In-House Cafe & Restaurant",
+        "Free Wi-Fi",
+        "24/7 Geyser"
+      ],
+      "description": "Boutique heritage-style hotel nestled along Darjeeling scenic ridges with panoramic sunrise views of Mt Kanchenjunga and luxurious heated rooms.",
+      "active": true
+    },
+    {
+      "id": "hotel-summit-dragons-pelling",
+      "name": "Summit Dragon's Delight",
+      "destination": "Pelling",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Deluxe Mountain Room",
+        "Kanchenjunga Suite"
+      ],
+      "basePricePerNight": 3700,
+      "seasonalPricePerNight": 4500,
+      "image": "/src/assets/images/ravangla_buddha_park_1785680605794.jpg",
+      "amenities": [
+        "Glass Skywalk Shuttle",
+        "Unobstructed Kanchenjunga View",
+        "Metta Spa",
+        "Bonfire"
+      ],
+      "description": "Prime West Sikkim hotel offering front-row vistas of Mt. Kanchenjunga peaks.",
+      "active": true
+    },
+    {
+      "id": "hotel-sila-norphel-pelling",
+      "name": "Sila Norphel Resort Pelling",
+      "destination": "Pelling",
+      "category": "4 Star Premium",
+      "roomTypes": [
+        "Sila Mountain View Room",
+        "Super Deluxe Balcony Suite",
+        "Norphel Executive Suite"
+      ],
+      "basePricePerNight": 4100,
+      "seasonalPricePerNight": 4900,
+      "image": "/src/assets/images/ravangla_buddha_park_1785680605794.jpg",
+      "amenities": [
+        "Unobstructed 180° Kanchenjunga View",
+        "Private Wooden Balconies",
+        "Pine Garden Lawn",
+        "Multi-Cuisine & Sikkimese Dining",
+        "Room Heating",
+        "24/7 Geyser"
+      ],
+      "description": "Premier scenic mountain resort in Upper Pelling celebrated for its unobstructed panoramic views of Mt Kanchenjunga, serene pine gardens, and warm local hospitality.",
+      "active": true
+    },
+    {
+      "id": "hotel-crestora-valley-pelling",
+      "name": "Crestora Valley Retreat Pelling",
+      "destination": "Pelling",
+      "category": "4 Star Premium",
+      "roomTypes": [
+        "Crestora Valley Deluxe",
+        "Kanchenjunga Royal Suite"
+      ],
+      "basePricePerNight": 3900,
+      "seasonalPricePerNight": 4800,
+      "image": "/src/assets/images/ravangla_buddha_park_1785680605794.jpg",
+      "amenities": [
+        "Frontal Snow Peak Vista",
+        "Glass Balcony Lounge",
+        "Pure Veg & Jain Kitchen",
+        "Bonfire Evenings",
+        "Fast Wi-Fi",
+        "24/7 Hot Water"
+      ],
+      "description": "Tranquil luxury retreat in Pelling offering floor-to-ceiling vistas of the snow-capped Himalayan range and personalized guest pampering.",
+      "active": true
+    },
+    {
+      "id": "hotel-udaan-clover-pelling",
+      "name": "Udaan Clover Hotel & Spa",
+      "destination": "Pelling",
+      "category": "4 Star Premium",
+      "roomTypes": [
+        "Clover Deluxe",
+        "Executive Suite"
+      ],
+      "basePricePerNight": 4900,
+      "seasonalPricePerNight": 5900,
+      "image": "/src/assets/images/ravangla_buddha_park_1785680605794.jpg",
+      "amenities": [
+        "Pure Veg Kitchen",
+        "Spa",
+        "Lawn Garden",
+        "Kanchenjunga View"
+      ],
+      "description": "Boutique luxury resort in Pelling featuring pure vegetarian cuisine and lush lawn gardens.",
+      "active": true
+    },
+    {
+      "id": "hotel-rufina-pelling-mountain",
+      "name": "Rufina Pelling Mountain View",
+      "destination": "Pelling",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Mountain View Room"
+      ],
+      "basePricePerNight": 2700,
+      "seasonalPricePerNight": 3400,
+      "image": "/src/assets/images/ravangla_buddha_park_1785680605794.jpg",
+      "amenities": [
+        "Valley Balcony",
+        "Geyser",
+        "North Indian Meals",
+        "Quiet Location"
+      ],
+      "description": "Affordable comfort hotel offering unobstructed mountain sunrise views in Pelling.",
+      "active": true
+    },
+    {
+      "id": "hotel-voyage-pelling-heights",
+      "name": "Voyage Pelling Heights",
+      "destination": "Pelling",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Heights Suite",
+        "Deluxe Room"
+      ],
+      "basePricePerNight": 3300,
+      "seasonalPricePerNight": 4000,
+      "image": "/src/assets/images/ravangla_buddha_park_1785680605794.jpg",
+      "amenities": [
+        "Rooftop Terrace",
+        "Restaurant",
+        "Wi-Fi",
+        "Local Tour Desk"
+      ],
+      "description": "Modern hotel located close to Pemayangtse Monastery and Rabdentse ruins.",
+      "active": true
+    },
+    {
+      "id": "hotel-jain-grand-heritage-pelling",
+      "name": "Jain Group Grand Heritage Resort",
+      "destination": "Pelling",
+      "category": "4 Star Premium",
+      "roomTypes": [
+        "Grand Kanchenjunga Suite",
+        "Luxury Mountain Room"
+      ],
+      "basePricePerNight": 4800,
+      "seasonalPricePerNight": 5800,
+      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "amenities": [
+        "Pure Veg Gourmet Dining",
+        "Strict Jain Meal Prep",
+        "Bonfire",
+        "Mountain Lawn",
+        "Geyser & Heater"
+      ],
+      "description": "Luxury 4-star pure vegetarian resort in Pelling offering panoramic views of Mt. Kanchenjunga and custom Jain breakfast & dinner.",
+      "active": true
+    },
+    {
+      "id": "hotel-rare-himalayas-pelling",
+      "name": "Rare Himalayas Kanchenjunga Estate",
+      "destination": "Pelling",
+      "category": "5 Star Experiential Luxury",
+      "roomTypes": [
+        "Mountain Sanctuary Suite",
+        "Royal Kanchenjunga Villa"
+      ],
+      "basePricePerNight": 6900,
+      "seasonalPricePerNight": 8400,
+      "image": "/src/assets/images/ravangla_buddha_park_1785680605794.jpg",
+      "amenities": [
+        "Unobstructed Kanchenjunga Frontal View",
+        "Bonfire & Stargazing Lawn",
+        "Organic Dining",
+        "Glass Skywalk Shuttle",
+        "Heated Baths"
+      ],
+      "description": "Spectacular luxury estate in Upper Pelling offering uninterrupted 180-degree panoramas of the Himalayan snow range.",
+      "active": true
+    },
+    {
+      "id": "hotel-trickocity-alpine-pelling",
+      "name": "Trickocity Alpine Heights",
+      "destination": "Pelling",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Alpine Mountain View Room",
+        "Family Panorama Suite"
+      ],
+      "basePricePerNight": 3400,
+      "seasonalPricePerNight": 4100,
+      "image": "/src/assets/images/ravangla_buddha_park_1785680605794.jpg",
+      "amenities": [
+        "Balcony with Peak Views",
+        "In-House Dining",
+        "24/7 Hot Water",
+        "Tour & Sightseeing Desk"
+      ],
+      "description": "Modern hilltop stay providing comfortable family suites and direct views of Mt Kanchenjunga at competitive pricing.",
+      "active": true
+    },
+    {
+      "id": "hotel-lachung-country-house",
+      "name": "Lachung Country House",
+      "destination": "North Sikkim",
+      "category": "4 Star Premium",
+      "roomTypes": [
+        "Alpine Pine Suite",
+        "Country Attic Room",
+        "Himalayan Stream Suite"
+      ],
+      "basePricePerNight": 4500,
+      "seasonalPricePerNight": 5500,
+      "image": "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+      "amenities": [
+        "Central Radiator Heating",
+        "Mountain River & Glacier View",
+        "Authentic Pinewood Interiors",
+        "Organic Sikkimese Buffet",
+        "24/7 Hot Water Geyser",
+        "Power Generator Backup",
+        "Oxygen Cylinder on Standby"
+      ],
+      "description": "Iconic boutique alpine country lodge in Lachung valley featuring handcrafted pine wood suites, roaring fireplace lounge, continuous radiator heating, and hearty farm-fresh meals before Yumthang & Zero Point.",
+      "active": true
+    },
+    {
+      "id": "hotel-summit-alpine-lachung",
+      "name": "Summit Alpine Resort Lachung",
+      "destination": "North Sikkim",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Super Deluxe Wooden Room"
+      ],
+      "basePricePerNight": 3800,
+      "seasonalPricePerNight": 4500,
+      "image": "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+      "amenities": [
+        "Heated Blankets",
+        "Hot Water 24/7",
+        "Fresh Sikkimese Buffet",
+        "Snow View"
+      ],
+      "description": "Warm pine wooden hotel in Lachung village serving hot organic meals before Yumthang & Zero Point trips.",
+      "active": true
+    },
+    {
+      "id": "hotel-rufina-lachung-grand",
+      "name": "Rufina Lachung Grand",
+      "destination": "North Sikkim",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Wooden Mountain Suite"
+      ],
+      "basePricePerNight": 3100,
+      "seasonalPricePerNight": 3700,
+      "image": "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+      "amenities": [
+        "Geyser",
+        "Power Backup Generator",
+        "Buffet Meals",
+        "Local Hospitality"
+      ],
+      "description": "Popular high-altitude hotel in Lachung with warm generator backup and hot tea service.",
+      "active": true
+    },
+    {
+      "id": "hotel-rare-himalayas-lachung",
+      "name": "Rare Himalayas Alpine Sanctuary Lachung",
+      "destination": "North Sikkim",
+      "category": "4 Star Premium",
+      "roomTypes": [
+        "Cedar Wood Luxury Suite",
+        "Alpine Attic Room"
+      ],
+      "basePricePerNight": 4800,
+      "seasonalPricePerNight": 5800,
+      "image": "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+      "amenities": [
+        "Centralised Room Heating",
+        "Organic Himalayan Buffet",
+        "Continuous Power Backup",
+        "Oxygen Standby",
+        "River & Snow Peak View"
+      ],
+      "description": "Top-tier luxury alpine stay in Lachung featuring insulated pine-wood suites, radiant heating, and gourmet warm meals.",
+      "active": true
+    },
+    {
+      "id": "hotel-trickocity-snowline-lachung",
+      "name": "Trickocity Snowline Lodge Lachung",
+      "destination": "North Sikkim",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Snowline Deluxe Wooden Room",
+        "Family Triple Room"
+      ],
+      "basePricePerNight": 3300,
+      "seasonalPricePerNight": 3900,
+      "image": "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+      "amenities": [
+        "Heated Blankets",
+        "24/7 Hot Water Geyser",
+        "Buffet Meals",
+        "Power Generator",
+        "Yumthang Tour Assistance"
+      ],
+      "description": "Cozy wooden lodge in Lachung village offering warm beds, hot meals, and reliable power backup for North Sikkim travelers.",
+      "active": true
+    },
+    {
+      "id": "hotel-lachung-residency",
+      "name": "Lachung Paradise Residency",
+      "destination": "North Sikkim",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Super Deluxe Wooden Room"
+      ],
+      "basePricePerNight": 3200,
+      "seasonalPricePerNight": 3800,
+      "image": "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+      "amenities": [
+        "Heater",
+        "Hot Water 24/7",
+        "Home-cooked Meals",
+        "Mountain View"
+      ],
+      "description": "Warm mountain hotel in Lachung village serving organic Sikkimese meals and heated blanket rooms.",
+      "active": true
+    },
+    {
+      "id": "hotel-mayfair-kalimpong",
+      "name": "Mayfair Himalayan Retreat",
+      "destination": "Kalimpong",
+      "category": "5 Star Heritage Luxury",
+      "roomTypes": [
+        "Retreat Suite",
+        "Heritage Cottage"
+      ],
+      "basePricePerNight": 7600,
+      "seasonalPricePerNight": 8900,
+      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "amenities": [
+        "Orchid Garden",
+        "Spa",
+        "Fine Dining",
+        "Teesta River View"
+      ],
+      "description": "Exclusive luxury estate in Kalimpong featuring exotic orchid gardens and colonial bungalow suites.",
+      "active": true
+    },
+    {
+      "id": "hotel-summit-barsana-kalimpong",
+      "name": "Summit Barsana Resort & Spa",
+      "destination": "Kalimpong",
+      "category": "4 Star Premium",
+      "roomTypes": [
+        "Deluxe Room",
+        "Valley Suite"
+      ],
+      "basePricePerNight": 4200,
+      "seasonalPricePerNight": 5000,
+      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "amenities": [
+        "Landscaped Lawn",
+        "Metta Spa",
+        "Pure Veg Dining",
+        "Kanchenjunga Vistas"
+      ],
+      "description": "Sprawling resort set across 3 acres of gardens overlooking Kanchenjunga in Kalimpong.",
+      "active": true
+    },
+    {
+      "id": "hotel-voyage-kalimpong",
+      "name": "Voyage Kalimpong Retreat",
+      "destination": "Kalimpong",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Deluxe Room"
+      ],
+      "basePricePerNight": 3100,
+      "seasonalPricePerNight": 3700,
+      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "amenities": [
+        "Quiet Pine Forest",
+        "Restaurant",
+        "Balcony Views"
+      ],
+      "description": "Peaceful hilltop hotel near Deolo Hill with mountain breezes and flower gardens.",
+      "active": true
+    },
+    {
+      "id": "hotel-udaan-olive-siliguri",
+      "name": "Udaan Olive Hotel",
+      "destination": "Siliguri",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Executive Room",
+        "Suite"
+      ],
+      "basePricePerNight": 3200,
+      "seasonalPricePerNight": 3800,
+      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "amenities": [
+        "Airport & Station Transfer",
+        "Pure Veg Restaurant",
+        "AC Rooms",
+        "Wi-Fi"
+      ],
+      "description": "Modern transit hotel near NJP Station & Bagdogra Airport with delicious vegetarian dining.",
+      "active": true
+    },
+    {
+      "id": "hotel-jain-seven-seas-siliguri",
+      "name": "Jain Group Hotel Seven Seas",
+      "destination": "Siliguri",
+      "category": "3 Star Deluxe",
+      "roomTypes": [
+        "Deluxe AC Room",
+        "Super Deluxe"
+      ],
+      "basePricePerNight": 3100,
+      "seasonalPricePerNight": 3600,
+      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "amenities": [
+        "100% Pure Veg Dining",
+        "Strict Jain Food",
+        "AC & Elevators",
+        "Free Wi-Fi"
+      ],
+      "description": "Premier pure vegetarian and Jain transit stop in Siliguri near Hill Cart Road.",
+      "active": true
+    }
+  ],
+  "seasons": [
+    {
+      "id": "season-peak-spring",
+      "name": "Peak Spring & Summer",
+      "months": "March, April, May, June",
+      "priceMultiplier": 1.25,
+      "description": "Clear skies, blooming rhododendrons in Yumthang, pleasant weather.",
+      "status": "Peak",
+      "active": true
+    },
+    {
+      "id": "season-peak-autumn",
+      "name": "Peak Autumn & Puja Holidays",
+      "months": "October, November, December",
+      "priceMultiplier": 1.2,
+      "description": "Crystal clear views of Mt. Kanchenjunga, festive tourist season.",
+      "status": "Peak",
+      "active": true
+    },
+    {
+      "id": "season-mid",
+      "name": "Mid Season (January - February)",
+      "months": "January, February",
+      "priceMultiplier": 1,
+      "description": "Snowfall in North Sikkim, Tsomgo Lake, and Nathula.",
+      "status": "Winter",
+      "active": true
+    },
+    {
+      "id": "season-monsoon",
+      "name": "Monsoon Special Discount",
+      "months": "July, August, September",
+      "priceMultiplier": 0.85,
+      "description": "Lush green waterfalls and tea gardens with heavy discounts.",
+      "status": "Monsoon",
+      "active": true
+    }
+  ],
+  "quotations": [
+    {
+      "id": "quote-1001",
+      "quoteNumber": "ODT-2026-QT01",
+      "customerName": "Ramesh Sharma",
+      "whatsappNumber": "+91 98301 44552",
+      "email": "ramesh.s@gmail.com",
+      "destination": "Sikkim & Darjeeling",
+      "packageTitle": "5N/6D Sikkim & Darjeeling Standard Deluxe",
+      "travelDates": "15th Sept - 20th Sept 2026",
+      "adultsCount": 4,
+      "childrenCount": 0,
+      "nightsCount": 5,
+      "hotelCategory": "3 Star Deluxe",
+      "vehicleModel": "Toyota Innova Crysta",
+      "baseAmount": 74000,
+      "permitCharges": 3000,
+      "discountAmount": 3000,
+      "taxAmount": 3700,
+      "totalFinalAmount": 77700,
+      "status": "Sent",
+      "createdAt": "2026-08-16T10:15:17.742Z",
+      "validUntil": "2026-08-25T10:15:17.742Z",
+      "notes": "Includes Nathula Pass permit & breakfast/dinner."
+    }
+  ],
+  "customers": [
+    {
+      "id": "cust-101",
+      "name": "Ramesh Sharma",
+      "phone": "+91 98301 44552",
+      "whatsapp": "+91 98301 44552",
+      "email": "ramesh.s@gmail.com",
+      "city": "Kolkata",
+      "totalTripsBooked": 1,
+      "totalAmountSpent": 77700,
+      "lastTripDate": "15th Sept 2026",
+      "internalNotes": "Family of 4, prefers veg meals and Innova Crysta.",
+      "createdAt": "2026-08-13T10:15:17.742Z"
+    },
+    {
+      "id": "cust-102",
+      "name": "Sonia Kapoor",
+      "phone": "+91 91234 56789",
+      "whatsapp": "+91 91234 56789",
+      "email": "sonia.k@outlook.com",
+      "city": "New Delhi",
+      "totalTripsBooked": 1,
+      "totalAmountSpent": 43500,
+      "lastTripDate": "5th Oct 2026",
+      "internalNotes": "Honeymoon couple, requested candle-light dinner in Gangtok.",
+      "createdAt": "2026-08-08T10:15:17.742Z"
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq-1",
+      "category": "Permits & Documents",
+      "question": "How do I get permits for Nathula Pass and North Sikkim?",
+      "answer": "OffbeatDestination Travels handles 100% of your permit processing with the Sikkim Tourism & Army authorities. You simply need to email or WhatsApp us copies of your Voter ID / Passport and 2 passport photos at least 24-48 hours before travel.",
+      "active": true,
+      "order": 1
+    },
+    {
+      "id": "faq-2",
+      "category": "Cab & Transport",
+      "question": "Are all cab transfers private or on a sharing basis?",
+      "answer": "Our primary packages feature 100% private luxury vehicles (Innova Crysta, Xylo, Scorpio) dedicated solely to your family or group. We also offer fixed-departure shared seats for budget travelers upon request.",
+      "active": true,
+      "order": 2
+    },
+    {
+      "id": "faq-3",
+      "category": "Hotels & Food",
+      "question": "Is pure vegetarian or Jain food available during the trip?",
+      "answer": "Yes! All our hotel partners in Gangtok, Darjeeling, and Pelling provide dedicated pure vegetarian, Jain, and Gujarati meal options upon prior request.",
+      "active": true,
+      "order": 3
+    },
+    {
+      "id": "faq-4",
+      "category": "Booking & Payments",
+      "question": "What is the advance booking amount to confirm our Sikkim trip?",
+      "answer": "You can confirm your booking with a nominal 20% advance token payment. The remaining balance can be settled upon arrival at Gangtok hotel during briefing.",
+      "active": true,
+      "order": 4
+    }
+  ],
+  "users": [
+    {
+      "id": "usr-101",
+      "name": "Devi Charan Chettri",
+      "email": "chettridev12@gmail.com",
+      "role": "OWNER",
+      "status": "Active",
+      "lastLogin": "2026-08-18T10:15:17.742Z"
+    },
+    {
+      "id": "usr-102",
+      "name": "Operations Manager",
+      "email": "ops@offbeatdestination.in",
+      "role": "ADMIN",
+      "status": "Active",
+      "lastLogin": "2026-08-17T10:15:17.742Z"
+    },
+    {
+      "id": "usr-103",
+      "name": "Sikkim Travel Consultant",
+      "email": "booking@offbeatdestination.in",
+      "role": "STAFF",
+      "status": "Active",
+      "lastLogin": "2026-08-16T10:15:17.742Z"
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "log-1",
+      "timestamp": "2026-08-18T10:15:17.742Z",
+      "userName": "Devi Charan Chettri",
+      "userRole": "OWNER",
+      "action": "SYSTEM_BOOT",
+      "details": "OffbeatDestination Travels Full Backend CMS Engine Initialized Successfully."
+    }
+  ],
+  "navigation": [
+    {
+      "id": "nav-home",
+      "label": "Home",
+      "tabId": "home",
+      "hasDropdown": false,
+      "active": true,
+      "order": 0
+    },
+    {
+      "id": "nav-packages",
+      "label": "Tour Packages",
+      "tabId": "packages",
+      "hasDropdown": true,
+      "dropdownType": "packages",
+      "active": true,
+      "order": 1
+    },
+    {
+      "id": "nav-cabs",
+      "label": "Cab Rentals",
+      "tabId": "cabs",
+      "hasDropdown": true,
+      "dropdownType": "cabs",
+      "active": true,
+      "order": 2
+    },
+    {
+      "id": "nav-hotels",
+      "label": "Hotels",
+      "tabId": "hotels",
+      "hasDropdown": true,
+      "dropdownType": "hotels",
+      "active": true,
+      "order": 3
+    },
+    {
+      "id": "nav-jain-hotels",
+      "label": "Jain Group Hotels",
+      "tabId": "jain-hotels",
+      "hasDropdown": true,
+      "dropdownType": "hotels",
+      "active": true,
+      "order": 4,
+      "badgeText": "Pure Veg"
+    },
+    {
+      "id": "nav-admin",
+      "label": "Admin Console",
+      "tabId": "admin",
+      "hasDropdown": false,
+      "active": true,
+      "order": 5,
+      "badgeText": "Admin"
+    },
+    {
+      "id": "nav-gallery",
+      "label": "Gallery",
+      "tabId": "gallery",
+      "hasDropdown": false,
+      "active": true,
+      "order": 6
+    },
+    {
+      "id": "nav-reviews",
+      "label": "Reviews",
+      "tabId": "reviews",
+      "hasDropdown": false,
+      "active": true,
+      "order": 7
+    },
+    {
+      "id": "nav-faqs",
+      "label": "FAQ",
+      "tabId": "faqs",
+      "hasDropdown": false,
+      "active": true,
+      "order": 8
+    },
+    {
+      "id": "nav-about",
+      "label": "About",
+      "tabId": "about",
+      "hasDropdown": false,
+      "active": true,
+      "order": 9
+    },
+    {
+      "id": "nav-contact",
+      "label": "Contact",
+      "tabId": "contact",
+      "hasDropdown": false,
+      "active": true,
+      "order": 10
+    }
+  ],
+  "media": [
+    {
+      "id": "med-1",
+      "title": "Sikkim Kanchenjunga Banner",
+      "url": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "category": "Banners",
+      "uploadedAt": "2026-08-18T10:15:27.629Z"
+    },
+    {
+      "id": "med-2",
+      "title": "Yumthang Zero Point",
+      "url": "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+      "category": "Destinations",
+      "uploadedAt": "2026-08-18T10:15:27.629Z"
+    }
+  ]
+}

@@ -27,12 +27,13 @@ const DEFAULT_DB_NAV_ITEMS: NavigationItem[] = [
   { id: 'nav-cabs', label: 'Cab Rentals', tabId: 'cabs', hasDropdown: true, dropdownType: 'cabs', active: true, order: 2 },
   { id: 'nav-hotels', label: 'Hotels', tabId: 'hotels', hasDropdown: true, dropdownType: 'hotels', active: true, order: 3 },
   { id: 'nav-jain-hotels', label: 'Jain Group Hotels', tabId: 'jain-hotels', hasDropdown: true, dropdownType: 'hotels', active: true, order: 4, badgeText: 'Pure Veg' },
-  { id: 'nav-admin', label: 'Admin Console', tabId: 'admin', hasDropdown: false, active: true, order: 5, badgeText: 'Admin' },
-  { id: 'nav-gallery', label: 'Gallery', tabId: 'gallery', hasDropdown: false, active: true, order: 6 },
-  { id: 'nav-reviews', label: 'Reviews', tabId: 'reviews', hasDropdown: false, active: true, order: 7 },
-  { id: 'nav-faqs', label: 'FAQ', tabId: 'faqs', hasDropdown: false, active: true, order: 8 },
-  { id: 'nav-about', label: 'About', tabId: 'about', hasDropdown: false, active: true, order: 9 },
-  { id: 'nav-contact', label: 'Contact', tabId: 'contact', hasDropdown: false, active: true, order: 10 },
+  { id: 'nav-blog', label: 'Travel Blog', tabId: 'blog', hasDropdown: false, active: true, order: 5, badgeText: 'Stories' },
+  { id: 'nav-admin', label: 'Admin Console', tabId: 'admin', hasDropdown: false, active: true, order: 6, badgeText: 'Admin' },
+  { id: 'nav-gallery', label: 'Gallery', tabId: 'gallery', hasDropdown: false, active: true, order: 7 },
+  { id: 'nav-reviews', label: 'Reviews', tabId: 'reviews', hasDropdown: false, active: true, order: 8 },
+  { id: 'nav-faqs', label: 'FAQ', tabId: 'faqs', hasDropdown: false, active: true, order: 9 },
+  { id: 'nav-about', label: 'About', tabId: 'about', hasDropdown: false, active: true, order: 10 },
+  { id: 'nav-contact', label: 'Contact', tabId: 'contact', hasDropdown: false, active: true, order: 11 },
 ];
 
 export const Header: React.FC<HeaderProps> = ({

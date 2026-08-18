@@ -137,25 +137,25 @@ export const CabRental: React.FC<CabRentalProps> = ({
           </div>
         </div>
 
-        {/* Mandatory Permit & Small Cab Rule Warning Banner */}
+        {/* Sikkim Tourism & Army Protected Area Permits Notice */}
         <div className="bg-[#111513] border border-[#D6B36A]/40 p-5 rounded-xl flex flex-col sm:flex-row items-start sm:items-center gap-4 text-[#F5F1E8] text-xs sm:text-sm shadow-xl">
           <div className="w-12 h-12 rounded-lg bg-[#18352D] border border-[#D6B36A]/30 flex items-center justify-center text-[#D6B36A] flex-shrink-0 shadow-lg">
-            <AlertTriangle className="w-6 h-6 text-[#D6B36A]" />
+            <ShieldCheck className="w-6 h-6 text-[#D6B36A]" />
           </div>
           <div className="space-y-1">
             <div className="flex items-center gap-2">
               <span className="font-bold text-[#D6B36A] text-sm sm:text-base uppercase tracking-wider">
-                ⚠️ Mandatory Sikkim Tourism & Army Permit Rules
+                🏛️ Sikkim Tourism & Army Permits — Applied as per Govt Rate
               </span>
               <span className="bg-[#D6B36A] text-slate-950 text-[10px] font-black px-2 py-0.5 rounded uppercase">
-                Official Regulation
+                Official Transparency
               </span>
             </div>
             <p className="text-[#A9AAA4] text-xs sm:text-sm leading-relaxed">
-              <strong className="text-[#F5F1E8]">1. SMALL CABS RESTRICTED:</strong> Hatchbacks & Sedans (Swift Dzire, Etios, WagonR, Alto) are <strong className="text-[#F5F1E8]">NOT ALLOWED</strong> for North Sikkim (Lachung / Yumthang / Zero Point) and Nathula Pass high-altitude army permits. Only <strong className="text-[#D6B36A]">4WD SUVs & Heavy Cabs</strong> (Toyota Innova Crysta, Scorpio 4x4, Mahindra Xylo) are permitted by Sikkim Tourism.
+              <strong className="text-[#F5F1E8]">1. PERMIT CHARGES AS PER GOVT RATE:</strong> All Protected Area Permits (PAP), Nathula Pass Indian Army clearances, environmental cess, and high-altitude checkpost documentation are processed transparently with <strong className="text-[#D6B36A]">permit charges applied as per government rate</strong>.
             </p>
             <p className="text-[#A9AAA4] text-[11px] leading-relaxed pt-0.5">
-              <strong className="text-[#F5F1E8]">2. MANDATORY 2-NIGHT LACHUNG STAY:</strong> As per Sikkim Tourism regulations, a minimum <strong className="text-[#D6B36A]">2 Nights stay at Lachung</strong> is mandatory for all North Sikkim tours to ensure high-altitude safety.
+              <strong className="text-[#F5F1E8]">2. MANDATORY 2-NIGHT LACHUNG STAY:</strong> As per Sikkim Tourism regulations, a minimum <strong className="text-[#D6B36A]">2 Nights stay at Lachung</strong> is mandatory for all North Sikkim tours to ensure high-altitude acclimatization and passenger safety.
             </p>
           </div>
         </div>
@@ -276,22 +276,22 @@ export const CabRental: React.FC<CabRentalProps> = ({
                     <div className="p-5 space-y-3">
                       {/* High altitude permit compliance badge */}
                       {isSmallCab ? (
-                        <div className="bg-[#0B0F0E] border border-red-900/40 p-2 rounded text-red-300 text-[11px] font-bold flex items-start gap-1.5 shadow-md">
-                          <XCircle className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
+                        <div className="bg-[#18352D]/80 border border-[#D6B36A]/30 p-2 rounded text-[#D6B36A] text-[11px] font-bold flex items-start gap-1.5 shadow-md">
+                          <CheckCircle className="w-4 h-4 text-[#D6B36A] flex-shrink-0 mt-0.5" />
                           <div>
-                            <span className="text-red-400 block">❌ NOT ALLOWED FOR PERMITS</span>
+                            <span className="text-[#D6B36A] block">✓ PERMIT CHARGES AS PER GOVT RATE</span>
                             <span className="text-[10px] text-[#A9AAA4] font-normal block">
-                              Valid for Gangtok, Darjeeling & NJP/IXB drops only.
+                              Standard hill circuits & local drops · Permit assistance available.
                             </span>
                           </div>
                         </div>
                       ) : (
-                        <div className="bg-[#18352D] border border-[#D6B36A]/30 p-2 rounded text-[#D6B36A] text-[11px] font-bold flex items-start gap-1.5 shadow-md">
+                        <div className="bg-[#18352D] border border-[#D6B36A]/40 p-2 rounded text-[#D6B36A] text-[11px] font-bold flex items-start gap-1.5 shadow-md">
                           <CheckCircle className="w-4 h-4 text-[#D6B36A] flex-shrink-0 mt-0.5" />
                           <div>
-                            <span className="text-[#D6B36A] block">✓ PERMIT APPROVED VEHICLE</span>
+                            <span className="text-[#D6B36A] block">✓ HIGH-ALTITUDE PERMITS CLEARED</span>
                             <span className="text-[10px] text-[#A9AAA4] font-normal block">
-                              Allowed for North Sikkim & Nathula Pass Permits.
+                              North Sikkim & Nathula Pass · Permit charges applied as per govt rate.
                             </span>
                           </div>
                         </div>

@@ -31,6 +31,7 @@ import { TravelChecklist } from './components/TravelChecklist';
 import { AgencyLocationMap } from './components/AgencyLocationMap';
 import { AboutUs } from './components/AboutUs';
 import { ContactPlanTrip } from './components/ContactPlanTrip';
+import { HimalayanTravelBlog } from './components/HimalayanTravelBlog';
 
 import { HostingerGuideModal } from './components/HostingerGuideModal';
 import { OwnerDashboardModal } from './components/OwnerDashboardModal';
@@ -123,6 +124,14 @@ export default function App() {
           location: 'Arithang, Gangtok, Sikkim',
         });
         break;
+      case 'blog':
+        setPageContext({
+          type: 'general',
+          title: 'Himalayan Travel Blog & Field Notes',
+          subtitle: 'Authentic Local Stories, High Altitude Tips & Hidden Offbeat Gems',
+          location: 'Sikkim & Eastern Himalayas',
+        });
+        break;
       case 'about':
         setPageContext({
           type: 'general',
@@ -152,7 +161,7 @@ export default function App() {
   useEffect(() => {
     if (activeTab !== 'home') return;
 
-    const sectionContextMap: Record<string, { title: string; subtitle?: string; type: any }> = {
+    const sectionContextMap: Record<string, { title: string; subtitle?: string; type: any; location?: string }> = {
       'hero-section': {
         type: 'calculator',
         title: 'Custom Himalayan Tour & Cost Calculator',
@@ -197,6 +206,12 @@ export default function App() {
         type: 'general',
         title: 'Sikkim Sightseeing Photo & Video Gallery',
         subtitle: 'Gurudongmar, Zero Point, Tsomgo Lake & Darjeeling',
+      },
+      'blog-section': {
+        type: 'general',
+        title: 'Himalayan Travel Blog & Field Notes',
+        subtitle: 'Stories, High Altitude Tips & Hidden Offbeat Gems',
+        location: 'Sikkim & Himalayas',
       },
       'seo-guide-section': {
         type: 'general',
@@ -827,6 +842,13 @@ export default function App() {
               />
             </div>
 
+            {/* Himalayan Travel Blog: Stories, Expert Tips & Hidden Gems */}
+            <div id="blog-section">
+              <HimalayanTravelBlog
+                onOpenAIChatWithTopic={(topic) => handleOpenChatWithContext(`Blog Story: ${topic}`)}
+              />
+            </div>
+
             {/* SEO Destination & Permit Guide Section */}
             <div id="seo-guide-section">
               <SeoDestinationGuide
@@ -917,6 +939,12 @@ export default function App() {
           />
         )}
 
+        {activeTab === 'blog' && (
+          <HimalayanTravelBlog
+            onOpenAIChatWithTopic={(topic) => handleOpenChatWithContext(`Blog Story: ${topic}`)}
+          />
+        )}
+
         {activeTab === 'reviews' && <CustomerReviews />}
 
         {activeTab === 'faqs' && <FAQSection />}
@@ -960,6 +988,11 @@ export default function App() {
           <div className="space-y-2">
             <h4 className="font-serif font-bold text-white text-sm">Quick Links</h4>
             <ul className="space-y-2 font-sans">
+              <li>
+                <button onClick={() => setActiveTab('blog')} className="hover:text-[#D6B36A] text-[#D6B36A] font-semibold transition-colors flex items-center gap-1.5">
+                  <span>🏔️ Himalayan Travel Blog</span>
+                </button>
+              </li>
               <li>
                 <button onClick={() => setActiveTab('packages')} className="hover:text-cyan-300 transition-colors">
                   5N/6D Sikkim & Darjeeling Package

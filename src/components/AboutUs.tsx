@@ -45,8 +45,9 @@ export const AboutUs: React.FC = () => {
                   <strong className="text-[#D6B36A] font-mono font-bold">{AGENCY_DETAILS.licenseNo}</strong>
                 </div>
                 <div>
-                  <span className="text-[#A9AAA4] block text-[11px]">Proprietor:</span>
+                  <span className="text-[#A9AAA4] block text-[11px]">Proprietor / Founder:</span>
                   <strong className="text-[#F5F1E8]">{AGENCY_DETAILS.proprietor}</strong>
+                  <span className="block text-[11px] text-[#D6B36A] font-mono">{AGENCY_DETAILS.ownerEmail}</span>
                 </div>
                 <div>
                   <span className="text-[#A9AAA4] block text-[11px]">Issuing Authority:</span>

@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { GoogleGenAI } from '@google/genai';
 import { DEFAULT_SEO_SETTINGS } from './src/data/travelData';
 import { getBackendStore, saveBackendStore, logAuditAction } from './src/data/backendStore';
+import { BLOG_POSTS, calculateReadTime } from './src/data/blogData';
 
 dotenv.config();
 
@@ -108,6 +109,7 @@ const AGENCY_DETAILS_INITIAL = {
   phoneSecondary: "+91 98513 70773",
   whatsappNumber: "916296102341",
   email: "info@offbeatdestination.in",
+  ownerEmail: "chettridev12@gmail.com",
   domain: "offbeatdestination.in",
   websiteUrl: "https://offbeatdestination.in",
   googleMapsUrl: "https://maps.app.goo.gl/1F2hXG1XeyKvM9DE8",
@@ -1645,6 +1647,41 @@ app.post('/api/admin/upload-photo', (req, res) => {
   saveBackendStore(store);
   logAuditAction('Owner Admin', 'ADMIN', 'UPLOAD_PHOTO', `Uploaded photo asset: ${title || 'Property photo'}`);
   res.json({ success: true, url: dataUrl, media: newItem });
+});
+
+// HIMALAYAN TRAVEL BLOG API
+app.get('/api/blog', (req, res) => {
+  const { category, search } = req.query;
+  let posts = BLOG_POSTS.map(p => ({
+    ...p,
+    readTime: calculateReadTime(p.content),
+  }));
+
+  if (category && category !== 'All') {
+    posts = posts.filter(p => p.category === category);
+  }
+
+  if (search && typeof search === 'string') {
+    const q = search.toLowerCase();
+    posts = posts.filter(p => 
+      p.title.toLowerCase().includes(q) ||
+      p.summary.toLowerCase().includes(q) ||
+      p.tags.some(t => t.toLowerCase().includes(q))
+    );
+  }
+
+  res.json(posts);
+});
+
+app.get('/api/blog/:slugOrId', (req, res) => {
+  const { slugOrId } = req.params;
+  const post = BLOG_POSTS.find(p => p.slug === slugOrId || p.id === slugOrId);
+  if (!post) return res.status(404).json({ error: 'Blog post not found' });
+
+  res.json({
+    ...post,
+    readTime: calculateReadTime(post.content),
+  });
 });
 
 // NAVIGATION LINKS TABLE CRUD

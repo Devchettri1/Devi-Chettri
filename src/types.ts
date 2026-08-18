@@ -322,3 +322,31 @@ export interface NavigationItem {
   externalUrl?: string;
 }
 
+export interface BlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  subtitle: string;
+  category: 'Offbeat Gems' | 'Travel Tips' | 'Storytelling' | 'Permits & Seasons' | 'Cultural Heritage';
+  author: {
+    name: string;
+    role: string;
+    avatarUrl: string;
+  };
+  publishedDate: string;
+  readTime?: string;
+  coverImage: string;
+  summary: string;
+  content: string;
+  keyTakeaways: string[];
+  tags: string[];
+  featured?: boolean;
+  location?: string;
+  elevation?: string;
+  bestSeason?: string;
+  relatedPackageId?: string;
+  relatedPackageTitle?: string;
+  likesCount?: number;
+}
+
+
