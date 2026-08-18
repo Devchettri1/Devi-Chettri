@@ -86,15 +86,15 @@ export const PopularDestinations: React.FC<PopularDestinationsProps> = ({
   onOpenAIChat,
 }) => {
   return (
-    <section className="py-20 bg-[#0B0F0E] relative overflow-hidden border-b border-[#D6B36A]/20">
+    <section className="py-20 bg-[#060B18] relative overflow-hidden border-b border-slate-800">
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
           <p className="luxury-eyebrow">HIMALAYAN DESTINATIONS</p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F5F1E8]">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
             Curated Himalayan Destinations
           </h2>
-          <p className="text-[#A9AAA4] text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
             Explore handcrafted circuits across Sikkim, Darjeeling, and Bhutan. Local expertise, express army permits, and private Toyota Innova Crystas included.
           </p>
         </div>
@@ -108,50 +108,54 @@ export const PopularDestinations: React.FC<PopularDestinationsProps> = ({
             return (
               <div
                 key={dest.id}
-                className="bg-[#111513] rounded-xl border border-[#D6B36A]/20 overflow-hidden shadow-xl hover:border-[#D6B36A]/50 transition-all duration-300 flex flex-col group hover:bg-[#151A17]"
+                className="bg-[#0A1128] rounded-2xl border border-slate-800/90 overflow-hidden shadow-xl hover:border-cyan-500/50 transition-all duration-300 flex flex-col group"
               >
                 {/* Image & Header */}
                 <div className="relative h-56 overflow-hidden">
                   <img
                     src={dest.image}
                     alt={dest.name}
+                    loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="224"
                     referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-80"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F0E] via-[#0B0F0E]/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/50 to-transparent" />
 
                   {/* Duration pill */}
-                  <div className="absolute top-3 right-3 bg-[#0B0F0E]/85 backdrop-blur-md px-3 py-1 rounded border border-[#D6B36A]/30 text-[11px] font-semibold text-[#D6B36A] flex items-center gap-1">
-                    <Clock className="w-3 h-3 text-[#D6B36A]" />
+                  <div className="absolute top-3 right-3 bg-[#060B18]/90 backdrop-blur-md px-3 py-1 rounded-full border border-cyan-500/30 text-[11px] font-semibold text-cyan-300 flex items-center gap-1">
+                    <Clock className="w-3 h-3 text-cyan-400" />
                     {dest.suggestedDuration}
                   </div>
 
                   {/* Destination Title & Tagline */}
                   <div className="absolute bottom-3 left-4 right-4 space-y-0.5">
-                    <span className="text-[10px] uppercase font-bold text-[#D6B36A] tracking-wider block">
+                    <span className="text-[10px] uppercase font-bold text-cyan-400 tracking-wider block">
                       Himalayan Circuit
                     </span>
-                    <h3 className="text-xl font-bold text-[#F5F1E8] flex items-center gap-1.5">
-                      <MapPin className="w-4 h-4 text-[#D6B36A]" />
+                    <h3 className="text-xl font-bold text-white flex items-center gap-1.5">
+                      <MapPin className="w-4 h-4 text-cyan-400" />
                       {dest.name}
                     </h3>
-                    <p className="text-xs text-[#A9AAA4] font-medium">{dest.tagline}</p>
+                    <p className="text-xs text-slate-300 font-medium">{dest.tagline}</p>
                   </div>
                 </div>
 
                 {/* Card Content */}
                 <div className="p-5 flex-1 flex flex-col justify-between space-y-4 text-xs">
                   <div className="space-y-3">
-                    <p className="text-[#A9AAA4] leading-relaxed text-xs">
+                    <p className="text-slate-300 leading-relaxed text-xs">
                       {dest.description}
                     </p>
 
                     {/* Best For */}
-                    <div className="p-2.5 bg-[#0B0F0E] rounded-lg border border-[#D6B36A]/15 space-y-1">
-                      <span className="text-[10px] font-bold text-[#D6B36A] uppercase tracking-wider block">
+                    <div className="p-2.5 bg-[#060B18] rounded-xl border border-cyan-500/20 space-y-1">
+                      <span className="text-[10px] font-bold text-cyan-400 uppercase tracking-wider block">
                         Best For:
                       </span>
-                      <p className="text-[#F5F1E8] text-[11px] font-medium">{dest.bestFor}</p>
+                      <p className="text-slate-200 text-[11px] font-medium">{dest.bestFor}</p>
                     </div>
 
                     {/* Popular Spots Pills */}
@@ -159,7 +163,7 @@ export const PopularDestinations: React.FC<PopularDestinationsProps> = ({
                       {dest.popularSpots.map((spot, idx) => (
                         <span
                           key={idx}
-                          className="px-2 py-0.5 bg-[#151A17] border border-white/10 text-[#A9AAA4] rounded text-[10px] font-medium"
+                          className="px-2.5 py-1 bg-[#060B18] border border-slate-700/80 text-slate-300 rounded-lg text-[10px] font-medium"
                         >
                           {spot}
                         </span>
@@ -168,20 +172,20 @@ export const PopularDestinations: React.FC<PopularDestinationsProps> = ({
                   </div>
 
                   {/* Card Actions */}
-                  <div className="pt-3 border-t border-[#D6B36A]/15 grid grid-cols-2 gap-2">
+                  <div className="pt-3 border-t border-slate-800 grid grid-cols-2 gap-2">
                     <button
                       onClick={() => onOpenAIChat(`${dest.name} Tour Packages`)}
                       className="btn-luxury-outline text-xs !py-2 !px-3"
                     >
                       <span>Explore Route</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#D6B36A]" />
+                      <ArrowRight className="w-3.5 h-3.5 text-cyan-400" />
                     </button>
 
                     <a
                       href={whatsappLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-3 py-2 bg-[#25D366] hover:bg-[#20BD5A] text-slate-950 font-bold rounded-lg text-xs transition-all flex items-center justify-center gap-1 shadow-md"
+                      className="px-3 py-2 bg-[#25D366] hover:bg-[#20BD5A] text-slate-950 font-bold rounded-xl text-xs transition-all flex items-center justify-center gap-1 shadow-md"
                     >
                       <MessageCircle className="w-3.5 h-3.5 fill-slate-950" />
                       <span>WhatsApp Quote</span>

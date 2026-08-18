@@ -35,7 +35,24 @@ const API_KEY =
   (import.meta as any).env?.VITE_GOOGLE_MAPS_PLATFORM_KEY ||
   (globalThis as any).GOOGLE_MAPS_PLATFORM_KEY ||
   '';
-const hasValidKey = Boolean(API_KEY) && API_KEY !== 'YOUR_API_KEY';
+
+const isValidGoogleMapsKey = (key: any): boolean => {
+  if (!key || typeof key !== 'string') return false;
+  const trimmed = key.trim();
+  if (
+    trimmed === '' ||
+    trimmed === 'YOUR_API_KEY' ||
+    trimmed === 'undefined' ||
+    trimmed === 'null' ||
+    trimmed.length < 25 ||
+    !trimmed.startsWith('AIza')
+  ) {
+    return false;
+  }
+  return true;
+};
+
+const hasValidKey = isValidGoogleMapsKey(API_KEY);
 
 export interface Waypoint {
   id: string;
@@ -888,12 +905,13 @@ function GoogleMapRouteViewer({
   weatherDataMap?: Record<string, WaypointWeather>;
 }) {
   const [mapTypeId, setMapTypeId] = useState<'roadmap' | 'satellite' | 'hybrid' | 'terrain'>('hybrid');
+  const [mapError, setMapError] = useState(false);
 
   const defaultCenter = selectedWaypoint
     ? { lat: selectedWaypoint.lat, lng: selectedWaypoint.lng }
     : { lat: 27.3275, lng: 88.6128 };
 
-  if (!hasValidKey) {
+  if (!hasValidKey || mapError) {
     return (
       <div className="bg-[#0B1F3A] border border-[#C6A15B]/40 rounded-2xl p-5 space-y-4 text-slate-100 shadow-2xl">
         <div className="flex items-start gap-3 p-4 bg-amber-950/80 border border-amber-600/60 rounded-xl">
@@ -964,7 +982,12 @@ function GoogleMapRouteViewer({
       </div>
 
       <div className="relative w-full h-80 sm:h-96 rounded-2xl overflow-hidden border border-[#C6A15B]/40 shadow-2xl bg-slate-950">
-        <APIProvider apiKey={API_KEY} version="weekly">
+        <APIProvider
+          apiKey={API_KEY}
+          version="weekly"
+          libraries={['marker', 'routes', 'places', 'geometry']}
+          onError={() => setMapError(true)}
+        >
           <Map
             defaultCenter={defaultCenter}
             defaultZoom={10}

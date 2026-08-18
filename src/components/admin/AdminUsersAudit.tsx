@@ -113,7 +113,7 @@ export const AdminUsersAudit: React.FC<AdminUsersAuditProps> = ({ users, auditLo
                   {log.action}
                 </span>
                 <div>
-                  <div className="text-slate-200 font-bold">{log.userName} ({log.role})</div>
+                  <div className="text-slate-200 font-bold">{log.userName} ({log.userRole || 'STAFF'})</div>
                   <div className="text-slate-400 text-[11px]">{log.details}</div>
                 </div>
               </div>

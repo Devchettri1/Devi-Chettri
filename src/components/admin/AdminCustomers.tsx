@@ -48,7 +48,7 @@ export const AdminCustomers: React.FC<AdminCustomersProps> = ({ customers, onRef
     (c) =>
       c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       c.phone.includes(searchQuery) ||
-      c.whatsappNumber.includes(searchQuery)
+      (c.whatsapp && c.whatsapp.includes(searchQuery))
   );
 
   return (
@@ -106,7 +106,7 @@ export const AdminCustomers: React.FC<AdminCustomersProps> = ({ customers, onRef
                 <p className="text-[11px] text-slate-400">{c.city || 'Kolkata, WB'}</p>
               </div>
               <span className="text-[10px] bg-emerald-950 text-emerald-300 font-bold px-2 py-0.5 rounded border border-emerald-800">
-                {c.tripsBooked} Trips Booked
+                {c.totalTripsBooked || 1} Trips Booked
               </span>
             </div>
 
@@ -117,7 +117,7 @@ export const AdminCustomers: React.FC<AdminCustomersProps> = ({ customers, onRef
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-amber-400" />
-                <span>{c.email}</span>
+                <span>{c.email || 'N/A'}</span>
               </div>
             </div>
 
@@ -125,7 +125,7 @@ export const AdminCustomers: React.FC<AdminCustomersProps> = ({ customers, onRef
               <div>
                 <span className="text-slate-400 text-[10px] block">Total Spent</span>
                 <span className="font-bold text-[#D9BC7A]">
-                  ₹{(c.totalSpentAmount || 0).toLocaleString('en-IN')}
+                  ₹{(c.totalAmountSpent || 0).toLocaleString('en-IN')}
                 </span>
               </div>
 

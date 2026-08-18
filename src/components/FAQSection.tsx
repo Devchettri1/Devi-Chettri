@@ -63,8 +63,8 @@ const FAQ_DATA: FAQItem[] = [
   {
     id: 'faq-8',
     category: 'Meals & Stays',
-    question: 'What Non-Veg, Pure Veg, Jain, and Halal food options are provided in your tour packages?',
-    answer: 'We provide fully customizable AP (Breakfast + Lunch + Dinner) and MAP (Breakfast + Dinner) meal plans to suit all community preferences: \n1) Pure Veg & Strict Jain Food: Prepared without onion, garlic, or root vegetables in dedicated cookware.\n2) Non-Veg Delicacies: Fresh local Sikkimese chicken curry, Teesta river trout fish, Bengali fish curry in Darjeeling, and authentic chicken/egg momos & thukpa.\n3) Certified Halal Meals: Arranged at partner Halal-certified dining outlets and butcher-serviced hotels in Gangtok (MG Marg) and Darjeeling.',
+    question: 'What Pure Veg, Jain, and Non-Veg food options are provided in your tour packages?',
+    answer: 'We provide fully customizable AP (Breakfast + Lunch + Dinner) and MAP (Breakfast + Dinner) meal plans to suit all dietary preferences: \n1) Pure Veg & Strict Jain Food: Prepared without onion, garlic, or root vegetables in dedicated hygienic cookware.\n2) Non-Veg Delicacies: Wholesome local preparations including fresh local chicken curry, Teesta river trout fish, and authentic local momos & thukpa.\n3) Vegetarian Comfort: Fresh hill vegetables, dal tadka, paneer delicacies, and hot rotis.',
     keyTakeaway: 'Notify us during booking so our Gangtok coordinator locks in your exact dietary preferences with partner hotel chefs.'
   },
   {

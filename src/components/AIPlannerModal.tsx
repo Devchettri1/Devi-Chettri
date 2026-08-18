@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'motion/react';
 import { X, Sparkles, Send, Check, Calendar, Users, MapPin, DollarSign, MessageCircle, ArrowRight, RefreshCw, Loader2 } from 'lucide-react';
 import { AGENCY_DETAILS } from '../data/travelData';
 import { GovtRegistrationBadge } from './GovtRegistrationBadge';
+import { generateClientItineraryFallback } from '../utils/itineraryFallback';
+import { useWhatsApp } from '../utils/whatsAppContext';
 
 interface AIPlannerModalProps {
   onClose: () => void;
@@ -18,6 +20,21 @@ export const AIPlannerModal: React.FC<AIPlannerModalProps> = ({ onClose, onLeadC
 
   const [loading, setLoading] = useState(false);
   const [generatedItinerary, setGeneratedItinerary] = useState<any>(null);
+  const { setPageContext } = useWhatsApp();
+
+  // Synchronize AI generated itinerary with WhatsApp floating context
+  React.useEffect(() => {
+    if (generatedItinerary) {
+      setPageContext({
+        type: 'planner',
+        title: generatedItinerary.title || `${duration} ${destination} Custom Itinerary`,
+        subtitle: `Custom AI Plan for ${travelers} Travelers (${duration})`,
+        duration: duration,
+        location: destination,
+        passengers: Number(travelers) || 2,
+      });
+    }
+  }, [generatedItinerary, duration, destination, travelers, setPageContext]);
 
   // Capture lead after generating
   const [custName, setCustName] = useState('');
@@ -41,11 +58,27 @@ export const AIPlannerModal: React.FC<AIPlannerModalProps> = ({ onClose, onLeadC
         }),
       });
 
+      if (!response.ok) {
+        throw new Error(`Server returned ${response.status}`);
+      }
+
       const data = await response.json();
-      setGeneratedItinerary(data);
+      if (data && data.title) {
+        setGeneratedItinerary(data);
+      } else {
+        throw new Error('Invalid response structure');
+      }
     } catch (err) {
-      console.error('Planner error:', err);
-      alert('Unable to connect to AI engine. Please try again.');
+      console.warn('Using intelligent client itinerary fallback:', err);
+      // Instant intelligent fallback generation ensuring zero disruption
+      const fallbackData = generateClientItineraryFallback({
+        duration,
+        destination,
+        travelers: Number(travelers) || 2,
+        preferences,
+        vegMeals,
+      });
+      setGeneratedItinerary(fallbackData);
     } finally {
       setLoading(false);
     }
@@ -110,7 +143,7 @@ export const AIPlannerModal: React.FC<AIPlannerModalProps> = ({ onClose, onLeadC
             </div>
             <div>
               <span className="text-[10px] font-bold text-amber-400 bg-amber-950 px-2 py-0.5 rounded border border-amber-800 uppercase tracking-wider">
-                Powered by Gemini 3.6 Flash
+                Powered by Gemini AI Engine
               </span>
               <h2 className="text-xl font-extrabold text-slate-100 mt-1 flex flex-wrap items-center gap-2">
                 <span>AI Custom Itinerary Proposal Generator</span>
@@ -151,6 +184,10 @@ export const AIPlannerModal: React.FC<AIPlannerModalProps> = ({ onClose, onLeadC
                     <option value="8D/7N Old Silk Route Zuluk & North Sikkim">8D/7N Old Silk Route Zuluk & North Sikkim</option>
                     <option value="9D/8N Complete Sikkim, Pelling Skywalk & Darjeeling">9D/8N Complete Sikkim, Pelling Skywalk & Darjeeling</option>
                     <option value="10D/9N Ultimate Sikkim, Bhutan Border & Darjeeling">10D/9N Ultimate Sikkim, Bhutan Border & Darjeeling</option>
+                    <option value="10N/11D Grand Sikkim, Silk Route & Darjeeling Grand Circuit">10N/11D Grand Sikkim, Silk Route & Darjeeling Circuit</option>
+                    <option value="11N/12D Ultimate Sikkim, Kalimpong & Dooars Odyssey">11N/12D Ultimate Sikkim, Kalimpong & Dooars Odyssey</option>
+                    <option value="12N/13D Sikkim & Bhutan Cross-Border International Tour">12N/13D Sikkim & Bhutan Cross-Border International Tour</option>
+                    <option value="14N/15D Grand Eastern Himalayan Epic Odyssey">14N/15D Grand Eastern Himalayan Epic Odyssey</option>
                     <option value="North Sikkim (Lachung & Zero Point)">North Sikkim (Lachung & Zero Point)</option>
                     <option value="South & West Sikkim (Namthang, Pelling)">South & West Sikkim (Pelling/Ravangla)</option>
                     <option value="Bhutan Cultural Expedition">Bhutan Cultural Expedition</option>
@@ -170,6 +207,10 @@ export const AIPlannerModal: React.FC<AIPlannerModalProps> = ({ onClose, onLeadC
                     <option value="7 Nights / 8 Days">7 Nights / 8 Days</option>
                     <option value="8 Nights / 9 Days">8 Nights / 9 Days</option>
                     <option value="9 Nights / 10 Days">9 Nights / 10 Days</option>
+                    <option value="10 Nights / 11 Days">10 Nights / 11 Days</option>
+                    <option value="11 Nights / 12 Days">11 Nights / 12 Days</option>
+                    <option value="12 Nights / 13 Days">12 Nights / 13 Days</option>
+                    <option value="14 Nights / 15 Days">14 Nights / 15 Days</option>
                   </select>
                 </div>
               </div>

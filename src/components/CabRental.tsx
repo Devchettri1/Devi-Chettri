@@ -3,6 +3,8 @@ import { CAB_OPTIONS, AGENCY_DETAILS } from '../data/travelData';
 import { CabOption } from '../types';
 import { Car, ShieldCheck, Users, CheckCircle, ArrowRight, Phone, MessageCircle, X, Sparkles, AlertTriangle, XCircle, Camera, Upload, Link, Image as ImageIcon, Wand2, Check } from 'lucide-react';
 import { GovtRegistrationBadge } from './GovtRegistrationBadge';
+import { FeaturedVehiclesSection } from './FeaturedVehiclesSection';
+import { useWhatsApp } from '../utils/whatsAppContext';
 
 interface CabRentalProps {
   cabs?: CabOption[];
@@ -31,12 +33,29 @@ export const CabRental: React.FC<CabRentalProps> = ({
   const [photoMode, setPhotoMode] = useState<'upload' | 'url' | 'presets'>('upload');
   const [customPhotoUrl, setCustomPhotoUrl] = useState('');
   const [previewPhoto, setPreviewPhoto] = useState<string | null>(null);
+  const { setPageContext } = useWhatsApp();
 
   const sourceCabs = cabs && cabs.length > 0 ? cabs : CAB_OPTIONS;
   const [pickupDate, setPickupDate] = useState('');
   const [pickupLocation, setPickupLocation] = useState('Bagdogra Airport (IXB)');
   const [dropLocation, setDropLocation] = useState('Gangtok Hotel');
   const [passengers, setPassengers] = useState('4');
+
+  // Synchronize active cab booking modal with WhatsApp floating context
+  React.useEffect(() => {
+    if (selectedCabForBooking) {
+      setPageContext({
+        type: 'cab',
+        title: selectedCabForBooking.model,
+        subtitle: `${selectedCabForBooking.type} | ₹${selectedCabForBooking.ratePerDay.toLocaleString('en-IN')}/day`,
+        vehicle: selectedCabForBooking.model,
+        price: selectedCabForBooking.ratePerDay,
+        passengers: selectedCabForBooking.capacity,
+        pickupLocation: pickupLocation,
+        dropLocation: dropLocation,
+      });
+    }
+  }, [selectedCabForBooking, pickupLocation, dropLocation, setPageContext]);
 
   const handleOpenPhotoChanger = (cab: CabOption) => {
     setEditingPhotoCab(cab);
@@ -203,122 +222,139 @@ export const CabRental: React.FC<CabRentalProps> = ({
           </div>
         </div>
 
-        {/* Fleet Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {sourceCabs.map((cab) => {
-            const isSmallCab = cab.id.includes('sedan') || cab.id.includes('hatchback') || cab.model.toLowerCase().includes('dzire') || cab.model.toLowerCase().includes('wagonr') || cab.model.toLowerCase().includes('alto') || cab.model.toLowerCase().includes('etios');
+        {/* Featured Vehicles Section: Innova Crysta Flagship & High-Capacity Group Options */}
+        <FeaturedVehiclesSection
+          onSelectCabForBooking={(cab) => setSelectedCabForBooking(cab)}
+          onOpenAIChatWithCab={onOpenAIChatWithCab}
+        />
 
-            return (
-              <div
-                key={cab.id}
-                className="bg-[#111513] border border-[#D6B36A]/20 rounded-xl overflow-hidden shadow-xl flex flex-col justify-between group hover:border-[#D6B36A]/50 transition-all"
-              >
-                <div>
-                  <div className="relative h-52 overflow-hidden group/img">
-                    <img
-                      src={cab.image}
-                      alt={cab.model}
-                      referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F0E] via-[#0B0F0E]/20 to-transparent" />
+        {/* All Available Vehicles & Transparent Rate Directory */}
+        <div className="space-y-4 pt-4 border-t border-[#D6B36A]/20">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <span className="text-[10px] font-bold text-[#D6B36A] uppercase tracking-wider">Complete Fleet Directory</span>
+              <h3 className="text-xl sm:text-2xl font-extrabold text-[#F5F1E8]">All Vehicles & Official Transparent Rates</h3>
+            </div>
+            <p className="text-xs text-[#A9AAA4]">Includes driver allowance, fuel, tolls & state border permits</p>
+          </div>
 
-                    <span className="absolute top-3 left-3 bg-[#0B0F0E]/90 text-[#D6B36A] font-bold px-2.5 py-1 rounded text-xs border border-[#D6B36A]/30">
-                      {cab.type}
-                    </span>
+          {/* Fleet Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {sourceCabs.map((cab) => {
+              const isSmallCab = cab.id.includes('sedan') || cab.id.includes('hatchback') || cab.model.toLowerCase().includes('dzire') || cab.model.toLowerCase().includes('wagonr') || cab.model.toLowerCase().includes('alto') || cab.model.toLowerCase().includes('etios');
 
-                    {/* Change Photo Overlay Button */}
-                    <button
-                      onClick={() => handleOpenPhotoChanger(cab)}
-                      className="absolute top-3 right-3 px-2.5 py-1.5 bg-[#0B0F0E]/90 hover:bg-[#18352D] text-[#D6B36A] hover:text-white rounded-lg text-xs font-bold border border-[#D6B36A]/40 flex items-center gap-1.5 shadow-lg backdrop-blur-sm transition-all hover:scale-105 active:scale-95"
-                      title={`Change photo for ${cab.model}`}
-                    >
-                      <Camera className="w-3.5 h-3.5" />
-                      <span>Change Photo</span>
-                    </button>
-                  </div>
+              return (
+                <div
+                  key={cab.id}
+                  className="bg-[#111513] border border-[#D6B36A]/20 rounded-xl overflow-hidden shadow-xl flex flex-col justify-between group hover:border-[#D6B36A]/50 transition-all"
+                >
+                  <div>
+                    <div className="relative h-52 overflow-hidden group/img">
+                      <img
+                        src={cab.image}
+                        alt={cab.model}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F0E] via-[#0B0F0E]/20 to-transparent" />
 
-                  <div className="p-5 space-y-3">
-                    {/* High altitude permit compliance badge */}
-                    {isSmallCab ? (
-                      <div className="bg-[#0B0F0E] border border-red-900/40 p-2 rounded text-red-300 text-[11px] font-bold flex items-start gap-1.5 shadow-md">
-                        <XCircle className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
-                        <div>
-                          <span className="text-red-400 block">❌ NOT ALLOWED FOR PERMITS</span>
-                          <span className="text-[10px] text-[#A9AAA4] font-normal block">
-                            Valid for Gangtok, Darjeeling & NJP/IXB drops only.
-                          </span>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="bg-[#18352D] border border-[#D6B36A]/30 p-2 rounded text-[#D6B36A] text-[11px] font-bold flex items-start gap-1.5 shadow-md">
-                        <CheckCircle className="w-4 h-4 text-[#D6B36A] flex-shrink-0 mt-0.5" />
-                        <div>
-                          <span className="text-[#D6B36A] block">✓ PERMIT APPROVED VEHICLE</span>
-                          <span className="text-[10px] text-[#A9AAA4] font-normal block">
-                            Allowed for North Sikkim & Nathula Pass Permits.
-                          </span>
-                        </div>
-                      </div>
-                    )}
+                      <span className="absolute top-3 left-3 bg-[#0B0F0E]/90 text-[#D6B36A] font-bold px-2.5 py-1 rounded text-xs border border-[#D6B36A]/30">
+                        {cab.type}
+                      </span>
 
-                    <div>
-                      <h3 className="font-extrabold text-xl text-[#F5F1E8]">{cab.model}</h3>
-                      <p className="text-xs text-[#D6B36A] font-semibold mt-1">
-                        Capacity: {cab.capacity}
-                      </p>
-                      <p className="text-xs text-[#A9AAA4] mt-1 leading-relaxed">
-                        Best For: {cab.bestFor}
-                      </p>
+                      {/* Change Photo Overlay Button */}
+                      <button
+                        onClick={() => handleOpenPhotoChanger(cab)}
+                        className="absolute top-3 right-3 px-2.5 py-1.5 bg-[#0B0F0E]/90 hover:bg-[#18352D] text-[#D6B36A] hover:text-white rounded-lg text-xs font-bold border border-[#D6B36A]/40 flex items-center gap-1.5 shadow-lg backdrop-blur-sm transition-all hover:scale-105 active:scale-95"
+                        title={`Change photo for ${cab.model}`}
+                      >
+                        <Camera className="w-3.5 h-3.5" />
+                        <span>Change Photo</span>
+                      </button>
                     </div>
 
-                    <div className="space-y-1.5 pt-2 border-t border-[#D6B36A]/15">
-                      <h4 className="text-[11px] font-bold text-[#D6B36A] uppercase tracking-wider">Features:</h4>
-                      {cab.features.map((feat, idx) => (
-                        <div key={idx} className="flex items-start gap-2 text-xs text-[#A9AAA4]">
-                          <CheckCircle className="w-3.5 h-3.5 text-[#D6B36A] flex-shrink-0 mt-0.5" />
-                          <span className="text-[#F5F1E8]">{feat}</span>
+                    <div className="p-5 space-y-3">
+                      {/* High altitude permit compliance badge */}
+                      {isSmallCab ? (
+                        <div className="bg-[#0B0F0E] border border-red-900/40 p-2 rounded text-red-300 text-[11px] font-bold flex items-start gap-1.5 shadow-md">
+                          <XCircle className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
+                          <div>
+                            <span className="text-red-400 block">❌ NOT ALLOWED FOR PERMITS</span>
+                            <span className="text-[10px] text-[#A9AAA4] font-normal block">
+                              Valid for Gangtok, Darjeeling & NJP/IXB drops only.
+                            </span>
+                          </div>
                         </div>
-                      ))}
+                      ) : (
+                        <div className="bg-[#18352D] border border-[#D6B36A]/30 p-2 rounded text-[#D6B36A] text-[11px] font-bold flex items-start gap-1.5 shadow-md">
+                          <CheckCircle className="w-4 h-4 text-[#D6B36A] flex-shrink-0 mt-0.5" />
+                          <div>
+                            <span className="text-[#D6B36A] block">✓ PERMIT APPROVED VEHICLE</span>
+                            <span className="text-[10px] text-[#A9AAA4] font-normal block">
+                              Allowed for North Sikkim & Nathula Pass Permits.
+                            </span>
+                          </div>
+                        </div>
+                      )}
+
+                      <div>
+                        <h3 className="font-extrabold text-xl text-[#F5F1E8]">{cab.model}</h3>
+                        <p className="text-xs text-[#D6B36A] font-semibold mt-1">
+                          Capacity: {cab.capacity}
+                        </p>
+                        <p className="text-xs text-[#A9AAA4] mt-1 leading-relaxed">
+                          Best For: {cab.bestFor}
+                        </p>
+                      </div>
+
+                      <div className="space-y-1.5 pt-2 border-t border-[#D6B36A]/15">
+                        <h4 className="text-[11px] font-bold text-[#D6B36A] uppercase tracking-wider">Features:</h4>
+                        {cab.features.map((feat, idx) => (
+                          <div key={idx} className="flex items-start gap-2 text-xs text-[#A9AAA4]">
+                            <CheckCircle className="w-3.5 h-3.5 text-[#D6B36A] flex-shrink-0 mt-0.5" />
+                            <span className="text-[#F5F1E8]">{feat}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Pricing & Booking Footer */}
+                  <div className="p-5 pt-0 space-y-3">
+                    <div className="p-3 bg-[#0B0F0E] rounded border border-[#D6B36A]/20 flex items-center justify-between">
+                      <div>
+                        <span className="text-[10px] text-[#A9AAA4] block font-medium">NJP / Airport Pickup</span>
+                        <span className="text-lg font-extrabold text-[#D6B36A]">₹{(cab.njpIxbPickupRate || 0).toLocaleString('en-IN')}</span>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-[10px] text-[#A9AAA4] block font-medium">Full Day Sightseeing</span>
+                        <span className="text-lg font-extrabold text-[#F5F1E8]">₹{(cab.ratePerDay || 0).toLocaleString('en-IN')}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => setSelectedCabForBooking(cab)}
+                        className="btn-luxury-gold flex-1 text-xs !py-2.5"
+                      >
+                        <Car className="w-4 h-4" />
+                        <span>Book Vehicle</span>
+                      </button>
+
+                      <button
+                        onClick={() => onOpenAIChatWithCab(cab.model)}
+                        className="btn-luxury-outline text-xs !py-2.5 !px-3"
+                        title="Ask AI about vehicle availability"
+                      >
+                        <Sparkles className="w-3.5 h-3.5 text-[#D6B36A]" />
+                        <span>Ask AI</span>
+                      </button>
                     </div>
                   </div>
                 </div>
-
-                {/* Pricing & Booking Footer */}
-                <div className="p-5 pt-0 space-y-3">
-                  <div className="p-3 bg-[#0B0F0E] rounded border border-[#D6B36A]/20 flex items-center justify-between">
-                    <div>
-                      <span className="text-[10px] text-[#A9AAA4] block font-medium">NJP / Airport Pickup</span>
-                      <span className="text-lg font-extrabold text-[#D6B36A]">₹{(cab.njpIxbPickupRate || 0).toLocaleString('en-IN')}</span>
-                    </div>
-                    <div className="text-right">
-                      <span className="text-[10px] text-[#A9AAA4] block font-medium">Full Day Sightseeing</span>
-                      <span className="text-lg font-extrabold text-[#F5F1E8]">₹{(cab.ratePerDay || 0).toLocaleString('en-IN')}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => setSelectedCabForBooking(cab)}
-                      className="btn-luxury-gold flex-1 text-xs !py-2.5"
-                    >
-                      <Car className="w-4 h-4" />
-                      <span>Book Vehicle</span>
-                    </button>
-
-                    <button
-                      onClick={() => onOpenAIChatWithCab(cab.model)}
-                      className="btn-luxury-outline text-xs !py-2.5 !px-3"
-                      title="Ask AI about vehicle availability"
-                    >
-                      <Sparkles className="w-3.5 h-3.5 text-[#D6B36A]" />
-                      <span>Ask AI</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
 

@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Phone, Star, ShieldCheck, MapPin, Code2, Sparkles, MessageCircle, Wand2, Menu, X, ChevronRight, ChevronDown, Package, Car, Database, ArrowRight, Building2, Rocket, CloudUpload } from 'lucide-react';
+import { Phone, Star, ShieldCheck, MapPin, Code2, Sparkles, MessageCircle, Wand2, Menu, X, ChevronRight, ChevronDown, Package, Car, Database, ArrowRight, Building2, Rocket, CloudUpload, Heart } from 'lucide-react';
 import { AGENCY_DETAILS } from '../data/travelData';
 import { TourPackage, CabOption, NavigationItem, HotelItem } from '../types';
 import { ConsoleTab } from './OwnerDashboardModal';
 import { Logo } from './Logo';
+import { useWishlist } from '../utils/wishlistContext';
 
 interface HeaderProps {
   activeTab: string;
@@ -48,11 +49,13 @@ export const Header: React.FC<HeaderProps> = ({
   agencyDetails,
   onOpenChatWithContext,
 }) => {
+  const { wishlistIds } = useWishlist();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<'packages' | 'cabs' | 'hotels' | 'jain-hotels' | null>(null);
   const [mobileExpandedSection, setMobileExpandedSection] = useState<'packages' | 'cabs' | 'hotels' | 'jain-hotels' | null>(null);
   const [dbNavItems, setDbNavItems] = useState<NavigationItem[]>(DEFAULT_DB_NAV_ITEMS);
   const [dbHotels, setDbHotels] = useState<HotelItem[]>([]);
+  const [totalReviewsCount, setTotalReviewsCount] = useState<number>(agencyDetails?.totalReviews || AGENCY_DETAILS.totalReviews || 542);
 
   useEffect(() => {
     let isMounted = true;
@@ -82,12 +85,27 @@ export const Header: React.FC<HeaderProps> = ({
         console.error('Failed to load database hotels in header:', err);
       }
     };
+    const loadReviewsCount = async () => {
+      try {
+        const res = await fetch('/api/reviews');
+        if (res.ok) {
+          const data = await res.json();
+          if (isMounted && Array.isArray(data)) {
+            const baseCount = agencyDetails?.totalReviews || AGENCY_DETAILS.totalReviews || 542;
+            setTotalReviewsCount(Math.max(baseCount, 500 + data.length));
+          }
+        }
+      } catch (err) {
+        // Graceful fallback to verified base count
+      }
+    };
     loadDbNavigation();
     loadDbHotels();
+    loadReviewsCount();
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [agencyDetails?.totalReviews]);
 
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const currentAgency = agencyDetails || AGENCY_DETAILS;
@@ -122,21 +140,21 @@ export const Header: React.FC<HeaderProps> = ({
     .sort((a, b) => a.order - b.order);
 
   return (
-    <header className="sticky top-0 z-40 bg-[#0B1F3A] text-[#FAF9F6] border-b border-[#E6E2D9]/20 shadow-md">
+    <header className="sticky top-0 z-40 bg-[#060B18] text-[#F8FAFC] border-b border-slate-800/80 shadow-md backdrop-blur-md">
       {/* Top Utility Bar */}
-      <div className="bg-[#071A2D] px-4 py-1.5 text-xs border-b border-white/10">
+      <div className="bg-[#0A1128] px-4 py-1.5 text-xs border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
           <div className="flex items-center gap-4 text-[11px]">
-            <span className="inline-flex items-center gap-1 text-[#D9BC7A] font-semibold">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#C6A15B]" />
+            <span className="inline-flex items-center gap-1 text-cyan-300 font-semibold">
+              <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
               {currentAgency.govtRegistration ? currentAgency.govtRegistration.split('(')[0] : AGENCY_DETAILS.govtRegistration.split('(')[0]}
             </span>
             <span className="hidden sm:inline-flex items-center gap-1 text-slate-300">
-              <Star className="w-3.5 h-3.5 fill-[#C6A15B] text-[#C6A15B]" />
+              <Star className="w-3.5 h-3.5 fill-cyan-400 text-cyan-400" />
               {currentAgency.rating || AGENCY_DETAILS.rating}★ Google Rating (540+ Verified Reviews)
             </span>
             <span className="hidden lg:inline-flex items-center gap-1 text-slate-300">
-              <MapPin className="w-3.5 h-3.5 text-[#C6A15B]" />
+              <MapPin className="w-3.5 h-3.5 text-cyan-400" />
               {currentAgency.location || AGENCY_DETAILS.location}
             </span>
           </div>
@@ -144,9 +162,9 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-3 text-xs font-medium">
             <a
               href={`tel:${(currentAgency.phonePrimary || AGENCY_DETAILS.phonePrimary).replace(/\s+/g, '')}`}
-              className="inline-flex items-center gap-1.5 text-[#FAF9F6] hover:text-[#D9BC7A] transition-colors"
+              className="inline-flex items-center gap-1.5 text-[#F8FAFC] hover:text-cyan-300 transition-colors"
             >
-              <Phone className="w-3.5 h-3.5 text-[#C6A15B]" />
+              <Phone className="w-3.5 h-3.5 text-cyan-400" />
               <span>{currentAgency.phonePrimary || AGENCY_DETAILS.phonePrimary}</span>
             </a>
             <a
@@ -163,13 +181,18 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Main Navigation Header */}
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between gap-2 sm:gap-4">
         {/* Official Brand Logo */}
         <div
-          className="cursor-pointer group flex-shrink-0"
+          id="btn-header-logo"
+          className="cursor-pointer group flex-shrink-0 flex items-center max-h-10 sm:max-h-12 md:max-h-14 transition-all duration-300 ease-in-out"
           onClick={() => handleNavClick('home')}
         >
-          <Logo variant="light" size="md" />
+          <Logo
+            variant="light"
+            size="md"
+            className="max-h-10 sm:max-h-12 md:max-h-14 transition-all duration-300 ease-in-out"
+          />
         </div>
 
         {/* Desktop Navigation Links */}
@@ -188,31 +211,31 @@ export const Header: React.FC<HeaderProps> = ({
                 >
                   <button
                     onClick={() => handleNavClick(tab.tabId || 'packages')}
-                    className={`px-3 py-1.5 text-xs font-medium rounded transition-colors whitespace-nowrap inline-flex items-center gap-1.5 ${
+                    className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors whitespace-nowrap inline-flex items-center gap-1.5 ${
                       activeTab === (tab.tabId || 'packages')
-                        ? 'bg-[#153451] text-[#D9BC7A] font-bold border-b-2 border-[#C6A15B]'
+                        ? 'bg-[#0E1738] text-cyan-300 font-bold border-b-2 border-cyan-400'
                         : 'text-slate-300 hover:text-white hover:bg-white/5'
                     }`}
                   >
                     <span>{tab.label}</span>
                     {packages.length > 0 && (
-                      <span className="bg-[#153451] border border-[#C6A15B]/40 text-[#D9BC7A] px-1.5 py-0.2 rounded-full text-[10px] font-bold">
+                      <span className="bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 px-1.5 py-0.2 rounded-full text-[10px] font-bold">
                         {packages.length}
                       </span>
                     )}
-                    <ChevronDown className={`w-3 h-3 text-[#C6A15B] transition-transform duration-200 ${openDropdown === 'packages' ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`w-3 h-3 text-cyan-400 transition-transform duration-200 ${openDropdown === 'packages' ? 'rotate-180' : ''}`} />
                   </button>
 
                   {/* Dropdown for Tour Packages loaded dynamically from Database State */}
                   {openDropdown === 'packages' && (
-                    <div className="absolute top-full left-0 w-80 bg-[#071A2D] border border-[#C6A15B]/40 rounded-xl shadow-2xl p-3 z-50 animate-fadeIn mt-1 text-slate-100">
-                      <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/10 text-xs">
-                        <div className="flex items-center gap-1.5 font-bold text-[#D9BC7A]">
-                          <Package className="w-4 h-4 text-[#C6A15B]" />
+                    <div className="absolute top-full left-0 w-80 bg-[#0A1128] border border-cyan-500/40 rounded-xl shadow-2xl p-3 z-50 animate-fadeIn mt-1 text-slate-100">
+                      <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-800 text-xs">
+                        <div className="flex items-center gap-1.5 font-bold text-cyan-300">
+                          <Package className="w-4 h-4 text-cyan-400" />
                           <span>Database Tour Packages</span>
                         </div>
-                        <span className="inline-flex items-center gap-1 text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-700/50">
-                          <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
+                        <span className="inline-flex items-center gap-1 text-[10px] bg-cyan-950 text-cyan-400 px-2 py-0.5 rounded-full border border-cyan-700/50">
+                          <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></span>
                           Live DB
                         </span>
                       </div>
@@ -227,7 +250,7 @@ export const Header: React.FC<HeaderProps> = ({
                                 onOpenChatWithContext(`Package Details: ${pkg.title}`);
                               }
                             }}
-                            className="group/item flex items-center justify-between p-2 hover:bg-[#153451] rounded-lg transition-colors cursor-pointer border border-transparent hover:border-[#C6A15B]/30"
+                            className="group/item flex items-center justify-between p-2 hover:bg-[#0E1738] rounded-lg transition-colors cursor-pointer border border-transparent hover:border-cyan-500/30"
                           >
                             <div className="flex items-center gap-2.5 min-w-0 pr-2">
                               {pkg.heroImage ? (
@@ -237,12 +260,12 @@ export const Header: React.FC<HeaderProps> = ({
                                   className="w-9 h-9 rounded object-cover flex-shrink-0 border border-slate-700"
                                 />
                               ) : (
-                                <div className="w-9 h-9 rounded bg-slate-800 flex items-center justify-center flex-shrink-0 text-[#C6A15B]">
+                                <div className="w-9 h-9 rounded bg-slate-800 flex items-center justify-center flex-shrink-0 text-cyan-400">
                                   <Package className="w-4 h-4" />
                                 </div>
                               )}
                               <div className="truncate">
-                                <h4 className="text-xs font-semibold text-slate-100 group-hover/item:text-[#D9BC7A] truncate">
+                                <h4 className="text-xs font-semibold text-slate-100 group-hover/item:text-cyan-300 truncate">
                                   {pkg.title}
                                 </h4>
                                 <p className="text-[10px] text-slate-400 truncate">
@@ -251,7 +274,7 @@ export const Header: React.FC<HeaderProps> = ({
                               </div>
                             </div>
                             <div className="text-right flex-shrink-0">
-                              <span className="text-xs font-extrabold text-[#D9BC7A] block">
+                              <span className="text-xs font-extrabold text-cyan-400 block">
                                 ₹{pkg.priceStarting ? pkg.priceStarting.toLocaleString('en-IN') : 'N/A'}
                               </span>
                               <span className="text-[9px] text-slate-400 block">per adult</span>
@@ -260,10 +283,10 @@ export const Header: React.FC<HeaderProps> = ({
                         ))}
                       </div>
 
-                      <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-between gap-2 text-xs">
+                      <div className="mt-3 pt-2 border-t border-slate-800 flex items-center justify-between gap-2 text-xs">
                         <button
                           onClick={() => handleNavClick('packages')}
-                          className="text-[#D9BC7A] hover:text-white font-bold flex items-center gap-1 text-[11px] transition-colors"
+                          className="text-cyan-300 hover:text-white font-bold flex items-center gap-1 text-[11px] transition-colors"
                         >
                           <span>All {packages.length} Packages</span>
                           <ChevronRight className="w-3.5 h-3.5" />
@@ -273,9 +296,9 @@ export const Header: React.FC<HeaderProps> = ({
                             setOpenDropdown(null);
                             onOpenOwnerDashboard('packages');
                           }}
-                          className="bg-[#153451] hover:bg-[#1f476e] text-[#D9BC7A] px-2 py-1 rounded text-[10px] font-bold border border-[#C6A15B]/40 flex items-center gap-1 transition-all"
+                          className="bg-[#0E1738] hover:bg-[#15224F] text-cyan-300 px-2 py-1 rounded text-[10px] font-bold border border-cyan-500/40 flex items-center gap-1 transition-all"
                         >
-                          <ShieldCheck className="w-3 h-3 text-[#C6A15B]" />
+                          <ShieldCheck className="w-3 h-3 text-cyan-400" />
                           <span>CMS Admin</span>
                         </button>
                       </div>
@@ -295,31 +318,31 @@ export const Header: React.FC<HeaderProps> = ({
                 >
                   <button
                     onClick={() => handleNavClick(tab.tabId || 'cabs')}
-                    className={`px-3 py-1.5 text-xs font-medium rounded transition-colors whitespace-nowrap inline-flex items-center gap-1.5 ${
+                    className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors whitespace-nowrap inline-flex items-center gap-1.5 ${
                       activeTab === (tab.tabId || 'cabs')
-                        ? 'bg-[#153451] text-[#D9BC7A] font-bold border-b-2 border-[#C6A15B]'
+                        ? 'bg-[#0E1738] text-cyan-300 font-bold border-b-2 border-cyan-400'
                         : 'text-slate-300 hover:text-white hover:bg-white/5'
                     }`}
                   >
                     <span>{tab.label}</span>
                     {cabs.length > 0 && (
-                      <span className="bg-[#153451] border border-[#C6A15B]/40 text-[#D9BC7A] px-1.5 py-0.2 rounded-full text-[10px] font-bold">
+                      <span className="bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 px-1.5 py-0.2 rounded-full text-[10px] font-bold">
                         {cabs.length}
                       </span>
                     )}
-                    <ChevronDown className={`w-3 h-3 text-[#C6A15B] transition-transform duration-200 ${openDropdown === 'cabs' ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`w-3 h-3 text-cyan-400 transition-transform duration-200 ${openDropdown === 'cabs' ? 'rotate-180' : ''}`} />
                   </button>
 
                   {/* Dropdown for Cab Rentals loaded dynamically from Database State */}
                   {openDropdown === 'cabs' && (
-                    <div className="absolute top-full left-0 w-80 bg-[#071A2D] border border-[#C6A15B]/40 rounded-xl shadow-2xl p-3 z-50 animate-fadeIn mt-1 text-slate-100">
-                      <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/10 text-xs">
-                        <div className="flex items-center gap-1.5 font-bold text-[#D9BC7A]">
-                          <Car className="w-4 h-4 text-[#C6A15B]" />
+                    <div className="absolute top-full left-0 w-80 bg-[#0A1128] border border-cyan-500/40 rounded-xl shadow-2xl p-3 z-50 animate-fadeIn mt-1 text-slate-100">
+                      <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-800 text-xs">
+                        <div className="flex items-center gap-1.5 font-bold text-cyan-300">
+                          <Car className="w-4 h-4 text-cyan-400" />
                           <span>Database Vehicle Fleet</span>
                         </div>
-                        <span className="inline-flex items-center gap-1 text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-700/50">
-                          <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
+                        <span className="inline-flex items-center gap-1 text-[10px] bg-cyan-950 text-cyan-400 px-2 py-0.5 rounded-full border border-cyan-700/50">
+                          <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></span>
                           Live Rates
                         </span>
                       </div>
@@ -334,7 +357,7 @@ export const Header: React.FC<HeaderProps> = ({
                                 onOpenChatWithContext(`Cab Rental: ${cab.model}`);
                               }
                             }}
-                            className="group/item flex items-center justify-between p-2 hover:bg-[#153451] rounded-lg transition-colors cursor-pointer border border-transparent hover:border-[#C6A15B]/30"
+                            className="group/item flex items-center justify-between p-2 hover:bg-[#0E1738] rounded-lg transition-colors cursor-pointer border border-transparent hover:border-cyan-500/30"
                           >
                             <div className="flex items-center gap-2.5 min-w-0 pr-2">
                               {cab.image ? (
@@ -344,12 +367,12 @@ export const Header: React.FC<HeaderProps> = ({
                                   className="w-9 h-9 rounded object-cover flex-shrink-0 border border-slate-700"
                                 />
                               ) : (
-                                <div className="w-9 h-9 rounded bg-slate-800 flex items-center justify-center flex-shrink-0 text-[#C6A15B]">
+                                <div className="w-9 h-9 rounded bg-slate-800 flex items-center justify-center flex-shrink-0 text-cyan-400">
                                   <Car className="w-4 h-4" />
                                 </div>
                               )}
                               <div className="truncate">
-                                <h4 className="text-xs font-semibold text-slate-100 group-hover/item:text-[#D9BC7A] truncate">
+                                <h4 className="text-xs font-semibold text-slate-100 group-hover/item:text-cyan-300 truncate">
                                   {cab.model}
                                 </h4>
                                 <p className="text-[10px] text-slate-400 truncate">
@@ -358,7 +381,7 @@ export const Header: React.FC<HeaderProps> = ({
                               </div>
                             </div>
                             <div className="text-right flex-shrink-0">
-                              <span className="text-xs font-extrabold text-[#D9BC7A] block">
+                              <span className="text-xs font-extrabold text-cyan-400 block">
                                 ₹{cab.ratePerDay ? cab.ratePerDay.toLocaleString('en-IN') : 'N/A'}
                               </span>
                               <span className="text-[9px] text-slate-400 block">per day</span>
@@ -367,10 +390,10 @@ export const Header: React.FC<HeaderProps> = ({
                         ))}
                       </div>
 
-                      <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-between gap-2 text-xs">
+                      <div className="mt-3 pt-2 border-t border-slate-800 flex items-center justify-between gap-2 text-xs">
                         <button
                           onClick={() => handleNavClick('cabs')}
-                          className="text-[#D9BC7A] hover:text-white font-bold flex items-center gap-1 text-[11px] transition-colors"
+                          className="text-cyan-300 hover:text-white font-bold flex items-center gap-1 text-[11px] transition-colors"
                         >
                           <span>All {cabs.length} Vehicles</span>
                           <ChevronRight className="w-3.5 h-3.5" />
@@ -380,9 +403,9 @@ export const Header: React.FC<HeaderProps> = ({
                             setOpenDropdown(null);
                             onOpenOwnerDashboard('cabs');
                           }}
-                          className="bg-[#153451] hover:bg-[#1f476e] text-[#D9BC7A] px-2 py-1 rounded text-[10px] font-bold border border-[#C6A15B]/40 flex items-center gap-1 transition-all"
+                          className="bg-[#0E1738] hover:bg-[#15224F] text-cyan-300 px-2 py-1 rounded text-[10px] font-bold border border-cyan-500/40 flex items-center gap-1 transition-all"
                         >
-                          <ShieldCheck className="w-3 h-3 text-[#C6A15B]" />
+                          <ShieldCheck className="w-3 h-3 text-cyan-400" />
                           <span>Fleet CMS</span>
                         </button>
                       </div>
@@ -549,7 +572,30 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Action Buttons */}
         <div className="flex items-center gap-2">
+          {/* Dynamic 'Verified 500+ Reviews' Trust Badge next to booking button */}
           <button
+            id="header-trust-badge-reviews"
+            onClick={() => handleNavClick('reviews')}
+            className="group hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-[#0A1628]/95 hover:bg-[#11243E] border border-amber-400/50 hover:border-amber-400 text-amber-300 rounded-lg text-xs font-semibold transition-all shadow-sm active:scale-95 cursor-pointer"
+            title={`Click to view ${totalReviewsCount >= 500 ? '500+' : `${totalReviewsCount}+`} Verified Google & Traveler Reviews (${currentAgency.rating || 4.9}★)`}
+          >
+            <div className="flex items-center gap-1">
+              <span className="flex items-center text-amber-400">
+                <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+              </span>
+              <span className="font-bold text-white text-[11px] sm:text-xs">
+                {currentAgency.rating || 4.9}★
+              </span>
+            </div>
+            <span className="w-1 h-1 rounded-full bg-amber-400/60 hidden md:inline-block" />
+            <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-amber-200 group-hover:text-amber-100 whitespace-nowrap">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+              <span>Verified {totalReviewsCount >= 500 ? '500+' : `${totalReviewsCount}+`} Reviews</span>
+            </span>
+          </button>
+
+          <button
+            id="btn-header-plan-journey"
             onClick={() => handleNavClick('contact')}
             className="btn-luxury-gold text-xs !py-1.5 !px-3 hidden sm:inline-flex"
           >
@@ -563,6 +609,20 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <Sparkles className="w-3.5 h-3.5 text-[#C6A15B]" />
             <span className="hidden md:inline">AI Planner</span>
+          </button>
+
+          <button
+            onClick={() => handleNavClick('packages')}
+            className="relative inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-[#153451] hover:bg-[#1f476e] text-rose-300 border border-rose-500/30 rounded text-xs font-semibold transition-all"
+            title="Saved Wishlist Packages"
+          >
+            <Heart className="w-3.5 h-3.5 fill-rose-400 text-rose-400" />
+            <span className="hidden lg:inline">Saved</span>
+            {wishlistIds.length > 0 && (
+              <span className="bg-rose-500 text-white font-extrabold px-1.5 py-0.2 rounded-full text-[10px]">
+                {wishlistIds.length}
+              </span>
+            )}
           </button>
 
           <button
@@ -603,27 +663,36 @@ export const Header: React.FC<HeaderProps> = ({
             <Wand2 className="w-3.5 h-3.5 text-[#C6A15B]" />
           </button>
 
-          {/* Mobile Hamburger Toggle Button */}
+          {/* Mobile Hamburger Toggle Button (Screenshot matched circular dark pill with 2 lines) */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-slate-200 hover:text-white hover:bg-white/10 rounded transition-colors"
+            className="lg:hidden w-10 h-10 rounded-full bg-[#0A1128] border border-slate-800 flex items-center justify-center text-white hover:border-cyan-500/50 shadow-md transition-all active:scale-95"
             aria-label="Toggle navigation menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6 text-[#C6A15B]" /> : <Menu className="w-6 h-6 text-[#FAF9F6]" />}
+            {mobileMenuOpen ? (
+              <X className="w-5 h-5 text-cyan-400" />
+            ) : (
+              <div className="flex flex-col gap-1 items-center justify-center">
+                <span className="w-4 h-0.5 bg-slate-200 rounded-full block"></span>
+                <span className="w-4 h-0.5 bg-slate-200 rounded-full block"></span>
+              </div>
+            )}
           </button>
         </div>
       </div>
 
       {/* Mobile Drawer Navigation Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-[108px] z-50 bg-[#071A2D]/95 backdrop-blur-md border-t border-[#C6A15B]/20 p-5 overflow-y-auto flex flex-col justify-between">
+        <div className="lg:hidden fixed inset-x-0 bottom-0 top-[90px] sm:top-[98px] z-50 bg-[#060B18]/98 backdrop-blur-xl border-t border-slate-800 p-5 overflow-y-auto flex flex-col justify-between">
           <div className="space-y-4">
-            <div className="flex items-center justify-between border-b border-white/10 pb-2">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#C6A15B]">
-                Explore Destinations & Services
-              </span>
-              <span className="text-[10px] text-emerald-400 font-semibold bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-800">
-                DB Connected
+            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+              <Logo
+                variant="light"
+                size="sm"
+                className="max-h-9 sm:max-h-10 transition-all duration-300 ease-in-out"
+              />
+              <span className="text-[10px] text-cyan-400 font-semibold bg-cyan-950/80 px-2 py-0.5 rounded-full border border-cyan-800">
+                Live Support
               </span>
             </div>
 
@@ -959,6 +1028,26 @@ export const Header: React.FC<HeaderProps> = ({
                   <span>Hostinger Setup</span>
                 </button>
               </div>
+            </div>
+
+            {/* Mobile Trust Badge */}
+            <div
+              id="mobile-trust-badge-reviews"
+              onClick={() => handleNavClick('reviews')}
+              className="flex items-center justify-between p-2.5 bg-[#0B1728] border border-amber-400/40 rounded-xl cursor-pointer hover:bg-[#12243d] transition-all shadow-sm"
+            >
+              <div className="flex items-center gap-2">
+                <span className="flex items-center text-amber-400">
+                  <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                </span>
+                <span className="font-bold text-white text-xs">
+                  {currentAgency.rating || 4.9}★ Google Rating
+                </span>
+              </div>
+              <span className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-300">
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Verified {totalReviewsCount >= 500 ? '500+' : `${totalReviewsCount}+`} Reviews</span>
+              </span>
             </div>
 
             <button

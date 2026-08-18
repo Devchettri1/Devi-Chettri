@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, X, Clock, Check } from 'lucide-react';
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, X, Clock, Check, AlertTriangle } from 'lucide-react';
 
 interface DateRangePickerProps {
   startDate: Date | null;
@@ -70,6 +70,8 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
   };
 
   const nights = calculateNights(startDate, endDate);
+  const isShortDuration = startDate && endDate && nights > 0 && nights < 3;
+  const isLongDuration = startDate && endDate && nights > 15;
 
   const handleDayClick = (dayNum: number) => {
     const clickedDate = new Date(viewYear, viewMonth, dayNum);
@@ -146,7 +148,11 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
                 {endDate ? formatDateLabel(endDate) : 'Select End Date...'}
               </span>
               {nights > 0 && (
-                <span className="bg-emerald-950/90 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded-full text-[10px] font-bold ml-1">
+                <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ml-1 border ${
+                  isShortDuration || isLongDuration
+                    ? 'bg-amber-950/90 text-amber-300 border-amber-500/80 ring-1 ring-amber-500/30'
+                    : 'bg-emerald-950/90 text-emerald-300 border-emerald-800'
+                }`}>
                   {nights} Nights ({nights + 1} Days)
                 </span>
               )}
@@ -278,25 +284,57 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
           </div>
 
           {/* Status Bar / Selection Guide */}
-          <div className="mt-3 pt-2 border-t border-slate-800 flex items-center justify-between text-[10px] text-slate-400">
-            <div>
-              {!startDate && 'Step 1: Pick Start Date'}
-              {startDate && !endDate && 'Step 2: Pick Checkout / End Date'}
-              {startDate && endDate && (
-                <span className="text-emerald-400 font-bold flex items-center gap-1">
-                  <Check className="w-3 h-3 text-emerald-400" />
-                  <span>{nights} Nights Selected</span>
-                </span>
-              )}
+          <div className="mt-3 pt-2 border-t border-slate-800 flex flex-col gap-2 text-[10px] text-slate-400">
+            <div className="flex items-center justify-between">
+              <div>
+                {!startDate && 'Step 1: Pick Start Date'}
+                {startDate && !endDate && 'Step 2: Pick Checkout / End Date'}
+                {startDate && endDate && (
+                  <span className={`font-bold flex items-center gap-1 ${
+                    isShortDuration || isLongDuration ? 'text-amber-400' : 'text-emerald-400'
+                  }`}>
+                    <Check className={`w-3 h-3 ${isShortDuration || isLongDuration ? 'text-amber-400' : 'text-emerald-400'}`} />
+                    <span>{nights} Nights Selected</span>
+                  </span>
+                )}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                className="text-emerald-400 hover:underline font-bold"
+              >
+                Done
+              </button>
             </div>
 
-            <button
-              type="button"
-              onClick={() => setIsOpen(false)}
-              className="text-emerald-400 hover:underline font-bold"
-            >
-              Done
-            </button>
+            {startDate && endDate && (isShortDuration || isLongDuration) && (
+              <div className="bg-amber-950/90 border border-amber-500/60 p-2 rounded-lg text-amber-200 text-[10px] flex items-start gap-1.5 shadow-md">
+                <AlertTriangle className="w-3.5 h-3.5 text-amber-400 flex-shrink-0 mt-0.5" />
+                <span>
+                  {isShortDuration
+                    ? 'Selected duration (< 3 nights) is shorter than recommended for mountain transfers.'
+                    : 'Selected duration (> 15 nights) requires special long-stay logistics.'}
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Visual Warning Box for Unrealistic Tour Durations (< 3 nights or > 15 nights) */}
+      {startDate && endDate && (isShortDuration || isLongDuration) && (
+        <div className="mt-2.5 p-3 bg-gradient-to-r from-amber-950/95 via-slate-900 to-amber-950/95 border border-amber-500/60 rounded-xl text-amber-200 text-xs flex items-start gap-2.5 shadow-lg animate-in fade-in duration-200">
+          <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
+          <div className="space-y-0.5">
+            <span className="font-extrabold text-amber-300 block text-xs tracking-wide">
+              {isShortDuration ? '⚠️ Short Tour Duration Notice' : '⚠️ Extended Tour Duration Notice'} ({nights} {nights === 1 ? 'Night' : 'Nights'} Selected)
+            </span>
+            <p className="text-[11px] text-amber-200/90 leading-tight">
+              {isShortDuration
+                ? 'Himalayan mountain transfers, acclimation, and government permit procedures in Sikkim & Darjeeling typically require a minimum of 3 nights for a realistic tour.'
+                : 'Expeditions exceeding 15 nights require customized multi-region transport logistics, driver rotation shifts, and extended permit scheduling.'}
+            </p>
           </div>
         </div>
       )}

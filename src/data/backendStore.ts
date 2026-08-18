@@ -61,8 +61,17 @@ export function getBackendStore(): BackendStoreData {
     if (fs.existsSync(STORE_FILE_PATH)) {
       const raw = fs.readFileSync(STORE_FILE_PATH, 'utf-8');
       storeInMemory = JSON.parse(raw);
-      if (storeInMemory && !storeInMemory.navigation) {
-        storeInMemory.navigation = INITIAL_NAVIGATION;
+      if (storeInMemory) {
+        if (!storeInMemory.navigation) {
+          storeInMemory.navigation = INITIAL_NAVIGATION;
+        }
+        // Merge in any newly defined INITIAL_HOTELS that might not exist in an older JSON snapshot
+        const existingIds = new Set((storeInMemory.hotels || []).map((h) => h.id));
+        const missingHotels = INITIAL_HOTELS.filter((h) => !existingIds.has(h.id));
+        if (missingHotels.length > 0) {
+          storeInMemory.hotels = [...(storeInMemory.hotels || []), ...missingHotels];
+          fs.writeFileSync(STORE_FILE_PATH, JSON.stringify(storeInMemory, null, 2), 'utf-8');
+        }
       }
       return storeInMemory!;
     }

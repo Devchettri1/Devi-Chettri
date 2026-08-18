@@ -4,6 +4,7 @@ import { ChatMessage, GeneratedItinerary } from '../types';
 import { AGENCY_DETAILS } from '../data/travelData';
 import { GeneratedItineraryCard } from './GeneratedItineraryCard';
 import { GovtRegistrationBadge } from './GovtRegistrationBadge';
+import { generateClientItineraryFallback } from '../utils/itineraryFallback';
 
 interface AIChatWidgetProps {
   onLeadCaptured: (leadData: any) => void;
@@ -95,7 +96,12 @@ export const AIChatWidget: React.FC<AIChatWidgetProps> = ({
         }),
       });
 
-      const itineraryData: GeneratedItinerary = await response.json();
+      let itineraryData: GeneratedItinerary;
+      if (response.ok) {
+        itineraryData = await response.json();
+      } else {
+        throw new Error(`Server returned ${response.status}`);
+      }
 
       const botMsg: ChatMessage = {
         id: `bot-itinerary-${Date.now()}`,
@@ -108,18 +114,27 @@ export const AIChatWidget: React.FC<AIChatWidgetProps> = ({
 
       setMessages((prev) => [...prev, botMsg]);
     } catch (err) {
-      console.error('Wizard itinerary generation error:', err);
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: `bot-err-${Date.now()}`,
-          sender: 'bot',
-          text: "Namaste! 🙏 I've prepared a custom package for you. Drop your WhatsApp number below and our Gangtok coordinator will send you the full PDF plan!",
-          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          isLeadPrompt: true,
-        },
-      ]);
-      setShowLeadForm(true);
+      console.warn('Using client itinerary fallback for wizard:', err);
+      const fallbackData = generateClientItineraryFallback({
+        duration: wizardDuration,
+        destination: wizardDestination,
+        companions: wizardCompanions,
+        interests: wizardInterests,
+        budget: wizardBudget,
+        travelers: Number(wizardTravelers) || 2,
+        vegMeals: wizardVegMeals,
+      });
+
+      const botMsg: ChatMessage = {
+        id: `bot-itinerary-${Date.now()}`,
+        sender: 'bot',
+        text: `Namaste! 🙏 Here is your personalized itinerary for *${fallbackData.title}*. It includes custom vehicle permits, daily highlights, and cost estimates.`,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        itineraryData: fallbackData as any,
+        isLeadPrompt: true,
+      };
+
+      setMessages((prev) => [...prev, botMsg]);
     } finally {
       setIsLoading(false);
     }
@@ -145,11 +160,28 @@ export const AIChatWidget: React.FC<AIChatWidgetProps> = ({
 
     try {
       if (isItineraryRequest) {
-        // Fetch structured itinerary from endpoint
-        const response = await fetch('/api/generate-itinerary', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
+        let itineraryData: GeneratedItinerary;
+        try {
+          const response = await fetch('/api/generate-itinerary', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              duration: text.match(/(\d+)\s*days?/i) ? `${text.match(/(\d+)\s*days?/i)![1]} Days` : '5 Nights / 6 Days',
+              destination: text,
+              companions: 'Couple / Family',
+              interests: ['Popular Tourist Highlights', 'Offbeat Hidden Gems'],
+              budget: 'Premium 3★/4★',
+              travelers: 2,
+              vegMeals: lowerText.includes('veg') || lowerText.includes('jain')
+            }),
+          });
+          if (response.ok) {
+            itineraryData = await response.json();
+          } else {
+            throw new Error('Server error');
+          }
+        } catch {
+          itineraryData = generateClientItineraryFallback({
             duration: text.match(/(\d+)\s*days?/i) ? `${text.match(/(\d+)\s*days?/i)![1]} Days` : '5 Nights / 6 Days',
             destination: text,
             companions: 'Couple / Family',
@@ -157,10 +189,8 @@ export const AIChatWidget: React.FC<AIChatWidgetProps> = ({
             budget: 'Premium 3★/4★',
             travelers: 2,
             vegMeals: lowerText.includes('veg') || lowerText.includes('jain')
-          }),
-        });
-
-        const itineraryData: GeneratedItinerary = await response.json();
+          }) as any;
+        }
 
         const botMsg: ChatMessage = {
           id: `bot-itinerary-${Date.now()}`,
@@ -173,17 +203,26 @@ export const AIChatWidget: React.FC<AIChatWidgetProps> = ({
 
         setMessages((prev) => [...prev, botMsg]);
       } else {
-        const response = await fetch('/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            message: text,
-            conversationHistory: messages,
-          }),
-        });
+        let botReply = "Namaste! Welcome to OffbeatDestination Travels. We specialize in personalized Sikkim, Darjeeling, and Bhutan holiday packages with luxury cab rentals and guaranteed permits. Share your WhatsApp number below and our Gangtok desk will assist you!";
+        try {
+          const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              message: text,
+              conversationHistory: messages,
+            }),
+          });
 
-        const data = await response.json();
-        const botReply = data.reply || "Namaste! I'll be glad to send you the details on WhatsApp. Please share your WhatsApp number below.";
+          if (response.ok) {
+            const data = await response.json();
+            if (data.reply) {
+              botReply = data.reply;
+            }
+          }
+        } catch {
+          // Keep default greeting
+        }
 
         const botMsg: ChatMessage = {
           id: `bot-${Date.now()}`,
@@ -202,18 +241,7 @@ export const AIChatWidget: React.FC<AIChatWidgetProps> = ({
         }
       }
     } catch (err) {
-      console.error('Chat error:', err);
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: `bot-err-${Date.now()}`,
-          sender: 'bot',
-          text: "Namaste! 🙏 Our Sikkim trip advisors are available right now. Please drop your WhatsApp number below to receive instant itinerary options!",
-          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          isLeadPrompt: true,
-        },
-      ]);
-      setShowLeadForm(true);
+      console.warn('Handled chat interaction:', err);
     } finally {
       setIsLoading(false);
     }

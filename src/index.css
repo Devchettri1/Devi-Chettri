@@ -4,35 +4,39 @@
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
   
-  --color-navy-deep: #071A2D;
-  --color-navy-primary: #0B1F3A;
-  --color-navy-secondary: #153451;
+  --color-obsidian-deep: #060B18;
+  --color-obsidian-surface: #0A1128;
+  --color-obsidian-card: #0C142B;
+  --color-cyan-electric: #38BDF8;
+  --color-cyan-vivid: #00D2FF;
+  --color-blue-royal: #3B82F6;
+  --color-indigo-vibrant: #6366F1;
   --color-gold-luxury: #C6A15B;
   --color-gold-light: #D9BC7A;
-  --color-warm-white: #FAF9F6;
-  --color-pure-white: #FFFFFF;
-  --color-dark-text: #17202A;
-  --color-muted-text: #667085;
-  --color-subtle-border: #E6E2D9;
+  --color-dark-text: #F8FAFC;
+  --color-muted-text: #94A3B8;
+  --color-subtle-border: #1E293B;
 }
 
 :root {
-  --navy-deep: #071A2D;
-  --navy-primary: #0B1F3A;
-  --navy-secondary: #153451;
+  --obsidian-deep: #060B18;
+  --obsidian-surface: #0A1128;
+  --obsidian-card: #0C142B;
+  --cyan-electric: #38BDF8;
+  --cyan-vivid: #00D2FF;
+  --blue-royal: #3B82F6;
+  --indigo-vibrant: #6366F1;
   --gold-luxury: #C6A15B;
   --gold-light: #D9BC7A;
-  --warm-white: #FAF9F6;
-  --pure-white: #FFFFFF;
-  --dark-text: #17202A;
-  --muted-text: #667085;
-  --subtle-border: #E6E2D9;
+  --dark-text: #F8FAFC;
+  --muted-text: #94A3B8;
+  --subtle-border: #1E293B;
 }
 
 @layer base {
   body {
-    background-color: #FAF9F6;
-    color: #17202A;
+    background-color: #060B18;
+    color: #F8FAFC;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     overflow-x: hidden;
   }
@@ -44,59 +48,62 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #FAF9F6;
+  background-color: #060B18;
+  color-scheme: dark;
 }
 
-/* Editorial & Professional Section Utility Classes */
+/* Editorial & Luxury Section Utility Classes matching Screenshot */
 .section-warm {
-  background-color: #FAF9F6;
-  color: #17202A;
-  border-bottom: 1px solid #E6E2D9;
+  background-color: #0A1128;
+  color: #F8FAFC;
+  border-bottom: 1px solid #1E293B;
 }
 
 .section-navy {
-  background-color: #0B1F3A;
-  color: #FAF9F6;
-  border-bottom: 1px solid rgba(198, 161, 91, 0.2);
+  background-color: #060B18;
+  color: #F8FAFC;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.15);
 }
 
 .section-white {
-  background-color: #FFFFFF;
-  color: #17202A;
-  border-bottom: 1px solid #E6E2D9;
+  background-color: #0A1128;
+  color: #F8FAFC;
+  border-bottom: 1px solid #1E293B;
 }
 
-/* Editorial Card & Container styling - subtle 1px border, 6px radius */
+/* Screenshot-matched Dark Glassmorphism Cards */
 .travel-card {
-  background: #FFFFFF;
-  border: 1px solid #E6E2D9;
-  border-radius: 6px;
+  background: #0C142B;
+  border: 1px solid #1E293B;
+  border-radius: 1rem;
+  color: #F8FAFC;
   transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .travel-card:hover {
-  border-color: #C6A15B;
-  box-shadow: 0 4px 16px rgba(11, 31, 58, 0.06);
+  border-color: #38BDF8;
+  box-shadow: 0 8px 30px rgba(56, 189, 248, 0.12);
 }
 
 .travel-card-navy {
-  background: #153451;
-  border: 1px solid rgba(198, 161, 91, 0.25);
-  border-radius: 6px;
-  color: #FAF9F6;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  background: #0A1128;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 1rem;
+  color: #F8FAFC;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .travel-card-navy:hover {
-  border-color: #C6A15B;
+  border-color: #38BDF8;
+  box-shadow: 0 8px 30px rgba(56, 189, 248, 0.15);
 }
 
-/* Primary Gold Button - Solid No Gradient */
-.btn-luxury-gold {
-  background-color: #C6A15B;
-  color: #071A2D;
+/* Primary Electric Cyan Gradient Button */
+.btn-luxury-gold, .btn-luxury-cyan {
+  background: linear-gradient(135deg, #00D2FF 0%, #38BDF8 40%, #2563EB 100%);
+  color: #060B18;
   font-weight: 700;
-  border-radius: 4px;
+  border-radius: 0.75rem;
   padding: 0.65rem 1.35rem;
   transition: all 0.2s ease;
   display: inline-flex;
@@ -104,19 +111,22 @@ html {
   justify-content: center;
   gap: 0.5rem;
   letter-spacing: 0.01em;
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25);
 }
 
-.btn-luxury-gold:hover {
-  background-color: #D9BC7A;
+.btn-luxury-gold:hover, .btn-luxury-cyan:hover {
+  filter: brightness(1.1);
   transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
 }
 
-/* Secondary Navy / Outline Button */
+/* Secondary Dark Surface Button */
 .btn-luxury-navy {
-  background-color: #0B1F3A;
-  color: #FAF9F6;
+  background-color: #0E1738;
+  color: #F8FAFC;
   font-weight: 600;
-  border-radius: 4px;
+  border-radius: 0.75rem;
+  border: 1px solid #1E293B;
   padding: 0.65rem 1.35rem;
   transition: all 0.2s ease;
   display: inline-flex;
@@ -126,16 +136,17 @@ html {
 }
 
 .btn-luxury-navy:hover {
-  background-color: #153451;
-  color: #D9BC7A;
+  background-color: #15224F;
+  border-color: #38BDF8;
+  color: #38BDF8;
 }
 
 .btn-luxury-outline {
   background-color: transparent;
-  color: #0B1F3A;
-  border: 1px solid #0B1F3A;
+  color: #38BDF8;
+  border: 1px solid rgba(56, 189, 248, 0.4);
   font-weight: 600;
-  border-radius: 4px;
+  border-radius: 0.75rem;
   padding: 0.65rem 1.35rem;
   transition: all 0.2s ease;
   display: inline-flex;
@@ -145,16 +156,17 @@ html {
 }
 
 .btn-luxury-outline:hover {
-  background-color: #0B1F3A;
-  color: #FAF9F6;
+  background-color: rgba(56, 189, 248, 0.1);
+  border-color: #38BDF8;
+  color: #FFFFFF;
 }
 
 .btn-luxury-outline-light {
-  background-color: transparent;
-  color: #FAF9F6;
-  border: 1px solid rgba(245, 241, 248, 0.4);
+  background-color: rgba(15, 23, 42, 0.6);
+  color: #F8FAFC;
+  border: 1px solid rgba(148, 163, 184, 0.2);
   font-weight: 600;
-  border-radius: 4px;
+  border-radius: 0.75rem;
   padding: 0.65rem 1.35rem;
   transition: all 0.2s ease;
   display: inline-flex;
@@ -164,17 +176,18 @@ html {
 }
 
 .btn-luxury-outline-light:hover {
-  border-color: #C6A15B;
-  color: #D9BC7A;
+  border-color: #38BDF8;
+  color: #38BDF8;
+  background-color: rgba(56, 189, 248, 0.08);
 }
 
-/* Editorial Eyebrow Label */
+/* Editorial Eyebrow Label matching Screenshot */
 .editorial-eyebrow {
-  font-size: 0.725rem;
+  font-size: 0.6875rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: #C6A15B;
+  color: #38BDF8;
   display: block;
   margin-bottom: 0.35rem;
 }
@@ -185,8 +198,8 @@ input, select, textarea, button {
 }
 
 ::selection {
-  background-color: #C6A15B;
-  color: #071A2D;
+  background-color: #38BDF8;
+  color: #060B18;
 }
 
 /* Custom Scrollbar */
@@ -196,16 +209,16 @@ input, select, textarea, button {
 }
 
 ::-webkit-scrollbar-track {
-  background: #FAF9F6;
+  background: #060B18;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #E6E2D9;
+  background: #1E293B;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #C6A15B;
+  background: #38BDF8;
 }
 
 

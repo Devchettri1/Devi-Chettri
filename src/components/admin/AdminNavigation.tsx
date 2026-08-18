@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { NavigationItem } from '../../types';
 import { Plus, Trash2, Save, MoveUp, MoveDown, CheckCircle2, Navigation, Layers, RotateCcw } from 'lucide-react';
 
-export const AdminNavigation: React.FC = () => {
+interface AdminNavigationProps {
+  onRefresh?: () => void;
+}
+
+export const AdminNavigation: React.FC<AdminNavigationProps> = ({ onRefresh }) => {
   const [navItems, setNavItems] = useState<NavigationItem[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [saveSuccess, setSaveSuccess] = useState<boolean>(false);

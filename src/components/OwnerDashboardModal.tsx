@@ -40,6 +40,7 @@ import {
   Eye,
   Sliders,
   Clock,
+  Menu,
 } from 'lucide-react';
 import { Logo } from './Logo';
 import { DEFAULT_SEO_SETTINGS } from '../data/travelData';
@@ -52,6 +53,7 @@ import { AdminFaqs } from './admin/AdminFaqs';
 import { AdminUsersAudit } from './admin/AdminUsersAudit';
 import { AdminMediaLibrary } from './admin/AdminMediaLibrary';
 import { AdminNavigation } from './admin/AdminNavigation';
+import { AdminSeoManager } from './admin/AdminSeoManager';
 
 interface OwnerDashboardModalProps {
   leads: LeadSubmission[];
@@ -77,7 +79,11 @@ export type MainAdminSection =
   | 'destinations'
   | 'leads'
   | 'website'
+  | 'seo'
+  | 'navigation'
   | 'settings';
+
+export type ConsoleTab = MainAdminSection | string;
 
 export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
   leads,
@@ -105,7 +111,13 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
 
   useEffect(() => {
     if (initialTab) {
-      if (['kpis', 'dashboard', 'enquiries', 'bookings', 'revenue', 'todays-leads'].includes(initialTab)) {
+      if (['seo', 'seo-manager', 'keywords', 'metadata'].includes(initialTab)) {
+        setActiveSection('seo');
+        setActiveSubTab('metadata');
+      } else if (['navigation', 'header-links', 'footer-links', 'menu'].includes(initialTab)) {
+        setActiveSection('navigation');
+        setActiveSubTab('header-links');
+      } else if (['kpis', 'dashboard', 'enquiries', 'bookings', 'revenue', 'todays-leads'].includes(initialTab)) {
         setActiveSection('dashboard');
         setActiveSubTab(initialTab === 'kpis' ? 'enquiries' : initialTab);
       } else if (['packages', 'create', 'edit', 'pricing', 'itinerary', 'photos', 'inclusions', 'publish'].includes(initialTab)) {
@@ -173,6 +185,14 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
   // Agency Info Editor State
   const [localAgency, setLocalAgency] = useState<any>({ ...agencyDetails });
   const [agencySaveStatus, setAgencySaveStatus] = useState<string>('');
+  const [logoSaveStatus, setLogoSaveStatus] = useState<string>('');
+  const [logoInputUrl, setLogoInputUrl] = useState<string>(() => {
+    try {
+      return localStorage.getItem('offbeat_custom_logo') || agencyDetails?.logoUrl || '';
+    } catch {
+      return agencyDetails?.logoUrl || '';
+    }
+  });
 
   // Hero Banners & Website Content State
   const [heroContent, setHeroContent] = useState<any>({
@@ -262,6 +282,49 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
     onSaveAgencyDetails(localAgency);
     setAgencySaveStatus('Agency Info Saved!');
     setTimeout(() => setAgencySaveStatus(''), 3000);
+  };
+
+  const handleLogoFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const dataUrl = event.target?.result as string;
+      if (dataUrl) {
+        setLogoInputUrl(dataUrl);
+        try {
+          localStorage.setItem('offbeat_custom_logo', dataUrl);
+        } catch {}
+        const updatedAgency = { ...localAgency, logoUrl: dataUrl };
+        setLocalAgency(updatedAgency);
+        onSaveAgencyDetails(updatedAgency);
+        window.dispatchEvent(new Event('offbeat_logo_updated'));
+        setLogoSaveStatus('Logo updated and applied across website!');
+        setTimeout(() => setLogoSaveStatus(''), 3500);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleApplyLogoUrl = (url: string) => {
+    setLogoInputUrl(url);
+    try {
+      if (url.trim()) {
+        localStorage.setItem('offbeat_custom_logo', url.trim());
+      } else {
+        localStorage.removeItem('offbeat_custom_logo');
+      }
+    } catch {}
+    const updatedAgency = { ...localAgency, logoUrl: url.trim() };
+    setLocalAgency(updatedAgency);
+    onSaveAgencyDetails(updatedAgency);
+    window.dispatchEvent(new Event('offbeat_logo_updated'));
+    setLogoSaveStatus(url.trim() ? 'Logo URL applied globally!' : 'Reset to official default crest!');
+    setTimeout(() => setLogoSaveStatus(''), 3500);
+  };
+
+  const handleResetToDefaultLogo = () => {
+    handleApplyLogoUrl('');
   };
 
   const handleFileUploadForPackage = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -541,7 +604,23 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
         { key: 'gallery', label: 'Gallery' },
         { key: 'reviews', label: 'Reviews' },
         { key: 'faqs', label: 'FAQs' },
-        { key: 'seo', label: 'SEO' },
+        { key: 'seo', label: 'SEO Manager' },
+      ],
+    },
+    {
+      key: 'seo' as MainAdminSection,
+      label: 'SEO Metadata',
+      icon: Globe,
+      subTabs: [
+        { key: 'metadata', label: 'Meta Tags & Keywords' },
+      ],
+    },
+    {
+      key: 'navigation' as MainAdminSection,
+      label: 'Navigation',
+      icon: Menu,
+      subTabs: [
+        { key: 'menu', label: 'Header & Footer Links' },
       ],
     },
     {
@@ -550,6 +629,7 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
       icon: Settings,
       subTabs: [
         { key: 'company', label: 'Company Details' },
+        { key: 'branding', label: 'Logo & Visual Identity' },
         { key: 'whatsapp', label: 'WhatsApp' },
         { key: 'maps', label: 'Google Maps' },
         { key: 'api-keys', label: 'API Keys' },
@@ -583,6 +663,18 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
           </div>
 
           <div className="flex items-center gap-2">
+            <button
+              onClick={() => {
+                setActiveSection('settings');
+                setActiveSubTab('branding');
+              }}
+              className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-amber-300 rounded-lg text-xs font-semibold border border-amber-500/30 flex items-center gap-1.5 transition-colors"
+              title="Change or upload custom agency logo"
+            >
+              <Image className="w-3.5 h-3.5 text-amber-400" />
+              <span className="hidden sm:inline">Change Logo</span>
+            </button>
+
             <button
               onClick={exportCSV}
               className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-teal-300 rounded-lg text-xs font-semibold border border-slate-700 flex items-center gap-1.5 transition-colors"
@@ -849,13 +941,26 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
                         <Package className="w-4 h-4 text-emerald-400" />
                         <span>Editing: {currentPkg.title}</span>
                       </div>
-                      <button
-                        onClick={() => handleDeletePackage(currentPkg.id)}
-                        className="px-3 py-1 bg-rose-950 hover:bg-rose-900 text-rose-300 border border-rose-800 rounded-lg text-xs font-bold flex items-center gap-1 transition-colors"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                        <span>Delete Package</span>
-                      </button>
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => {
+                            setActiveSection('seo');
+                            setActiveSubTab('metadata');
+                          }}
+                          className="px-3 py-1 bg-cyan-950 hover:bg-cyan-900 text-cyan-300 border border-cyan-800 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+                          title="Generate & Auto-Suggest Google Meta Descriptions for this package"
+                        >
+                          <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                          <span>Optimize SEO</span>
+                        </button>
+                        <button
+                          onClick={() => handleDeletePackage(currentPkg.id)}
+                          className="px-3 py-1 bg-rose-950 hover:bg-rose-900 text-rose-300 border border-rose-800 rounded-lg text-xs font-bold flex items-center gap-1 transition-colors cursor-pointer"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                          <span>Delete Package</span>
+                        </button>
+                      </div>
                     </div>
 
                     {/* Sub Tab View Specific Content */}
@@ -1336,28 +1441,62 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
               )}
 
               {activeSubTab === 'seo' && (
-                <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-4 text-xs">
-                  <h3 className="text-base font-bold text-slate-100">SEO Metadata & Open Graph Settings</h3>
-                  <div>
-                    <label className="block text-slate-300 font-semibold mb-1">Homepage Title Tag</label>
-                    <input
-                      type="text"
-                      value={localSeo.home.title}
-                      onChange={(e) => setLocalSeo({ ...localSeo, home: { ...localSeo.home, title: e.target.value } })}
-                      className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-slate-100 font-bold"
-                    />
-                  </div>
-                </div>
+                <AdminSeoManager
+                  seoSettings={localSeo}
+                  packages={localPackages}
+                  cabs={localCabs}
+                  onSaveSeo={async (updated) => {
+                    setLocalSeo(updated);
+                    if (onSaveSeoSettings) {
+                      onSaveSeoSettings(updated);
+                    }
+                  }}
+                  onRefresh={fetchAllBackendData}
+                />
               )}
             </div>
+          )}
+
+          {/* ================= SECTION: SEO METADATA ================= */}
+          {activeSection === 'seo' && (
+            <AdminSeoManager
+              seoSettings={localSeo}
+              packages={localPackages}
+              cabs={localCabs}
+              onSaveSeo={async (updated) => {
+                setLocalSeo(updated);
+                if (onSaveSeoSettings) {
+                  onSaveSeoSettings(updated);
+                }
+              }}
+              onRefresh={fetchAllBackendData}
+            />
+          )}
+
+          {/* ================= SECTION: NAVIGATION ================= */}
+          {activeSection === 'navigation' && (
+            <AdminNavigation onRefresh={fetchAllBackendData} />
           )}
 
           {/* ================= SECTION 8: SETTINGS ================= */}
           {activeSection === 'settings' && (
             <div className="space-y-6">
               {activeSubTab === 'company' && (
-                <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-4 text-xs">
-                  <h3 className="text-base font-bold text-slate-100">Company & Agency Details</h3>
+                <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-5 text-xs">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                      <h3 className="text-base font-bold text-slate-100">Company & Agency Details</h3>
+                      <p className="text-slate-400 text-[11px]">Manage registered agency info, certifications, and primary brand assets.</p>
+                    </div>
+                    <button
+                      onClick={() => setActiveSubTab('branding')}
+                      className="px-3 py-1.5 rounded-xl bg-cyan-950/80 hover:bg-cyan-900 text-cyan-300 border border-cyan-500/40 text-xs font-bold flex items-center gap-1.5 transition-colors"
+                    >
+                      <Image className="w-3.5 h-3.5 text-cyan-400" />
+                      <span>Customize Brand Logo</span>
+                    </button>
+                  </div>
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-slate-400 mb-1">Agency Brand Name</label>
@@ -1377,10 +1516,157 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
                         className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-slate-100 font-mono"
                       />
                     </div>
+                    <div>
+                      <label className="block text-slate-400 mb-1">Official Support Phone</label>
+                      <input
+                        type="text"
+                        value={localAgency.phone || '+91 62961 02341'}
+                        onChange={(e) => setLocalAgency({ ...localAgency, phone: e.target.value })}
+                        className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-slate-100 font-mono"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-slate-400 mb-1">Registered Head Office Address</label>
+                      <input
+                        type="text"
+                        value={localAgency.address || 'MG Marg, Gangtok, Sikkim 737101'}
+                        onChange={(e) => setLocalAgency({ ...localAgency, address: e.target.value })}
+                        className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-slate-100"
+                      />
+                    </div>
                   </div>
+
+                  {agencySaveStatus && (
+                    <div className="p-3 bg-emerald-950/80 border border-emerald-800 rounded-xl text-emerald-400 font-bold text-xs flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4" />
+                      <span>{agencySaveStatus}</span>
+                    </div>
+                  )}
+
                   <button onClick={handleSaveAgency} className="btn-luxury-gold text-xs !py-2 !px-4">
                     Save Company Details
                   </button>
+                </div>
+              )}
+
+              {activeSubTab === 'branding' && (
+                <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-6 text-xs">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                      <h3 className="text-base font-bold text-slate-100 flex items-center gap-2">
+                        <Image className="w-5 h-5 text-amber-400" />
+                        <span>Logo & Brand Visual Identity</span>
+                      </h3>
+                      <p className="text-slate-400 text-[11px]">
+                        Upload a new official logo or paste an image URL. Updates immediately across the website header, footer, modals, PDF quotations, and customer invoices.
+                      </p>
+                    </div>
+
+                    {logoSaveStatus && (
+                      <div className="px-3 py-1.5 bg-emerald-950 border border-emerald-800 rounded-xl text-emerald-400 font-bold text-xs flex items-center gap-1.5 animate-in fade-in">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                        <span>{logoSaveStatus}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Real-time Logo Preview Cards */}
+                  <div className="p-4 bg-slate-900 rounded-2xl border border-slate-800 space-y-3">
+                    <h4 className="font-bold text-slate-300 uppercase tracking-wider text-[10px]">Live Logo Previews Across App Contexts</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      {/* Light Context Preview */}
+                      <div className="p-3 rounded-xl bg-slate-100 border border-slate-300 text-slate-900 flex flex-col items-center justify-center gap-2">
+                        <span className="text-[10px] font-bold text-slate-600 uppercase tracking-wider">Light Theme Header</span>
+                        <div className="py-2">
+                          <Logo variant="light" size="md" />
+                        </div>
+                      </div>
+
+                      {/* Dark Context Preview */}
+                      <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 flex flex-col items-center justify-center gap-2">
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Dark Navigation / Sticky Bar</span>
+                        <div className="py-2">
+                          <Logo variant="dark" size="md" />
+                        </div>
+                      </div>
+
+                      {/* Standalone Emblem / PDF Invoice Preview */}
+                      <div className="p-3 rounded-xl bg-gradient-to-tr from-amber-950/40 via-slate-900 to-slate-950 border border-amber-500/30 flex flex-col items-center justify-center gap-2">
+                        <span className="text-[10px] font-bold text-amber-300 uppercase tracking-wider">PDF Quotation & Invoice Crest</span>
+                        <div className="py-2">
+                          <Logo mode="image" size="md" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Upload Custom Logo File */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="p-4 bg-slate-900 rounded-2xl border border-slate-800 space-y-3">
+                      <h4 className="font-bold text-slate-200 flex items-center gap-1.5">
+                        <Upload className="w-4 h-4 text-emerald-400" />
+                        <span>Upload Logo File (PNG, SVG, JPG)</span>
+                      </h4>
+                      <p className="text-slate-400 text-[11px]">
+                        Upload your agency logo. A transparent PNG or clean SVG with at least 500×500px resolution is recommended for crisp rendering on Retina screens.
+                      </p>
+                      <label className="cursor-pointer inline-flex items-center gap-2 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold rounded-xl shadow-lg transition-all text-xs">
+                        <Upload className="w-4 h-4" />
+                        <span>Select Logo File from Computer</span>
+                        <input
+                          type="file"
+                          accept="image/png,image/jpeg,image/svg+xml,image/webp"
+                          className="hidden"
+                          onChange={handleLogoFileUpload}
+                        />
+                      </label>
+                    </div>
+
+                    {/* Logo Image URL Input */}
+                    <div className="p-4 bg-slate-900 rounded-2xl border border-slate-800 space-y-3">
+                      <h4 className="font-bold text-slate-200 flex items-center gap-1.5">
+                        <Globe className="w-4 h-4 text-cyan-400" />
+                        <span>Or Paste Image URL</span>
+                      </h4>
+                      <p className="text-slate-400 text-[11px]">
+                        Provide a direct hosted image link (e.g. Cloudinary, AWS S3, or your CDN).
+                      </p>
+                      <div className="flex gap-2">
+                        <input
+                          type="url"
+                          placeholder="https://your-domain.com/assets/logo.png"
+                          value={logoInputUrl}
+                          onChange={(e) => setLogoInputUrl(e.target.value)}
+                          className="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-slate-100 text-xs font-mono"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => handleApplyLogoUrl(logoInputUrl)}
+                          className="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-xl text-xs transition-colors"
+                        >
+                          Apply
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Reset to Original Official Crest */}
+                  <div className="p-4 bg-slate-900/60 rounded-2xl border border-slate-800 flex flex-wrap items-center justify-between gap-3">
+                    <div className="space-y-0.5">
+                      <h4 className="font-bold text-slate-300">Reset to Built-in Official Crest</h4>
+                      <p className="text-slate-400 text-[11px]">
+                        Reverts back to the authentic OffbeatDestination Travels Himalayan mountain crest emblem.
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleResetToDefaultLogo}
+                      className="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-xl text-xs flex items-center gap-1.5 transition-colors"
+                    >
+                      <RotateCcw className="w-3.5 h-3.5 text-slate-400" />
+                      <span>Restore Default Crest</span>
+                    </button>
+                  </div>
                 </div>
               )}
 

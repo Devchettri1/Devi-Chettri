@@ -2,7 +2,6 @@ import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
 import { GoogleGenAI } from '@google/genai';
-import { createServer as createViteServer } from 'vite';
 import { DEFAULT_SEO_SETTINGS } from './src/data/travelData';
 import { getBackendStore, saveBackendStore, logAuditAction } from './src/data/backendStore';
 
@@ -12,6 +11,32 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+
+// Enterprise Security Headers Middleware
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  next();
+});
+
+// Simple In-Memory Rate Limiter Middleware
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+app.use('/api/', (req, res, next) => {
+  const ip = req.ip || req.socket.remoteAddress || 'unknown';
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + 60000 });
+    return next();
+  }
+  if (record.count >= 80) {
+    return res.status(429).json({ error: 'Rate limit exceeded. Please wait a moment.' });
+  }
+  record.count += 1;
+  next();
+});
 
 // Initialize Gemini Client
 const apiKey = process.env.GEMINI_API_KEY;
@@ -839,7 +864,7 @@ app.post('/api/chat', async (req, res) => {
     promptText += `Customer: ${message}\nOffbeat AI:`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-3.6-flash',
+      model: 'gemini-2.5-flash',
       contents: promptText,
     });
 
@@ -851,6 +876,55 @@ app.post('/api/chat', async (req, res) => {
       reply: generateFallbackResponse(message),
       isFallback: true,
       error: error?.message || 'AI service temporary fallback'
+    });
+  }
+});
+
+// API Endpoint: AI Himalayan Booking Concierge
+app.post('/api/ai/concierge', async (req, res) => {
+  const { prompt, context } = req.body;
+  if (!prompt) {
+    return res.status(400).json({ error: 'Prompt is required' });
+  }
+
+  try {
+    if (!ai) {
+      return res.json({
+        reply: `Namaste! Based on "${prompt}", we recommend our signature 5N/6D Sikkim & Darjeeling or North Sikkim Special tour with private Innova Crysta transfers and 4-star view resorts. All army permits and local sightseeing are pre-arranged!`,
+        bulletPoints: [
+          'Certified hill chauffeur with clean commercial registration',
+          'Mountain view stays in Gangtok & Darjeeling',
+          'Fast-track Tsomgo Lake & Nathula army permits',
+        ],
+      });
+    }
+
+    const aiPrompt = `You are the Senior Concierge at OffbeatDestination Travels, Gangtok, Sikkim (Govt Regd: 1750/DoT&CAv/Gtk/25/TA).
+Analyze this customer traveler query: "${prompt}".
+Provide a concise, friendly, luxury-toned response (under 80 words) and 3 to 4 actionable bullet points on destinations, acclimatization tips, vehicle recommendations, and permit requirements.
+Focus on Sikkim, Darjeeling, North Sikkim (Lachung/Gurudongmar), or Silk Route.`;
+
+    const response = await ai.models.generateContent({
+      model: 'gemini-2.5-flash',
+      contents: aiPrompt,
+    });
+
+    const reply = response.text || 'We have crafted an optimal Himalayan package for your request.';
+    return res.json({
+      reply,
+      bulletPoints: [
+        'Private sanitized vehicle with experienced hill chauffeur',
+        'Handpicked boutique & luxury view stays',
+        'Restricted area permits cleared directly via Gangtok desk',
+      ],
+    });
+  } catch (err: any) {
+    return res.json({
+      reply: `Namaste! For "${prompt}", our team recommends combining iconic sights with offbeat serene viewpoints, dedicated Innova Crysta transfers, and full permit processing.`,
+      bulletPoints: [
+        'Complimentary high-altitude health advisory',
+        'Direct local coordination from Gangtok office',
+      ],
     });
   }
 });
@@ -919,7 +993,7 @@ Return a JSON object with this exact structure:
 }`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-3.6-flash',
+      model: 'gemini-2.5-flash',
       contents: prompt,
       config: {
         responseMimeType: 'application/json',
@@ -1609,6 +1683,270 @@ app.post('/api/admin/seo', (req, res) => {
   res.status(400).json({ error: 'Invalid SEO payload' });
 });
 
+// SEO KEYWORD GENERATOR (GEMINI POWERED)
+app.post('/api/admin/generate-keywords', async (req, res) => {
+  try {
+    const { pageKey, title, description, customPrompt } = req.body;
+
+    const fallbackKeywordsMap: Record<string, Array<{ keyword: string; intent: string; searchVolumeEst: string; relevanceReason: string }>> = {
+      home: [
+        { keyword: "Sikkim tour packages with Gangtok and Darjeeling", intent: "Commercial", searchVolumeEst: "Very High", relevanceReason: "Top searched multi-destination tour phrase in North East India" },
+        { keyword: "best Sikkim travel agency in Gangtok", intent: "Commercial", searchVolumeEst: "High", relevanceReason: "High conversion intent for registered local DMC bookings" },
+        { keyword: "Innova Crysta cab hire NJP to Gangtok", intent: "Transactional", searchVolumeEst: "High", relevanceReason: "Direct vehicle booking intent for arriving tourists" },
+        { keyword: "North Sikkim Lachung Yumthang Zero Point package price", intent: "Transactional", searchVolumeEst: "Very High", relevanceReason: "High-value seasonal booking query" },
+        { keyword: "Nathula Pass army permit agent Gangtok", intent: "Informational", searchVolumeEst: "High", relevanceReason: "Permit assistance query converting directly to tour leads" },
+        { keyword: "Sikkim honeymoon tour package with 4 star luxury hotel", intent: "Commercial", searchVolumeEst: "High", relevanceReason: "Luxury high-ticket booking query" },
+        { keyword: "Govt registered Sikkim tour operator contact number", intent: "Transactional", searchVolumeEst: "Medium", relevanceReason: "High-trust buyer query looking for genuine local agency" },
+        { keyword: "Sikkim 5 nights 6 days itinerary with private cab", intent: "Commercial", searchVolumeEst: "Very High", relevanceReason: "Most popular standard holiday duration in Sikkim" },
+        { keyword: "Old Silk Route Zuluk homestay package cost", intent: "Commercial", searchVolumeEst: "High", relevanceReason: "Rapidly trending offbeat travel search phrase" },
+        { keyword: "customized Sikkim family holiday with pure veg meals", intent: "Commercial", searchVolumeEst: "High", relevanceReason: "Key demographic requirement for Indian family tourists" }
+      ],
+      packages: [
+        { keyword: "5 Nights 6 Days Sikkim Darjeeling package price with cab", intent: "Transactional", searchVolumeEst: "Very High", relevanceReason: "Primary bestselling package commercial keyword" },
+        { keyword: "North Sikkim 3 nights 4 days tour Lachung Zero Point", intent: "Commercial", searchVolumeEst: "Very High", relevanceReason: "High demand package search with specific nights" },
+        { keyword: "Gangtok Pelling Darjeeling tour package cost for couple", intent: "Transactional", searchVolumeEst: "High", relevanceReason: "Top couple tour package search term" },
+        { keyword: "Complete Sikkim 7 days itinerary with Gurudongmar Lake", intent: "Commercial", searchVolumeEst: "High", relevanceReason: "Adventure and comprehensive traveler query" },
+        { keyword: "Silk Route Zuluk package from NJP railway station", intent: "Transactional", searchVolumeEst: "High", relevanceReason: "Direct departure route booking keyword" },
+        { keyword: "Sikkim luxury tour package Mayfair Spa Resort Gangtok", intent: "Commercial", searchVolumeEst: "High", relevanceReason: "5-star luxury traveler booking intent" },
+        { keyword: "Bhutan tour package from Gangtok with SDF permit", intent: "Commercial", searchVolumeEst: "Medium", relevanceReason: "Cross-border high-margin tour booking" },
+        { keyword: "Sikkim group tour package with tempo traveller rate", intent: "Transactional", searchVolumeEst: "Medium", relevanceReason: "Corporate and college group booking keyword" },
+        { keyword: "Sikkim honeymoon packages with candlelight dinner and flower bed", intent: "Commercial", searchVolumeEst: "High", relevanceReason: "High-margin romantic honeymoon inquiry keyword" },
+        { keyword: "all inclusive Sikkim tour package with hotel food cab and permits", intent: "Transactional", searchVolumeEst: "Very High", relevanceReason: "Comprehensive buyer intent looking for zero hassle" }
+      ],
+      cabs: [
+        { keyword: "Toyota Innova Crysta taxi fare Bagdogra to Gangtok", intent: "Transactional", searchVolumeEst: "Very High", relevanceReason: "Highest volume airport transfer cab keyword" },
+        { keyword: "Gangtok taxi booking rates per day with driver", intent: "Commercial", searchVolumeEst: "High", relevanceReason: "Daily rental pricing comparison query" },
+        { keyword: "4x4 Scorpio rental for North Sikkim Zero Point", intent: "Transactional", searchVolumeEst: "High", relevanceReason: "Essential 4WD vehicle search for tough mountain terrain" },
+        { keyword: "NJP to Gangtok private car fare Innova Dzire", intent: "Transactional", searchVolumeEst: "Very High", relevanceReason: "High volume railway station transfer keyword" },
+        { keyword: "Bagdogra airport to Darjeeling prepaid taxi rate", intent: "Informational", searchVolumeEst: "High", relevanceReason: "Airport to hill station transfer query" },
+        { keyword: "Sikkim luxury cab service with English speaking driver", intent: "Commercial", searchVolumeEst: "Medium", relevanceReason: "Premium tourist and NRI traveler query" },
+        { keyword: "Tempo Traveller on rent in Gangtok for 12 persons", intent: "Transactional", searchVolumeEst: "Medium", relevanceReason: "Group travel vehicle hiring query" },
+        { keyword: "Gangtok local sightseeing full day taxi fare", intent: "Transactional", searchVolumeEst: "High", relevanceReason: "7-point and 10-point local town tour search" },
+        { keyword: "Tsomgo Lake and Nathula Pass private cab fare", intent: "Transactional", searchVolumeEst: "Very High", relevanceReason: "East Sikkim day trip vehicle booking" },
+        { keyword: "best reliable cab operator in Gangtok Arithang MG Marg", intent: "Commercial", searchVolumeEst: "Medium", relevanceReason: "Local trust search for verified taxi operator" }
+      ],
+      hotels: [
+        { keyword: "luxury hotels in Gangtok with Kanchenjunga view", intent: "Commercial", searchVolumeEst: "High", relevanceReason: "Scenic room booking query" },
+        { keyword: "best 3 star hotels in Gangtok near MG Marg", intent: "Transactional", searchVolumeEst: "Very High", relevanceReason: "Prime location accommodation search" },
+        { keyword: "Lachung homestays with room heater and hot water", intent: "Informational", searchVolumeEst: "High", relevanceReason: "Crucial comfort requirement for high altitude stays" },
+        { keyword: "Pelling resorts with glass skywalk view", intent: "Commercial", searchVolumeEst: "Medium", relevanceReason: "Specific viewpoint attraction accommodation" }
+      ],
+      reviews: [
+        { keyword: "OffbeatDestination Travels Gangtok reviews", intent: "Navigational", searchVolumeEst: "High", relevanceReason: "Direct brand validation search" },
+        { keyword: "Sikkim tour operator genuine Google ratings", intent: "Commercial", searchVolumeEst: "High", relevanceReason: "Pre-booking trustworthiness check" },
+        { keyword: "best travel agency in Sikkim tripadvisor reviews", intent: "Commercial", searchVolumeEst: "Medium", relevanceReason: "Third-party platform validation query" }
+      ],
+      faqs: [
+        { keyword: "Nathula Pass permit documents required for Indian tourists", intent: "Informational", searchVolumeEst: "Very High", relevanceReason: "High-volume informational search converting to permit bookings" },
+        { keyword: "best time to visit North Sikkim for snow", intent: "Informational", searchVolumeEst: "Very High", relevanceReason: "Seasonal travel planning query" },
+        { keyword: "is Gurudongmar Lake safe for children and senior citizens", intent: "Informational", searchVolumeEst: "High", relevanceReason: "Safety and high-altitude health advisory search" }
+      ]
+    };
+
+    if (ai) {
+      const prompt = `You are a Senior SEO Strategist and Generative Engine Optimization (GEO) expert for "OffbeatDestination Travels", a leading Govt-registered travel agency and cab operator in Gangtok, Sikkim (offbeatdestination.in).
+      
+Target Page: ${pageKey || 'General'}
+Current Page Title: "${title || 'Sikkim & Darjeeling Tour Packages'}"
+Current Meta Description: "${description || 'Book Sikkim tours and cab rentals with local travel agency'}"
+${customPrompt ? `Special Owner Focus / Instruction: "${customPrompt}"` : ''}
+
+Generate exactly 10 high-volume, highly relevant long-tail SEO keywords & search queries that real tourists and travelers search on Google when searching to book trips, cabs, permits, hotels, and holiday itineraries for this page.
+
+Return ONLY a valid JSON array of 10 objects with this exact structure:
+[
+  {
+    "keyword": "string (the exact long-tail search phrase, 3-7 words, high intent)",
+    "intent": "Commercial" | "Transactional" | "Informational",
+    "searchVolumeEst": "Very High" | "High" | "Medium",
+    "relevanceReason": "string (one concise sentence explaining why this keyword brings high-converting bookings)"
+  }
+]`;
+
+      const response = await ai.models.generateContent({
+        model: 'gemini-2.5-flash',
+        contents: prompt,
+        config: {
+          responseMimeType: 'application/json',
+        },
+      });
+
+      const text = response.text || '';
+      try {
+        const parsed = JSON.parse(text);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          logAuditAction('Owner Admin', 'ADMIN', 'GENERATE_SEO_KEYWORDS', `Generated ${parsed.length} Gemini AI SEO keywords for page ${pageKey}.`);
+          return res.json({ success: true, source: 'gemini', keywords: parsed });
+        }
+      } catch (parseErr) {
+        console.warn('Failed to parse Gemini keywords response as JSON:', parseErr);
+      }
+    }
+
+    // Fallback if AI not available
+    const pageFallbacks = fallbackKeywordsMap[pageKey] || fallbackKeywordsMap.home;
+    logAuditAction('Owner Admin', 'ADMIN', 'GENERATE_SEO_KEYWORDS', `Generated curated high-volume SEO keywords for page ${pageKey}.`);
+    return res.json({
+      success: true,
+      source: 'curated-database',
+      keywords: pageFallbacks,
+    });
+  } catch (err: any) {
+    console.error('Error generating SEO keywords:', err);
+    res.status(500).json({ error: 'Failed to generate SEO keywords', details: err?.message });
+  }
+});
+
+// SEO META DESCRIPTION GENERATOR BASED ON PACKAGE OR CAB (GEMINI POWERED)
+app.post('/api/admin/generate-meta-descriptions', async (req, res) => {
+  try {
+    const { itemType, itemData, targetPage } = req.body;
+
+    const itemName = itemData?.title || itemData?.name || itemData?.vehicleType || 'Sikkim Tour & Cab Service';
+    const itemDuration = itemData?.duration || (itemType === 'cab' ? 'Daily / Point-to-Point' : 'Custom Itinerary');
+    const itemPrice = itemData?.priceStarting ? `₹${Number(itemData.priceStarting).toLocaleString('en-IN')}` : itemData?.baseRate ? `₹${Number(itemData.baseRate).toLocaleString('en-IN')}` : '';
+    const itemLocation = itemData?.location || itemData?.pickupDrop || 'Gangtok, North Sikkim & Darjeeling';
+    const itemHighlights = Array.isArray(itemData?.highlights) ? itemData.highlights.slice(0, 3).join(', ') : '';
+
+    // Smart deterministic fallbacks matching itemData
+    const fallbackSuggestions = [
+      {
+        id: 'desc-conversion',
+        strategy: 'High Conversion & Pricing',
+        badge: 'Top CTR',
+        title: itemType === 'cab' 
+          ? `${itemName} Taxi Rental Gangtok | Best Rates | OffbeatDestination`
+          : `${itemName} from ${itemPrice || '₹18,500'} | Sikkim Tour Packages`,
+        description: itemType === 'cab'
+          ? `Book ${itemName} cab in Gangtok${itemPrice ? ` starting ${itemPrice}` : ''}. Clean luxury vehicle, verified local driver & zero hidden fees. Get instant WhatsApp quote!`
+          : `Book ${itemName}${itemPrice ? ` starting ${itemPrice}` : ''}. Includes private cab, 3★ deluxe hotels & Nathula Pass permit assistance. Instant WhatsApp quote!`,
+        charCount: 0,
+        rationale: 'Direct pricing and strong call-to-action converts searchers into immediate inquiries.'
+      },
+      {
+        id: 'desc-luxury',
+        strategy: 'Luxury & All-Inclusive Stays',
+        badge: 'Premium',
+        title: itemType === 'cab'
+          ? `Luxury ${itemName} Cab Hire with Driver in Sikkim & Darjeeling`
+          : `Luxury ${itemName} (${itemDuration}) | Private Stays & Cab`,
+        description: itemType === 'cab'
+          ? `Premium ${itemName} rental for Sikkim, Darjeeling & Silk Route. Reclining seats, sanitized interiors, expert mountain drivers & 24/7 support. Book online!`
+          : `Experience luxury in Sikkim with ${itemName}. Boutique hotel stays, private Innova Crysta drives, pure veg dining & guaranteed permits. Plan your trip!`,
+        charCount: 0,
+        rationale: 'Appeals to luxury tourists and families valuing comfort, hygiene, and full coordination.'
+      },
+      {
+        id: 'desc-seo',
+        strategy: 'SEO & Search Dominance',
+        badge: 'High Search Vol',
+        title: itemType === 'cab'
+          ? `${itemName} Fare Bagdogra to Gangtok & North Sikkim 4WD Rates`
+          : `${itemName} Itinerary, Rates & Permits | Gangtok Agency`,
+        description: itemType === 'cab'
+          ? `Govt. registered taxi service in Gangtok for ${itemName}. Airport pickup from Bagdogra & NJP to Gangtok, Lachung & Darjeeling with transparent rates.`
+          : `Best ${itemName} covering ${itemLocation}. Includes private vehicle transfers, boutique hotel stays & Nathula permit clearance. Registered Sikkim DMC.`,
+        charCount: 0,
+        rationale: 'Maximizes primary location search terms and registered agency trust signals.'
+      },
+      {
+        id: 'desc-mobile',
+        strategy: 'Mobile Snippet (Zero Truncation)',
+        badge: 'Punchy',
+        title: itemType === 'cab'
+          ? `Hire ${itemName} in Gangtok | 4.9★ Rated Sikkim Cab Operator`
+          : `${itemName} | 4.9★ Sikkim Tour Package`,
+        description: itemType === 'cab'
+          ? `Hire ${itemName} in Gangtok${itemPrice ? ` from ${itemPrice}` : ''}. Bagdogra airport pickup, North Sikkim & Silk Route with 4.9★ rated local driver.`
+          : `${itemDuration} ${itemName}${itemPrice ? ` from ${itemPrice}` : ''}. Private cab, hotels & permits included. Govt registered Gangtok agency. Book now!`,
+        charCount: 0,
+        rationale: 'Targeted at ~130-145 characters to guarantee zero truncation on small smartphone screens.'
+      }
+    ].map(s => ({
+      ...s,
+      charCount: s.description.length
+    }));
+
+    if (ai) {
+      const prompt = `You are a Senior SEO Specialist and Copywriter for "OffbeatDestination Travels", a Govt-registered travel agency and luxury cab operator in Gangtok, Sikkim (offbeatdestination.in).
+
+Generate exactly 4 distinct, Google-optimized META DESCRIPTIONS tailored specifically for this currently selected ${itemType === 'cab' ? 'Cab Rental Service' : 'Tour Package'}:
+
+Target Item Details:
+- Name/Title: "${itemName}"
+- Type: ${itemType}
+- Duration: "${itemDuration}"
+- Price: "${itemPrice || 'Available on Inquiry'}"
+- Key Locations / Route: "${itemLocation}"
+${itemHighlights ? `- Highlights: "${itemHighlights}"` : ''}
+${targetPage ? `- Target Web Page: "${targetPage}"` : ''}
+
+CRITICAL RULES:
+1. Every meta description MUST be strictly between 120 and 158 characters long (including spaces). This is the optimal Google SERP length to avoid "..." truncation.
+2. Include concrete facts: item name, price or "starting ₹X", key destinations (Gangtok, Nathula, Lachung, Darjeeling), vehicle type (Innova Crysta, etc.), and clear action CTA (Instant WhatsApp quote, Book now, Plan trip).
+3. Do NOT use fake symbols or all-caps shouting.
+
+Provide 4 strategies:
+1. "High Conversion & Pricing"
+2. "Luxury & All-Inclusive Stays"
+3. "SEO & Search Dominance"
+4. "Mobile Snippet (Zero Truncation)"
+
+Return ONLY a valid JSON array of 4 objects with this exact structure:
+[
+  {
+    "id": "desc-1",
+    "strategy": "Strategy Name",
+    "badge": "Short 1-2 word badge",
+    "title": "Suggested Meta Title Tag (45-60 chars)",
+    "description": "Meta description text (MUST BE 120-158 characters)",
+    "charCount": 145,
+    "rationale": "Why this description drives high search CTR and conversions"
+  }
+]`;
+
+      const response = await ai.models.generateContent({
+        model: 'gemini-2.5-flash',
+        contents: prompt,
+        config: {
+          responseMimeType: 'application/json',
+        },
+      });
+
+      const text = response.text || '';
+      try {
+        const parsed = JSON.parse(text);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          const validated = parsed.map((item, idx) => ({
+            id: item.id || `desc-${idx}`,
+            strategy: item.strategy || `Option ${idx + 1}`,
+            badge: item.badge || 'Optimized',
+            title: item.title || itemName,
+            description: item.description,
+            charCount: item.description?.length || 0,
+            rationale: item.rationale || 'Engineered for high search visibility and click-through rates.'
+          }));
+          logAuditAction('Owner Admin', 'ADMIN', 'GENERATE_META_DESCRIPTIONS', `Generated 4 AI meta descriptions for ${itemType} "${itemName}".`);
+          return res.json({ success: true, source: 'gemini', suggestions: validated });
+        }
+      } catch (parseErr) {
+        console.warn('Failed to parse Gemini meta description response as JSON:', parseErr);
+      }
+    }
+
+    // Return deterministic fallback
+    logAuditAction('Owner Admin', 'ADMIN', 'GENERATE_META_DESCRIPTIONS', `Generated smart curated meta descriptions for ${itemType} "${itemName}".`);
+    return res.json({
+      success: true,
+      source: 'smart-template-engine',
+      suggestions: fallbackSuggestions
+    });
+  } catch (err: any) {
+    console.error('Error generating meta descriptions:', err);
+    res.status(500).json({ error: 'Failed to generate meta descriptions', details: err?.message });
+  }
+});
+
 app.get('/api/agency', (req, res) => {
   res.json(agencyInfoDatabase);
 });
@@ -1678,6 +2016,31 @@ app.post('/api/calculate-quote', (req, res) => {
   });
 });
 
+// Agency Details & Branding API
+let agencyDatabase: any = {
+  name: 'OffbeatDestination Travels',
+  tagline: 'A Better Way to Explore',
+  location: 'Gangtok, Sikkim, India',
+  phone: '+91 62961 02341',
+  whatsappNumber: '916296102341',
+  govtRegistration: 'Reg No: 1750/DoT&CAv/Gtk/25/TA',
+  logoUrl: '',
+};
+
+app.get('/api/agency', (req, res) => {
+  res.json(agencyDatabase);
+});
+
+app.post('/api/admin/agency', (req, res) => {
+  const { agency } = req.body;
+  if (agency && typeof agency === 'object') {
+    agencyDatabase = { ...agencyDatabase, ...agency };
+    logAuditAction('Owner Admin', 'ADMIN', 'UPDATE_AGENCY', 'Updated agency profile, branding & logo details.');
+    return res.json({ success: true, agency: agencyDatabase });
+  }
+  res.status(400).json({ error: 'Invalid agency payload' });
+});
+
 // Health Endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', agency: 'OffbeatDestination Travels AI Backend' });
@@ -1685,6 +2048,7 @@ app.get('/api/health', (req, res) => {
 
 async function startServer() {
   if (process.env.NODE_ENV !== 'production') {
+    const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: 'spa',

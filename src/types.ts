@@ -1,3 +1,5 @@
+export type GroupSizeOption = 'solo' | 'couple' | 'family' | 'large_group';
+
 export interface PackageHotelTiers {
   deluxe: {
     price: number;
@@ -18,7 +20,7 @@ export interface TourPackage {
   title: string;
   duration: string;
   location: string;
-  category: 'Sikkim-Darjeeling' | 'North Sikkim' | 'South-West Sikkim' | 'Silk Route' | 'Honeymoon' | 'Bhutan';
+  category: 'Sikkim-Darjeeling' | 'North Sikkim' | 'South-West Sikkim' | 'Silk Route' | 'Honeymoon' | 'Bhutan' | 'Offbeat' | 'Adventure' | 'Family';
   priceStarting: number;
   hotelTiers?: PackageHotelTiers;
   rating: number;
@@ -36,6 +38,12 @@ export interface TourPackage {
   isSharedTourAvailable?: boolean;
   sharedPricePerSeat?: number;
   sharedTourDetails?: string;
+  isLastMinuteAvailable?: boolean;
+  lastMinuteDepartureDate?: string;
+  lastMinuteDepartureDaysAway?: number;
+  lastMinuteDiscountPercent?: number;
+  lastMinuteSeatsRemaining?: number;
+  lastMinuteNote?: string;
 }
 
 export interface CabOption {
@@ -117,30 +125,56 @@ export interface CustomerReview {
   helpfulCount?: number;
 }
 
+export interface GoogleBusinessPhotoDetails {
+  reviewerName?: string;
+  rating?: number;
+  verifiedDate?: string;
+  badgeText?: string;
+  googleMapsLink?: string;
+  photoType?: 'Customer Upload' | 'Owner Verification' | 'Office & Fleet' | 'Live Travel Moment';
+}
+
 export interface GalleryItem {
   id: string;
   title: string;
   destination: 'Sikkim' | 'Darjeeling' | 'Bhutan';
-  serviceType: 'Tour Packages' | 'Cab Rentals' | 'Agency Info';
+  vehicleType?: 'Innova Crysta' | 'Scorpio / Xylo' | 'Tempo Traveller' | 'Sedan / Hatchback' | string;
+  isVehicle?: boolean;
+  isGoogleBusiness?: boolean;
+  googleBusinessDetails?: GoogleBusinessPhotoDetails;
+  serviceType: 'Tour Packages' | 'Cab Rentals' | 'Agency Info' | 'Google Business Photos' | 'Sightseeing';
   type: 'photo' | 'video';
   url: string;
+  thumbnailUrl?: string;
+  highResUrl?: string;
   videoEmbedUrl?: string;
   thumbnail?: string;
   duration?: string;
   location: string;
+  altitude?: string;
   description: string;
   tags: string[];
+  cameraInfo?: string;
+  socialSource?: 'Google' | 'Facebook' | 'Instagram' | 'Agency';
+  socialLink?: string;
+  likesCount?: number;
+  featured?: boolean;
+  aspectRatio?: 'landscape' | 'portrait' | 'square' | 'wide';
 }
 
-export interface SeoPageConfig {
+export interface SeoPageMeta {
   title: string;
   description: string;
   canonicalUrl: string;
   keywords?: string;
+  ogImage?: string;
+  robots?: string;
 }
 
+export type SeoPageConfig = SeoPageMeta;
+
 export interface SeoSettings {
-  [key: string]: SeoPageConfig;
+  [key: string]: SeoPageMeta;
 }
 
 export interface DestinationItem {
@@ -200,6 +234,8 @@ export interface QuotationItem {
   adultsCount: number;
   childrenCount: number;
   nightsCount?: number;
+  durationNights?: number;
+  cabDays?: number;
   hotelCategory: string;
   vehicleModel: string;
   baseAmount?: number;
@@ -210,6 +246,7 @@ export interface QuotationItem {
   discountAmount: number;
   taxAmount?: number;
   gstTax?: number;
+  gstPercentage?: number;
   subtotal?: number;
   totalFinalAmount: number;
   status: 'Draft' | 'Sent' | 'Accepted' | 'Rejected' | 'Expired';
@@ -217,6 +254,10 @@ export interface QuotationItem {
   validUntil: string;
   notes?: string;
   internalNotes?: string;
+  itinerarySummary?: string;
+  inclusions?: string;
+  exclusions?: string;
+  paymentTerms?: string;
 }
 
 export interface CustomerRecord {

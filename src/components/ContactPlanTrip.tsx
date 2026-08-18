@@ -5,6 +5,7 @@ import { Phone, Mail, MapPin, Send, CheckCircle2, MessageCircle, Clock, ShieldCh
 import { DestinationCarousel } from './DestinationCarousel';
 import { LiveAvailabilityBadge } from './LiveAvailabilityBadge';
 import { GovtRegistrationBadge } from './GovtRegistrationBadge';
+import { fetchWithRetry } from '../utils/api';
 
 interface ContactPlanTripProps {
   onLeadSubmitted: (lead: any) => void;
@@ -31,7 +32,7 @@ export const ContactPlanTrip: React.FC<ContactPlanTripProps> = ({
     if (!name || !phone) return;
 
     try {
-      const response = await fetch('/api/leads', {
+      const response = await fetchWithRetry('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -300,10 +301,9 @@ export const ContactPlanTrip: React.FC<ContactPlanTripProps> = ({
                           onChange={(e) => setMealPref(e.target.value)}
                           className="w-full bg-[#0B0F0E] border border-[#D6B36A]/30 rounded px-3.5 py-2.5 text-[#F5F1E8] focus:outline-none focus:border-[#D6B36A]"
                         >
-                          <option value="Non-Veg Plan (Chicken, River Trout Fish & Mutton)">🍗 Non-Veg Plan (Local Chicken, River Trout & Mutton)</option>
                           <option value="Pure Veg Plan (100% Vegetarian AP/MAP)">🥬 Pure Veg Plan (100% Vegetarian AP/MAP)</option>
                           <option value="Strict Jain Food Plan (No Onion, Garlic & Root Veg)">🌱 Strict Jain Plan (No Onion, Garlic & Root Veg)</option>
-                          <option value="Certified Halal Meals Plan">🕌 Certified Halal Meals Plan (Gangtok & Darjeeling)</option>
+                          <option value="Non-Veg Plan (Chicken & Fresh Fish)">🍗 Non-Veg Plan (Local Chicken & Fish)</option>
                           <option value="Mixed Family Plan (Veg & Non-Veg Combination)">🍲 Mixed Family Plan (Veg & Non-Veg Combo)</option>
                         </select>
                       </div>

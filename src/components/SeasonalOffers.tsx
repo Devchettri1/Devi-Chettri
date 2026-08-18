@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Sparkles, Calendar, Tag, CheckCircle2, Copy, MessageCircle, Clock, Percent, ShieldCheck, Flame, CloudRain, Sun, Leaf, AlertCircle } from 'lucide-react';
 import { AGENCY_DETAILS } from '../data/travelData';
+import { useWhatsApp } from '../utils/whatsAppContext';
 
 export interface SeasonalOffer {
   id: string;
@@ -121,6 +122,7 @@ export const SeasonalOffers: React.FC<SeasonalOffersProps> = ({
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
+  const { setPageContext } = useWhatsApp();
 
   const categories = ['All', 'July Offers', 'August Offers', 'September Offers', 'Monsoon & Autumn Specials'];
 
@@ -129,13 +131,29 @@ export const SeasonalOffers: React.FC<SeasonalOffersProps> = ({
     return offer.category === selectedCategory;
   });
 
-  const handleCopyCode = (code: string) => {
+  const handleCopyCode = (code: string, offer?: SeasonalOffer) => {
     navigator.clipboard.writeText(code);
     setCopiedCode(code);
+    if (offer) {
+      setPageContext({
+        type: 'offer',
+        title: offer.title,
+        subtitle: `${offer.discountText} (Promo: ${offer.promoCode})`,
+        price: offer.discountedStartingPrice,
+        duration: offer.seasonDates,
+      });
+    }
     setTimeout(() => setCopiedCode(null), 2500);
   };
 
   const handleClaimOfferWhatsApp = (offer: SeasonalOffer) => {
+    setPageContext({
+      type: 'offer',
+      title: offer.title,
+      subtitle: `${offer.discountText} (Promo: ${offer.promoCode})`,
+      price: offer.discountedStartingPrice,
+      duration: offer.seasonDates,
+    });
     const text = `Namaste OffbeatDestination Travels! 🙏%0A%0A*Claiming July-Sept Seasonal Offer*%0A🏷️ *Offer:* ${encodeURIComponent(offer.title)}%0A🎟️ *Promo Code:* ${offer.promoCode}%0A💰 *Discount:* ${encodeURIComponent(offer.discountText)}%0A🗓️ *Target Month:* ${encodeURIComponent(offer.seasonDates)}%0A%0APlease share available dates and discounted itinerary quote!`;
     const url = `https://wa.me/${AGENCY_DETAILS.whatsappNumber}?text=${text}`;
     window.open(url, '_blank');

@@ -9,7 +9,7 @@ interface AdminHotelsProps {
 }
 
 const LOCATIONS = ['All', 'Gangtok', 'Darjeeling', 'Pelling', 'Kalimpong', 'Lachung', 'Namchi', 'Siliguri / Bagdogra'];
-const CHAINS = ['All', 'Summit', 'Udaan', 'Rufina', 'Voyage', 'Mayfair', 'Sterling', 'Jain Group'];
+const CHAINS = ['All', 'Rare Himalayas', 'Trickocity', 'Summit', 'Udaan', 'Rufina', 'Voyage', 'Mayfair', 'Sterling', 'Elgin', 'Jain Group'];
 
 export const AdminHotels: React.FC<AdminHotelsProps> = ({ hotels, onRefresh }) => {
   const [editingHotel, setEditingHotel] = useState<HotelItem | null>(null);
@@ -132,7 +132,7 @@ export const AdminHotels: React.FC<AdminHotelsProps> = ({ hotels, onRefresh }) =
             <span>Hotels & Stays CMS ({hotels.length} Properties)</span>
           </h3>
           <p className="text-xs text-slate-400">
-            Configure Summit, Udaan, Rufina, Voyage, Mayfair, Sterling & Jain Group hotels location-wise with custom photos & pricing
+            Configure Rare Himalayas, Trickocity, Summit, Udaan, Rufina, Voyage, Mayfair, Sterling, Elgin & Jain Group hotels location-wise with custom photos & pricing
           </p>
         </div>
 

@@ -3,6 +3,20 @@ import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { TrustBar } from './components/TrustBar';
 import { PopularDestinations } from './components/PopularDestinations';
+import { FloatingWhatsApp } from './components/FloatingWhatsApp';
+import type { ConsoleTab } from './components/OwnerDashboardModal';
+import { Logo } from './components/Logo';
+import { AGENCY_DETAILS, TOUR_PACKAGES, CAB_OPTIONS, DEFAULT_SEO_SETTINGS } from './data/travelData';
+import { INITIAL_HOTELS } from './data/initialStoreData';
+import { CabOption, LeadSubmission, TourPackage, SeoSettings, HotelItem } from './types';
+import { Phone, MapPin, Mail, ShieldCheck, Heart, FileText, Lock, AlertTriangle, CreditCard } from 'lucide-react';
+
+import { SikkimWeatherWidget } from './components/SikkimWeatherWidget';
+import { HimalayanTravelCalculator } from './components/HimalayanTravelCalculator';
+import { ItemComparisonModal } from './components/ItemComparisonModal';
+import { fetchWithRetry } from './utils/api';
+import { useWhatsApp } from './utils/whatsAppContext';
+
 import { CorporateGroupBanner } from './components/CorporateGroupBanner';
 import { AIChatWidget } from './components/AIChatWidget';
 import { QuickPackages } from './components/QuickPackages';
@@ -17,20 +31,231 @@ import { TravelChecklist } from './components/TravelChecklist';
 import { AgencyLocationMap } from './components/AgencyLocationMap';
 import { AboutUs } from './components/AboutUs';
 import { ContactPlanTrip } from './components/ContactPlanTrip';
-import { FloatingWhatsApp } from './components/FloatingWhatsApp';
+
 import { HostingerGuideModal } from './components/HostingerGuideModal';
-import { OwnerDashboardModal, ConsoleTab } from './components/OwnerDashboardModal';
+import { OwnerDashboardModal } from './components/OwnerDashboardModal';
 import { AIPlannerModal } from './components/AIPlannerModal';
 import { PhotoEditorModal } from './components/PhotoEditorModal';
 import { LegalPoliciesModal } from './components/LegalPoliciesModal';
-import { AGENCY_DETAILS, TOUR_PACKAGES, CAB_OPTIONS, DEFAULT_SEO_SETTINGS } from './data/travelData';
-import { INITIAL_HOTELS } from './data/initialStoreData';
-import { CabOption, LeadSubmission, TourPackage, SeoSettings, HotelItem } from './types';
-import { Phone, MapPin, Mail, ShieldCheck, Heart, FileText, Lock, AlertTriangle, CreditCard } from 'lucide-react';
+import { MobileBottomNav } from './components/MobileBottomNav';
+
+const SectionSkeleton = () => (
+  <div className="w-full py-16 flex flex-col items-center justify-center space-y-3 bg-[#060B18]/50 min-h-[200px]">
+    <div className="w-8 h-8 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin" />
+    <span className="text-xs text-cyan-200/80 font-sans tracking-wide">Loading Offbeat Himalayan Experience...</span>
+  </div>
+);
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('home');
   const [leads, setLeads] = useState<LeadSubmission[]>([]);
+  const { setPageContext } = useWhatsApp();
+
+  // Dynamic context synchronization based on active navigation tab
+  useEffect(() => {
+    switch (activeTab) {
+      case 'packages':
+        setPageContext({
+          type: 'package',
+          title: 'Sikkim & Darjeeling Tour Packages',
+          subtitle: '3N to 15N Curated Mountain Circuits & Group Discounts',
+          location: 'Gangtok, North Sikkim, Silk Route & Darjeeling',
+        });
+        break;
+      case 'cabs':
+        setPageContext({
+          type: 'cab',
+          title: 'Toyota Innova Crysta & Himalayan Cabs',
+          subtitle: 'Luxury Mountain Fleets & NJP/IXB Airport Pickup Tariff',
+          location: 'Gangtok, North Sikkim & Darjeeling',
+          vehicle: 'Toyota Innova Crysta',
+        });
+        break;
+      case 'hotels':
+        setPageContext({
+          type: 'hotel',
+          title: 'Affiliated Luxury Hotels & Mountain Resorts',
+          subtitle: 'Mayfair, Summit, Udaan & Handpicked Boutique Stays',
+          location: 'Gangtok, Pelling, Lachung & Darjeeling',
+        });
+        break;
+      case 'jain-hotels':
+        setPageContext({
+          type: 'hotel',
+          title: 'Pure Vegetarian & Jain Friendly Stays',
+          subtitle: 'Dedicated Jain Kitchens & Pure Veg Meals in Sikkim',
+          location: 'Sikkim & Darjeeling',
+        });
+        break;
+      case 'offers':
+        setPageContext({
+          type: 'offer',
+          title: 'Seasonal Tour Offers & Long Weekend Deals',
+          subtitle: 'Monsoon, Autumn & Group Specials with Free Upgrades',
+        });
+        break;
+      case 'reviews':
+        setPageContext({
+          type: 'general',
+          title: 'Verified Customer Reviews & Feedback',
+          subtitle: 'Direct Feedback on Drivers, Hotels & Sikkim Permits',
+        });
+        break;
+      case 'faqs':
+        setPageContext({
+          type: 'general',
+          title: 'Sikkim Travel FAQs & Permit Guidelines',
+          subtitle: 'Nathula Pass, Zero Point, Weather & Best Time Guidance',
+        });
+        break;
+      case 'checklist':
+        setPageContext({
+          type: 'general',
+          title: 'High Altitude Packing & Preparation Checklist',
+          subtitle: 'Essential Documents, Permits & Woolens Guide',
+        });
+        break;
+      case 'location':
+        setPageContext({
+          type: 'general',
+          title: 'OffbeatDestination Travels Gangtok Head Office',
+          subtitle: 'Arithang Office Visit & Direct Permit Processing',
+          location: 'Arithang, Gangtok, Sikkim',
+        });
+        break;
+      case 'about':
+        setPageContext({
+          type: 'general',
+          title: 'About OffbeatDestination Travels',
+          subtitle: 'Govt. Registered Sikkim Tour Agency (Lic: W2309191340)',
+        });
+        break;
+      case 'contact':
+        setPageContext({
+          type: 'general',
+          title: 'Customized Tour Planning Consultation',
+          subtitle: 'Direct 24/7 Operations Desk at Gangtok',
+        });
+        break;
+      case 'home':
+      default:
+        setPageContext({
+          type: 'general',
+          title: 'Sikkim & Darjeeling Tour Planning',
+          subtitle: 'Direct WhatsApp Concierge & Custom Quotes',
+        });
+        break;
+    }
+  }, [activeTab, setPageContext]);
+
+  // IntersectionObserver for real-time section context detection on home page
+  useEffect(() => {
+    if (activeTab !== 'home') return;
+
+    const sectionContextMap: Record<string, { title: string; subtitle?: string; type: any }> = {
+      'hero-section': {
+        type: 'calculator',
+        title: 'Custom Himalayan Tour & Cost Calculator',
+        subtitle: 'Calculate 5N/6D Sikkim Itinerary & Instant Budget',
+      },
+      'popular-destinations-section': {
+        type: 'package',
+        title: 'Top Sikkim, Darjeeling & Bhutan Destinations',
+        subtitle: 'Gangtok, North Sikkim, Pelling, Silk Route & Paro',
+      },
+      'calculator-section': {
+        type: 'calculator',
+        title: 'Himalayan Travel Calculator & Permit Checker',
+        subtitle: 'Distance Matrix, Road Conditions & Nathula Pass Permits',
+      },
+      'ai-chat-section': {
+        type: 'general',
+        title: '24/7 AI Himalayan Advisor Consultation',
+        subtitle: 'Itinerary Planning, Pure Veg Meals & Mountain Guidance',
+      },
+      'packages-section': {
+        type: 'package',
+        title: 'Sikkim & Darjeeling Holiday Tour Packages',
+        subtitle: '5N/6D Grand Circuit & High Altitude North Sikkim',
+      },
+      'hotels-section': {
+        type: 'hotel',
+        title: 'Affiliated Luxury Hotels & Mountain Resorts',
+        subtitle: 'Mayfair Spa, Summit, Udaan & Pure Veg Jain Stays',
+      },
+      'offers-section': {
+        type: 'offer',
+        title: 'Seasonal Tour Offers & Long Weekend Deals',
+        subtitle: 'Monsoon, Autumn & Group Specials with Free Upgrades',
+      },
+      'cabs-section': {
+        type: 'cab',
+        title: 'Toyota Innova Crysta & Himalayan Cabs',
+        subtitle: 'Luxury Mountain Fleets & NJP/IXB Airport Pickup Tariff',
+      },
+      'gallery-section': {
+        type: 'general',
+        title: 'Sikkim Sightseeing Photo & Video Gallery',
+        subtitle: 'Gurudongmar, Zero Point, Tsomgo Lake & Darjeeling',
+      },
+      'seo-guide-section': {
+        type: 'general',
+        title: 'Sikkim Travel Guides & Army Permits',
+        subtitle: 'Nathula Pass, Baba Mandir & Zero Point Regulations',
+      },
+      'reviews-section': {
+        type: 'general',
+        title: 'Verified Customer Reviews & Feedback',
+        subtitle: '5-Star Experiences with Sikkim Hill Chauffeurs',
+      },
+      'faq-section': {
+        type: 'general',
+        title: 'Sikkim Travel FAQs & High Altitude Permits',
+        subtitle: 'Best Time to Visit, Permits & Road Conditions',
+      },
+      'checklist-section': {
+        type: 'general',
+        title: 'High Altitude Packing & Preparation Checklist',
+        subtitle: 'Essential Documents, Permits & Woolens Guide',
+      },
+      'location-section': {
+        type: 'general',
+        title: 'OffbeatDestination Travels Gangtok Head Office',
+        subtitle: 'Arithang Office Visit & Direct Permit Processing',
+      },
+      'contact-section': {
+        type: 'general',
+        title: 'Customized Tour Planning Consultation',
+        subtitle: 'Direct 24/7 Operations Desk at Gangtok',
+      },
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries.filter((e) => e.isIntersecting);
+        if (visibleEntries.length > 0) {
+          const highest = visibleEntries.reduce((prev, curr) =>
+            curr.intersectionRatio > prev.intersectionRatio ? curr : prev
+          );
+          const targetId = highest.target.id;
+          if (targetId && sectionContextMap[targetId]) {
+            setPageContext(sectionContextMap[targetId]);
+          }
+        }
+      },
+      { threshold: [0.2, 0.5] }
+    );
+
+    const sectionIds = Object.keys(sectionContextMap);
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [activeTab, setPageContext]);
 
   // Automatically scroll to top when active tab changes
   useEffect(() => {
@@ -85,11 +310,31 @@ export default function App() {
     setOwnerDashboardTab(tab || 'navigation');
     setIsOwnerDashboardOpen(true);
   };
-  const [isOwnerDashboardOpen, setIsOwnerDashboardOpen] = useState<boolean>(true);
+  const [isOwnerDashboardOpen, setIsOwnerDashboardOpen] = useState<boolean>(false);
   const [isAIPlannerOpen, setIsAIPlannerOpen] = useState<boolean>(false);
   const [isPhotoEditorOpen, setIsPhotoEditorOpen] = useState<boolean>(false);
   const [photoEditorImage, setPhotoEditorImage] = useState<string>('');
   const [photoEditorTitle, setPhotoEditorTitle] = useState<string>('');
+
+  // Quick Booking State
+  const [quickBookRoute, setQuickBookRoute] = useState<string>('5N/6D Sikkim & Darjeeling Grand Circuit');
+  const [isQuickBookOpen, setIsQuickBookOpen] = useState<boolean>(false);
+
+  // Comparison Modal State
+  const [isCompareOpen, setIsCompareOpen] = useState<boolean>(false);
+  const [compareType, setCompareType] = useState<'packages' | 'cabs'>('packages');
+
+  const handleOpenComparison = (type: 'packages' | 'cabs') => {
+    setCompareType(type);
+    setIsCompareOpen(true);
+  };
+
+  const handleOpenQuickBook = (routeTitle?: string) => {
+    if (routeTitle) {
+      setQuickBookRoute(routeTitle);
+    }
+    setIsQuickBookOpen(true);
+  };
 
   // Legal Modal State
   const [isLegalModalOpen, setIsLegalModalOpen] = useState<boolean>(false);
@@ -110,7 +355,7 @@ export default function App() {
     const updated = packages.map((pkg) => (pkg.id === pkgId ? { ...pkg, heroImage: newPhotoUrl } : pkg));
     setPackages(updated);
     localStorage.setItem('offbeat_packages', JSON.stringify(updated));
-    fetch('/api/admin/packages', {
+    fetchWithRetry('/api/admin/packages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updated),
@@ -121,16 +366,16 @@ export default function App() {
     const updated = cabs.map((cab) => (cab.id === cabId ? { ...cab, image: newPhotoUrl } : cab));
     setCabs(updated);
     localStorage.setItem('offbeat_cabs', JSON.stringify(updated));
-    fetch('/api/admin/cabs', {
+    fetchWithRetry('/api/admin/cabs', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updated),
     }).catch(() => {});
   };
 
-  // Fetch initial leads, packages, cabs from server
+  // Fetch initial leads, packages, cabs from server with exponential backoff retry logic
   useEffect(() => {
-    fetch('/api/leads')
+    fetchWithRetry('/api/leads')
       .then((res) => {
         if (res.ok && res.headers.get('content-type')?.includes('application/json')) {
           return res.json();
@@ -144,7 +389,7 @@ export default function App() {
       })
       .catch((err) => console.error('Failed to load leads:', err));
 
-    fetch('/api/packages')
+    fetchWithRetry('/api/packages')
       .then((res) => {
         if (res.ok && res.headers.get('content-type')?.includes('application/json')) {
           return res.json();
@@ -159,7 +404,7 @@ export default function App() {
       })
       .catch(() => {});
 
-    fetch('/api/cabs')
+    fetchWithRetry('/api/cabs')
       .then((res) => {
         if (res.ok && res.headers.get('content-type')?.includes('application/json')) {
           return res.json();
@@ -174,7 +419,7 @@ export default function App() {
       })
       .catch(() => {});
 
-    fetch('/api/hotels')
+    fetchWithRetry('/api/hotels')
       .then((res) => {
         if (res.ok && res.headers.get('content-type')?.includes('application/json')) {
           return res.json();
@@ -189,7 +434,7 @@ export default function App() {
       })
       .catch(() => {});
 
-    fetch('/api/agency')
+    fetchWithRetry('/api/agency')
       .then((res) => {
         if (res.ok && res.headers.get('content-type')?.includes('application/json')) {
           return res.json();
@@ -204,7 +449,7 @@ export default function App() {
       })
       .catch(() => {});
 
-    fetch('/api/seo')
+    fetchWithRetry('/api/seo')
       .then((res) => {
         if (res.ok && res.headers.get('content-type')?.includes('application/json')) {
           return res.json();
@@ -384,7 +629,7 @@ export default function App() {
   const handleSavePackages = (updatedPackages: TourPackage[]) => {
     setPackages(updatedPackages);
     localStorage.setItem('offbeat_packages', JSON.stringify(updatedPackages));
-    fetch('/api/admin/packages', {
+    fetchWithRetry('/api/admin/packages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ packages: updatedPackages }),
@@ -394,7 +639,7 @@ export default function App() {
   const handleSaveCabs = (updatedCabs: CabOption[]) => {
     setCabs(updatedCabs);
     localStorage.setItem('offbeat_cabs', JSON.stringify(updatedCabs));
-    fetch('/api/admin/cabs', {
+    fetchWithRetry('/api/admin/cabs', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ cabs: updatedCabs }),
@@ -404,7 +649,7 @@ export default function App() {
   const handleSaveAgencyDetails = (updatedAgency: any) => {
     setAgencyDetails(updatedAgency);
     localStorage.setItem('offbeat_agency', JSON.stringify(updatedAgency));
-    fetch('/api/admin/agency', {
+    fetchWithRetry('/api/admin/agency', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ agency: updatedAgency }),
@@ -418,7 +663,7 @@ export default function App() {
     setPackages(TOUR_PACKAGES);
     setCabs(CAB_OPTIONS);
     setAgencyDetails(AGENCY_DETAILS);
-    fetch('/api/admin/reset-defaults', { method: 'POST' }).catch(() => {});
+    fetchWithRetry('/api/admin/reset-defaults', { method: 'POST' }).catch(() => {});
   };
 
   const handleLeadCaptured = (newLead: LeadSubmission) => {
@@ -459,23 +704,58 @@ export default function App() {
 
       {/* Main Page View Renderer */}
       <main className="flex-1">
-        {activeTab === 'home' && (
+        <React.Suspense fallback={<SectionSkeleton />}>
+          {activeTab === 'home' && (
           <>
             {/* Hero Banner Section */}
-            <Hero
-              onOpenAIChat={() => handleOpenChatWithContext()}
-              onOpenAIPlanner={() => setIsAIPlannerOpen(true)}
-              onSelectTab={setActiveTab}
-            />
+            <div id="hero-section">
+              <Hero
+                onOpenAIChat={() => handleOpenChatWithContext()}
+                onOpenAIPlanner={() => setIsAIPlannerOpen(true)}
+                onSelectTab={setActiveTab}
+              />
+            </div>
 
             {/* Trust Bar */}
             <TrustBar />
 
             {/* Popular Destinations Cards */}
-            <PopularDestinations
-              onSelectDestination={(destName) => handleOpenChatWithContext(`${destName} Packages`)}
-              onOpenAIChat={(ctx) => handleOpenChatWithContext(ctx)}
-            />
+            <div id="popular-destinations-section">
+              <PopularDestinations
+                onSelectDestination={(destName) => handleOpenChatWithContext(`${destName} Packages`)}
+                onOpenAIChat={(ctx) => handleOpenChatWithContext(ctx)}
+              />
+            </div>
+
+            {/* Live Weather & Travel Tools Section */}
+            <section id="calculator-section" className="py-8 px-4 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
+              <SikkimWeatherWidget />
+              <HimalayanTravelCalculator />
+            </section>
+
+            {/* Compare Bar Callout */}
+            <section className="bg-[#071A2D] py-4 border-y border-[#C6A15B]/20 px-4 text-center">
+              <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs font-sans">
+                <span className="text-amber-200 font-bold flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+                  Compare 5N/6D Sikkim Packages & Innova Cab Fleet Specs
+                </span>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => handleOpenComparison('packages')}
+                    className="btn-luxury-outline-light text-xs !py-1 !px-3"
+                  >
+                    Compare Packages
+                  </button>
+                  <button
+                    onClick={() => handleOpenComparison('cabs')}
+                    className="btn-luxury-outline-light text-xs !py-1 !px-3"
+                  >
+                    Compare Cab Rentals
+                  </button>
+                </div>
+              </div>
+            </section>
 
             {/* Corporate & Group Tour High-Visibility Banner */}
             <CorporateGroupBanner
@@ -505,62 +785,87 @@ export default function App() {
             </section>
 
             {/* Quick Tour Packages Preview */}
-            <QuickPackages
-              packages={packages}
-              onSelectPackage={() => {}}
-              onOpenAIChatWithPackage={(pkgTitle) => handleOpenChatWithContext(pkgTitle)}
-              onOpenPhotoEditor={handleOpenPhotoEditor}
-            />
+            <div id="packages-section">
+              <QuickPackages
+                packages={packages}
+                onSelectPackage={() => {}}
+                onOpenAIChatWithPackage={(pkgTitle) => handleOpenChatWithContext(pkgTitle)}
+                onOpenPhotoEditor={handleOpenPhotoEditor}
+                onQuickBookPackage={handleOpenQuickBook}
+              />
+            </div>
 
             {/* Official Affiliated Hotels Banner */}
-            <AffiliatedHotelsBanner
-              onOpenAIChatWithHotel={(hotelName) => handleOpenChatWithContext(`Affiliated Hotel Inquiry: ${hotelName}`)}
-            />
+            <div id="hotels-section">
+              <AffiliatedHotelsBanner
+                onOpenAIChatWithHotel={(hotelName) => handleOpenChatWithContext(`Affiliated Hotel Inquiry: ${hotelName}`)}
+              />
+            </div>
 
             {/* Time-Sensitive Seasonal Offers */}
-            <SeasonalOffers
-              onOpenAIChatWithOffer={(offerTitle) => handleOpenChatWithContext(`Offer: ${offerTitle}`)}
-            />
+            <div id="offers-section">
+              <SeasonalOffers
+                onOpenAIChatWithOffer={(offerTitle) => handleOpenChatWithContext(`Offer: ${offerTitle}`)}
+              />
+            </div>
 
             {/* Cab Rentals Preview */}
-            <CabRental
-              cabs={cabs}
-              onOpenAIChatWithCab={(cabModel) => handleOpenChatWithContext(cabModel)}
-              onApplyPhotoToCab={handleApplyPhotoToCab}
-              onOpenPhotoEditor={handleOpenPhotoEditor}
-            />
+            <div id="cabs-section">
+              <CabRental
+                cabs={cabs}
+                onOpenAIChatWithCab={(cabModel) => handleOpenChatWithContext(cabModel)}
+                onApplyPhotoToCab={handleApplyPhotoToCab}
+                onOpenPhotoEditor={handleOpenPhotoEditor}
+              />
+            </div>
 
             {/* Photo & Video Showcase Gallery */}
-            <MediaGallery
-              onOpenAIChatWithContext={(ctx) => handleOpenChatWithContext(ctx)}
-              onOpenPhotoEditor={handleOpenPhotoEditor}
-            />
+            <div id="gallery-section">
+              <MediaGallery
+                onOpenAIChatWithContext={(ctx) => handleOpenChatWithContext(ctx)}
+                onOpenPhotoEditor={handleOpenPhotoEditor}
+              />
+            </div>
 
             {/* SEO Destination & Permit Guide Section */}
-            <SeoDestinationGuide
-              onOpenChatWithTopic={(topic) => handleOpenChatWithContext(topic)}
-            />
+            <div id="seo-guide-section">
+              <SeoDestinationGuide
+                onOpenChatWithTopic={(topic) => handleOpenChatWithContext(topic)}
+              />
+            </div>
 
             {/* Verified Customer Reviews Section */}
-            <CustomerReviews />
+            <div id="reviews-section">
+              <CustomerReviews />
+            </div>
 
             {/* FAQs Component */}
-            <FAQSection />
+            <div id="faq-section">
+              <FAQSection />
+            </div>
 
             {/* Travel Preparation Checklist Component */}
-            <TravelChecklist />
+            <div id="checklist-section">
+              <TravelChecklist />
+            </div>
 
             {/* Interactive Office Location Map */}
-            <AgencyLocationMap />
+            <div id="location-section">
+              <AgencyLocationMap />
+            </div>
 
             {/* About Us Local Registration Preview */}
-            <AboutUs />
+            <div id="about-section">
+              <AboutUs />
+            </div>
 
             {/* Contact & Plan My Trip */}
-            <ContactPlanTrip
-              onLeadSubmitted={handleLeadCaptured}
-              onOpenAIChat={() => handleOpenChatWithContext()}
-            />
+            <div id="contact-section">
+              <ContactPlanTrip
+                onLeadSubmitted={handleLeadCaptured}
+                onOpenAIChat={() => handleOpenChatWithContext()}
+              />
+            </div>
           </>
         )}
 
@@ -576,12 +881,15 @@ export default function App() {
               onSelectPackage={() => {}}
               onOpenAIChatWithPackage={(pkgTitle) => handleOpenChatWithContext(pkgTitle)}
               onOpenPhotoEditor={handleOpenPhotoEditor}
+              onQuickBookPackage={handleOpenQuickBook}
+              showAllByDefault={true}
             />
           </>
         )}
 
         {(activeTab === 'hotels' || activeTab === 'jain-hotels') && (
           <AffiliatedHotelsBanner
+            initialCategory={activeTab === 'jain-hotels' ? 'jain' : 'all'}
             initialChainId={activeTab === 'jain-hotels' ? 'partner-jain-group' : 'all'}
             onOpenAIChatWithHotel={(hotelName) => handleOpenChatWithContext(`Affiliated Hotel Inquiry: ${hotelName}`)}
           />
@@ -625,19 +933,22 @@ export default function App() {
             onOpenAIChat={() => handleOpenChatWithContext()}
           />
         )}
+        </React.Suspense>
       </main>
 
       {/* Footer */}
-      <footer className="bg-[#071A2D] border-t border-[#E6E2D9]/20 text-slate-300 text-xs py-14">
+      <footer className="bg-[#060B18] border-t border-slate-800 text-slate-300 text-xs py-14">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-3">
-            <h3 className="font-serif font-bold text-[#FAF9F6] text-base tracking-tight">{AGENCY_DETAILS.name}</h3>
-            <p className="text-slate-300 leading-relaxed font-sans">
-              {AGENCY_DETAILS.tagline}. Government-registered travel company providing customized Sikkim, Darjeeling, and Bhutan tours.
+            <div className="cursor-pointer" onClick={() => setActiveTab('home')}>
+              <Logo variant="light" size="md" />
+            </div>
+            <p className="text-slate-300 leading-relaxed font-sans pt-1">
+              Government-registered travel company providing customized Sikkim, Darjeeling, and Bhutan tours with dedicated cab rentals & hotel bookings.
             </p>
             <div className="space-y-1.5 font-sans">
-              <span className="inline-flex items-center gap-1.5 text-[#D9BC7A] font-bold block">
-                <ShieldCheck className="w-4 h-4 text-[#C6A15B]" />
+              <span className="inline-flex items-center gap-1.5 text-cyan-300 font-bold block">
+                <ShieldCheck className="w-4 h-4 text-cyan-400" />
                 {AGENCY_DETAILS.govtRegistration}
               </span>
               <p className="text-[11px] text-slate-400">
@@ -647,25 +958,25 @@ export default function App() {
           </div>
 
           <div className="space-y-2">
-            <h4 className="font-serif font-bold text-[#FAF9F6] text-sm">Quick Links</h4>
+            <h4 className="font-serif font-bold text-white text-sm">Quick Links</h4>
             <ul className="space-y-2 font-sans">
               <li>
-                <button onClick={() => setActiveTab('packages')} className="hover:text-[#D9BC7A] transition-colors">
+                <button onClick={() => setActiveTab('packages')} className="hover:text-cyan-300 transition-colors">
                   5N/6D Sikkim & Darjeeling Package
                 </button>
               </li>
               <li>
-                <button onClick={() => setActiveTab('packages')} className="hover:text-[#D9BC7A] transition-colors">
+                <button onClick={() => setActiveTab('packages')} className="hover:text-cyan-300 transition-colors">
                   North Sikkim Zero Point Tours
                 </button>
               </li>
               <li>
-                <button onClick={() => setActiveTab('cabs')} className="hover:text-[#D9BC7A] transition-colors">
+                <button onClick={() => setActiveTab('cabs')} className="hover:text-cyan-300 transition-colors">
                   Innova Crysta NJP Pickup Rates
                 </button>
               </li>
               <li>
-                <button onClick={() => setIsHostingerGuideOpen(true)} className="hover:text-[#D9BC7A] transition-colors">
+                <button onClick={() => setIsHostingerGuideOpen(true)} className="hover:text-cyan-300 transition-colors">
                   Hostinger Blueprint & Embed Code
                 </button>
               </li>
@@ -673,41 +984,41 @@ export default function App() {
           </div>
 
           <div className="space-y-2">
-            <h4 className="font-serif font-bold text-[#FAF9F6] text-sm">Legal & Policies</h4>
+            <h4 className="font-serif font-bold text-white text-sm">Legal & Policies</h4>
             <ul className="space-y-2 font-sans">
               <li>
                 <button
                   onClick={() => handleOpenLegalModal('privacy')}
-                  className="hover:text-[#D9BC7A] flex items-center gap-1.5 text-slate-300 transition-colors"
+                  className="hover:text-cyan-300 flex items-center gap-1.5 text-slate-300 transition-colors"
                 >
-                  <Lock className="w-3.5 h-3.5 text-[#C6A15B]" />
+                  <Lock className="w-3.5 h-3.5 text-cyan-400" />
                   <span>Privacy Policy</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => handleOpenLegalModal('terms')}
-                  className="hover:text-[#D9BC7A] flex items-center gap-1.5 text-slate-300 transition-colors"
+                  className="hover:text-cyan-300 flex items-center gap-1.5 text-slate-300 transition-colors"
                 >
-                  <FileText className="w-3.5 h-3.5 text-[#C6A15B]" />
+                  <FileText className="w-3.5 h-3.5 text-cyan-400" />
                   <span>Terms & Conditions</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => handleOpenLegalModal('cancellation')}
-                  className="hover:text-[#D9BC7A] flex items-center gap-1.5 text-slate-300 transition-colors"
+                  className="hover:text-cyan-300 flex items-center gap-1.5 text-slate-300 transition-colors"
                 >
-                  <AlertTriangle className="w-3.5 h-3.5 text-[#C6A15B]" />
+                  <AlertTriangle className="w-3.5 h-3.5 text-cyan-400" />
                   <span>Cancellation Policy</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => handleOpenLegalModal('payment')}
-                  className="hover:text-[#D9BC7A] flex items-center gap-1.5 text-slate-300 transition-colors"
+                  className="hover:text-cyan-300 flex items-center gap-1.5 text-slate-300 transition-colors"
                 >
-                  <CreditCard className="w-3.5 h-3.5 text-[#C6A15B]" />
+                  <CreditCard className="w-3.5 h-3.5 text-cyan-400" />
                   <span>Payment Policy</span>
                 </button>
               </li>
@@ -715,18 +1026,18 @@ export default function App() {
           </div>
 
           <div className="space-y-3 font-sans">
-            <h4 className="font-serif font-bold text-[#FAF9F6] text-sm">Gangtok Office</h4>
+            <h4 className="font-serif font-bold text-white text-sm">Gangtok Office</h4>
             <p className="flex items-start gap-2 text-xs text-slate-300">
-              <MapPin className="w-4 h-4 text-[#C6A15B] flex-shrink-0 mt-0.5" />
+              <MapPin className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
               <span>{AGENCY_DETAILS.location}</span>
             </p>
             <p className="flex items-center gap-2 text-xs text-slate-300">
-              <Phone className="w-4 h-4 text-[#C6A15B] flex-shrink-0" />
+              <Phone className="w-4 h-4 text-cyan-400 flex-shrink-0" />
               <span>{AGENCY_DETAILS.phonePrimary} / {AGENCY_DETAILS.phoneSecondary}</span>
             </p>
             <button
               onClick={() => setIsOwnerDashboardOpen(true)}
-              className="mt-2 btn-luxury-outline-light text-xs !py-1.5 !px-3"
+              className="mt-2 btn-luxury-outline text-xs !py-1.5 !px-3"
             >
               Leads Console
             </button>
@@ -734,7 +1045,7 @@ export default function App() {
         </div>
 
         {/* SEO Keywords Cloud */}
-        <div className="max-w-7xl mx-auto px-4 mt-8 pt-6 border-t border-white/10 space-y-2 font-sans">
+        <div className="max-w-7xl mx-auto px-4 mt-8 pt-6 border-t border-slate-800 space-y-2 font-sans">
           <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
             Popular Sikkim & Darjeeling Circuits:
           </span>
@@ -757,7 +1068,7 @@ export default function App() {
             ].map((kw, i) => (
               <span
                 key={i}
-                className="px-2 py-0.5 bg-[#0B1F3A] border border-white/10 rounded text-slate-300 hover:text-[#D9BC7A] transition-colors"
+                className="px-2 py-0.5 bg-[#0A1128] border border-slate-800 rounded text-slate-300 hover:text-cyan-300 transition-colors"
               >
                 {kw}
               </span>
@@ -765,7 +1076,7 @@ export default function App() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 mt-6 pt-6 border-t border-white/10 flex flex-wrap justify-between items-center gap-4 text-[11px] text-slate-400 font-sans">
+        <div className="max-w-7xl mx-auto px-4 mt-6 pt-6 border-t border-slate-800 flex flex-wrap justify-between items-center gap-4 text-[11px] text-slate-400 font-sans">
           <p>© {new Date().getFullYear()} {AGENCY_DETAILS.name}. All rights reserved.</p>
           <p className="flex items-center gap-1">
             Crafted for Sikkim & Himalayan Mountain Explorers
@@ -777,6 +1088,23 @@ export default function App() {
       <FloatingWhatsApp
         onOpenAIChat={() => handleOpenChatWithContext()}
         onLeadCaptured={handleLeadCaptured}
+        initialRoute={quickBookRoute}
+        isOpenOverride={isQuickBookOpen ? true : undefined}
+        onCloseOverride={() => setIsQuickBookOpen(false)}
+      />
+
+      {/* Mobile Bottom Navigation matching screenshot */}
+      <MobileBottomNav
+        activeTab={activeTab}
+        onSelectTab={(tab) => {
+          setActiveTab(tab);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        onOpenAIPlanner={() => setIsAIPlannerOpen(true)}
+        onOpenAllPackages={() => {
+          setActiveTab('packages');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
       />
 
       {/* Modals */}
@@ -784,50 +1112,60 @@ export default function App() {
         <HostingerGuideModal onClose={() => setIsHostingerGuideOpen(false)} />
       )}
 
-      {isOwnerDashboardOpen && (
-        <OwnerDashboardModal
-          leads={leads}
-          packages={packages}
-          cabs={cabs}
-          agencyDetails={agencyDetails}
-          seoSettings={seoSettings}
-          initialTab={ownerDashboardTab}
-          onClose={() => setIsOwnerDashboardOpen(false)}
-          onUpdateStatus={handleUpdateLeadStatus}
-          onSavePackages={handleSavePackages}
-          onSaveCabs={handleSaveCabs}
-          onSaveAgencyDetails={handleSaveAgencyDetails}
-          onSaveSeoSettings={(updatedSeo) => {
-            setSeoSettings(updatedSeo);
-            localStorage.setItem('offbeat_seo', JSON.stringify(updatedSeo));
-          }}
-          onResetToDefaults={handleResetToDefaults}
-        />
-      )}
+        {isOwnerDashboardOpen && (
+          <OwnerDashboardModal
+            leads={leads}
+            packages={packages}
+            cabs={cabs}
+            agencyDetails={agencyDetails}
+            seoSettings={seoSettings}
+            initialTab={ownerDashboardTab}
+            onClose={() => setIsOwnerDashboardOpen(false)}
+            onUpdateStatus={handleUpdateLeadStatus}
+            onSavePackages={handleSavePackages}
+            onSaveCabs={handleSaveCabs}
+            onSaveAgencyDetails={handleSaveAgencyDetails}
+            onSaveSeoSettings={(updatedSeo) => {
+              setSeoSettings(updatedSeo);
+              localStorage.setItem('offbeat_seo', JSON.stringify(updatedSeo));
+            }}
+            onResetToDefaults={handleResetToDefaults}
+          />
+        )}
 
-      {isAIPlannerOpen && (
-        <AIPlannerModal
-          onClose={() => setIsAIPlannerOpen(false)}
-          onLeadCaptured={handleLeadCaptured}
-        />
-      )}
+        {isAIPlannerOpen && (
+          <AIPlannerModal
+            onClose={() => setIsAIPlannerOpen(false)}
+            onLeadCaptured={handleLeadCaptured}
+          />
+        )}
 
-      {isPhotoEditorOpen && (
-        <PhotoEditorModal
-          initialImageUrl={photoEditorImage}
-          initialTitle={photoEditorTitle}
-          onClose={() => setIsPhotoEditorOpen(false)}
-          onApplyPhotoToPackage={handleApplyPhotoToPackage}
-          onApplyPhotoToCab={handleApplyPhotoToCab}
-        />
-      )}
+        {isPhotoEditorOpen && (
+          <PhotoEditorModal
+            initialImageUrl={photoEditorImage}
+            initialTitle={photoEditorTitle}
+            onClose={() => setIsPhotoEditorOpen(false)}
+            onApplyPhotoToPackage={handleApplyPhotoToPackage}
+            onApplyPhotoToCab={handleApplyPhotoToCab}
+          />
+        )}
 
-      {isLegalModalOpen && (
-        <LegalPoliciesModal
-          initialTab={legalModalTab}
-          onClose={() => setIsLegalModalOpen(false)}
-        />
-      )}
+        {isLegalModalOpen && (
+          <LegalPoliciesModal
+            initialTab={legalModalTab}
+            onClose={() => setIsLegalModalOpen(false)}
+          />
+        )}
+
+        {isCompareOpen && (
+          <ItemComparisonModal
+            type={compareType}
+            packages={packages}
+            cabs={cabs}
+            onClose={() => setIsCompareOpen(false)}
+            onSelectForBooking={(title) => handleOpenChatWithContext(title)}
+          />
+        )}
     </div>
   );
 }
