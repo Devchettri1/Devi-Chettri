@@ -45,6 +45,7 @@ import {
 } from 'lucide-react';
 import { useWishlist } from '../utils/wishlistContext';
 import { useWhatsApp } from '../utils/whatsAppContext';
+import { generatePackageItineraryPDF } from '../utils/pdfGenerator';
 
 interface QuickPackagesProps {
   packages?: TourPackage[];
@@ -203,6 +204,56 @@ export const QuickPackages: React.FC<QuickPackagesProps> = ({
 
   // Dedicated Active Package for the Day-by-Day Itinerary Section below
   const [activeItineraryId, setActiveItineraryId] = useState<string>('pkg-5n6d-sikkim-darjeeling');
+
+  // PDF Itinerary Download State
+  const [downloadingPkgId, setDownloadingPkgId] = useState<string | null>(null);
+  const [pdfSuccessMessage, setPdfSuccessMessage] = useState<string | null>(null);
+
+  // Download Itinerary as Formatted PDF document
+  const handleDownloadPackagePdf = (pkg: TourPackage, customTier?: string) => {
+    try {
+      setDownloadingPkgId(pkg.id);
+      
+      const tierToUse = customTier || (selectedTierFilter !== 'all' && selectedTierFilter !== 'shared' ? selectedTierFilter : 'premium');
+      
+      const baseDeluxe = pkg.hotelTiers?.deluxe?.price || (pkg.priceStarting ? Math.round(pkg.priceStarting * 0.85) : 0);
+      const basePremium = pkg.hotelTiers?.premium?.price || pkg.priceStarting || 0;
+      const baseLuxury = pkg.hotelTiers?.luxury?.price || (pkg.priceStarting ? Math.round(pkg.priceStarting * 1.55) : 0);
+
+      let unitPrice = basePremium;
+      if (tierToUse === 'deluxe') unitPrice = baseDeluxe;
+      else if (tierToUse === 'luxury') unitPrice = baseLuxury;
+
+      const calcPrice = calculateGroupPrice(unitPrice, currentGroupSize);
+      const totalCost = calculateTotalGroupCost(calcPrice, currentGroupSize);
+
+      const paxCounts: Record<GroupSizeOption, number> = {
+        solo: 1,
+        couple: 2,
+        family: 4,
+        large_group: 6,
+      };
+
+      generatePackageItineraryPDF(pkg, {
+        travelerName: 'Valued Traveler',
+        travelersCount: paxCounts[currentGroupSize] || 2,
+        hotelTier: tierToUse,
+        calculatedPricePerPerson: calcPrice,
+        totalGroupPrice: totalCost,
+        vehiclePreference: activeGroupConfig.vehicleType,
+        mealPreference: 'MAP (Breakfast & Dinner Included)',
+      });
+
+      setPdfSuccessMessage(`"${pkg.title}" Itinerary downloaded as formatted PDF!`);
+      setTimeout(() => {
+        setPdfSuccessMessage(null);
+      }, 4500);
+    } catch (error) {
+      console.error('Error generating PDF itinerary:', error);
+    } finally {
+      setDownloadingPkgId(null);
+    }
+  };
 
   // Pagination State
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -825,6 +876,16 @@ export const QuickPackages: React.FC<QuickPackagesProps> = ({
 
                     <div className="flex flex-wrap items-center gap-1.5">
                       <button
+                        onClick={() => handleDownloadPackagePdf(pkg)}
+                        disabled={downloadingPkgId === pkg.id}
+                        className="text-[11px] px-2.5 py-1.5 bg-[#060B18] hover:bg-[#0E1738] text-cyan-300 font-semibold rounded-lg border border-cyan-500/30 shadow-sm flex items-center gap-1 transition-all cursor-pointer hover:border-cyan-400 disabled:opacity-50"
+                        title="Download Formatted Itinerary PDF with full day plan & pricing"
+                      >
+                        <Download className={`w-3 h-3 ${downloadingPkgId === pkg.id ? 'animate-bounce text-cyan-400' : 'text-cyan-400'}`} />
+                        <span>{downloadingPkgId === pkg.id ? 'Saving...' : 'PDF'}</span>
+                      </button>
+
+                      <button
                         onClick={() => {
                           setActiveItineraryId(pkg.id);
                           const el = document.getElementById('day-by-day-itinerary-section');
@@ -932,11 +993,22 @@ export const QuickPackages: React.FC<QuickPackagesProps> = ({
                 </p>
               </div>
 
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-slate-400">Viewing Route for:</span>
-                <span className="text-xs font-bold text-cyan-300 bg-cyan-950/80 px-2.5 py-1 rounded-lg border border-cyan-500/30">
-                  {activeGroupConfig.label} ({activeGroupConfig.paxLabel})
-                </span>
+              <div className="flex flex-wrap items-center gap-2.5">
+                <button
+                  onClick={() => handleDownloadPackagePdf(featuredItineraryPackage)}
+                  disabled={downloadingPkgId === featuredItineraryPackage.id}
+                  className="px-3.5 py-1.5 bg-[#060B18] hover:bg-[#0E1738] text-cyan-300 font-bold rounded-xl border border-cyan-500/40 text-xs flex items-center gap-1.5 shadow-sm transition-all hover:border-cyan-400 disabled:opacity-50"
+                  title="Export this tour itinerary as a formatted PDF file"
+                >
+                  <Download className={`w-3.5 h-3.5 text-cyan-400 ${downloadingPkgId === featuredItineraryPackage.id ? 'animate-bounce' : ''}`} />
+                  <span>{downloadingPkgId === featuredItineraryPackage.id ? 'Saving...' : 'Export PDF'}</span>
+                </button>
+                <div className="flex items-center gap-1.5 bg-cyan-950/80 px-2.5 py-1 rounded-lg border border-cyan-500/30">
+                  <span className="text-xs text-slate-400">Route for:</span>
+                  <span className="text-xs font-bold text-cyan-300">
+                    {activeGroupConfig.label} ({activeGroupConfig.paxLabel})
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -1021,13 +1093,23 @@ export const QuickPackages: React.FC<QuickPackagesProps> = ({
                 </p>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3">
+                <button
+                  onClick={() => handleDownloadPackagePdf(featuredItineraryPackage)}
+                  disabled={downloadingPkgId === featuredItineraryPackage.id}
+                  className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-cyan-300 border border-cyan-500/40 rounded-xl text-xs font-bold flex items-center gap-2 transition-all shadow-md cursor-pointer hover:border-cyan-400 disabled:opacity-50"
+                  title="Download complete formatted itinerary PDF document"
+                >
+                  <Download className={`w-4 h-4 text-cyan-400 ${downloadingPkgId === featuredItineraryPackage.id ? 'animate-bounce' : ''}`} />
+                  <span>{downloadingPkgId === featuredItineraryPackage.id ? 'Generating PDF Document...' : 'Download PDF Itinerary'}</span>
+                </button>
+
                 <button
                   onClick={() => onOpenAIChatWithPackage(`${featuredItineraryPackage.title} (${activeGroupConfig.label})`)}
                   className="btn-luxury-cyan text-xs !py-2.5 !px-4"
                 >
                   <Sparkles className="w-4 h-4 text-slate-950" />
-                  <span>Customize This Day Plan With AI</span>
+                  <span>Customize Day Plan With AI</span>
                 </button>
 
                 <a
@@ -1296,28 +1378,66 @@ export const QuickPackages: React.FC<QuickPackagesProps> = ({
               </div>
 
               {/* Actions */}
-              <div className="pt-4 border-t border-slate-800 flex items-center justify-between gap-3">
+              <div className="pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
                 <button
                   onClick={() => setSelectedItineraryPkg(null)}
-                  className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold"
+                  className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold cursor-pointer"
                 >
                   Close
                 </button>
 
-                <button
-                  onClick={() => {
-                    const title = `${selectedItineraryPkg.title} (${activeGroupConfig.label} - ${activeModalTier.toUpperCase()})`;
-                    setSelectedItineraryPkg(null);
-                    onOpenAIChatWithPackage(title);
-                  }}
-                  className="btn-luxury-cyan text-xs !py-2 !px-4"
-                >
-                  <Sparkles className="w-4 h-4 text-slate-950" />
-                  <span>Get Customized Quote</span>
-                </button>
+                <div className="flex flex-wrap items-center gap-2">
+                  <button
+                    onClick={() => handleDownloadPackagePdf(selectedItineraryPkg, activeModalTier)}
+                    disabled={downloadingPkgId === selectedItineraryPkg.id}
+                    className="px-3.5 py-2 bg-[#060B18] hover:bg-[#0E1738] text-cyan-300 border border-cyan-500/40 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm cursor-pointer hover:border-cyan-400 disabled:opacity-50"
+                    title="Download complete formatted itinerary PDF document"
+                  >
+                    <Download className={`w-4 h-4 text-cyan-400 ${downloadingPkgId === selectedItineraryPkg.id ? 'animate-bounce' : ''}`} />
+                    <span>{downloadingPkgId === selectedItineraryPkg.id ? 'Generating PDF...' : 'Download PDF Itinerary'}</span>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      const title = `${selectedItineraryPkg.title} (${activeGroupConfig.label} - ${activeModalTier.toUpperCase()})`;
+                      setSelectedItineraryPkg(null);
+                      onOpenAIChatWithPackage(title);
+                    }}
+                    className="btn-luxury-cyan text-xs !py-2 !px-4 cursor-pointer"
+                  >
+                    <Sparkles className="w-4 h-4 text-slate-950" />
+                    <span>Get Customized Quote</span>
+                  </button>
+                </div>
               </div>
             </motion.div>
           </div>
+        )}
+      </AnimatePresence>
+
+      {/* PDF Download Toast Notification */}
+      <AnimatePresence>
+        {pdfSuccessMessage && (
+          <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 30, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="fixed bottom-6 right-6 z-50 p-4 bg-slate-950/95 border border-cyan-500/60 text-slate-100 rounded-2xl shadow-2xl backdrop-blur-xl flex items-center gap-3 max-w-md"
+          >
+            <div className="p-2 bg-emerald-500/20 text-emerald-400 rounded-xl border border-emerald-500/40 flex-shrink-0">
+              <CheckCircle2 className="w-5 h-5" />
+            </div>
+            <div className="text-xs space-y-0.5">
+              <div className="font-bold text-white flex items-center gap-1.5">
+                <span>Itinerary PDF Ready & Downloaded</span>
+                <span className="text-[10px] bg-cyan-950 text-cyan-300 border border-cyan-700/60 px-1.5 py-0.5 rounded font-mono">
+                  Official PDF
+                </span>
+              </div>
+              <p className="text-slate-300 line-clamp-1">{pdfSuccessMessage}</p>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </section>

@@ -125,7 +125,7 @@ const AGENCY_DETAILS_INITIAL = {
   rating: 4.9,
   totalReviews: 542,
   fleetsCount: "15+ Luxury Innova Crystas & Xylos",
-  logoUrl: "/src/assets/images/offbeat_destination_logo.svg",
+  logoUrl: "/images/offbeat_destination_logo.svg",
 };
 
 const TOUR_PACKAGES_INITIAL = [
@@ -138,7 +138,7 @@ const TOUR_PACKAGES_INITIAL = [
     priceStarting: 18500,
     rating: 4.9,
     reviewsCount: 230,
-    heroImage: "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+    heroImage: "/images/sikkim_hero_banner_1785680563996.jpg",
     highlights: [
       "3★ Deluxe boutique hotel stays in Gangtok & Darjeeling",
       "Darjeeling Tea Garden city tour & sunrise at Tiger Hill",
@@ -197,7 +197,7 @@ const TOUR_PACKAGES_INITIAL = [
     priceStarting: 28500,
     rating: 5.0,
     reviewsCount: 145,
-    heroImage: "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+    heroImage: "/images/sikkim_hero_banner_1785680563996.jpg",
     highlights: [
       "5★ Heritage Luxury Resort stays (Mayfair Spa Resort Gangtok & Elgin Darjeeling)",
       "VIP Executive Innova Crysta (Captain Seats) with personal chauffeur",
@@ -253,7 +253,7 @@ const TOUR_PACKAGES_INITIAL = [
     priceStarting: 14500,
     rating: 5.0,
     reviewsCount: 185,
-    heroImage: "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+    heroImage: "/images/yumthang_zero_point_1785680592273.jpg",
     highlights: [
       "Vibrant Valley of Flowers at Yumthang (11,800 ft)",
       "Snowbound experience at Zero Point (Yumesamdong 15,300 ft)",
@@ -298,7 +298,7 @@ const TOUR_PACKAGES_INITIAL = [
     priceStarting: 20000,
     rating: 4.9,
     reviewsCount: 198,
-    heroImage: "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+    heroImage: "/images/sikkim_hero_banner_1785680563996.jpg",
     highlights: [
       "Gangtok ropeway ride & Tsomgo Lake (12,400 ft) high altitude excursion",
       "Nathula Pass Indo-China border permit processing",
@@ -332,7 +332,7 @@ const TOUR_PACKAGES_INITIAL = [
     priceStarting: 25800,
     rating: 5.0,
     reviewsCount: 167,
-    heroImage: "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+    heroImage: "/images/yumthang_zero_point_1785680592273.jpg",
     highlights: [
       "Snowbound Zero Point (Yumesamdong 15,300 ft) & Yumthang Valley of Flowers",
       "Traditional Lachung mountain village homestay experience",
@@ -367,7 +367,7 @@ const TOUR_PACKAGES_INITIAL = [
     priceStarting: 29900,
     rating: 5.0,
     reviewsCount: 142,
-    heroImage: "/src/assets/images/ravangla_buddha_park_1785680605794.jpg",
+    heroImage: "/images/ravangla_buddha_park_1785680605794.jpg",
     highlights: [
       "East Sikkim, North Sikkim, West Sikkim, Kalimpong & Darjeeling",
       "Zero Point (15,300 ft), Yumthang Valley, Tsomgo Lake & Nathula Pass",
@@ -403,7 +403,7 @@ const TOUR_PACKAGES_INITIAL = [
     priceStarting: 11500,
     rating: 4.9,
     reviewsCount: 145,
-    heroImage: "/src/assets/images/agency_poster_dark_1785772843834.jpg",
+    heroImage: "/images/agency_poster_dark_1785772843834.jpg",
     highlights: [
       "30+ Hairpin bends of Old Silk Route Zig-Zag road",
       "Thambi Viewpoint Kanchenjunga sunrise & Kupup Elephant Lake",
@@ -432,7 +432,7 @@ const TOUR_PACKAGES_INITIAL = [
     priceStarting: 17800,
     rating: 4.9,
     reviewsCount: 176,
-    heroImage: "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+    heroImage: "/images/yumthang_zero_point_1785680592273.jpg",
     highlights: [
       "Sacred Gurudongmar Lake (17,800 ft) & Yumthang Valley",
       "Zero Point (Yumesamdong 15,300 ft) year-round snow",
@@ -462,7 +462,7 @@ const TOUR_PACKAGES_INITIAL = [
     priceStarting: 14200,
     rating: 4.8,
     reviewsCount: 154,
-    heroImage: "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+    heroImage: "/images/darjeeling_tea_gardens_1785681013467.jpg",
     highlights: [
       "Tsomgo Lake (12,400 ft) & Baba Harbhajan Mandir",
       "Gangtok Ropeway & Tiger Hill Kanchenjunga sunrise",
@@ -492,7 +492,7 @@ const TOUR_PACKAGES_INITIAL = [
     priceStarting: 22500,
     rating: 5.0,
     reviewsCount: 132,
-    heroImage: "/src/assets/images/darjeeling_toy_train_1785681122611.jpg",
+    heroImage: "/images/darjeeling_toy_train_1785681122611.jpg",
     highlights: [
       "Candlelight Dinner with floral bed decor & honeymoon cake",
       "Private Innova Crysta throughout & Mirik Lake couple boating",
@@ -525,7 +525,7 @@ const CAB_OPTIONS_INITIAL = [
     bestFor: "Families, Couples, Long Mountain Drives & Nathula Pass",
     ratePerDay: 4500,
     njpIxbPickupRate: 3800,
-    image: "/src/assets/images/innova_crysta_cab_1785680577329.jpg",
+    image: "/images/innova_crysta_cab_1785680577329.jpg",
     features: [
       "Captain Seats with plush leather cushioning",
       "Rear dual-zone air conditioning & heating",
@@ -540,7 +540,7 @@ const CAB_OPTIONS_INITIAL = [
     bestFor: "North Sikkim (Lachung/Zero Point) rough terrains",
     ratePerDay: 4000,
     njpIxbPickupRate: 3400,
-    image: "/src/assets/images/innova_crysta_cab_1785680577329.jpg",
+    image: "/images/innova_crysta_cab_1785680577329.jpg",
     features: [
       "High ground clearance for snow & rocky mountain roads",
       "All-wheel drive stability for steep climbs"
@@ -554,7 +554,7 @@ const CAB_OPTIONS_INITIAL = [
     bestFor: "Couples, Small Families, NJP/IXB transfers & Gangtok-Darjeeling tours",
     ratePerDay: 3200,
     njpIxbPickupRate: 2800,
-    image: "/src/assets/images/innova_mountain_drive_1785681104445.jpg",
+    image: "/images/innova_mountain_drive_1785681104445.jpg",
     features: [
       "Comfortable 4-seater executive sedan with boot space",
       "Clean air-conditioned interior & smooth highway ride",
@@ -569,7 +569,7 @@ const CAB_OPTIONS_INITIAL = [
     bestFor: "Budget Travelers, Couples, Local Point-to-Point drops & town tours",
     ratePerDay: 2500,
     njpIxbPickupRate: 2200,
-    image: "/src/assets/images/innova_mountain_drive_1785681104445.jpg",
+    image: "/images/innova_mountain_drive_1785681104445.jpg",
     features: [
       "Compact and nimble for smooth Gangtok town point drops",
       "Most economical choice for budget-conscious travelers"
@@ -1096,7 +1096,7 @@ const reviewsDatabase: ServerReview[] = [
     comment: "Flawless arrangement! We booked the 5N/6D Sikkim & Darjeeling tour with an Innova Crysta. Driver Passang was punctual, extremely safe on mountain bends, and recommended fantastic pure veg thali spots in Gangtok. Permits for Nathula were issued effortlessly!",
     packageTaken: "5N/6D Sikkim & Darjeeling Tour",
     externalPlatform: "Google",
-    photoUrl: "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+    photoUrl: "/images/sikkim_hero_banner_1785680563996.jpg",
     approved: true,
     createdAt: new Date(Date.now() - 3600000 * 120).toISOString(),
     helpfulCount: 24
@@ -1110,7 +1110,7 @@ const reviewsDatabase: ServerReview[] = [
     comment: "The AI chat assistant on OffbeatDestination's site helped us tailor our North Sikkim Zero Point trip within minutes! We dropped our WhatsApp number and got the exact quote on WhatsApp in 2 minutes. The homestay in Lachung was warm and hospitable. 10/10 service!",
     packageTaken: "North Sikkim 3N/4D Tour",
     externalPlatform: "WhatsApp",
-    photoUrl: "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+    photoUrl: "/images/yumthang_zero_point_1785680592273.jpg",
     approved: true,
     createdAt: new Date(Date.now() - 3600000 * 300).toISOString(),
     helpfulCount: 31
@@ -1124,7 +1124,7 @@ const reviewsDatabase: ServerReview[] = [
     comment: "Top-notch professionalism. Being elderly travelers, pure vegetarian meal timing was crucial for us. OffbeatDestination arranged perfect AP meal plans and provided an exceptionally smooth Innova Crysta for NJP airport pickup.",
     packageTaken: "Cab Rental & Custom Sikkim Package",
     externalPlatform: "TripAdvisor",
-    photoUrl: "/src/assets/images/innova_crysta_cab_1785680577329.jpg",
+    photoUrl: "/images/innova_crysta_cab_1785680577329.jpg",
     approved: true,
     createdAt: new Date(Date.now() - 3600000 * 500).toISOString(),
     helpfulCount: 18
@@ -1138,7 +1138,7 @@ const reviewsDatabase: ServerReview[] = [
     comment: "Bhutan Tour was magical! OffbeatDestination handled all SDF fees, permits, and assigned a super polite Bhutanese guide. Hiking Tiger's Nest was a dream come true. Highly recommended local Gangtok agency!",
     packageTaken: "Custom Bhutan Cultural Odyssey",
     externalPlatform: "Google",
-    photoUrl: "/src/assets/images/bhutan_tigers_nest_1785681037397.jpg",
+    photoUrl: "/images/bhutan_tigers_nest_1785681037397.jpg",
     approved: true,
     createdAt: new Date(Date.now() - 3600000 * 24).toISOString(),
     helpfulCount: 15

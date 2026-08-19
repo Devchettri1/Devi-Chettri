@@ -6,6 +6,13 @@ import { GovtRegistrationBadge } from './GovtRegistrationBadge';
 import { FeaturedVehiclesSection } from './FeaturedVehiclesSection';
 import { useWhatsApp } from '../utils/whatsAppContext';
 
+import innovaCrystaCab from '../assets/images/innova_crysta_cab_1785680577329.jpg';
+import innovaMountainDrive from '../assets/images/innova_mountain_drive_1785681104445.jpg';
+import sikkimHeroBanner from '../assets/images/sikkim_hero_banner_1785680563996.jpg';
+import agencyCardBanner from '../assets/images/agency_card_banner_1785772861093.jpg';
+import yumthangZeroPoint from '../assets/images/yumthang_zero_point_1785680592273.jpg';
+import nathulaPassSnow from '../assets/images/nathula_pass_snow_1785681052944.jpg';
+
 interface CabRentalProps {
   cabs?: CabOption[];
   onOpenAIChatWithCab: (cabModel: string) => void;
@@ -14,12 +21,12 @@ interface CabRentalProps {
 }
 
 const CAB_PRESET_PHOTOS = [
-  { title: 'Toyota Innova Crysta Deluxe', url: '/images/innova_crysta_cab_1785680577329.jpg' },
-  { title: 'Innova Mountain Highway Drive', url: '/images/innova_mountain_drive_1785681104445.jpg' },
-  { title: 'Sikkim Himalayan Route SUV', url: '/images/sikkim_hero_banner_1785680563996.jpg' },
-  { title: 'Fleet Mountain Panorama', url: '/images/agency_card_banner_1785772861093.jpg' },
-  { title: 'Zero Point High Altitude 4x4', url: '/images/yumthang_zero_point_1785680592273.jpg' },
-  { title: 'Nathula Pass Snow Road Drive', url: '/images/nathula_pass_snow_1785681052944.jpg' },
+  { title: 'Toyota Innova Crysta Deluxe', url: innovaCrystaCab },
+  { title: 'Innova Mountain Highway Drive', url: innovaMountainDrive },
+  { title: 'Sikkim Himalayan Route SUV', url: sikkimHeroBanner },
+  { title: 'Fleet Mountain Panorama', url: agencyCardBanner },
+  { title: 'Zero Point High Altitude 4x4', url: yumthangZeroPoint },
+  { title: 'Nathula Pass Snow Road Drive', url: nathulaPassSnow },
 ];
 
 export const CabRental: React.FC<CabRentalProps> = ({
@@ -255,6 +262,9 @@ export const CabRental: React.FC<CabRentalProps> = ({
                         alt={cab.model}
                         referrerPolicy="no-referrer"
                         className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).src = innovaCrystaCab;
+                        }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F0E] via-[#0B0F0E]/20 to-transparent" />
 
@@ -477,7 +487,7 @@ export const CabRental: React.FC<CabRentalProps> = ({
                   src={previewPhoto}
                   alt="Cab Preview"
                   className="w-full h-full object-cover"
-                  onError={() => setPreviewPhoto('/images/innova_crysta_cab_1785680577329.jpg')}
+                  onError={() => setPreviewPhoto(innovaCrystaCab)}
                 />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center text-[#A9AAA4] text-xs">

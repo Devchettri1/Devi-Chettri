@@ -24,6 +24,12 @@ import { CabOption } from '../types';
 import { AGENCY_DETAILS } from '../data/travelData';
 import { GovtRegistrationBadge } from './GovtRegistrationBadge';
 
+import innovaCrystaCab from '../assets/images/innova_crysta_cab_1785680577329.jpg';
+import innovaMountainDrive from '../assets/images/innova_mountain_drive_1785681104445.jpg';
+import nathulaPassSnow from '../assets/images/nathula_pass_snow_1785681052944.jpg';
+import agencyCardBanner from '../assets/images/agency_card_banner_1785772861093.jpg';
+import yumthangZeroPoint from '../assets/images/yumthang_zero_point_1785680592273.jpg';
+
 interface FeaturedVehiclesSectionProps {
   onSelectCabForBooking: (cab: CabOption) => void;
   onOpenAIChatWithCab: (cabModel: string) => void;
@@ -38,25 +44,25 @@ interface InnovaGalleryPhoto {
 
 const INNOVA_GALLERY: InnovaGalleryPhoto[] = [
   {
-    url: '/images/innova_mountain_drive_1785681104445.jpg',
+    url: innovaMountainDrive,
     title: 'Himalayan Ridge Highway Drive',
     caption: 'Cruising through the scenic pine forests and Teesta river valley in whisper-quiet cabin comfort.',
     tag: 'Flagship Exterior'
   },
   {
-    url: '/images/innova_crysta_cab_1785680577329.jpg',
+    url: innovaCrystaCab,
     title: 'Deluxe Chauffeur-Driven Crysta',
     caption: 'Immaculate exterior with sanitized interiors, tinted sun protection, and hill-certified senior chauffeurs.',
     tag: 'Executive Fleet'
   },
   {
-    url: '/images/nathula_pass_snow_1785681052944.jpg',
+    url: nathulaPassSnow,
     title: 'Nathula Pass & Snowline Performance',
     caption: 'High ground clearance and anti-roll suspension engineered for steep snow climbs and rocky mountain passes.',
     tag: 'Permit Pre-Cleared'
   },
   {
-    url: '/images/agency_card_banner_1785772861093.jpg',
+    url: agencyCardBanner,
     title: 'Fleet Mountain Panorama',
     caption: 'Our top-tier Toyota Innova Crystas stationed across Gangtok, Bagdogra Airport, Darjeeling & Pelling.',
     tag: '24/7 Availability'
@@ -79,7 +85,7 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
     bestFor: 'Families, Couples, North Sikkim (2N Lachung) & Nathula Pass Army Permits',
     ratePerDay: 4500,
     njpIxbPickupRate: 3800,
-    image: '/images/innova_crysta_cab_1785680577329.jpg',
+    image: innovaCrystaCab,
     features: [
       '✓ Fully Approved for North Sikkim (2N Lachung) & Nathula Pass Army Permits',
       'Plush Reclining Captain Seats with individual armrests',
@@ -98,7 +104,7 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
     bestFor: 'North Sikkim 2N Lachung, Zero Point & High Altitude Snow Terrain',
     ratePerDay: 4000,
     njpIxbPickupRate: 3400,
-    image: '/images/innova_crysta_cab_1785680577329.jpg',
+    image: innovaCrystaCab,
     features: [
       '✓ Fully Approved for North Sikkim Restricted Area Permit (PAP)',
       'High ground clearance for snow & rocky mountain riverbeds',
@@ -198,6 +204,9 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
                   alt={INNOVA_GALLERY[activePhotoIdx].title}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).src = innovaCrystaCab;
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F0E] via-transparent to-black/30" />
 
@@ -593,9 +602,12 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
               <div>
                 <div className="relative h-48 overflow-hidden">
                   <img
-                    src="/images/innova_crysta_cab_1785680577329.jpg"
+                    src={innovaCrystaCab}
                     alt="Mahindra Xylo Scorpio 4x4"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = innovaCrystaCab;
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F0E] via-transparent to-transparent" />
                   <span className="absolute top-3 left-3 bg-[#0B0F0E]/90 text-[#D6B36A] font-bold px-2.5 py-1 rounded text-xs border border-[#D6B36A]/30">
@@ -678,9 +690,12 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
               <div>
                 <div className="relative h-48 overflow-hidden">
                   <img
-                    src="/images/agency_card_banner_1785772861093.jpg"
+                    src={agencyCardBanner}
                     alt="Force Urbania Luxury Tempo Traveller"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = innovaCrystaCab;
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F0E] via-transparent to-transparent" />
                   <span className="absolute top-3 left-3 bg-[#0B0F0E]/90 text-[#D6B36A] font-bold px-2.5 py-1 rounded text-xs border border-[#D6B36A]/30">
@@ -759,9 +774,12 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
               <div>
                 <div className="relative h-48 overflow-hidden">
                   <img
-                    src="/images/yumthang_zero_point_1785680592273.jpg"
+                    src={yumthangZeroPoint}
                     alt="Mahindra Bolero Neo 4WD"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = innovaCrystaCab;
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F0E] via-transparent to-transparent" />
                   <span className="absolute top-3 left-3 bg-[#0B0F0E]/90 text-[#D6B36A] font-bold px-2.5 py-1 rounded text-xs border border-[#D6B36A]/30">
