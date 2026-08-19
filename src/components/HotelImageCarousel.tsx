@@ -19,6 +19,14 @@ import {
   ArrowLeftRight
 } from 'lucide-react';
 import { HotelPhotoItem, HotelChainPartner, FeaturedStandaloneHotel } from '../data/travelData';
+import {
+  sikkimHeroBanner,
+  ravanglaBuddhaPark,
+  darjeelingToyTrain,
+  darjeelingTeaGardens,
+  yumthangZeroPoint,
+  nathulaPassSnow
+} from '../assets/images';
 
 export type PhotoCategory = 'all' | 'rooms' | 'dining' | 'exterior' | 'views' | 'amenities';
 
@@ -32,7 +40,7 @@ export interface HotelImageCarouselProps {
 const DEFAULT_HIMALAYAN_HOTEL_PHOTOS: Record<string, HotelPhotoItem[]> = {
   luxury: [
     {
-      url: "/images/sikkim_hero_banner_1785680563996.jpg",
+      url: sikkimHeroBanner,
       category: "exterior",
       title: "Royal Himalayan Valley Resort Facade",
       caption: "Panoramic mountain architecture framed by lush pines and misty Himalayan ridges."
@@ -62,7 +70,7 @@ const DEFAULT_HIMALAYAN_HOTEL_PHOTOS: Record<string, HotelPhotoItem[]> = {
       caption: "Rejuvenating Himalayan therapies, hydrotherapy tubs, and steam sauna sessions."
     },
     {
-      url: "/images/ravangla_buddha_park_1785680605794.jpg",
+      url: ravanglaBuddhaPark,
       category: "views",
       title: "180° Panoramic Sunrise Balcony View",
       caption: "Golden morning rays lighting up the snow-capped Himalayan ranges."
@@ -76,7 +84,7 @@ const DEFAULT_HIMALAYAN_HOTEL_PHOTOS: Record<string, HotelPhotoItem[]> = {
   ],
   heritage: [
     {
-      url: "/images/darjeeling_toy_train_1785681122611.jpg",
+      url: darjeelingToyTrain,
       category: "exterior",
       title: "125-Year Colonial Heritage Facade",
       caption: "Historic stone estate with Burmese teakwood architecture and manicured mountain gazebos."
@@ -106,7 +114,7 @@ const DEFAULT_HIMALAYAN_HOTEL_PHOTOS: Record<string, HotelPhotoItem[]> = {
       caption: "Warm library parlor with antique portraits, curated novels, and roaring fireplaces."
     },
     {
-      url: "/images/darjeeling_tea_gardens_1785681013467.jpg",
+      url: darjeelingTeaGardens,
       category: "views",
       title: "Private Tea Estate & Pine Ridge Vista",
       caption: "Rolling green tea slopes and misty Darjeeling hills from private verandas."
@@ -114,7 +122,7 @@ const DEFAULT_HIMALAYAN_HOTEL_PHOTOS: Record<string, HotelPhotoItem[]> = {
   ],
   jain: [
     {
-      url: "/images/darjeeling_tea_gardens_1785681013467.jpg",
+      url: darjeelingTeaGardens,
       category: "exterior",
       title: "Mountain Ridge Hotel Facade",
       caption: "Centrally situated near mall promenades with dedicated pure vegetarian hospitality."
@@ -144,7 +152,7 @@ const DEFAULT_HIMALAYAN_HOTEL_PHOTOS: Record<string, HotelPhotoItem[]> = {
       caption: "Hot buffet breakfast and dinner with Gujarati, Marwari, North Indian, and Bengali specialties."
     },
     {
-      url: "/images/sikkim_hero_banner_1785680563996.jpg",
+      url: sikkimHeroBanner,
       category: "views",
       title: "Kanchenjunga Golden Sunrise Vista",
       caption: "Clear views of Mt. Kanchenjunga right from the rooftop dining terrace."
@@ -152,7 +160,7 @@ const DEFAULT_HIMALAYAN_HOTEL_PHOTOS: Record<string, HotelPhotoItem[]> = {
   ],
   alpine: [
     {
-      url: "/images/yumthang_zero_point_1785680592273.jpg",
+      url: yumthangZeroPoint,
       category: "exterior",
       title: "North Sikkim Alpine Pinewood Lodge",
       caption: "Insulated alpine wood architecture designed for extreme high-altitude warmth in Lachung & Lachen."
@@ -176,7 +184,7 @@ const DEFAULT_HIMALAYAN_HOTEL_PHOTOS: Record<string, HotelPhotoItem[]> = {
       caption: "Piping hot buffet meals, ginger lemon honey tea, and local Sikkimese organic dishes."
     },
     {
-      url: "/images/nathula_pass_snow_1785681052944.jpg",
+      url: nathulaPassSnow,
       category: "views",
       title: "Snowy Pine Ridges & Waterfall Balcony",
       caption: "Panoramic mountain river and snow peak scenery right outside your window."

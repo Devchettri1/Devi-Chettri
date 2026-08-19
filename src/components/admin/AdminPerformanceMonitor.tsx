@@ -235,22 +235,22 @@ export const AdminPerformanceMonitor: React.FC<AdminPerformanceMonitorProps> = (
       // Known project images if resource timings are minimal in iframe
       const fallbackImages = [
         {
-          name: '/images/sikkim_hero_banner_1785680563996.jpg',
+          name: 'sikkim_hero_banner.webp',
           size: 428000,
           duration: 320,
         },
         {
-          name: '/images/innova_crysta_cab_1785680577329.jpg',
+          name: 'innova_crysta_cab.webp',
           size: 198000,
           duration: 210,
         },
         {
-          name: '/images/darjeeling_tiger_hill_1785680590123.jpg',
+          name: 'darjeeling_tea_gardens.webp',
           size: 345000,
           duration: 290,
         },
         {
-          name: '/images/north_sikkim_yumthang_1785680601245.jpg',
+          name: 'yumthang_zero_point.webp',
           size: 312000,
           duration: 275,
         },

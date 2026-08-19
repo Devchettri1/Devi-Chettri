@@ -1,3 +1,15 @@
+import {
+  sikkimHeroBanner,
+  yumthangZeroPoint,
+  nathulaPassSnow,
+  ravanglaBuddhaPark,
+  darjeelingTeaGardens,
+  darjeelingToyTrain,
+  bhutanTigersNest,
+  innovaCrystaCab,
+  innovaMountainDrive,
+  agencyCardBanner
+} from '../assets/images';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, MapPin, Camera, Sparkles, Maximize2, X } from 'lucide-react';
@@ -12,25 +24,25 @@ export interface RoutePhoto {
 export const ROUTE_PHOTO_MAP: Record<string, RoutePhoto[]> = {
   "5N/6D Sikkim & Darjeeling Grand Circuit": [
     {
-      url: "/images/sikkim_hero_banner_1785680563996.jpg",
+      url: sikkimHeroBanner,
       caption: "Gangtok Hilltop Skyline & Kanchenjunga Mountain Views",
       location: "Gangtok Capital (5,500 ft)",
       badge: "Popular Circuit",
     },
     {
-      url: "/images/nathula_pass_snow_1785681052944.jpg",
+      url: nathulaPassSnow,
       caption: "Glacial Tsomgo Lake & Snow-clad Nathula Pass Border",
       location: "East Sikkim (14,140 ft)",
       badge: "Indo-China Border",
     },
     {
-      url: "/images/darjeeling_tea_gardens_1785681013467.jpg",
+      url: darjeelingTeaGardens,
       caption: "Rolling Emerald Tea Estates & Tiger Hill Sunrise",
       location: "Darjeeling Hills (6,700 ft)",
       badge: "Tea Garden Haven",
     },
     {
-      url: "/images/darjeeling_toy_train_1785681122611.jpg",
+      url: darjeelingToyTrain,
       caption: "UNESCO World Heritage Himalayan Steam Toy Train",
       location: "Batasia Loop, Darjeeling",
       badge: "UNESCO Heritage",
@@ -38,19 +50,19 @@ export const ROUTE_PHOTO_MAP: Record<string, RoutePhoto[]> = {
   ],
   "4N/5D North Sikkim Special (Gurudongmar & Zero Point)": [
     {
-      url: "/images/yumthang_zero_point_1785680592273.jpg",
+      url: yumthangZeroPoint,
       caption: "Zero Point (Yumesamdong) Permanent Snow Realm",
       location: "North Sikkim (15,300 ft)",
       badge: "High Altitude Peak",
     },
     {
-      url: "/images/sikkim_hero_banner_1785680563996.jpg",
+      url: sikkimHeroBanner,
       caption: "Yumthang Valley of Flowers & Hot Sulphur Springs",
       location: "Lachung & Lachen Valleys",
       badge: "Rhododendron Sanctuary",
     },
     {
-      url: "/images/innova_mountain_drive_1785681104445.jpg",
+      url: innovaMountainDrive,
       caption: "Chungthang Gorge & Scenic 4x4 Mountain Highway",
       location: "Lachen Alpine Highway",
       badge: "4x4 SUV Route",
@@ -58,19 +70,19 @@ export const ROUTE_PHOTO_MAP: Record<string, RoutePhoto[]> = {
   ],
   "3N/4D Old Silk Route Zuluk & Reshi Khola": [
     {
-      url: "/images/nathula_pass_snow_1785681052944.jpg",
+      url: nathulaPassSnow,
       caption: "Zuluk Thambi View Point 32-Zigzag Hairpin Bends",
       location: "Old Silk Route (11,200 ft)",
       badge: "Ancient Trade Route",
     },
     {
-      url: "/images/ravangla_buddha_park_1785680605794.jpg",
+      url: ravanglaBuddhaPark,
       caption: "Kupup Elephant Lake & Baba Harbhajan Shrine",
       location: "East Sikkim Highlands",
       badge: "Sacred Glacial Lake",
     },
     {
-      url: "/images/innova_mountain_drive_1785681104445.jpg",
+      url: innovaMountainDrive,
       caption: "Reshi Khola Crystal Riverbank Organic Homestays",
       location: "Reshi River Valley",
       badge: "Riverside Camping",
@@ -78,19 +90,19 @@ export const ROUTE_PHOTO_MAP: Record<string, RoutePhoto[]> = {
   ],
   "4N/5D Gangtok, Tsomgo Lake & Darjeeling": [
     {
-      url: "/images/nathula_pass_snow_1785681052944.jpg",
+      url: nathulaPassSnow,
       caption: "Sacred Glacial Tsomgo Lake & Yak Rides",
       location: "East Sikkim (12,400 ft)",
       badge: "Glacial Marvel",
     },
     {
-      url: "/images/sikkim_hero_banner_1785680563996.jpg",
+      url: sikkimHeroBanner,
       caption: "Gangtok Cable Car Ropeway & MG Marg Evening Walk",
       location: "Gangtok Town",
       badge: "Valley Viewpoint",
     },
     {
-      url: "/images/darjeeling_toy_train_1785681122611.jpg",
+      url: darjeelingToyTrain,
       caption: "Batasia War Memorial Loop & Ghoom Monastery",
       location: "Darjeeling",
       badge: "Colonial Charm",
@@ -98,19 +110,19 @@ export const ROUTE_PHOTO_MAP: Record<string, RoutePhoto[]> = {
   ],
   "5N/6D Romantic Sikkim & Darjeeling Honeymoon": [
     {
-      url: "/images/darjeeling_tea_gardens_1785681013467.jpg",
+      url: darjeelingTeaGardens,
       caption: "Romantic Couple Strolls through Lush Tea Estates",
       location: "Darjeeling Tea Country",
       badge: "Honeymoon Exclusive",
     },
     {
-      url: "/images/sikkim_hero_banner_1785680563996.jpg",
+      url: sikkimHeroBanner,
       caption: "Luxury Hillside Boutique Resort Stays & Candlelight Dining",
       location: "Gangtok & Darjeeling",
       badge: "Boutique Stays",
     },
     {
-      url: "/images/ravangla_buddha_park_1785680605794.jpg",
+      url: ravanglaBuddhaPark,
       caption: "Panoramic Kanchenjunga Sunrise Views & Private Car Drives",
       location: "Pelling & Ravangla",
       badge: "Kanchenjunga Vista",
@@ -118,19 +130,19 @@ export const ROUTE_PHOTO_MAP: Record<string, RoutePhoto[]> = {
   ],
   "Toyota Innova Crysta Cab Rental Only": [
     {
-      url: "/images/innova_crysta_cab_1785680577329.jpg",
+      url: innovaCrystaCab,
       caption: "Luxury Toyota Innova Crysta with Rear AC & Captain Seats",
       location: "All Sikkim & Bengal Routes",
       badge: "Luxury Fleet",
     },
     {
-      url: "/images/innova_mountain_drive_1785681104445.jpg",
+      url: innovaMountainDrive,
       caption: "Verified Experienced Hill Drivers for High-Altitude Passes",
       location: "NJP Station & IXB Airport Pickups",
       badge: "Safe Chauffeurs",
     },
     {
-      url: "/images/agency_card_banner_1785772861093.jpg",
+      url: agencyCardBanner,
       caption: "Clean, Sanitized Cabs with All Sikkim Tourist Permits Included",
       location: "Gangtok Head Office",
       badge: "Permits Included",
@@ -138,19 +150,19 @@ export const ROUTE_PHOTO_MAP: Record<string, RoutePhoto[]> = {
   ],
   "Bhutan Cultural Odyssey Package": [
     {
-      url: "/images/bhutan_tigers_nest_1785681037397.jpg",
+      url: bhutanTigersNest,
       caption: "Climb to Sacred Taktsang Tiger's Nest Monastery",
       location: "Paro Valley, Bhutan",
       badge: "Himalayan Sanctuary",
     },
     {
-      url: "/images/ravangla_buddha_park_1785680605794.jpg",
+      url: ravanglaBuddhaPark,
       caption: "Giant Buddha Dordenma Statue overlooking Thimphu Valley",
       location: "Thimphu, Bhutan",
       badge: "Kingdom of Bhutan",
     },
     {
-      url: "/images/sikkim_hero_banner_1785680563996.jpg",
+      url: sikkimHeroBanner,
       caption: "Punakha Dzong Golden Fortress on River Confluence",
       location: "Punakha Valley",
       badge: "Cultural Heritage",
@@ -158,19 +170,19 @@ export const ROUTE_PHOTO_MAP: Record<string, RoutePhoto[]> = {
   ],
   "Custom Itinerary Inquiry": [
     {
-      url: "/images/sikkim_hero_banner_1785680563996.jpg",
+      url: sikkimHeroBanner,
       caption: "Customized Tailor-made Sikkim & Darjeeling Circuits",
       location: "Gangtok & Surrounds",
       badge: "Custom Route",
     },
     {
-      url: "/images/yumthang_zero_point_1785680592273.jpg",
+      url: yumthangZeroPoint,
       caption: "High Altitude Passes, Snow Points & Army Permits",
       location: "North & East Sikkim",
       badge: "100% Customized",
     },
     {
-      url: "/images/innova_crysta_cab_1785680577329.jpg",
+      url: innovaCrystaCab,
       caption: "Dedicated Transport & Private Driver Assignment",
       location: "Bagdogra / NJP Pickup",
       badge: "VIP Assistance",

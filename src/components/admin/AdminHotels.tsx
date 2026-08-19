@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Building2, Plus, Trash2, Edit2, Save, X, CheckCircle2, Star, MapPin, Filter, Search, Image as ImageIcon, Upload } from 'lucide-react';
 import { HotelItem } from '../../types';
 import { ImageUploadPicker } from './ImageUploadPicker';
+import { sikkimHeroBanner } from '../../assets/images';
 
 interface AdminHotelsProps {
   hotels: HotelItem[];
@@ -239,12 +240,12 @@ export const AdminHotels: React.FC<AdminHotelsProps> = ({ hotels, onRefresh }) =
               {/* Hotel Photo with Replace Button */}
               <div className="relative h-44 overflow-hidden bg-slate-900">
                 <img
-                  src={h.image || '/images/sikkim_hero_banner_1785680563996.jpg'}
+                  src={h.image || sikkimHeroBanner}
                   alt={h.name}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = '/images/sikkim_hero_banner_1785680563996.jpg';
+                    (e.target as HTMLImageElement).src = sikkimHeroBanner;
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />

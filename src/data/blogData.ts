@@ -1,4 +1,11 @@
 import { BlogPost } from '../types';
+import {
+  sikkimHeroBanner,
+  yumthangZeroPoint,
+  nathulaPassSnow,
+  ravanglaBuddhaPark,
+  darjeelingTeaGardens
+} from '../assets/images';
 
 export const calculateReadTime = (content: string): string => {
   if (!content) return '3 min read';
@@ -21,7 +28,7 @@ export const BLOG_POSTS: BlogPost[] = [
       avatarUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&auto=format&fit=crop&q=80'
     },
     publishedDate: 'August 12, 2026',
-    coverImage: '/images/sikkim_hero_banner_1785680563996.jpg',
+    coverImage: sikkimHeroBanner,
     summary: 'Tucked away in the folds of North Sikkim lies Dzongu, a pristine reserve reserved exclusively for the indigenous Lepcha community. Free from urban crowds and commercial hotels, it is a haven for pure serenity, hanging cane bridges, and warm homestay hospitality.',
     keyTakeaways: [
       'Special Restricted Area Permits (RAP) are required even for Indian citizens to enter Dzongu.',
@@ -85,7 +92,7 @@ Dzongu is a strictly protected territory under Sikkim Tourism regulations:
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80'
     },
     publishedDate: 'August 14, 2026',
-    coverImage: '/images/yumthang_zero_point_1785680592273.jpg',
+    coverImage: yumthangZeroPoint,
     summary: 'Traveling to Gurudongmar Lake (17,800 ft), Zero Point (15,300 ft), or Nathula Pass (14,140 ft) requires meticulous preparation. Learn the golden 3-layer clothing rule, essential AMS altitude medication, and mandatory photo ID documents.',
     keyTakeaways: [
       'Adopt the 3-layer thermal system: moisture-wicking base, fleece/down insulator, and windproof outer shell.',
@@ -157,7 +164,7 @@ The Indian Army strictly regulates border checkpoints along the Indo-China front
       avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&auto=format&fit=crop&q=80'
     },
     publishedDate: 'August 16, 2026',
-    coverImage: '/images/nathula_pass_snow_1785681052944.jpg',
+    coverImage: nathulaPassSnow,
     summary: 'Centuries ago, mule caravans laden with Tibetan raw wool, silk, musk, and spices negotiated the treacherous, cloud-engulfed passes of East Sikkim. Today, the Silk Route stands as one of the world’s most cinematic drives, featuring the iconic 32 hairpin bends of Zuluk.',
     keyTakeaways: [
       'Witness the breathtaking sunrise from Thambi Viewpoint (11,200 ft) overlooking the 32 hairpin loops.',
@@ -223,7 +230,7 @@ While Gnathang is freezing and sparse, down in Padamchen (7,000 ft) dense temper
       avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80'
     },
     publishedDate: 'August 17, 2026',
-    coverImage: '/images/nathula_pass_snow_1785681052944.jpg',
+    coverImage: nathulaPassSnow,
     summary: 'Everything you need to know about visiting the Indo-China international border at Nathula Pass (14,140 ft). Learn about military vehicle permit processing, government rates, day closures (Monday/Tuesday closed), and tips for guaranteed clearance.',
     keyTakeaways: [
       'Nathula Pass is open for Indian Tourists from Wednesday to Sunday (strictly closed Mondays & Tuesdays).',
@@ -287,7 +294,7 @@ To guarantee your permit is cleared without delays, submit the following to our 
       avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&auto=format&fit=crop&q=80'
     },
     publishedDate: 'August 18, 2026',
-    coverImage: '/images/ravangla_buddha_park_1785680605794.jpg',
+    coverImage: ravanglaBuddhaPark,
     summary: 'Sikkim is home to over 200 ancient Buddhist monasteries (Gumpas) where butter lamps glow perpetually against intricate silk thangkas. Journey into Rumtek, Pemayangtse, Enchey, and Tashiding to understand the soul of Himalayan Buddhism.',
     keyTakeaways: [
       'Rumtek Dharma Chakra Centre houses priceless golden relics and the famous Black Hat (Vajra Crown).',
@@ -357,7 +364,7 @@ Every spring, during the full moon of the first Tibetan month, thousands gather 
       avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80'
     },
     publishedDate: 'August 19, 2026',
-    coverImage: '/images/darjeeling_tea_gardens_1785681013467.jpg',
+    coverImage: darjeelingTeaGardens,
     summary: 'Worried about vegetarian and Jain food availability in the Himalayas? Sikkim and Darjeeling have evolved into fantastic destinations for strict pure veg, Marwari, Gujarati, and Jain travelers with dedicated pure veg kitchens and fresh mountain organic produce.',
     keyTakeaways: [
       'Our partner hotels provide 100% dedicated pure vegetarian and Jain cookware and kitchen sections.',

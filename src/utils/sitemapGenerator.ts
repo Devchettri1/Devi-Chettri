@@ -3,6 +3,12 @@ import { ADDITIONAL_PACKAGES } from '../data/additionalPackages';
 import { INITIAL_DESTINATIONS, INITIAL_HOTELS } from '../data/initialStoreData';
 import { BLOG_POSTS } from '../data/blogData';
 import { TourPackage, HotelItem, DestinationItem, CabOption } from '../types';
+import {
+  sikkimHeroBanner,
+  yumthangZeroPoint,
+  innovaCrystaCab,
+  ravanglaBuddhaPark
+} from '../assets/images';
 
 export interface SitemapCrawlerOptions {
   baseUrl?: string;
@@ -88,7 +94,7 @@ function resolveCanonicalUrl(baseUrl: string, pathOrHash: string): string {
  */
 function resolveImageUrl(baseUrl: string, imagePath?: string): string {
   const cleanBase = baseUrl.replace(/\/+$/, '');
-  const fallback = `${cleanBase}/images/sikkim_hero_banner_1785680563996.jpg`;
+  const fallback = sikkimHeroBanner.startsWith('http') ? sikkimHeroBanner : `${cleanBase}${sikkimHeroBanner.startsWith('/') ? '' : '/'}${sikkimHeroBanner}`;
   if (!imagePath) return fallback;
   if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) return imagePath;
   if (imagePath.startsWith('/')) return `${cleanBase}${imagePath}`;
@@ -124,7 +130,7 @@ export function generateCrawlerSitemap(options: SitemapCrawlerOptions = {}): Sit
         priority: 1.0,
         changefreq: 'daily' as const,
         image: {
-          loc: resolveImageUrl(cleanBase, '/images/sikkim_hero_banner_1785680563996.jpg'),
+          loc: resolveImageUrl(cleanBase, sikkimHeroBanner),
           title: 'Offbeat Destination Travels Gangtok HQ Portal',
           caption: 'Govt. Registered Sikkim Tour Agency (offbeatdestination.in)',
         },
@@ -135,7 +141,7 @@ export function generateCrawlerSitemap(options: SitemapCrawlerOptions = {}): Sit
         priority: 0.95,
         changefreq: 'daily' as const,
         image: {
-          loc: resolveImageUrl(cleanBase, '/images/yumthang_zero_point_1785680592273.jpg'),
+          loc: resolveImageUrl(cleanBase, yumthangZeroPoint),
           title: 'Signature Sikkim Holiday Packages',
           caption: 'Zero Point, Yumthang, Nathula Pass & Pelling Tours',
         },
@@ -146,7 +152,7 @@ export function generateCrawlerSitemap(options: SitemapCrawlerOptions = {}): Sit
         priority: 0.90,
         changefreq: 'daily' as const,
         image: {
-          loc: resolveImageUrl(cleanBase, '/images/innova_crysta_cab_1785680577329.jpg'),
+          loc: resolveImageUrl(cleanBase, innovaCrystaCab),
           title: 'Innova Crysta Cab Rental Sikkim',
           caption: 'Official NJP, Bagdogra, Gangtok, and North Sikkim Taxi Service',
         },
@@ -157,7 +163,7 @@ export function generateCrawlerSitemap(options: SitemapCrawlerOptions = {}): Sit
         priority: 0.88,
         changefreq: 'weekly' as const,
         image: {
-          loc: resolveImageUrl(cleanBase, '/images/ravangla_buddha_park_1785680605794.jpg'),
+          loc: resolveImageUrl(cleanBase, ravanglaBuddhaPark),
           title: 'Sikkim & Darjeeling Luxury Hotels',
           caption: 'Hand-vetted 3-Star, 4-Star & 5-Star Heritage Mountain Resorts',
         },

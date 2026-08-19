@@ -1,3 +1,12 @@
+import {
+  sikkimHeroBanner,
+  yumthangZeroPoint,
+  nathulaPassSnow,
+  ravanglaBuddhaPark,
+  darjeelingTeaGardens,
+  darjeelingToyTrain,
+  bhutanTigersNest
+} from '../assets/images';
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import {
   MapPin,
@@ -155,7 +164,7 @@ export const ROUTE_DATASETS: Record<string, RouteData> = {
         driveTime: '3.5 hrs mountain drive',
         highlights: ['MG Marg Pedestrian Promenade', 'SDM North Sikkim Permit Processing', 'Rumtek Monastery', 'Cable Car Ropeway'],
         type: 'city',
-        image: '/images/sikkim_hero_banner_1785680563996.jpg',
+        image: sikkimHeroBanner,
         description: 'Capital hub of Sikkim. Our office team processes your North Sikkim SDM Army Permits with voter IDs and photographs while you enjoy evening walks along vehicle-free MG Marg.',
       },
       {
@@ -231,7 +240,7 @@ export const ROUTE_DATASETS: Record<string, RouteData> = {
         type: 'lake',
         permitRequired: true,
         permitType: 'Indian Army Special Frontier Clearance',
-        image: '/images/yumthang_zero_point_1785680592273.jpg',
+        image: yumthangZeroPoint,
         description: 'Breathtaking sacred turquoise glacial lake revered by Buddhists, Hindus, and Sikhs. Majestic Tibetan plateau surrounds the crystal clear water against Mount Siniolchu.',
       },
       {
@@ -262,7 +271,7 @@ export const ROUTE_DATASETS: Record<string, RouteData> = {
         type: 'valley',
         permitRequired: true,
         permitType: 'Forest Department Pass',
-        image: '/images/yumthang_zero_point_1785680592273.jpg',
+        image: yumthangZeroPoint,
         description: 'World-famous Himalayan Valley of Flowers carpeted in vivid blooms from April to June and glistening under thick snow sheets during winter.',
       },
       {
@@ -278,7 +287,7 @@ export const ROUTE_DATASETS: Record<string, RouteData> = {
         type: 'pass',
         permitRequired: true,
         permitType: 'Special Zero Point Supplemental Permit',
-        image: '/images/yumthang_zero_point_1785680592273.jpg',
+        image: yumthangZeroPoint,
         description: 'Where civilian roads terminate at 15,300 ft amidst perennial snow fields, jagged glaciers, and the Indo-China frontier mountain barrier.',
       },
       {
@@ -349,7 +358,7 @@ export const ROUTE_DATASETS: Record<string, RouteData> = {
         driveTime: '4.5 hrs drive',
         highlights: ['MG Marg Pedestrian Walkway', 'Rumtek Monastery', 'Gangtok Cable Car Ropeway'],
         type: 'city',
-        image: '/images/sikkim_hero_banner_1785680563996.jpg',
+        image: sikkimHeroBanner,
         description: 'Vibrant capital of Sikkim with pedestrian shopping streets, monasteries, and pure vegetarian dining options.',
       },
       {
@@ -365,7 +374,7 @@ export const ROUTE_DATASETS: Record<string, RouteData> = {
         type: 'lake',
         permitRequired: true,
         permitType: 'Sikkim Tourism Protected Area Permit',
-        image: '/images/sikkim_hero_banner_1785680563996.jpg',
+        image: sikkimHeroBanner,
         description: 'High-altitude sacred oval lake surrounded by snow-capped Himalayan peaks. Yaks with colorful decor available for rides.',
       },
       {
@@ -381,7 +390,7 @@ export const ROUTE_DATASETS: Record<string, RouteData> = {
         type: 'border',
         permitRequired: true,
         permitType: 'Indian Army Special Clearance Pass (PAP)',
-        image: '/images/nathula_pass_snow_1785681052944.jpg',
+        image: nathulaPassSnow,
         description: 'High altitude mountain pass on the ancient Silk Route connecting India and Tibet. Army border post with heavy snow cover.',
       },
       {
@@ -395,7 +404,7 @@ export const ROUTE_DATASETS: Record<string, RouteData> = {
         driveTime: '5 hrs drive',
         highlights: ['Glass Skywalk Sanga Choeling', 'Kanchenjunga Panoramic Views', 'Rabdentse Palace Ruins'],
         type: 'hill',
-        image: '/images/ravangla_buddha_park_1785680605794.jpg',
+        image: ravanglaBuddhaPark,
         description: 'Picturesque West Sikkim town offering up-close views of Mt. Kanchenjunga and India’s first Glass Skywalk.',
       },
       {
@@ -409,7 +418,7 @@ export const ROUTE_DATASETS: Record<string, RouteData> = {
         driveTime: '3.5 hrs drive',
         highlights: ['Tiger Hill Sunrise', 'UNESCO World Heritage Toy Train', 'Happy Valley Tea Gardens'],
         type: 'hill',
-        image: '/images/darjeeling_tea_gardens_1785681013467.jpg',
+        image: darjeelingTeaGardens,
         description: 'Famous hill resort town with sprawling tea estates, colonial architecture, and views of 5 snow peaks.',
       },
       {
@@ -619,7 +628,7 @@ export const ROUTE_DATASETS: Record<string, RouteData> = {
         driveTime: '4 hrs drive',
         highlights: ['Mall Road Walkway', 'Ghoom Monastery', 'Batasia Loop'],
         type: 'hill',
-        image: '/images/darjeeling_toy_train_1785681122611.jpg',
+        image: darjeelingToyTrain,
         description: 'Queen of Hills featuring Batasia Loop Toy Train curve, tea gardens, and crisp Himalayan air.',
       },
       {
@@ -718,7 +727,7 @@ export const ROUTE_DATASETS: Record<string, RouteData> = {
         driveTime: '3.5 hrs drive',
         highlights: ['National Museum of Bhutan', 'Rinpung Dzong', 'Paro Airport Scenic View'],
         type: 'valley',
-        image: '/images/bhutan_tigers_nest_1785681037397.jpg',
+        image: bhutanTigersNest,
         description: 'Historic valley home to Bhutan’s only international airport, ancient fortress Dzongs, and lush rice fields.',
       },
       {
@@ -734,7 +743,7 @@ export const ROUTE_DATASETS: Record<string, RouteData> = {
         type: 'monastery',
         permitRequired: true,
         permitType: 'Taktsang Entry Ticket',
-        image: '/images/bhutan_tigers_nest_1785681037397.jpg',
+        image: bhutanTigersNest,
         description: 'Iconic monastery clinging to a sheer cliff 900 meters above Paro valley floor. Bhutan’s premier spiritual landmark.',
       },
     ],

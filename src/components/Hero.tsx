@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ShieldCheck, Compass, Sparkles, ArrowRight, CheckCircle2, MessageCircle, Car, CloudSun, MapPin, Users, User, UserCheck, Users2, ChevronDown, Check, Info } from 'lucide-react';
 import { AGENCY_DETAILS } from '../data/travelData';
 import { GroupSizeOption, GroupSizeConfig, GROUP_SIZE_CONFIGS } from '../utils/groupPricing';
+import { sikkimHeroBanner } from '../assets/images';
 
 interface HeroProps {
   onOpenAIChat: () => void;
@@ -261,7 +262,7 @@ export const Hero: React.FC<HeroProps> = ({
             >
               <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden">
                 <img
-                  src="/images/sikkim_hero_banner_1785680563996.jpg"
+                  src={sikkimHeroBanner}
                   alt="The Silk Route Odyssey"
                   loading="eager"
                   // @ts-ignore

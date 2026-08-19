@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Image, Upload, Plus, Trash2, CheckCircle2, Copy, Link, X } from 'lucide-react';
 import { MediaItem } from '../../types';
+import { sikkimHeroBanner } from '../../assets/images';
 
 interface AdminMediaLibraryProps {
   media: MediaItem[];
@@ -14,7 +15,7 @@ export const AdminMediaLibrary: React.FC<AdminMediaLibraryProps> = ({ media, onR
 
   const [form, setForm] = useState({
     title: 'Nathula Pass Snow Peaks',
-    url: '/images/sikkim_hero_banner_1785680563996.jpg',
+    url: sikkimHeroBanner,
     category: 'Sikkim',
   });
 

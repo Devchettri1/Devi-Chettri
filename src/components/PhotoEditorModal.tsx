@@ -18,6 +18,12 @@ import {
   RefreshCw
 } from 'lucide-react';
 import { AGENCY_DETAILS, TOUR_PACKAGES, CAB_OPTIONS, GALLERY_ITEMS } from '../data/travelData';
+import {
+  yumthangZeroPoint,
+  ravanglaBuddhaPark,
+  sikkimHeroBanner,
+  agencyPosterDark
+} from '../assets/images';
 
 interface PhotoEditorModalProps {
   initialImageUrl?: string;
@@ -46,10 +52,10 @@ export const PhotoEditorModal: React.FC<PhotoEditorModalProps> = ({
 }) => {
   // Sample source photos list for easy picking
   const samplePhotos = [
-    { name: 'Yumthang Zero Point', url: '/images/yumthang_zero_point_1785680592273.jpg' },
-    { name: 'Ravangla Buddha Park', url: '/images/ravangla_buddha_park_1785680605794.jpg' },
-    { name: 'Sikkim Mountains Banner', url: '/images/sikkim_hero_banner_1785680563996.jpg' },
-    { name: 'Agency Poster Banner', url: '/images/agency_poster_dark_1785772843834.jpg' },
+    { name: 'Yumthang Zero Point', url: yumthangZeroPoint },
+    { name: 'Ravangla Buddha Park', url: ravanglaBuddhaPark },
+    { name: 'Sikkim Mountains Banner', url: sikkimHeroBanner },
+    { name: 'Agency Poster Banner', url: agencyPosterDark },
     ...GALLERY_ITEMS.slice(0, 4).map((g) => ({ name: g.title, url: g.url })),
   ];
 

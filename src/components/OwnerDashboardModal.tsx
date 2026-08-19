@@ -1,3 +1,7 @@
+import {
+  sikkimHeroBanner,
+  innovaCrystaCab
+} from '../assets/images';
 import React, { useState, useEffect } from 'react';
 import { LeadSubmission, TourPackage, CabOption, SeoSettings } from '../types';
 import {
@@ -203,7 +207,7 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
     headline: 'Discover Unexplored Sikkim & Darjeeling',
     subheadline: 'Customized North Sikkim Permits, Private SUV Cabs & Offbeat Village Stays',
     ctaText: 'Explore Tour Packages',
-    bannerImage: '/images/sikkim_hero_banner_1785680563996.jpg',
+    bannerImage: sikkimHeroBanner,
   });
 
   // Fetch Backend Collections
@@ -374,7 +378,7 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
       title: 'New Sikkim Exploration Tour',
       duration: '4 Days / 3 Nights',
       priceStarting: 18500,
-      heroImage: '/images/sikkim_hero_banner_1785680563996.jpg',
+      heroImage: sikkimHeroBanner,
       category: 'North Sikkim',
       location: 'Gangtok & Lachen',
       rating: 4.9,
@@ -440,7 +444,7 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
       njpIxbPickupRate: 3800,
       bestFor: 'Mountain Terrains',
       capacity: '6+1 Seater',
-      image: '/images/innova_crysta_cab_1785680577329.jpg',
+      image: innovaCrystaCab,
       features: ['Air Conditioning', 'Hill Assist', 'Leather Seats'],
     };
     setLocalCabs([...localCabs, newCab]);
@@ -1046,11 +1050,11 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
                         <div className="flex flex-col sm:flex-row items-center gap-4">
                           <div className="relative w-full sm:w-44 h-28 bg-slate-950 rounded-xl overflow-hidden border border-slate-700/80 shrink-0 shadow-md">
                             <img
-                              src={currentPkg.heroImage || '/images/sikkim_hero_banner_1785680563996.jpg'}
+                              src={currentPkg.heroImage || sikkimHeroBanner}
                               alt={currentPkg.title}
                               className="w-full h-full object-cover"
                               onError={(e) => {
-                                (e.target as HTMLImageElement).src = '/images/sikkim_hero_banner_1785680563996.jpg';
+                                (e.target as HTMLImageElement).src = sikkimHeroBanner;
                               }}
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
@@ -1201,7 +1205,7 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {localCabs.map((cab, idx) => {
-                  const cabImg = cab.image || '/images/innova_crysta_cab_1785680577329.jpg';
+                  const cabImg = cab.image || innovaCrystaCab;
                   return (
                     <div key={cab.id} className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-3 shadow-lg">
                       <div className="flex items-center justify-between border-b border-slate-800 pb-2">

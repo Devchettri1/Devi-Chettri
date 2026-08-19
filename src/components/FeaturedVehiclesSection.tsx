@@ -122,7 +122,7 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
     bestFor: 'Large Families, Corporate Groups, College Tours & Destination Weddings',
     ratePerDay: 6500,
     njpIxbPickupRate: 5800,
-    image: '/images/agency_card_banner_1785772861093.jpg',
+    image: agencyCardBanner,
     features: [
       '✓ Pre-cleared for all Sikkim tourist routes & corporate circuits',
       'Individual 2x1 Maharaja pushback reclining luxury seats',
@@ -141,7 +141,7 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
     bestFor: 'Offbeat Dzongu, Zuluk Silk Route & Rustic Village Expeditions',
     ratePerDay: 3800,
     njpIxbPickupRate: 3200,
-    image: '/images/yumthang_zero_point_1785680592273.jpg',
+    image: yumthangZeroPoint,
     features: [
       '✓ Full clearance for Silk Route & remote North Sikkim trails',
       'Heavy-duty leaf spring mountain suspension for rough roads',

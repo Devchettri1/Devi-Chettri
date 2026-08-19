@@ -1,4 +1,15 @@
-import { TourPackage } from '../types';
+import { TourPackage } from "../types";
+import {
+  yumthangZeroPoint,
+  agencyPosterDark,
+  ravanglaBuddhaPark,
+  bhutanTigersNest,
+  darjeelingToyTrain,
+  darjeelingTeaGardens,
+  sikkimHeroBanner,
+  innovaMountainDrive,
+  nathulaPassSnow
+} from "../assets/images";
 
 export const ADDITIONAL_PACKAGES: TourPackage[] = [
   {
@@ -10,7 +21,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 16800,
     rating: 5.0,
     reviewsCount: 142,
-    heroImage: "/images/yumthang_zero_point_1785680592273.jpg",
+    heroImage: yumthangZeroPoint,
     highlights: [
       "Sacred Gurudongmar Lake (17,800 ft) high altitude plateau expedition near Tibet border",
       "Mandatory 2-Night Lachung stay for optimal acclimatization and scenic relaxation",
@@ -66,7 +77,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 19500,
     rating: 4.9,
     reviewsCount: 98,
-    heroImage: "/images/yumthang_zero_point_1785680592273.jpg",
+    heroImage: yumthangZeroPoint,
     highlights: [
       "Complete North Sikkim circuit with zero rush and dedicated buffer days",
       "Gurudongmar Lake (17,800 ft), Chopta Valley, Yumthang Valley & Zero Point",
@@ -124,7 +135,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 12500,
     rating: 4.9,
     reviewsCount: 110,
-    heroImage: "/images/agency_poster_dark_1785772843834.jpg",
+    heroImage: agencyPosterDark,
     highlights: [
       "Experience the 32 legendary hairpin loops of historic Zuluk Zig-Zag road",
       "Sunrise over Mount Kanchenjunga from Thambi Viewpoint (11,200 ft)",
@@ -177,7 +188,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 18900,
     rating: 5.0,
     reviewsCount: 128,
-    heroImage: "/images/agency_poster_dark_1785772843834.jpg",
+    heroImage: agencyPosterDark,
     highlights: [
       "Overnight stay at Nathang Valley (13,500 ft) - 'Ladakh of the East'",
       "Riverside bonfire and organic trout dining at Reshi Khola riverbank",
@@ -240,7 +251,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 11800,
     rating: 4.8,
     reviewsCount: 135,
-    heroImage: "/images/ravangla_buddha_park_1785680605794.jpg",
+    heroImage: ravanglaBuddhaPark,
     highlights: [
       "Walk across India's first Glass Skywalk (7,200 ft) facing Chenrezig Colossus",
       "Ancient Rabdentse Palace Ruins & 300-year-old Pemayangtse Monastery",
@@ -293,7 +304,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 17500,
     rating: 4.9,
     reviewsCount: 118,
-    heroImage: "/images/ravangla_buddha_park_1785680605794.jpg",
+    heroImage: ravanglaBuddhaPark,
     highlights: [
       "Visit Siddhesvara Dham (Namchi Char Dham replicas) & 118ft Samdruptse Statue",
       "First capital of Sikkim at historic Yuksom & Coronation Throne of Norbugang",
@@ -356,7 +367,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 27500,
     rating: 5.0,
     reviewsCount: 164,
-    heroImage: "/images/bhutan_tigers_nest_1785681037397.jpg",
+    heroImage: bhutanTigersNest,
     highlights: [
       "Hike to the legendary cliff-hanging Taktsang Monastery (Tiger's Nest) in Paro",
       "Majestic Punakha Dzong at the confluence of Pho Chhu and Mo Chhu rivers",
@@ -419,7 +430,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 36500,
     rating: 5.0,
     reviewsCount: 132,
-    heroImage: "/images/bhutan_tigers_nest_1785681037397.jpg",
+    heroImage: bhutanTigersNest,
     highlights: [
       "Glacial Phobjikha Valley - winter sanctuary of the endangered Black-Necked Cranes",
       "Taktsang Monastery (Tiger's Nest) hike with hot stone bath experience",
@@ -492,7 +503,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 44500,
     rating: 5.0,
     reviewsCount: 88,
-    heroImage: "/images/bhutan_tigers_nest_1785681037397.jpg",
+    heroImage: bhutanTigersNest,
     highlights: [
       "Ultimate cross-border odyssey combining Sikkim, Darjeeling, and Kingdom of Bhutan",
       "Tsomgo Lake, Nathula Pass, Tiger Hill Kanchenjunga sunrise & Batasia Loop",
@@ -575,7 +586,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 29500,
     rating: 5.0,
     reviewsCount: 156,
-    heroImage: "/images/darjeeling_toy_train_1785681122611.jpg",
+    heroImage: darjeelingToyTrain,
     highlights: [
       "5★ Luxury stays at Mayfair Spa Resort Gangtok & The Elgin Heritage Darjeeling",
       "Private Candlelight Dinner with floral room decor and honeymoon celebration cake",
@@ -643,7 +654,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 18500,
     rating: 4.9,
     reviewsCount: 114,
-    heroImage: "/images/darjeeling_tea_gardens_1785681013467.jpg",
+    heroImage: darjeelingTeaGardens,
     highlights: [
       "Stay inside a colonial tea planter's bungalow surrounded by misty tea gardens",
       "Private couple Joyride on UNESCO Darjeeling Himalayan Toy Train (Steam Engine)",
@@ -701,7 +712,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 13500,
     rating: 5.0,
     reviewsCount: 92,
-    heroImage: "/images/yumthang_zero_point_1785680592273.jpg",
+    heroImage: yumthangZeroPoint,
     highlights: [
       "Exclusive entry into Dzongu - the protected ancestral homeland of the indigenous Lepcha tribe",
       "Authentic traditional Lepcha wooden homestay with bamboo architecture and fireplace",
@@ -754,7 +765,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 14800,
     rating: 4.8,
     reviewsCount: 78,
-    heroImage: "/images/ravangla_buddha_park_1785680605794.jpg",
+    heroImage: ravanglaBuddhaPark,
     highlights: [
       "Natural mineral-rich hot sulphur springs (Tatopani) by the roaring Rangit River",
       "Ancient Old & New Ralang Monasteries with traditional monastic mask dances",
@@ -812,7 +823,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 13900,
     rating: 4.9,
     reviewsCount: 86,
-    heroImage: "/images/darjeeling_tea_gardens_1785681013467.jpg",
+    heroImage: darjeelingTeaGardens,
     highlights: [
       "Untouched pine forests of Neora Valley National Park & Changey Waterfalls",
       "360-degree Kanchenjunga mountain view from Tiffin Dara & Rishyap ridge",
@@ -870,7 +881,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 24500,
     rating: 5.0,
     reviewsCount: 76,
-    heroImage: "/images/sikkim_hero_banner_1785680563996.jpg",
+    heroImage: sikkimHeroBanner,
     highlights: [
       "Stand face-to-face with the colossal South-East Face of Mount Kanchenjunga (8,586 m)",
       "Cross rhododendron forests, Dzongri Top (13,778 ft) & sacred Samiti Lake",
@@ -943,7 +954,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 17800,
     rating: 4.9,
     reviewsCount: 65,
-    heroImage: "/images/sikkim_hero_banner_1785680563996.jpg",
+    heroImage: sikkimHeroBanner,
     highlights: [
       "Ideal shorter high-altitude trek for adventure seekers with breathtaking views",
       "Dzongri Top sunrise: close-up view of Mt. Kanchenjunga, Mt. Pandim & Kabru Dome",
@@ -1006,7 +1017,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 16500,
     rating: 4.9,
     reviewsCount: 84,
-    heroImage: "/images/innova_mountain_drive_1785681104445.jpg",
+    heroImage: innovaMountainDrive,
     highlights: [
       "Thrilling Grade III & IV white-water river rafting on Teesta & Rangit rivers",
       "Tandem high-altitude paragliding flight over Gangtok hills with HD video",
@@ -1064,7 +1075,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 19800,
     rating: 5.0,
     reviewsCount: 172,
-    heroImage: "/images/ravangla_buddha_park_1785680605794.jpg",
+    heroImage: ravanglaBuddhaPark,
     highlights: [
       "100% Guaranteed Pure Vegetarian & Strict Jain food (No Onion, No Garlic, Root-free meals)",
       "Siddhesvara Dham (Namchi Char Dham replicas) & 118ft Samdruptse Golden Statue",
@@ -1132,7 +1143,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 17200,
     rating: 4.9,
     reviewsCount: 148,
-    heroImage: "/images/sikkim_hero_banner_1785680563996.jpg",
+    heroImage: sikkimHeroBanner,
     highlights: [
       "Thoughtfully paced low-altitude itinerary with zero strenuous climbing for seniors & kids",
       "Spacious Toyota Innova Crysta with plush captain seats and gentle hill driving",
@@ -1195,7 +1206,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 8900,
     rating: 4.8,
     reviewsCount: 165,
-    heroImage: "/images/nathula_pass_snow_1785681052944.jpg",
+    heroImage: nathulaPassSnow,
     highlights: [
       "Perfect short weekend getaway for working professionals and quick explorers",
       "High altitude Tsomgo Glacial Lake (12,400 ft) and historic Baba Mandir",
@@ -1246,7 +1257,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 8500,
     rating: 4.8,
     reviewsCount: 152,
-    heroImage: "/images/darjeeling_tea_gardens_1785681013467.jpg",
+    heroImage: darjeelingTeaGardens,
     highlights: [
       "Quick refreshing weekend escape to the Queen of the Hills",
       "Tiger Hill 4:00 AM golden Kanchenjunga sunrise & Batasia Loop",
@@ -1294,7 +1305,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 18200,
     rating: 5.0,
     reviewsCount: 72,
-    heroImage: "/images/ravangla_buddha_park_1785680605794.jpg",
+    heroImage: ravanglaBuddhaPark,
     highlights: [
       "Spot exotic Himalayan birds: Satyr Tragopan, Fire-tailed Sunbird, Blood Pheasant & Red Panda",
       "Varsey Rhododendron Sanctuary trail ablaze with crimson rhododendron blooms",
@@ -1357,7 +1368,7 @@ export const ADDITIONAL_PACKAGES: TourPackage[] = [
     priceStarting: 10900,
     rating: 4.9,
     reviewsCount: 124,
-    heroImage: "/images/ravangla_buddha_park_1785680605794.jpg",
+    heroImage: ravanglaBuddhaPark,
     highlights: [
       "Replicas of India's 4 Sacred Dhams (Badrinath, Jagannath, Dwarka, Rameshwaram) with 108ft Shiva statue",
       "118ft gold-plated Guru Padmasambhava Statue atop sacred Samdruptse Hill",

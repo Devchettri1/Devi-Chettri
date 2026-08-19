@@ -6,7 +6,7 @@ import { PopularDestinations } from './components/PopularDestinations';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import type { ConsoleTab } from './components/OwnerDashboardModal';
 import { Logo } from './components/Logo';
-import { AGENCY_DETAILS, TOUR_PACKAGES, CAB_OPTIONS, DEFAULT_SEO_SETTINGS } from './data/travelData';
+import { AGENCY_DETAILS, TOUR_PACKAGES, CAB_OPTIONS, DEFAULT_SEO_SETTINGS, SIKKIM_TOUR_FAQS } from './data/travelData';
 import { INITIAL_HOTELS } from './data/initialStoreData';
 import { CabOption, LeadSubmission, TourPackage, SeoSettings, HotelItem } from './types';
 import { Phone, MapPin, Mail, ShieldCheck, Heart, FileText, Lock, AlertTriangle, CreditCard } from 'lucide-react';
@@ -638,6 +638,28 @@ export default function App() {
       description: 'Official list of customized tour packages for Sikkim, Darjeeling, North Sikkim, Silk Route, and Bhutan by OffbeatDestination Travels.',
       numberOfItems: packages.length,
       itemListElement: packageSchemaItems,
+    });
+
+    // Dynamic FAQPage Schema (Google Rich Results for all Sikkim & Darjeeling tour-related questions)
+    let faqScript = document.getElementById('json-ld-faq-page');
+    if (!faqScript) {
+      faqScript = document.createElement('script');
+      faqScript.id = 'json-ld-faq-page';
+      faqScript.setAttribute('type', 'application/ld+json');
+      document.head.appendChild(faqScript);
+    }
+
+    faqScript.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: SIKKIM_TOUR_FAQS.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
     });
   }, [activeTab, packages, agencyDetails, seoSettings]);
 

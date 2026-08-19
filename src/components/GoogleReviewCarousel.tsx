@@ -1,3 +1,11 @@
+import {
+  sikkimHeroBanner,
+  yumthangZeroPoint,
+  bhutanTigersNest,
+  innovaCrystaCab,
+  ravanglaBuddhaPark,
+  gmbOfficePhoto
+} from '../assets/images';
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Star, ChevronLeft, ChevronRight, ThumbsUp, ShieldCheck, Quote, ExternalLink, CheckCircle2, MessageCircle } from 'lucide-react';
@@ -27,7 +35,7 @@ const GOOGLE_REVIEWS_DATA: GoogleReviewItem[] = [
     helpfulCount: 24,
     googleGuideLevel: "Local Guide · Level 6 (42 reviews)",
     reviewerAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
-    tripPhotoUrl: "/images/sikkim_hero_banner_1785680563996.jpg",
+    tripPhotoUrl: sikkimHeroBanner,
     isVerifiedBooking: true,
     bookedViaWhatsapp: true,
   },
@@ -44,7 +52,7 @@ const GOOGLE_REVIEWS_DATA: GoogleReviewItem[] = [
     helpfulCount: 31,
     googleGuideLevel: "Local Guide · Level 5 (28 reviews)",
     reviewerAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
-    tripPhotoUrl: "/images/yumthang_zero_point_1785680592273.jpg",
+    tripPhotoUrl: yumthangZeroPoint,
     isVerifiedBooking: true,
     bookedViaWhatsapp: true,
   },
@@ -61,7 +69,7 @@ const GOOGLE_REVIEWS_DATA: GoogleReviewItem[] = [
     helpfulCount: 19,
     googleGuideLevel: "Verified Google Traveler",
     reviewerAvatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
-    tripPhotoUrl: "/images/bhutan_tigers_nest_1785681037397.jpg",
+    tripPhotoUrl: bhutanTigersNest,
     isVerifiedBooking: true,
     bookedViaWhatsapp: true,
   },
@@ -78,7 +86,7 @@ const GOOGLE_REVIEWS_DATA: GoogleReviewItem[] = [
     helpfulCount: 18,
     googleGuideLevel: "Local Guide · Level 7 (84 reviews)",
     reviewerAvatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80",
-    tripPhotoUrl: "/images/innova_crysta_cab_1785680577329.jpg",
+    tripPhotoUrl: innovaCrystaCab,
     isVerifiedBooking: true,
     bookedViaWhatsapp: true,
   },
@@ -95,7 +103,7 @@ const GOOGLE_REVIEWS_DATA: GoogleReviewItem[] = [
     helpfulCount: 22,
     googleGuideLevel: "Verified Google Reviewer",
     reviewerAvatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80",
-    tripPhotoUrl: "/images/ravangla_buddha_park_1785680605794.jpg",
+    tripPhotoUrl: ravanglaBuddhaPark,
     isVerifiedBooking: true,
     bookedViaWhatsapp: true,
   },
@@ -112,7 +120,7 @@ const GOOGLE_REVIEWS_DATA: GoogleReviewItem[] = [
     helpfulCount: 29,
     googleGuideLevel: "Local Guide · Level 5 (36 reviews)",
     reviewerAvatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
-    tripPhotoUrl: "/images/gmb_office_photo_1786168516883.jpg",
+    tripPhotoUrl: gmbOfficePhoto,
     isVerifiedBooking: true,
     bookedViaWhatsapp: true,
   },

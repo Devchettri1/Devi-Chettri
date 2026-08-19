@@ -1,6 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import {
+  sikkimHeroBanner,
+  yumthangZeroPoint,
+} from '../assets/images';
+import {
   DestinationItem,
   HotelItem,
   SeasonItem,
@@ -94,14 +98,14 @@ export function getBackendStore(): BackendStoreData {
       {
         id: 'med-1',
         title: 'Sikkim Kanchenjunga Banner',
-        url: '/images/sikkim_hero_banner_1785680563996.jpg',
+        url: sikkimHeroBanner,
         category: 'Banners',
         uploadedAt: new Date().toISOString(),
       },
       {
         id: 'med-2',
         title: 'Yumthang Zero Point',
-        url: '/images/yumthang_zero_point_1785680592273.jpg',
+        url: yumthangZeroPoint,
         category: 'Destinations',
         uploadedAt: new Date().toISOString(),
       },

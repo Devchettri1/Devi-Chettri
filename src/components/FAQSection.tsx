@@ -1,91 +1,18 @@
 import React, { useState } from 'react';
 import { ChevronDown, HelpCircle, ShieldCheck, CloudSun, PackageCheck, Car, Utensils, MessageCircle, Sparkles, Search } from 'lucide-react';
 import { AGENCY_DETAILS } from '../data/travelData';
-
-interface FAQItem {
-  id: string;
-  category: 'Permits' | 'Weather & Time' | 'Packing & Clothing' | 'Vehicles & Drivers' | 'Meals & Stays';
-  question: string;
-  answer: string;
-  keyTakeaway?: string;
-}
-
-const FAQ_DATA: FAQItem[] = [
-  {
-    id: 'faq-1',
-    category: 'Permits',
-    question: 'How do I get Restricted Area Permits (RAP) for Nathula Pass, Tsomgo Lake, and Zero Point?',
-    answer: 'Nathula Pass, Baba Mandir, Tsomgo Lake, and North Sikkim (Lachung, Lachen, Zero Point, Gurudongmar) are protected border regions requiring official army/state permits. OffbeatDestination Travels handles 100% of permit processing for you! All we need are 2 passport-size photographs and a clear government photo ID (Voter ID, Passport, or Driving License; Aadhaar is NOT accepted for Nathula Pass per army regulations).',
-    keyTakeaway: 'Send documents 24 hours prior to Gangtok arrival. We deliver hardcopy permits to your driver.'
-  },
-  {
-    id: 'faq-2',
-    category: 'Permits',
-    question: 'Are permits guaranteed for Nathula Pass and Zero Point?',
-    answer: 'Permits are issued by the Sikkim Tourism & Civil Aviation Department and Indian Army based on weather conditions and border security clearance. During peak snowfall or severe landslides, the army may restrict access to Zero Point or Nathula Pass for safety. In such cases, we reroute to safe alternative scenic spots or issue a refund for the Nathula surcharge.',
-    keyTakeaway: 'Nathula remains closed on Mondays & Tuesdays for maintenance.'
-  },
-  {
-    id: 'faq-3',
-    category: 'Weather & Time',
-    question: 'What is the best month to visit Sikkim and Darjeeling?',
-    answer: 'Sikkim is a year-round paradise with distinct seasonal charms: March to May offers blooming rhododendrons and pleasant 15°C–22°C temperatures. October to December guarantees crystal-clear skies with unobstructed views of Mount Kanchenjunga. January to February is ideal for snow lovers in Yumthang and Zero Point.',
-    keyTakeaway: 'March–May for flowers, Oct–Dec for clear Himalayan peaks, Jan–Feb for heavy snow.'
-  },
-  {
-    id: 'faq-4',
-    category: 'Weather & Time',
-    question: 'Is it safe to travel during monsoon (July – September)?',
-    answer: 'While heavy rains occur in lower foot-hills, Gangtok and South/West Sikkim remain very accessible. Our hill-experienced drivers monitor Teesta river water levels and real-time highway updates to ensure complete safety. We recommend Innova Crystas or 4x4 vehicles for monsoon mountain journeys.',
-    keyTakeaway: 'Always keep 1 buffer day if traveling to high-altitude North Sikkim in monsoon.'
-  },
-  {
-    id: 'faq-5',
-    category: 'Packing & Clothing',
-    question: 'What clothing should I pack for high-altitude Zero Point and Nathula Pass?',
-    answer: 'High-altitude areas (14,000 ft +) remain freezing even in summer! Pack thermal innerwear, a heavy windproof jacket, woollen gloves, skull cap, and warm socks. Heavy snow boots and overcoats are also available for rental at Tsomgo Lake and Yumthang Valley stalls for ₹100–₹150.',
-    keyTakeaway: 'Layering is key: Thermal inner + Fleece jacket + Heavy outer down jacket.'
-  },
-  {
-    id: 'faq-6',
-    category: 'Packing & Clothing',
-    question: 'What essential medicines and documents should I carry?',
-    answer: 'Carry personal routine medicines along with Diamox (for high-altitude sickness upon doctor advice), camphor sachets or small oxygen cans for high passes, motion sickness tablets (Avomine for winding roads), 6 physical copies of ID proofs, and 6 passport photos per person.',
-    keyTakeaway: 'ATM connectivity is limited in North Sikkim; carry sufficient cash in Gangtok.'
-  },
-  {
-    id: 'faq-7',
-    category: 'Vehicles & Drivers',
-    question: 'What cab options do you offer for NJP / Bagdogra Airport (IXB) pickup and local sightseeing?',
-    answer: 'We maintain a fleet of immaculate, luxury Toyota Innova Crystas (6+1 captain seaters), Mahindra Xylos/Scorpios 4x4, 4-seater Swift Dzire sedans, and Maruti WagonR/Swift hatchbacks. All vehicles are registered local Sikkim tourist commercial cabs with dual AC, spacious luggage racks, and hill-certified local drivers.',
-    keyTakeaway: 'Includes driver allowance, toll taxes, fuel, and Sikkim state permits.'
-  },
-  {
-    id: 'faq-8',
-    category: 'Meals & Stays',
-    question: 'What Pure Veg, Jain, and Non-Veg food options are provided in your tour packages?',
-    answer: 'We provide fully customizable AP (Breakfast + Lunch + Dinner) and MAP (Breakfast + Dinner) meal plans to suit all dietary preferences: \n1) Pure Veg & Strict Jain Food: Prepared without onion, garlic, or root vegetables in dedicated hygienic cookware.\n2) Non-Veg Delicacies: Wholesome local preparations including fresh local chicken curry, Teesta river trout fish, and authentic local momos & thukpa.\n3) Vegetarian Comfort: Fresh hill vegetables, dal tadka, paneer delicacies, and hot rotis.',
-    keyTakeaway: 'Notify us during booking so our Gangtok coordinator locks in your exact dietary preferences with partner hotel chefs.'
-  },
-  {
-    id: 'faq-9',
-    category: 'Meals & Stays',
-    question: 'How is strict Jain food (no onion, no garlic, no root vegetables) handled in remote Lachung / Lachen?',
-    answer: 'In high-altitude North Sikkim (Lachung and Lachen), our partner homestays and hotels prepare fresh, piping hot Jain meals using separate utensils. Dishes include steamed rice, yellow dal fry, seasonal hill vegetable curry (no potato/onion/garlic), and hot rotis.',
-    keyTakeaway: 'Fresh, hygienic Jain meal plans are 100% guaranteed even in remote North Sikkim.'
-  }
-];
+import { SIKKIM_TOUR_FAQS, FAQItem } from '../data/faqData';
 
 export const FAQSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const [openFaqId, setOpenFaqId] = useState<string | null>('faq-1');
+  const [openFaqId, setOpenFaqId] = useState<string | null>('faq-permits-1');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   // Generate JSON-LD Schema markup for Google Rich Results FAQ structured data
   const faqSchemaData = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ_DATA.map((faq) => ({
+    mainEntity: SIKKIM_TOUR_FAQS.map((faq) => ({
       '@type': 'Question',
       name: faq.question,
       acceptedAnswer: {
@@ -95,9 +22,18 @@ export const FAQSection: React.FC = () => {
     })),
   };
 
-  const categories = ['All', 'Permits', 'Weather & Time', 'Packing & Clothing', 'Vehicles & Drivers', 'Meals & Stays'];
+  const categories = [
+    'All',
+    'Permits',
+    'Tour Packages',
+    'Weather & Time',
+    'Packing & Clothing',
+    'Vehicles & Drivers',
+    'Meals & Stays',
+    'Booking & Policy',
+  ];
 
-  const filteredFaqs = FAQ_DATA.filter((item) => {
+  const filteredFaqs = SIKKIM_TOUR_FAQS.filter((item) => {
     const matchesCat = selectedCategory === 'All' || item.category === selectedCategory;
     const matchesQuery =
       searchQuery === '' ||

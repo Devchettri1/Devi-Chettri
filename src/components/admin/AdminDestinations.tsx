@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { MapPin, Plus, Trash2, Edit2, Save, X, CheckCircle2, Image, Globe, Upload } from 'lucide-react';
 import { DestinationItem } from '../../types';
 import { ImageUploadPicker } from './ImageUploadPicker';
+import { sikkimHeroBanner } from '../../assets/images';
 
 interface AdminDestinationsProps {
   destinations: DestinationItem[];
@@ -17,7 +18,7 @@ export const AdminDestinations: React.FC<AdminDestinationsProps> = ({ destinatio
     name: '',
     slug: '',
     region: 'East Sikkim',
-    heroImage: '/images/sikkim_hero_banner_1785680563996.jpg',
+    heroImage: sikkimHeroBanner,
     shortDescription: '',
     fullOverview: '',
     bestTimeToVisit: 'October to May',
@@ -96,7 +97,7 @@ export const AdminDestinations: React.FC<AdminDestinationsProps> = ({ destinatio
               name: '',
               slug: '',
               region: 'East Sikkim',
-              heroImage: '/images/sikkim_hero_banner_1785680563996.jpg',
+              heroImage: sikkimHeroBanner,
               shortDescription: '',
               fullOverview: '',
               bestTimeToVisit: 'October to May',
