@@ -38,25 +38,25 @@ interface InnovaGalleryPhoto {
 
 const INNOVA_GALLERY: InnovaGalleryPhoto[] = [
   {
-    url: '/src/assets/images/innova_mountain_drive_1785681104445.jpg',
+    url: '/images/innova_mountain_drive_1785681104445.jpg',
     title: 'Himalayan Ridge Highway Drive',
     caption: 'Cruising through the scenic pine forests and Teesta river valley in whisper-quiet cabin comfort.',
     tag: 'Flagship Exterior'
   },
   {
-    url: '/src/assets/images/innova_crysta_cab_1785680577329.jpg',
+    url: '/images/innova_crysta_cab_1785680577329.jpg',
     title: 'Deluxe Chauffeur-Driven Crysta',
     caption: 'Immaculate exterior with sanitized interiors, tinted sun protection, and hill-certified senior chauffeurs.',
     tag: 'Executive Fleet'
   },
   {
-    url: '/src/assets/images/nathula_pass_snow_1785681052944.jpg',
+    url: '/images/nathula_pass_snow_1785681052944.jpg',
     title: 'Nathula Pass & Snowline Performance',
     caption: 'High ground clearance and anti-roll suspension engineered for steep snow climbs and rocky mountain passes.',
     tag: 'Permit Pre-Cleared'
   },
   {
-    url: '/src/assets/images/agency_card_banner_1785772861093.jpg',
+    url: '/images/agency_card_banner_1785772861093.jpg',
     title: 'Fleet Mountain Panorama',
     caption: 'Our top-tier Toyota Innova Crystas stationed across Gangtok, Bagdogra Airport, Darjeeling & Pelling.',
     tag: '24/7 Availability'
@@ -79,7 +79,7 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
     bestFor: 'Families, Couples, North Sikkim (2N Lachung) & Nathula Pass Army Permits',
     ratePerDay: 4500,
     njpIxbPickupRate: 3800,
-    image: '/src/assets/images/innova_crysta_cab_1785680577329.jpg',
+    image: '/images/innova_crysta_cab_1785680577329.jpg',
     features: [
       '✓ Fully Approved for North Sikkim (2N Lachung) & Nathula Pass Army Permits',
       'Plush Reclining Captain Seats with individual armrests',
@@ -98,7 +98,7 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
     bestFor: 'North Sikkim 2N Lachung, Zero Point & High Altitude Snow Terrain',
     ratePerDay: 4000,
     njpIxbPickupRate: 3400,
-    image: '/src/assets/images/innova_crysta_cab_1785680577329.jpg',
+    image: '/images/innova_crysta_cab_1785680577329.jpg',
     features: [
       '✓ Fully Approved for North Sikkim Restricted Area Permit (PAP)',
       'High ground clearance for snow & rocky mountain riverbeds',
@@ -116,7 +116,7 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
     bestFor: 'Large Families, Corporate Groups, College Tours & Destination Weddings',
     ratePerDay: 6500,
     njpIxbPickupRate: 5800,
-    image: '/src/assets/images/agency_card_banner_1785772861093.jpg',
+    image: '/images/agency_card_banner_1785772861093.jpg',
     features: [
       '✓ Pre-cleared for all Sikkim tourist routes & corporate circuits',
       'Individual 2x1 Maharaja pushback reclining luxury seats',
@@ -135,7 +135,7 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
     bestFor: 'Offbeat Dzongu, Zuluk Silk Route & Rustic Village Expeditions',
     ratePerDay: 3800,
     njpIxbPickupRate: 3200,
-    image: '/src/assets/images/yumthang_zero_point_1785680592273.jpg',
+    image: '/images/yumthang_zero_point_1785680592273.jpg',
     features: [
       '✓ Full clearance for Silk Route & remote North Sikkim trails',
       'Heavy-duty leaf spring mountain suspension for rough roads',
@@ -593,7 +593,7 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
               <div>
                 <div className="relative h-48 overflow-hidden">
                   <img
-                    src="/src/assets/images/innova_crysta_cab_1785680577329.jpg"
+                    src="/images/innova_crysta_cab_1785680577329.jpg"
                     alt="Mahindra Xylo Scorpio 4x4"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -678,7 +678,7 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
               <div>
                 <div className="relative h-48 overflow-hidden">
                   <img
-                    src="/src/assets/images/agency_card_banner_1785772861093.jpg"
+                    src="/images/agency_card_banner_1785772861093.jpg"
                     alt="Force Urbania Luxury Tempo Traveller"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -759,7 +759,7 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
               <div>
                 <div className="relative h-48 overflow-hidden">
                   <img
-                    src="/src/assets/images/yumthang_zero_point_1785680592273.jpg"
+                    src="/images/yumthang_zero_point_1785680592273.jpg"
                     alt="Mahindra Bolero Neo 4WD"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />

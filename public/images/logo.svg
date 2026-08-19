@@ -1,0 +1,71 @@
+<svg width="400" height="200" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Radiant Sun Burst Glow -->
+    <radialGradient id="sunBurstGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+      <stop offset="30%" stop-color="#fef08a" stop-opacity="1" />
+      <stop offset="70%" stop-color="#f59e0b" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#ea580c" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Flowing Electric Blue River -->
+    <linearGradient id="electricRiver" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#00aeef" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <!-- Green Hill Arc -->
+    <linearGradient id="limeHill" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#84cc16" />
+      <stop offset="100%" stop-color="#65a30d" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="200" fill="#020617" />
+
+  <!-- 1. RISING SUN & RAYS -->
+  <circle cx="150" cy="50" r="38" fill="url(#sunBurstGlow)" />
+  <circle cx="150" cy="50" r="12" fill="#ffffff" />
+  <circle cx="150" cy="50" r="8" fill="#fef08a" />
+
+  <g stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round">
+    <line x1="150" y1="18" x2="150" y2="8" />
+    <line x1="150" y1="82" x2="150" y2="92" />
+    <line x1="118" y1="50" x2="108" y2="50" />
+    <line x1="182" y1="50" x2="192" y2="50" />
+
+    <line x1="127" y1="27" x2="120" y2="20" />
+    <line x1="173" y1="73" x2="180" y2="80" />
+    <line x1="173" y1="27" x2="180" y2="20" />
+    <line x1="127" y1="73" x2="120" y2="80" />
+
+    <line x1="136" y1="22" x2="131" y2="13" stroke="#fbbf24" />
+    <line x1="164" y1="78" x2="169" y2="87" stroke="#fbbf24" />
+    <line x1="164" y1="22" x2="169" y2="13" stroke="#fbbf24" />
+    <line x1="136" y1="78" x2="131" y2="87" stroke="#fbbf24" />
+  </g>
+
+  <!-- 2. PURE WHITE MOUNTAIN SILHOUETTE WITH INNER SHADOW FACETS -->
+  <path d="M 90 108 L 152 48 L 178 74 L 222 34 L 254 68 L 274 54 L 318 108 Z" fill="#ffffff" />
+
+  <!-- Shadow Facets -->
+  <path d="M 152 48 L 178 74 L 156 68 Z" fill="#0f172a" />
+  <path d="M 222 34 L 254 68 L 218 64 Z" fill="#0f172a" />
+  <path d="M 274 54 L 318 108 L 266 82 Z" fill="#0f172a" />
+
+  <!-- 3. LIME GREEN HILL ARC -->
+  <path d="M 68 110 Q 160 84 250 108 L 246 116 Q 160 92 68 118 Z" fill="url(#limeHill)" />
+
+  <!-- 4. FLOWING ELECTRIC BLUE RIVER -->
+  <path d="M 175 78 Q 155 86 178 94 Q 210 102 310 124 L 300 134 Q 200 112 160 102 Q 138 93 172 82 Z" fill="url(#electricRiver)" />
+
+  <!-- 5. BRAND TEXT -->
+  <text x="200" y="158" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">Offbeat Destination Travels</text>
+
+  <!-- Tagline lines -->
+  <line x1="45" y1="174" x2="120" y2="174" stroke="#64748b" stroke-width="1.5" />
+  <text x="200" y="178" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="13" font-weight="500" fill="#f1f5f9" text-anchor="middle">A Better Way to Explore</text>
+  <line x1="280" y1="174" x2="355" y2="174" stroke="#64748b" stroke-width="1.5" />
+</svg>

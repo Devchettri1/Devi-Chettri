@@ -11,12 +11,12 @@ interface ImageUploadPickerProps {
 }
 
 const DEFAULT_PRESETS = [
-  { label: 'Sikkim Mountains Banner', url: '/src/assets/images/sikkim_hero_banner_1785680563996.jpg' },
-  { label: 'Darjeeling Tea Gardens', url: '/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg' },
-  { label: 'Zero Point & Snow Peaks', url: '/src/assets/images/yumthang_zero_point_1785680592273.jpg' },
-  { label: 'Ravangla Buddha Park', url: '/src/assets/images/ravangla_buddha_park_1785680605794.jpg' },
-  { label: 'Luxury Innova Mountain Cab', url: '/src/assets/images/innova_crysta_cab_1785680577329.jpg' },
-  { label: 'Offbeat Dark Travel Poster', url: '/src/assets/images/agency_poster_dark_1785772843834.jpg' },
+  { label: 'Sikkim Mountains Banner', url: '/images/sikkim_hero_banner_1785680563996.jpg' },
+  { label: 'Darjeeling Tea Gardens', url: '/images/darjeeling_tea_gardens_1785681013467.jpg' },
+  { label: 'Zero Point & Snow Peaks', url: '/images/yumthang_zero_point_1785680592273.jpg' },
+  { label: 'Ravangla Buddha Park', url: '/images/ravangla_buddha_park_1785680605794.jpg' },
+  { label: 'Luxury Innova Mountain Cab', url: '/images/innova_crysta_cab_1785680577329.jpg' },
+  { label: 'Offbeat Dark Travel Poster', url: '/images/agency_poster_dark_1785772843834.jpg' },
 ];
 
 export const ImageUploadPicker: React.FC<ImageUploadPickerProps> = ({
@@ -132,7 +132,7 @@ export const ImageUploadPicker: React.FC<ImageUploadPickerProps> = ({
               referrerPolicy="no-referrer"
               className="w-full h-36 object-cover"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = '/src/assets/images/sikkim_hero_banner_1785680563996.jpg';
+                (e.target as HTMLImageElement).src = '/images/sikkim_hero_banner_1785680563996.jpg';
               }}
             />
             <div className="absolute inset-0 bg-slate-950/70 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 p-2">

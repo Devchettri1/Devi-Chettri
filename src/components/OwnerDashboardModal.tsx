@@ -203,7 +203,7 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
     headline: 'Discover Unexplored Sikkim & Darjeeling',
     subheadline: 'Customized North Sikkim Permits, Private SUV Cabs & Offbeat Village Stays',
     ctaText: 'Explore Tour Packages',
-    bannerImage: '/src/assets/images/sikkim_hero_banner_1785680563996.jpg',
+    bannerImage: '/images/sikkim_hero_banner_1785680563996.jpg',
   });
 
   // Fetch Backend Collections
@@ -374,7 +374,7 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
       title: 'New Sikkim Exploration Tour',
       duration: '4 Days / 3 Nights',
       priceStarting: 18500,
-      heroImage: '/src/assets/images/sikkim_hero_banner_1785680563996.jpg',
+      heroImage: '/images/sikkim_hero_banner_1785680563996.jpg',
       category: 'North Sikkim',
       location: 'Gangtok & Lachen',
       rating: 4.9,
@@ -440,7 +440,7 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
       njpIxbPickupRate: 3800,
       bestFor: 'Mountain Terrains',
       capacity: '6+1 Seater',
-      image: '/src/assets/images/innova_crysta_cab_1785680577329.jpg',
+      image: '/images/innova_crysta_cab_1785680577329.jpg',
       features: ['Air Conditioning', 'Hill Assist', 'Leather Seats'],
     };
     setLocalCabs([...localCabs, newCab]);
@@ -1046,11 +1046,11 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
                         <div className="flex flex-col sm:flex-row items-center gap-4">
                           <div className="relative w-full sm:w-44 h-28 bg-slate-950 rounded-xl overflow-hidden border border-slate-700/80 shrink-0 shadow-md">
                             <img
-                              src={currentPkg.heroImage || '/src/assets/images/sikkim_hero_banner_1785680563996.jpg'}
+                              src={currentPkg.heroImage || '/images/sikkim_hero_banner_1785680563996.jpg'}
                               alt={currentPkg.title}
                               className="w-full h-full object-cover"
                               onError={(e) => {
-                                (e.target as HTMLImageElement).src = '/src/assets/images/sikkim_hero_banner_1785680563996.jpg';
+                                (e.target as HTMLImageElement).src = '/images/sikkim_hero_banner_1785680563996.jpg';
                               }}
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
@@ -1077,7 +1077,7 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
                             <input
                               type="text"
                               value={currentPkg.heroImage}
-                              placeholder="https://... or /src/assets/images/..."
+                              placeholder="https://... or /images/..."
                               onChange={(e) => handlePkgFieldChange('heroImage', e.target.value)}
                               className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 outline-none"
                             />
@@ -1201,7 +1201,7 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {localCabs.map((cab, idx) => {
-                  const cabImg = cab.image || '/src/assets/images/innova_crysta_cab_1785680577329.jpg';
+                  const cabImg = cab.image || '/images/innova_crysta_cab_1785680577329.jpg';
                   return (
                     <div key={cab.id} className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-3 shadow-lg">
                       <div className="flex items-center justify-between border-b border-slate-800 pb-2">

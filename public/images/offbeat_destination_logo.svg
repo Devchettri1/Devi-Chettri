@@ -1,0 +1,107 @@
+<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Radiant Golden Sun Glow -->
+    <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="25%" stop-color="#fffbeb" />
+      <stop offset="50%" stop-color="#fde047" />
+      <stop offset="80%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#ea580c" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Flowing Winding River -->
+    <linearGradient id="riverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="45%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+
+    <!-- Curved Lime Hill -->
+    <linearGradient id="hillGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#84cc16" />
+      <stop offset="60%" stop-color="#65a30d" />
+      <stop offset="100%" stop-color="#4d7c0f" />
+    </linearGradient>
+
+    <!-- Badge Drop Shadow -->
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <!-- Circular Outer Badge with Subtle Ring -->
+  <circle cx="250" cy="250" r="238" fill="#ffffff" filter="url(#softShadow)" />
+  <circle cx="250" cy="250" r="236" fill="#ffffff" stroke="#e2e8f0" stroke-width="4" />
+  <circle cx="250" cy="250" r="226" fill="none" stroke="#f1f5f9" stroke-width="2" />
+
+  <!-- ================= 1. SUNBURST & RAYS ================= -->
+  <g transform="translate(186, 172)">
+    <!-- Sun Core Glow -->
+    <circle cx="0" cy="0" r="42" fill="url(#sunGlow)" />
+    <circle cx="0" cy="0" r="14" fill="#fef08a" />
+    <circle cx="0" cy="0" r="9" fill="#ffffff" />
+
+    <!-- 16 Crisp Radiant Sunrays -->
+    <g stroke="#f59e0b" stroke-width="2" stroke-linecap="round">
+      <line x1="0" y1="-18" x2="0" y2="-38" />
+      <line x1="0" y1="18" x2="0" y2="38" />
+      <line x1="-18" y1="0" x2="-38" y2="0" />
+      <line x1="18" y1="0" x2="38" y2="0" />
+      <line x1="-13" y1="-13" x2="-28" y2="-28" stroke-width="1.8" />
+      <line x1="13" y1="13" x2="28" y2="28" stroke-width="1.8" />
+      <line x1="13" y1="-13" x2="28" y2="-28" stroke-width="1.8" />
+      <line x1="-13" y1="13" x2="-28" y2="28" stroke-width="1.8" />
+      <line x1="-7" y1="-16" x2="-15" y2="-34" stroke-width="1.4" stroke="#fbbf24" />
+      <line x1="7" y1="-16" x2="15" y2="-34" stroke-width="1.4" stroke="#fbbf24" />
+      <line x1="-16" y1="-7" x2="-34" y2="-15" stroke-width="1.4" stroke="#fbbf24" />
+      <line x1="16" y1="-7" x2="34" y2="-15" stroke-width="1.4" stroke="#fbbf24" />
+      <line x1="-7" y1="16" x2="-15" y2="34" stroke-width="1.4" stroke="#fbbf24" />
+      <line x1="7" y1="16" x2="15" y2="34" stroke-width="1.4" stroke="#fbbf24" />
+      <line x1="-16" y1="7" x2="-34" y2="15" stroke-width="1.4" stroke="#fbbf24" />
+      <line x1="16" y1="7" x2="34" y2="15" stroke-width="1.4" stroke="#fbbf24" />
+    </g>
+  </g>
+
+  <!-- ================= 2. MOUNTAIN PEAKS ================= -->
+  <!-- Dark Slate/Charcoal Silhouette with Snow Ridges -->
+  <!-- Left Mountain Peak -->
+  <path d="M 118 232 L 186 186 L 214 204 L 160 236 Z" fill="#2c3e50" />
+  <path d="M 186 186 L 214 204 L 194 202 Z" fill="#1a252f" />
+  <path d="M 186 186 L 160 236 L 152 236 Z" fill="#ffffff" />
+
+  <!-- Main Tall Mountain Peak -->
+  <path d="M 212 206 L 276 146 L 320 198 L 260 216 Z" fill="#2c3e50" />
+  <!-- Main Peak Right Shadow -->
+  <path d="M 276 146 L 320 198 L 290 190 Z" fill="#1a252f" />
+  <!-- Main Peak White Crest Highlights -->
+  <path d="M 276 146 L 254 192 L 274 186 Z" fill="#ffffff" />
+
+  <!-- Right Smaller Mountain Peak -->
+  <path d="M 320 198 L 342 182 L 424 252 L 350 232 Z" fill="#2c3e50" />
+  <!-- Right Ridge Shadow -->
+  <path d="M 342 182 L 424 252 L 372 238 Z" fill="#1a252f" />
+  <path d="M 342 182 L 334 212 L 324 202 Z" fill="#ffffff" />
+
+  <!-- Mountain Base Left Connector -->
+  <path d="M 118 232 Q 138 226 160 236 L 118 232 Z" fill="#2c3e50" />
+
+  <!-- ================= 3. CURVED LUSH GREEN HILL ================= -->
+  <path d="M 80 252 Q 210 218 340 240 L 332 248 Q 206 226 80 258 Z" fill="url(#hillGrad)" />
+
+  <!-- ================= 4. FLOWING BLUE RIVER ================= -->
+  <!-- Winding electric sky blue river originating from peaks flowing down right -->
+  <path d="M 242 208 Q 220 218 245 226 Q 280 234 328 248 Q 365 258 406 254 L 388 266 Q 348 266 312 254 Q 268 240 226 230 Q 206 222 234 212 Z" fill="url(#riverGrad)" />
+
+  <!-- ================= 5. BRAND TYPOGRAPHY ================= -->
+  <!-- Primary Title: Offbeat Destination Travels -->
+  <text x="250" y="306" font-family="Georgia, 'Times New Roman', 'Playfair Display', serif" font-size="33" font-weight="bold" fill="#0f2438" text-anchor="middle" letter-spacing="-0.2">
+    Offbeat Destination Travels
+  </text>
+
+  <!-- Tagline Flanking Lines & Script: A Better Way to Explore -->
+  <line x1="65" y1="332" x2="135" y2="332" stroke="#2c3e50" stroke-width="2" stroke-linecap="round" />
+  <text x="250" y="341" font-family="'Brush Script MT', 'Bickham Script Pro', 'Brush Script Std', 'Dancing Script', 'Caveat', cursive, Georgia, serif" font-style="italic" font-size="28" font-weight="600" fill="#1e293b" text-anchor="middle">
+    A Better Way to Explore
+  </text>
+  <line x1="365" y1="332" x2="435" y2="332" stroke="#2c3e50" stroke-width="2" stroke-linecap="round" />
+</svg>

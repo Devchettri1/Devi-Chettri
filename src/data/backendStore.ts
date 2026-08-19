@@ -94,14 +94,14 @@ export function getBackendStore(): BackendStoreData {
       {
         id: 'med-1',
         title: 'Sikkim Kanchenjunga Banner',
-        url: '/src/assets/images/sikkim_hero_banner_1785680563996.jpg',
+        url: '/images/sikkim_hero_banner_1785680563996.jpg',
         category: 'Banners',
         uploadedAt: new Date().toISOString(),
       },
       {
         id: 'med-2',
         title: 'Yumthang Zero Point',
-        url: '/src/assets/images/yumthang_zero_point_1785680592273.jpg',
+        url: '/images/yumthang_zero_point_1785680592273.jpg',
         category: 'Destinations',
         uploadedAt: new Date().toISOString(),
       },

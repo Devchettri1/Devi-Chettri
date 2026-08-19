@@ -30,8 +30,10 @@ import {
 } from 'lucide-react';
 import { TourPackage, CabOption, SeoSettings } from '../../types';
 import { TOUR_PACKAGES, CAB_OPTIONS, AGENCY_DETAILS } from '../../data/travelData';
-import { INITIAL_DESTINATIONS } from '../../data/initialStoreData';
+import { ADDITIONAL_PACKAGES } from '../../data/additionalPackages';
+import { INITIAL_DESTINATIONS, INITIAL_HOTELS } from '../../data/initialStoreData';
 import { BLOG_POSTS } from '../../data/blogData';
+import { generateCrawlerSitemap } from '../../utils/sitemapGenerator';
 
 interface AdminSitemapGeneratorProps {
   packages?: TourPackage[];
@@ -140,7 +142,7 @@ export const AdminSitemapGenerator: React.FC<AdminSitemapGeneratorProps> = ({
           priority: page.priority,
           image: includeImages
             ? {
-                loc: `${cleanBase}/src/assets/images/sikkim_hero_banner_1785680563996.jpg`,
+                loc: `${cleanBase}/images/sikkim_hero_banner_1785680563996.jpg`,
                 title: page.title,
                 caption: 'OffbeatDestination Travels Official Portal',
               }
@@ -150,9 +152,13 @@ export const AdminSitemapGenerator: React.FC<AdminSitemapGeneratorProps> = ({
       });
     }
 
-    // 2. Tour Packages
+    // 2. Tour Packages (All Primary & Additional)
     if (includePackages) {
-      packages.forEach((pkg) => {
+      const allPkgsMap = new Map<string, TourPackage>();
+      packages.forEach((pkg) => allPkgsMap.set(pkg.id, pkg));
+      ADDITIONAL_PACKAGES.forEach((pkg) => allPkgsMap.set(pkg.id, pkg));
+
+      allPkgsMap.forEach((pkg) => {
         const packageUrl = `${cleanBase}/#package-${pkg.id}`;
         entries.push({
           id: `pkg-${pkg.id}`,
@@ -166,7 +172,7 @@ export const AdminSitemapGenerator: React.FC<AdminSitemapGeneratorProps> = ({
             ? {
                 loc: pkg.heroImage?.startsWith('http')
                   ? pkg.heroImage
-                  : `${cleanBase}${pkg.heroImage || '/src/assets/images/sikkim_hero_banner_1785680563996.jpg'}`,
+                  : `${cleanBase}${pkg.heroImage || '/images/sikkim_hero_banner_1785680563996.jpg'}`,
                 title: pkg.title,
                 caption: `${pkg.duration} - ${pkg.location}. Price starting from ₹${pkg.priceStarting?.toLocaleString('en-IN')}`,
               }
@@ -192,7 +198,7 @@ export const AdminSitemapGenerator: React.FC<AdminSitemapGeneratorProps> = ({
             ? {
                 loc: dest.heroImage?.startsWith('http')
                   ? dest.heroImage
-                  : `${cleanBase}${dest.heroImage || '/src/assets/images/sikkim_hero_banner_1785680563996.jpg'}`,
+                  : `${cleanBase}${dest.heroImage || '/images/sikkim_hero_banner_1785680563996.jpg'}`,
                 title: dest.name,
                 caption: dest.shortDescription || dest.fullOverview?.slice(0, 150),
               }
@@ -218,7 +224,7 @@ export const AdminSitemapGenerator: React.FC<AdminSitemapGeneratorProps> = ({
             ? {
                 loc: cab.image?.startsWith('http')
                   ? cab.image
-                  : `${cleanBase}${cab.image || '/src/assets/images/innova_crysta_cab_1785680577329.jpg'}`,
+                  : `${cleanBase}${cab.image || '/images/innova_crysta_cab_1785680577329.jpg'}`,
                 title: cab.model,
                 caption: `${cab.capacity} - ₹${cab.ratePerDay}/day rate. Best for ${cab.bestFor}`,
               }
@@ -249,17 +255,40 @@ export const AdminSitemapGenerator: React.FC<AdminSitemapGeneratorProps> = ({
       });
     }
 
-    // 5. Hotels
+    // 5. Hotels & Mountain Resorts
     if (includeHotels) {
       HOTEL_HUBS.forEach((hotel, idx) => {
         entries.push({
-          id: `hotel-${idx}`,
+          id: `hotel-hub-${idx}`,
           url: `${cleanBase}/${hotel.slug}`,
           category: 'hotel',
           title: hotel.title,
           lastmod: today,
           changefreq: hotel.changefreq,
           priority: hotel.priority,
+          enabled: true,
+        });
+      });
+
+      INITIAL_HOTELS.forEach((hotel) => {
+        const hotelUrl = `${cleanBase}/#hotel-${hotel.id}`;
+        entries.push({
+          id: `hotel-${hotel.id}`,
+          url: hotelUrl,
+          category: 'hotel',
+          title: `${hotel.name} (${hotel.category || 'Luxury Hotel'}) - ${hotel.destination}`,
+          lastmod: today,
+          changefreq: 'weekly',
+          priority: 0.82,
+          image: includeImages && hotel.image
+            ? {
+                loc: hotel.image.startsWith('http')
+                  ? hotel.image
+                  : `${cleanBase}${hotel.image || '/images/sikkim_hero_banner_1785680563996.jpg'}`,
+                title: `${hotel.name} - ${hotel.destination}`,
+                caption: hotel.description?.slice(0, 150) || `${hotel.category} in ${hotel.destination}`,
+              }
+            : undefined,
           enabled: true,
         });
       });
@@ -281,7 +310,7 @@ export const AdminSitemapGenerator: React.FC<AdminSitemapGeneratorProps> = ({
             ? {
                 loc: blog.coverImage?.startsWith('http')
                   ? blog.coverImage
-                  : `${cleanBase}${blog.coverImage || '/src/assets/images/sikkim_hero_banner_1785680563996.jpg'}`,
+                  : `${cleanBase}${blog.coverImage || '/images/sikkim_hero_banner_1785680563996.jpg'}`,
                 title: blog.title,
                 caption: blog.summary?.slice(0, 150),
               }
@@ -414,6 +443,39 @@ export const AdminSitemapGenerator: React.FC<AdminSitemapGeneratorProps> = ({
     document.body.removeChild(link);
   };
 
+  // Auto-Crawl & Build sitemap.xml via API
+  const [isCrawling, setIsCrawling] = useState<boolean>(false);
+  const handleAutoCrawl = async () => {
+    setIsCrawling(true);
+    setServerSaveMessage('');
+    try {
+      const response = await fetch('/api/generate-sitemap', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          baseUrl,
+          includeImages,
+          lastModDate: customLastModDate,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok && data.success) {
+        setServerSaveMessage(`✓ Crawled & indexed ${data.result?.totalUrls || 'all'} URLs (Packages, Hotels & Blogs). Saved to /sitemap.xml!`);
+        if (onRefresh) onRefresh();
+      } else {
+        setServerSaveMessage('Crawl completed and cached on server.');
+      }
+    } catch (err) {
+      console.error('Crawl error:', err);
+      // Fallback local crawl and save
+      await handleSaveToServer();
+    } finally {
+      setIsCrawling(false);
+      setTimeout(() => setServerSaveMessage(''), 5500);
+    }
+  };
+
   // Save to Server (/public/sitemap.xml)
   const handleSaveToServer = async () => {
     setIsSavingToServer(true);
@@ -504,6 +566,15 @@ export const AdminSitemapGenerator: React.FC<AdminSitemapGeneratorProps> = ({
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
+          <button
+            onClick={handleAutoCrawl}
+            disabled={isCrawling}
+            className="px-3.5 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl text-xs font-black flex items-center gap-1.5 transition-all shadow-lg shadow-emerald-500/20 disabled:opacity-50 cursor-pointer"
+          >
+            <RefreshCw className={`w-4 h-4 ${isCrawling ? 'animate-spin' : ''}`} />
+            <span>{isCrawling ? 'Crawling Pages...' : '⚡ Auto-Crawl All Live Data'}</span>
+          </button>
+
           <button
             onClick={handleCopyXml}
             className="px-3 py-2 bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm cursor-pointer"

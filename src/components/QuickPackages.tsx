@@ -352,12 +352,6 @@ export const QuickPackages: React.FC<QuickPackagesProps> = ({
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
             Flawless execution by local Sikkim experts based in Gangtok. Select from 3 customizable hotel categories with dynamic group-size rate adjustments.
           </p>
-
-          {/* Regulatory Rules Notice */}
-          <div className="bg-[#0A1128] border border-cyan-500/30 p-3 rounded-xl text-xs text-slate-200 font-medium flex items-center justify-center gap-2 max-w-2xl mx-auto shadow-sm">
-            <span className="font-bold text-cyan-400">⚠️ Official Sikkim Permit Notice:</span>
-            <span className="text-slate-300">North Sikkim mandates a 2-Night Lachung Stay. Dedicated heavy 4WD SUVs (Innova/Xylo) and Min. 2 Pax base apply for private permits.</span>
-          </div>
         </div>
 
         {/* Interactive Group Size Sync Bar */}

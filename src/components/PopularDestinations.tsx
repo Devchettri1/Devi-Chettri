@@ -21,7 +21,7 @@ export const DESTINATIONS_DATA: DestinationCardData[] = [
     description: 'Vibrant hill town famous for MG Marg boulevard, Gangtok Ropeway, Rumtek Monastery, Ban Jhakri waterfalls, and high-altitude Tsomgo Lake gateway.',
     bestFor: 'First-time visitors, Families, Couples & Culture seekers',
     suggestedDuration: '2 - 3 Nights',
-    image: '/src/assets/images/sikkim_hero_banner_1785680563996.jpg',
+    image: '/images/sikkim_hero_banner_1785680563996.jpg',
     popularSpots: ['MG Marg', 'Tsomgo Lake', 'Nathula Pass', 'Rumtek Monastery', 'Ganesh Tok'],
   },
   {
@@ -31,7 +31,7 @@ export const DESTINATIONS_DATA: DestinationCardData[] = [
     description: 'Rugged alpine frontier featuring mandatory 2-Night Lachung stays, Yumthang Valley of Flowers, snowbound Zero Point, and crystal Gurudongmar Lake (17,800 ft).',
     bestFor: 'Snow enthusiasts, Adventure lovers, Photographers & Nature seekers',
     suggestedDuration: '2 - 3 Nights (Mandatory 2N Lachung)',
-    image: '/src/assets/images/yumthang_zero_point_1785680592273.jpg',
+    image: '/images/yumthang_zero_point_1785680592273.jpg',
     popularSpots: ['Yumthang Valley', 'Zero Point (15,300ft)', 'Lachung Homestays', 'Gurudongmar Lake', 'Katao'],
   },
   {
@@ -41,7 +41,7 @@ export const DESTINATIONS_DATA: DestinationCardData[] = [
     description: 'Serene West Sikkim town boasting India’s first Glass Skywalk over Chenrezig Statue, historic Rabdentse Palace Ruins, and sacred Khecheopalri Lake.',
     bestFor: 'Mountain view seekers, Heritage buffs & Peaceful getaways',
     suggestedDuration: '2 Nights',
-    image: '/src/assets/images/ravangla_buddha_park_1785680605794.jpg',
+    image: '/images/ravangla_buddha_park_1785680605794.jpg',
     popularSpots: ['Pelling Glass Skywalk', 'Rabdentse Ruins', 'Pemayangtse Monastery', 'Khecheopalri Lake'],
   },
   {
@@ -51,7 +51,7 @@ export const DESTINATIONS_DATA: DestinationCardData[] = [
     description: 'Ancient trade corridor through East Sikkim with dramatic 30+ hairpin twists at Thambi viewpoint, Gnathang Valley, and Kupup Elephant Lake.',
     bestFor: 'Offbeat travelers, Road trippers & Scenic photography',
     suggestedDuration: '2 Nights',
-    image: '/src/assets/images/sikkim_hero_banner_1785680563996.jpg',
+    image: '/images/sikkim_hero_banner_1785680563996.jpg',
     popularSpots: ['Zuluk Loops', 'Thambi Viewpoint', 'Gnathang Valley', 'Kupup Lake', 'Reshi Khola'],
   },
   {
@@ -61,7 +61,7 @@ export const DESTINATIONS_DATA: DestinationCardData[] = [
     description: 'Colonial charm, golden Kanchenjunga sunrise from Tiger Hill, heritage steam Toy Train loops at Batasia, and organic tea garden walks.',
     bestFor: 'Honeymooners, Tea lovers, Heritage enthusiasts & Families',
     suggestedDuration: '2 Nights',
-    image: '/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg',
+    image: '/images/darjeeling_tea_gardens_1785681013467.jpg',
     popularSpots: ['Tiger Hill Sunrise', 'Batasia Loop Toy Train', 'Happy Valley Tea Estate', 'Chowrasta Mall'],
   },
   {
@@ -71,7 +71,7 @@ export const DESTINATIONS_DATA: DestinationCardData[] = [
     description: 'Tranquil Himalayan Kingdom featuring Paro Taktsang (Tiger’s Nest Monastery), Thimphu Buddha Dordenma, and Punakha Suspension Bridge.',
     bestFor: 'Cultural travelers, Spiritual journeys & Bucket-list explorers',
     suggestedDuration: '4 - 6 Nights',
-    image: '/src/assets/images/bhutan_tigers_nest_1785681037397.jpg',
+    image: '/images/bhutan_tigers_nest_1785681037397.jpg',
     popularSpots: ["Tiger's Nest Monastery", 'Thimphu Dzong', 'Punakha Suspension Bridge', 'Dochula Pass'],
   },
 ];

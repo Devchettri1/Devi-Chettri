@@ -46,10 +46,10 @@ export const PhotoEditorModal: React.FC<PhotoEditorModalProps> = ({
 }) => {
   // Sample source photos list for easy picking
   const samplePhotos = [
-    { name: 'Yumthang Zero Point', url: '/src/assets/images/yumthang_zero_point_1785680592273.jpg' },
-    { name: 'Ravangla Buddha Park', url: '/src/assets/images/ravangla_buddha_park_1785680605794.jpg' },
-    { name: 'Sikkim Mountains Banner', url: '/src/assets/images/sikkim_hero_banner_1785680563996.jpg' },
-    { name: 'Agency Poster Banner', url: '/src/assets/images/agency_poster_dark_1785772843834.jpg' },
+    { name: 'Yumthang Zero Point', url: '/images/yumthang_zero_point_1785680592273.jpg' },
+    { name: 'Ravangla Buddha Park', url: '/images/ravangla_buddha_park_1785680605794.jpg' },
+    { name: 'Sikkim Mountains Banner', url: '/images/sikkim_hero_banner_1785680563996.jpg' },
+    { name: 'Agency Poster Banner', url: '/images/agency_poster_dark_1785772843834.jpg' },
     ...GALLERY_ITEMS.slice(0, 4).map((g) => ({ name: g.title, url: g.url })),
   ];
 

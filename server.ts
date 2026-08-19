@@ -6,6 +6,7 @@ import { GoogleGenAI } from '@google/genai';
 import { DEFAULT_SEO_SETTINGS } from './src/data/travelData';
 import { getBackendStore, saveBackendStore, logAuditAction } from './src/data/backendStore';
 import { BLOG_POSTS, calculateReadTime } from './src/data/blogData';
+import { generateCrawlerSitemap } from './src/utils/sitemapGenerator';
 
 dotenv.config();
 
@@ -1721,7 +1722,7 @@ app.post('/api/admin/seo', (req, res) => {
   res.status(400).json({ error: 'Invalid SEO payload' });
 });
 
-// SITEMAP GET ROUTE (SERVES SITEMAP.XML)
+// SITEMAP GET ROUTE (SERVES SITEMAP.XML WITH DYNAMIC FALLBACK CRAWL)
 app.get('/sitemap.xml', (req, res) => {
   try {
     const publicSitemapPath = path.join(process.cwd(), 'public', 'sitemap.xml');
@@ -1731,22 +1732,71 @@ app.get('/sitemap.xml', (req, res) => {
       return;
     }
   } catch (e) {
-    console.error('Error reading sitemap.xml:', e);
+    console.error('Error reading sitemap.xml from disk:', e);
   }
   
-  // Fallback dynamic generator response if file not yet written
-  const defaultSitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://offbeatdestination.in/</loc><changefreq>daily</changefreq><priority>1.00</priority></url>
-  <url><loc>https://offbeatdestination.in/#packages</loc><changefreq>daily</changefreq><priority>0.95</priority></url>
-  <url><loc>https://offbeatdestination.in/#cabs</loc><changefreq>daily</changefreq><priority>0.90</priority></url>
-  <url><loc>https://offbeatdestination.in/#destinations</loc><changefreq>daily</changefreq><priority>0.90</priority></url>
-  <url><loc>https://offbeatdestination.in/#blog</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
-</urlset>`;
-  res.type('application/xml; charset=utf-8').send(defaultSitemap);
+  // Dynamic Crawler Fallback
+  try {
+    const result = generateCrawlerSitemap({
+      baseUrl: 'https://offbeatdestination.in',
+      includeImages: true,
+    });
+    res.type('application/xml; charset=utf-8').send(result.xmlContent);
+  } catch (err: any) {
+    console.error('Error generating fallback sitemap:', err);
+    res.status(500).send('Error generating sitemap');
+  }
 });
 
-// SITEMAP API: SAVE TO SERVER / PUBLIC DIRECTORY
+// AUTOMATED SITEMAP CRAWLER & GENERATOR API
+app.post(['/api/generate-sitemap', '/api/admin/seo/crawl-sitemap'], (req, res) => {
+  try {
+    const { baseUrl, includeImages, lastModDate } = req.body || {};
+    const store = getBackendStore();
+
+    const sitemapResult = generateCrawlerSitemap({
+      baseUrl: baseUrl || 'https://offbeatdestination.in',
+      includeImages: includeImages !== false,
+      lastModDate: lastModDate || new Date().toISOString().split('T')[0],
+      customHotels: store?.hotels,
+      customDestinations: store?.destinations,
+    });
+
+    const publicDir = path.join(process.cwd(), 'public');
+    if (!fs.existsSync(publicDir)) {
+      fs.mkdirSync(publicDir, { recursive: true });
+    }
+    const sitemapPath = path.join(publicDir, 'sitemap.xml');
+    fs.writeFileSync(sitemapPath, sitemapResult.xmlContent, 'utf8');
+
+    const distDir = path.join(process.cwd(), 'dist');
+    if (fs.existsSync(distDir)) {
+      try {
+        fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemapResult.xmlContent, 'utf8');
+      } catch {}
+    }
+
+    logAuditAction(
+      'System Crawler',
+      'SYSTEM',
+      'AUTO_CRAWL_SITEMAP',
+      `Crawled & generated sitemap.xml with ${sitemapResult.totalUrls} URLs (${sitemapResult.categories.packages} packages, ${sitemapResult.categories.hotels} hotels, ${sitemapResult.categories.blogs} blogs) for ${sitemapResult.baseUrl}`
+    );
+
+    return res.json({
+      success: true,
+      message: `sitemap.xml successfully generated with ${sitemapResult.totalUrls} canonical URLs`,
+      result: sitemapResult,
+      path: '/sitemap.xml',
+      timestamp: new Date().toISOString(),
+    });
+  } catch (error: any) {
+    console.error('Error crawling and generating sitemap:', error);
+    return res.status(500).json({ error: 'Failed to auto-generate sitemap', details: error.message });
+  }
+});
+
+// SITEMAP API: SAVE CUSTOM XML TO SERVER / PUBLIC DIRECTORY
 app.post('/api/admin/seo/sitemap', (req, res) => {
   try {
     const { xmlContent, totalUrls, imageCount, baseUrl } = req.body;

@@ -14,7 +14,7 @@ export const AdminMediaLibrary: React.FC<AdminMediaLibraryProps> = ({ media, onR
 
   const [form, setForm] = useState({
     title: 'Nathula Pass Snow Peaks',
-    url: '/src/assets/images/sikkim_hero_banner_1785680563996.jpg',
+    url: '/images/sikkim_hero_banner_1785680563996.jpg',
     category: 'Sikkim',
   });
 
@@ -126,7 +126,7 @@ export const AdminMediaLibrary: React.FC<AdminMediaLibraryProps> = ({ media, onR
                 <label className="block text-slate-300 font-semibold mb-1">Image Asset Path / URL</label>
                 <input
                   type="text"
-                  placeholder="/src/assets/images/..."
+                  placeholder="/images/..."
                   value={form.url}
                   onChange={(e) => setForm({ ...form, url: e.target.value })}
                   className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-slate-100"

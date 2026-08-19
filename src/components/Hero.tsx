@@ -261,7 +261,7 @@ export const Hero: React.FC<HeroProps> = ({
             >
               <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden">
                 <img
-                  src="/src/assets/images/sikkim_hero_banner_1785680563996.jpg"
+                  src="/images/sikkim_hero_banner_1785680563996.jpg"
                   alt="The Silk Route Odyssey"
                   loading="eager"
                   // @ts-ignore

@@ -3,238 +3,1390 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-  <!-- Core Website Pages -->
   <url>
     <loc>https://offbeatdestination.in/</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.00</priority>
     <image:image>
-      <image:loc>https://offbeatdestination.in/src/assets/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
-      <image:title>OffbeatDestination Travels - Official Sikkim &amp; Darjeeling Tourism Portal</image:title>
-      <image:caption>Premier Govt. Registered Sikkim Travel Agency Gangtok</image:caption>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Offbeat Destination Travels Gangtok HQ Portal</image:title>
+      <image:caption>Govt. Registered Sikkim Tour Agency (offbeatdestination.in)</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://offbeatdestination.in/#packages</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/yumthang_zero_point_1785680592273.jpg</image:loc>
+      <image:title>Signature Sikkim Holiday Packages</image:title>
+      <image:caption>Zero Point, Yumthang, Nathula Pass &amp; Pelling Tours</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://offbeatdestination.in/#cabs</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://offbeatdestination.in/#destinations</loc>
-    <lastmod>2026-08-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/innova_crysta_cab_1785680577329.jpg</image:loc>
+      <image:title>Innova Crysta Cab Rental Sikkim</image:title>
+      <image:caption>Official NJP, Bagdogra, Gangtok, and North Sikkim Taxi Service</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://offbeatdestination.in/#hotels</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.88</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>Sikkim &amp; Darjeeling Luxury Hotels</image:title>
+      <image:caption>Hand-vetted 3-Star, 4-Star &amp; 5-Star Heritage Mountain Resorts</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://offbeatdestination.in/#calculator</loc>
-    <lastmod>2026-08-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://offbeatdestination.in/#planner</loc>
-    <lastmod>2026-08-18</lastmod>
+    <loc>https://offbeatdestination.in/#destinations</loc>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
+    <loc>https://offbeatdestination.in/#planner</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#calculator</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://offbeatdestination.in/#offers</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://offbeatdestination.in/#reviews</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://offbeatdestination.in/#blog</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://offbeatdestination.in/#faqs</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.78</priority>
   </url>
   <url>
     <loc>https://offbeatdestination.in/#checklist</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://offbeatdestination.in/#gallery</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://offbeatdestination.in/#about</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://offbeatdestination.in/#contact</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
-
-  <!-- Bestselling Tour Packages -->
   <url>
     <loc>https://offbeatdestination.in/#package-pkg-5n6d-sikkim-darjeeling</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.90</priority>
+    <priority>0.92</priority>
     <image:image>
-      <image:loc>https://offbeatdestination.in/src/assets/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
-      <image:title>5N/6D Scenic Sikkim &amp; Darjeeling Classic Holiday</image:title>
-      <image:caption>5 Nights / 6 Days covering Gangtok, Tsomgo Lake, Baba Mandir, and Darjeeling Tiger Hill</image:caption>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>5 Nights / 6 Days Sikkim &amp; Darjeeling Tour (Standard Deluxe) - 5 Nights / 6 Days</image:title>
+      <image:caption>Gangtok, Tsomgo Lake, Nathula Pass &amp; Darjeeling (3★ Deluxe Stays). Highlights: 3★ Deluxe boutique hotel stays in Gangtok &amp; Darjeeling, Darjeeling Tea Garden city tour &amp; sunrise at Tiger Hill, Gangtok ropeway &amp; MG Marg night stroll</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://offbeatdestination.in/#package-pkg-3n4d-north-sikkim-lachung-yumthang</loc>
-    <lastmod>2026-08-18</lastmod>
+    <loc>https://offbeatdestination.in/#package-pkg-north-sikkim</loc>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.90</priority>
+    <priority>0.92</priority>
     <image:image>
-      <image:loc>https://offbeatdestination.in/src/assets/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
-      <image:title>3N/4D North Sikkim Magic: Lachung, Yumthang &amp; Zero Point</image:title>
-      <image:caption>High altitude valleys, rhododendron blooms, hot springs, and snow points</image:caption>
+      <image:loc>https://offbeatdestination.in/images/yumthang_zero_point_1785680592273.jpg</image:loc>
+      <image:title>North Sikkim 2N/3D Expedition: Mandatory 2 Night Lachung Stay, Yumthang &amp; Zero Point - 2 Nights / 3 Days</image:title>
+      <image:caption>Mandatory 2 Night Stay in Lachung, Yumthang Valley, Zero Point &amp; Katao. Highlights: Mandatory 2 Nights stay in Lachung homestay/hotel as per Sikkim Tourism rules, Vibrant Valley of Flowers at Yumthang (11,800 ft), Snowbound experience at Zero Point (Yumesamdong 15,300 ft) &amp; Katao Excursion</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://offbeatdestination.in/#package-pkg-4n5d-silk-route-zuluk</loc>
-    <lastmod>2026-08-18</lastmod>
+    <loc>https://offbeatdestination.in/#package-pkg-south-west-sikkim</loc>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.90</priority>
+    <priority>0.92</priority>
     <image:image>
-      <image:loc>https://offbeatdestination.in/src/assets/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
-      <image:title>4N/5D Historic Old Silk Route &amp; Zuluk Loops Expedition</image:title>
-      <image:caption>32 hairpin loops, Thambi viewpoint sunrise, Gnathang Valley, and Kupup Lake</image:caption>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>South &amp; West Sikkim Offbeat Village &amp; Skywalk Experience - 4 Nights / 5 Days</image:title>
+      <image:caption>Namthang, Tarey Bhir, Ravangla &amp; Pelling. Highlights: Offbeat village stays at Namthang &amp; panoramic cliff walk at Tarey Bhir, Majestic Buddha Park at Ravangla with mountain views, Organic tea gardens walk at Temi Tea Estate</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://offbeatdestination.in/#package-pkg-6n7d-complete-sikkim-gangtok-pelling-darjeeling</loc>
-    <lastmod>2026-08-18</lastmod>
+    <loc>https://offbeatdestination.in/#package-pkg-bhutan-cultural</loc>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.90</priority>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Custom Bhutan Cultural Odyssey: Paro, Thimphu &amp; Tiger&apos;s Nest - 5 Nights / 6 Days</image:title>
+      <image:caption>Phuntsholing, Thimphu, Punakha &amp; Paro. Highlights: Hike to iconic Taktsang Monastery (Tiger&apos;s Nest) in Paro, Thimphu Buddha Dordenma &amp; Tashichho Dzong tour, Punakha Suspension Bridge &amp; majestic Punakha Dzong</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://offbeatdestination.in/#package-pkg-4n5d-gangtok-pelling-scenic</loc>
-    <lastmod>2026-08-18</lastmod>
+    <loc>https://offbeatdestination.in/#package-pkg-6n7d-sikkim-darjeeling</loc>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.90</priority>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>6 Nights / 7 Days Grand Sikkim, Pelling &amp; Darjeeling Circuit - 6 Nights / 7 Days</image:title>
+      <image:caption>Gangtok (2N), Tsomgo &amp; Nathula, Pelling (2N) &amp; Darjeeling (2N). Highlights: Gangtok ropeway ride &amp; Tsomgo Lake (12,400 ft) high altitude excursion, Nathula Pass Indo-China border permit processing, India&apos;s first Glass Skywalk &amp; Pemayangtse Monastery at Pelling</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://offbeatdestination.in/#package-pkg-5n6d-sikkim-darjeeling-honeymoon-luxury</loc>
-    <lastmod>2026-08-18</lastmod>
+    <loc>https://offbeatdestination.in/#package-pkg-7n8d-complete-sikkim-darjeeling</loc>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.90</priority>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/yumthang_zero_point_1785680592273.jpg</image:loc>
+      <image:title>7 Nights / 8 Days Complete Sikkim &amp; Darjeeling Circuit - 7 Nights / 8 Days</image:title>
+      <image:caption>Gangtok (2N), North Sikkim Lachung &amp; Zero Point (2N), Pelling (1N) &amp; Darjeeling (2N). Highlights: Snowbound Zero Point (Yumesamdong 15,300 ft) &amp; Yumthang Valley of Flowers, Traditional Lachung mountain village homestay experience, High-altitude Tsomgo Lake (12,400 ft) &amp; Baba Harbhajan Mandir</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://offbeatdestination.in/#package-pkg-7n8d-grand-bhutan-cultural-tour</loc>
-    <lastmod>2026-08-18</lastmod>
+    <loc>https://offbeatdestination.in/#package-pkg-8n9d-ultimate-himalayan-odyssey</loc>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.90</priority>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>8 Nights / 9 Days Ultimate Himalayan Odyssey: Sikkim, Kalimpong &amp; Darjeeling - 8 Nights / 9 Days</image:title>
+      <image:caption>Gangtok (2N), North Sikkim (2N), Pelling (2N), Kalimpong (1N) &amp; Darjeeling (1N). Highlights: Comprehensive coverage of East Sikkim, North Sikkim, West Sikkim, Kalimpong &amp; Darjeeling, Zero Point (15,300 ft), Yumthang Valley, Tsomgo Lake &amp; Nathula Pass, Pelling Glass Skywalk, Khecheopalri Wish Lake &amp; Rabdentse Palace Ruins</image:caption>
+    </image:image>
   </url>
-
-  <!-- Destination Guides -->
   <url>
-    <loc>https://offbeatdestination.in/#dest-gangtok</loc>
-    <lastmod>2026-08-18</lastmod>
+    <loc>https://offbeatdestination.in/#package-pkg-silk-route-zuluk</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/nathula_pass_snow_1785681052944.jpg</image:loc>
+      <image:title>Old Silk Route Zuluk &amp; Reshi Khola Heritage Tour - 3 Nights / 4 Days</image:title>
+      <image:caption>Sillery Gaon, Zuluk, Nathang Valley &amp; Gangtok. Highlights: Navigate 30+ legendary hairpin bends of the Old Silk Route Zig-Zag road, Sunrise over Mt. Kanchenjunga from Thambi Viewpoint (11,200 ft), Primal high-altitude lakes: Elephant Lake (Kupup) &amp; Tsomgo Lake</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-north-sikkim-5d4n</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/yumthang_zero_point_1785680592273.jpg</image:loc>
+      <image:title>5 Days / 4 Nights North Sikkim Special: Lachen, Lachung, Gurudongmar &amp; Zero Point - 4 Nights / 5 Days</image:title>
+      <image:caption>Gangtok (2N), Lachen (1N) &amp; Lachung (1N). Highlights: Sacred Gurudongmar Lake (17,800 ft) - one of the highest lakes in North Sikkim, Yumthang Valley of Flowers &amp; hot sulphur springs, Year-round snow adventure at Zero Point (Yumesamdong 15,300 ft)</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-4n5d-sikkim-darjeeling-budget</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_tea_gardens_1785681013467.jpg</image:loc>
+      <image:title>4 Nights / 5 Days Gangtok, Tsomgo Lake &amp; Darjeeling Budget Explorer - 4 Nights / 5 Days</image:title>
+      <image:caption>Gangtok (2N) &amp; Darjeeling (2N). Highlights: High-altitude Tsomgo Lake (12,400 ft) &amp; Baba Harbhajan Singh Mandir, Nathula Pass Indo-China border permit option, Gangtok ropeway ride, Hanuman Tok &amp; Ban Jhakri Waterfalls</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-honeymoon-sikkim-darjeeling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_toy_train_1785681122611.jpg</image:loc>
+      <image:title>5 Nights / 6 Days Romantic Sikkim &amp; Darjeeling Honeymoon Special - 5 Nights / 6 Days</image:title>
+      <image:caption>Gangtok (3N) &amp; Darjeeling (2N). Highlights: Romantic Candlelight Dinner with floral bed decoration &amp; special honeymoon cake, Private Innova Crysta throughout with couple privacy and soft music, Tsomgo Lake alpine snow scenery &amp; Nathula Pass border experience</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-7d6n-grand-sikkim-north-darjeeling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/yumthang_zero_point_1785680592273.jpg</image:loc>
+      <image:title>7 Days / 6 Nights Grand Sikkim, Gurudongmar &amp; Darjeeling Expedition - 7 Days / 6 Nights</image:title>
+      <image:caption>Gangtok (2N), Lachen &amp; Gurudongmar (1N), Lachung &amp; Zero Point (1N) &amp; Darjeeling (2N). Highlights: Sacred Gurudongmar Lake (17,800 ft) &amp; snowbound Zero Point (15,300 ft), Traditional Lachen &amp; Lachung mountain village homestays with hot meals, Tsomgo High Altitude Glacial Lake (12,400 ft) &amp; Baba Mandir</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-8d7n-silk-route-north-sikkim-darjeeling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/agency_poster_dark_1785772843834.jpg</image:loc>
+      <image:title>8 Days / 7 Nights Old Silk Route Zuluk, North Sikkim &amp; Darjeeling Expedition - 8 Days / 7 Nights</image:title>
+      <image:caption>Reshi Khola / Sillery (1N), Zuluk Silk Route (1N), Gangtok (1N), Lachung (2N) &amp; Darjeeling (2N). Highlights: Navigate 30+ hairpin bends of legendary Old Silk Route &amp; Thambi Viewpoint sunrise, Elephant Lake (Kupup), Old Baba Mandir &amp; Nathang Valley snow plateau, Yumthang Valley of Flowers &amp; Zero Point (15,300 ft) North Sikkim</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-9d8n-complete-sikkim-pelling-darjeeling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>9 Days / 8 Nights Complete Sikkim, Gurudongmar, Pelling Skywalk &amp; Darjeeling - 9 Days / 8 Nights</image:title>
+      <image:caption>Gangtok (2N), Lachen (1N), Lachung (1N), Pelling Glass Skywalk (2N) &amp; Darjeeling (2N). Highlights: Comprehensive coverage of East, West, South &amp; North Sikkim + Darjeeling, Gurudongmar Sacred Lake (17,800 ft) &amp; Zero Point snow region (15,300 ft), India&apos;s 1st Glass Skywalk at Pelling &amp; Khecheopalri Wish-Fulfilling Lake</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-10d9n-ultimate-sikkim-darjeeling-bhutan-grand-odyssey</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>10 Days / 9 Nights Ultimate Sikkim, Bhutan Border &amp; Darjeeling Grand Odyssey - 10 Days / 9 Nights</image:title>
+      <image:caption>Gangtok (3N), Lachen &amp; Gurudongmar (1N), Lachung &amp; Zero Point (1N), Pelling (2N) &amp; Darjeeling (2N). Highlights: The ultimate 10-day Himalayan circuit across Sikkim, Bhutan Border &amp; Darjeeling, Gurudongmar Sacred Lake (17,800 ft), Yumthang Valley &amp; Zero Point North Sikkim, Tsomgo Lake &amp; Nathula Pass Indo-China Border army permits</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-etripto-3n4d-glimpse</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>3 Nights / 4 Days Gangtok &amp; Darjeeling Express Glimpse (etripto.in Special) - 3 Nights / 4 Days</image:title>
+      <image:caption>Gangtok (2N) &amp; Darjeeling (1N) with Tsomgo Lake &amp; Tiger Hill Sunrise. Highlights: Quick express circuit for travelers with short holiday windows, High-altitude Tsomgo Lake (12,400 ft) &amp; Baba Harbhajan Mandir, Nathula Pass Indo-China Border permit assistance</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-etripto-4n5d-silkroute</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/agency_poster_dark_1785772843834.jpg</image:loc>
+      <image:title>4 Nights / 5 Days Historic Old Silk Route &amp; Zuluk Circuit (etripto.in Special) - 4 Nights / 5 Days</image:title>
+      <image:caption>Reshi Khola / Aritar (1N), Zuluk (1N) &amp; Gangtok (2N). Highlights: Cross the historic trade corridor: 30+ hairpin bends of Zuluk Zig-Zag road, Sunrise over Mt. Kanchenjunga from Thambi Viewpoint (11,200 ft), Nathang Valley snow plateau, Kupup Elephant Lake &amp; Old Baba Mandir</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-etripto-3n4d-darjeeling-mirik</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_tea_gardens_1785681013467.jpg</image:loc>
+      <image:title>3 Nights / 4 Days Darjeeling, Mirik Lake &amp; Lamahatta Tea Garden Special - 3 Nights / 4 Days</image:title>
+      <image:caption>Darjeeling (2N) &amp; Mirik Lake / Kurseong (1N). Highlights: Tiger Hill 4:00 AM Kanchenjunga sunrise &amp; Batasia Loop Toy Train track, Happy Valley Tea Estate stroll &amp; high-tea session, Lamahatta Eco Park pine forest canopy walk &amp; quiet meditation garden</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-etripto-5n6d-glamorous-sikkim-darjeeling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_toy_train_1785681122611.jpg</image:loc>
+      <image:title>5 Nights / 6 Days Best of Sikkim &amp; Darjeeling with Summit &amp; Udaan Hotel Stays - 5 Nights / 6 Days</image:title>
+      <image:caption>Gangtok (3N) &amp; Darjeeling (2N) with 3★/4★ Affiliated Chain Stays. Highlights: Guaranteed stays at affiliated Summit Hotels &amp; Udaan Resorts, Tsomgo Glacial Lake (12,400 ft) &amp; Nathula Pass Indo-China Border army permit, Gangtok Ropeway, Ban Jhakri Waterfalls &amp; Flower Exhibition Centre</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-10n11d-grand-himalayan-circuit</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>10 Nights / 11 Days Grand Sikkim, Old Silk Route, North Sikkim &amp; Darjeeling Grand Circuit - 10 Nights / 11 Days</image:title>
+      <image:caption>Sillery/Reshi (1N), Zuluk (1N), Gangtok (2N), Lachen (1N), Lachung (2N), Pelling (2N) &amp; Darjeeling (1N). Highlights: Epic 10-Night Grand Himalayan Odyssey across East, West, South, North Sikkim &amp; Darjeeling, Old Silk Route Zuluk zig-zag bends (32 hairpin curves) &amp; Thambi Viewpoint sunrise, Sacred Gurudongmar Lake (17,800 ft), Yumthang Valley &amp; snowbound Zero Point (15,300 ft)</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-11n12d-ultimate-sikkim-darjeeling-kalimpong-unexplored</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/agency_poster_dark_1785772843834.jpg</image:loc>
+      <image:title>11 Nights / 12 Days Ultimate Sikkim, Darjeeling, Kalimpong &amp; Dooars Foothills Odyssey - 11 Nights / 12 Days</image:title>
+      <image:caption>Kalimpong (1N), Sillery (1N), Zuluk (1N), Gangtok (2N), Lachen (1N), Lachung (2N), Pelling (2N) &amp; Darjeeling (1N). Highlights: Comprehensive 12-day Himalayan mega expedition across Kalimpong, Silk Route, North Sikkim, West Sikkim &amp; Darjeeling, Kalimpong Deolo Hill, Pine View Cactus Nursery &amp; colonial Morgan House heritage tour, Zuluk Silk Route 32 hairpin curves, Nathang Valley, Kupup Lake &amp; Elephant Lake</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-12n13d-complete-sikkim-bhutan-international-cross-border</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/bhutan_tigers_nest_1785680619985.jpg</image:loc>
+      <image:title>12 Nights / 13 Days Complete Sikkim &amp; Kingdom of Bhutan International Cross-Border Tour - 12 Nights / 13 Days</image:title>
+      <image:caption>Gangtok (2N), Lachung (2N), Darjeeling (2N), Phuentsholing (1N), Thimphu (2N) &amp; Paro (3N). Highlights: Extraordinary 13-day international cross-border expedition combining Sikkim&apos;s peaks with the Kingdom of Bhutan, Hike to the legendary Tiger&apos;s Nest Monastery (Paro Taktsang, 10,240 ft) perched on a cliff, Thimphu Buddha Dordenma (169ft bronze colossus), Tashichho Dzong &amp; Motithang Takin Preserve</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-14n15d-grand-eastern-himalayan-epic-odyssey</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>14 Nights / 15 Days Grand Eastern Himalayan Epic Odyssey: Complete Sikkim, Darjeeling, Bhutan Border &amp; North East Heritage - 14 Nights / 15 Days</image:title>
+      <image:caption>Kalimpong (1N), Sillery (1N), Zuluk (1N), Gangtok (3N), Lachen (1N), Lachung (2N), Pelling (2N), Darjeeling (2N) &amp; Mirik (1N). Highlights: The ultimate 15-day flagship Eastern Himalayan expedition covering every iconic destination and hidden gem, Old Silk Route Zuluk zig-zag hairpin bends, Thambi Viewpoint sunrise, Nathang Valley &amp; Kupup Elephant Lake, Sacred Gurudongmar Lake (17,800 ft), Yumthang Valley of Flowers, Zero Point (15,300 ft) &amp; Katao Peak</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-north-sikkim-3n4d-lachen-lachung</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/yumthang_zero_point_1785680592273.jpg</image:loc>
+      <image:title>3 Nights / 4 Days North Sikkim Alpine Odyssey: Lachen, Gurudongmar Lake &amp; Lachung Zero Point - 3 Nights / 4 Days</image:title>
+      <image:caption>Lachen (1N), Gurudongmar Lake (17,800 ft), Lachung (2N), Yumthang Valley &amp; Zero Point. Highlights: Sacred Gurudongmar Lake (17,800 ft) high altitude plateau expedition near Tibet border, Mandatory 2-Night Lachung stay for optimal acclimatization and scenic relaxation, Yumthang Valley of Flowers (11,800 ft) and snow-covered Zero Point (15,300 ft)</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-north-sikkim-4n5d-grand-alpine</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/yumthang_zero_point_1785680592273.jpg</image:loc>
+      <image:title>4 Nights / 5 Days In-Depth North Sikkim Glacial Odyssey: Gangtok, Lachen, Gurudongmar &amp; Lachung - 4 Nights / 5 Days</image:title>
+      <image:caption>Gangtok (1N), Lachen (1N), Lachung (2N), Gurudongmar Lake, Zero Point &amp; Katao. Highlights: Complete North Sikkim circuit with zero rush and dedicated buffer days, Gurudongmar Lake (17,800 ft), Chopta Valley, Yumthang Valley &amp; Zero Point, Exclusive excursion to Mount Katao alpine snow region</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-silkroute-3n4d-express</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/agency_poster_dark_1785772843834.jpg</image:loc>
+      <image:title>3 Nights / 4 Days Old Silk Route Express: Sillery Gaon, Zuluk Zig-Zag &amp; Nathang Valley - 3 Nights / 4 Days</image:title>
+      <image:caption>Sillery Gaon (1N), Zuluk (1N) &amp; Gangtok (1N). Highlights: Experience the 32 legendary hairpin loops of historic Zuluk Zig-Zag road, Sunrise over Mount Kanchenjunga from Thambi Viewpoint (11,200 ft), High altitude Nathang Valley (13,500 ft), Old Baba Mandir &amp; Kupup Elephant Lake</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-silkroute-5n6d-heritage-connector</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/agency_poster_dark_1785772843834.jpg</image:loc>
+      <image:title>5 Nights / 6 Days Grand Silk Route, Kupup Lake, Tsomgo &amp; Gangtok Heritage - 5 Nights / 6 Days</image:title>
+      <image:caption>Reshi Khola (1N), Zuluk (1N), Nathang Valley (1N) &amp; Gangtok (2N). Highlights: Overnight stay at Nathang Valley (13,500 ft) - &apos;Ladakh of the East&apos;, Riverside bonfire and organic trout dining at Reshi Khola riverbank, Thambi Viewpoint sunrise over 32 hairpin bends &amp; Tukla War Memorial</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-west-sikkim-3n4d-pelling-skywalk</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>3 Nights / 4 Days Pelling Glass Skywalk, Chenrezig &amp; Pemayangtse Monastery - 3 Nights / 4 Days</image:title>
+      <image:caption>Pelling (2N) &amp; Ravangla Buddha Park (1N). Highlights: Walk across India&apos;s first Glass Skywalk (7,200 ft) facing Chenrezig Colossus, Ancient Rabdentse Palace Ruins &amp; 300-year-old Pemayangtse Monastery, Sacred wish-fulfilling Khecheopalri Lake and Kanchenjunga Waterfalls</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-west-sikkim-5n6d-historical-kingdom</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>5 Nights / 6 Days West Sikkim Royal Heritage &amp; Sacred Lakes: Pelling, Yuksom, Ravangla &amp; Namchi - 5 Nights / 6 Days</image:title>
+      <image:caption>Namchi (1N), Ravangla (1N), Pelling (2N) &amp; Yuksom (1N). Highlights: Visit Siddhesvara Dham (Namchi Char Dham replicas) &amp; 118ft Samdruptse Statue, First capital of Sikkim at historic Yuksom &amp; Coronation Throne of Norbugang, India&apos;s 1st Glass Skywalk at Pelling facing Chenrezig Colossus</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-bhutan-5n6d-glimpse-of-dragon-kingdom</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/bhutan_tigers_nest_1785681037397.jpg</image:loc>
+      <image:title>5 Nights / 6 Days Glimpse of Bhutan: Thimphu, Punakha Valley &amp; Paro Tiger&apos;s Nest - 5 Nights / 6 Days</image:title>
+      <image:caption>Phuentsholing (1N), Thimphu (2N), Punakha (1N) &amp; Paro (1N). Highlights: Hike to the legendary cliff-hanging Taktsang Monastery (Tiger&apos;s Nest) in Paro, Majestic Punakha Dzong at the confluence of Pho Chhu and Mo Chhu rivers, Buddha Dordenma (169ft giant golden Buddha) overlooking Thimphu Valley</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-bhutan-7n8d-essential-kingdom</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/bhutan_tigers_nest_1785681037397.jpg</image:loc>
+      <image:title>7 Nights / 8 Days Essential Kingdom of Bhutan: Thimphu, Punakha, Phobjikha &amp; Paro - 7 Nights / 8 Days</image:title>
+      <image:caption>Phuentsholing (1N), Thimphu (2N), Punakha (1N), Phobjikha (1N) &amp; Paro (2N). Highlights: Glacial Phobjikha Valley - winter sanctuary of the endangered Black-Necked Cranes, Taktsang Monastery (Tiger&apos;s Nest) hike with hot stone bath experience, Punakha Dzong, Chimi Lhakhang (Fertility Temple) &amp; longest suspension bridge</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-bhutan-9n10d-sikkim-bhutan-combo</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/bhutan_tigers_nest_1785681037397.jpg</image:loc>
+      <image:title>9 Nights / 10 Days Grand Sikkim to Bhutan Himalayan Gateway Cross-Border Odyssey - 9 Nights / 10 Days</image:title>
+      <image:caption>Gangtok (2N), Darjeeling (2N), Phuentsholing (1N), Thimphu (2N) &amp; Paro (2N). Highlights: Ultimate cross-border odyssey combining Sikkim, Darjeeling, and Kingdom of Bhutan, Tsomgo Lake, Nathula Pass, Tiger Hill Kanchenjunga sunrise &amp; Batasia Loop, Thimphu Buddha Point, Dochula Pass (108 Chortens) &amp; Punakha Dzong</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-honeymoon-luxury-6n7d-candlelight</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_toy_train_1785681122611.jpg</image:loc>
+      <image:title>6 Nights / 7 Days Luxury Alpine Romance: Mayfair Gangtok, Elgin Darjeeling &amp; Mirik Lake - 6 Nights / 7 Days</image:title>
+      <image:caption>Gangtok (3N), Darjeeling (2N) &amp; Mirik Lake (1N). Highlights: 5★ Luxury stays at Mayfair Spa Resort Gangtok &amp; The Elgin Heritage Darjeeling, Private Candlelight Dinner with floral room decor and honeymoon celebration cake, Couple boating at pine-fringed Mirik Sumendu Lake &amp; Pashupati Nepal border market</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-honeymoon-4n5d-darjeeling-tea-romance</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_tea_gardens_1785681013467.jpg</image:loc>
+      <image:title>4 Nights / 5 Days Darjeeling Heritage &amp; Tea Estate Romantic Couple Retreat - 4 Nights / 5 Days</image:title>
+      <image:caption>Darjeeling (3N) &amp; Kurseong Tea Estate (1N). Highlights: Stay inside a colonial tea planter&apos;s bungalow surrounded by misty tea gardens, Private couple Joyride on UNESCO Darjeeling Himalayan Toy Train (Steam Engine), Tiger Hill golden Kanchenjunga sunrise &amp; private high-tea at Happy Valley Estate</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-dzongu-3n4d-lepcha-homestay</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/yumthang_zero_point_1785680592273.jpg</image:loc>
+      <image:title>3 Nights / 4 Days Offbeat Dzongu Lepcha Reserve Homestay &amp; River Valley Sanctuary - 3 Nights / 4 Days</image:title>
+      <image:caption>Passingdang &amp; Tingvong Village, Dzongu Special Reserve, North Sikkim. Highlights: Exclusive entry into Dzongu - the protected ancestral homeland of the indigenous Lepcha tribe, Authentic traditional Lepcha wooden homestay with bamboo architecture and fireplace, Hike to Lingzya Waterfall, sacred mountain cane bridges, and natural hot sulphur springs</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-borong-ravangla-4n5d-hot-springs</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>4 Nights / 5 Days Offbeat Borong Hot Springs, Ralang Monasteries &amp; Ravangla Nature Retreat - 4 Nights / 5 Days</image:title>
+      <image:caption>Ravangla (2N) &amp; Borong Village / Ralang (2N), South Sikkim. Highlights: Natural mineral-rich hot sulphur springs (Tatopani) by the roaring Rangit River, Ancient Old &amp; New Ralang Monasteries with traditional monastic mask dances, Borong eco-village walks, birdwatching trails &amp; pristine pine canopy walks</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-kalimpong-lava-rishyap-kolakham-4n5d</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_tea_gardens_1785681013467.jpg</image:loc>
+      <image:title>4 Nights / 5 Days Kalimpong, Lava Pine Forest, Rishyap &amp; Kolakham Neora Valley Getaway - 4 Nights / 5 Days</image:title>
+      <image:caption>Kalimpong (2N), Lava / Rishyap (1N) &amp; Kolakham (1N). Highlights: Untouched pine forests of Neora Valley National Park &amp; Changey Waterfalls, 360-degree Kanchenjunga mountain view from Tiffin Dara &amp; Rishyap ridge, Colonial heritage in Kalimpong: Morgan House, Deolo Hill &amp; Durpin Monastery</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-adventure-7n8d-goechala-kanchenjunga</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>7 Nights / 8 Days Goechala Kanchenjunga Base Camp Trekking Expedition - 7 Nights / 8 Days</image:title>
+      <image:caption>Yuksom, Bakhim, Dzongri, Thansing, Lamuney &amp; Goechala Viewpoint (15,100 ft). Highlights: Stand face-to-face with the colossal South-East Face of Mount Kanchenjunga (8,586 m), Cross rhododendron forests, Dzongri Top (13,778 ft) &amp; sacred Samiti Lake, Professional certified mountaineering guide, camp cook, and porter team</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-adventure-5n6d-dzongri-viewpoint-trek</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>5 Nights / 6 Days Dzongri Panoramic Peak &amp; Himalayan Wilderness Trek - 5 Nights / 6 Days</image:title>
+      <image:caption>Yuksom, Tshoka, Dzongri Top (13,778 ft) &amp; Prek Chu River Gorge. Highlights: Ideal shorter high-altitude trek for adventure seekers with breathtaking views, Dzongri Top sunrise: close-up view of Mt. Kanchenjunga, Mt. Pandim &amp; Kabru Dome, Walk through ancient pine, oak, and vibrant rhododendron sanctuaries</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-adventure-4n5d-teesta-rafting-biking</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/innova_mountain_drive_1785681104445.jpg</image:loc>
+      <image:title>4 Nights / 5 Days Teesta White-Water Rafting, Mountain Biking &amp; Paragliding Adventure - 4 Nights / 5 Days</image:title>
+      <image:caption>Melli / Teesta Bazar, Gangtok &amp; Pelling. Highlights: Thrilling Grade III &amp; IV white-water river rafting on Teesta &amp; Rangit rivers, Tandem high-altitude paragliding flight over Gangtok hills with HD video, Downhill mountain biking trail through Temi tea gardens and pine ridges</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-family-pure-veg-jain-6n7d</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>6 Nights / 7 Days Pure Vegetarian &amp; Jain Friendly Sikkim-Darjeeling Pilgrimage &amp; Heritage Tour - 6 Nights / 7 Days</image:title>
+      <image:caption>Namchi Char Dham (1N), Gangtok (3N) &amp; Darjeeling (2N). Highlights: 100% Guaranteed Pure Vegetarian &amp; Strict Jain food (No Onion, No Garlic, Root-free meals), Siddhesvara Dham (Namchi Char Dham replicas) &amp; 118ft Samdruptse Golden Statue, Ravangla Buddha Park (130ft Buddha statue) &amp; Rumtek Sacred Dharma Chakra Centre</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-family-gentle-hills-5n6d</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>5 Nights / 6 Days Senior Citizen &amp; Family Gentle Hills Tour: Low Altitude Gangtok &amp; Darjeeling - 5 Nights / 6 Days</image:title>
+      <image:caption>Gangtok (3N) &amp; Darjeeling (2N). Highlights: Thoughtfully paced low-altitude itinerary with zero strenuous climbing for seniors &amp; kids, Spacious Toyota Innova Crysta with plush captain seats and gentle hill driving, Ground floor / lift-equipped 3★/4★ hotel rooms situated near town centers</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-weekend-2n3d-gangtok-quick-break</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/nathula_pass_snow_1785681052944.jpg</image:loc>
+      <image:title>2 Nights / 3 Days Gangtok City &amp; Tsomgo Glacial Lake Weekend Break - 2 Nights / 3 Days</image:title>
+      <image:caption>Gangtok (2N), Tsomgo Lake (12,400 ft) &amp; Baba Mandir. Highlights: Perfect short weekend getaway for working professionals and quick explorers, High altitude Tsomgo Glacial Lake (12,400 ft) and historic Baba Mandir, Optional Nathula Pass Indo-China border army permit coordination</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-weekend-2n3d-darjeeling-toy-train-refresh</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_tea_gardens_1785681013467.jpg</image:loc>
+      <image:title>2 Nights / 3 Days Darjeeling Toy Train, Tea Garden &amp; Tiger Hill Sunrise Quick Refresh - 2 Nights / 3 Days</image:title>
+      <image:caption>Darjeeling Queen of Hills (2N). Highlights: Quick refreshing weekend escape to the Queen of the Hills, Tiger Hill 4:00 AM golden Kanchenjunga sunrise &amp; Batasia Loop, UNESCO World Heritage Darjeeling Himalayan Toy Train Joyride</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-photography-birdwatching-5n6d</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>5 Nights / 6 Days Himalayan Bird Watching, Orchid Sanctuary &amp; Rhododendron Photography Tour - 5 Nights / 6 Days</image:title>
+      <image:caption>Kitam Bird Sanctuary (1N), Maenam Forest / Ravangla (2N) &amp; Okhrey / Varsey (2N). Highlights: Spot exotic Himalayan birds: Satyr Tragopan, Fire-tailed Sunbird, Blood Pheasant &amp; Red Panda, Varsey Rhododendron Sanctuary trail ablaze with crimson rhododendron blooms, Kitam Bird Sanctuary sal forest walks &amp; Maenam Wildlife Reserve canopy trails</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#package-pkg-namchi-char-dham-3n4d-spiritual</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>3 Nights / 4 Days South Sikkim Spiritual Circuit: Siddhesvara Dham (Char Dham), Samdruptse &amp; Temi - 3 Nights / 4 Days</image:title>
+      <image:caption>Namchi (2N) &amp; Ravangla Buddha Park (1N), South Sikkim. Highlights: Replicas of India&apos;s 4 Sacred Dhams (Badrinath, Jagannath, Dwarka, Rameshwaram) with 108ft Shiva statue, 118ft gold-plated Guru Padmasambhava Statue atop sacred Samdruptse Hill, Majestic 130ft Buddha Statue at Ravangla Buddha Park with consecrated relics</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotels-gangtok</loc>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotels-pelling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotels-lachung</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotels-lachen</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotels-darjeeling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotels-bhutan</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-mayfair-gangtok</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Mayfair Spa Resort &amp; Casino - Gangtok</image:title>
+      <image:caption>Award-winning luxury heritage resort set in lush tropical pine forests with monk statues and royal Sikkimese architecture.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-sterling-gangtok</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>Sterling Gangtok (Dzongu View) - Gangtok</image:title>
+      <image:caption>Premier resort in Gangtok with scenic views of Dzongu Valley and Kanchenjunga range, ideal for families and leisure.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-summit-denzong-gangtok</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Summit Denzong Hotel &amp; Spa - Gangtok</image:title>
+      <image:caption>Comfortable 3-star deluxe hotel offering clear views of Mt Kanchenjunga and easy walking access to MG Marg.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-summit-golden-crescent-gangtok</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Summit Golden Crescent - Gangtok</image:title>
+      <image:caption>Sophisticated 4-star boutique hotel near Gangtok center with panoramic valley balconies.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-udaan-woodberry-gangtok</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Udaan Woodberry Residences - Gangtok</image:title>
+      <image:caption>Charming boutique property overlooking Gangtok valley with exceptional hospitality and pure vegetarian meals.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-udaan-alpine-gangtok</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Udaan Alpine Resort - Gangtok</image:title>
+      <image:caption>Peaceful hilltop resort stay surrounded by mountain mist and lush pine greenery.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-rufina-gangtok-heritage</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Rufina Gangtok Heritage - Gangtok</image:title>
+      <image:caption>Dependable value hotel in central Gangtok with quick access to taxi stands and shopping.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-voyage-gangtok-regency</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Voyage Gangtok Regency - Gangtok</image:title>
+      <image:caption>Modern urban stay situated close to MG Marg promenade.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-jain-royal-gangtok</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_tea_gardens_1785681013467.jpg</image:loc>
+      <image:title>Hotel Jain Group Royal Residency - Gangtok</image:title>
+      <image:caption>Premier 100% pure vegetarian &amp; strict Jain hotel in Gangtok serving delicious onion-garlic-free meals with mountain views.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-jain-valley-view-gangtok</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Jain Group Valley View Resort - Gangtok</image:title>
+      <image:caption>Luxury boutique stay overlooking Gangtok valley with 100% pure vegetarian culinary excellence.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-rare-himalayas-gangtok</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Rare Himalayas Norbu Retreat - Gangtok</image:title>
+      <image:caption>Boutique eco-luxury retreat blending handcrafted Sikkimese timber architecture with 5-star mountain indulgence and organic gastronomy.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-trickocity-grand-gangtok</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Trickocity Grand MG Marg - Gangtok</image:title>
+      <image:caption>Vibrant boutique hotel located 2 minutes from MG Marg, featuring panoramic rooftop dining, heated rooms, and personalized travel desks.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-sun-mount-gangtok</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Hotel Sun Mount Gangtok - Gangtok</image:title>
+      <image:caption>Popular deluxe hotel in central Gangtok known for its sunlit valley-view rooms, warm Sikkimese hospitality, and immediate access to MG Marg promenade.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-gangtok-prime</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Gangtok Prime Hotel &amp; Spa - Gangtok</image:title>
+      <image:caption>Premium executive hotel in Gangtok combining modern luxury suites, in-house spa rejuvenation, and panoramic balconies overlooking the Kanchenjunga range.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-hungry-jack-gangtok</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Hotel Hungry Jack Gangtok - Gangtok</image:title>
+      <image:caption>Iconic and well-known hotel in Gangtok featuring a famous in-house restaurant, comfortable spacious rooms, and warm, budget-friendly mountain hospitality.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-crestora-grand-gangtok</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Crestora Grand Hotel &amp; Spa Gangtok - Gangtok</image:title>
+      <image:caption>Contemporary alpine boutique luxury hotel in Gangtok with breathtaking views of Mt Kanchenjunga, heated rooms, and fine multi-cuisine &amp; Jain dining.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-mayfair-darjeeling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_tea_gardens_1785681013467.jpg</image:loc>
+      <image:title>Mayfair Hill Resort &amp; Spa - Darjeeling</image:title>
+      <image:caption>Palatial hill estate overlooking Darjeeling valley with royal wooden interiors and Victorian tea gardens.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-sterling-darjeeling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_toy_train_1785681122611.jpg</image:loc>
+      <image:title>Sterling Darjeeling (Ghoom Heights) - Darjeeling</image:title>
+      <image:caption>Set on Ghoom Monastery hill, offering snow peak sunrise views and direct access to Toy Train heritage line.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-elgin-darjeeling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_tea_gardens_1785681013467.jpg</image:loc>
+      <image:title>The Elgin Heritage Hotel - Darjeeling</image:title>
+      <image:caption>125-year-old royal summer residence turned luxury heritage hotel in the heart of Darjeeling near Mall Road.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-summit-grace-darjeeling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_tea_gardens_1785681013467.jpg</image:loc>
+      <image:title>Summit Grace Hotel &amp; Spa - Darjeeling</image:title>
+      <image:caption>Peaceful stay on Gandhi Road with clear morning views of Mt Kanchenjunga.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-udaan-dekeling-darjeeling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_tea_gardens_1785681013467.jpg</image:loc>
+      <image:title>Udaan Dekeling Resort - Darjeeling</image:title>
+      <image:caption>A grand colonial wooden manor converted into a boutique luxury resort near Darjeeling Chowrasta.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-rufina-darjeeling-mall</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_tea_gardens_1785681013467.jpg</image:loc>
+      <image:title>Rufina Darjeeling Mall Road - Darjeeling</image:title>
+      <image:caption>Ultra-convenient budget deluxe hotel situated right at Darjeeling Mall Road.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-voyage-glenburn-darjeeling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_tea_gardens_1785681013467.jpg</image:loc>
+      <image:title>Voyage Glenburn Tea Estate Stay - Darjeeling</image:title>
+      <image:caption>Exclusive heritage estate stay surrounded by 1,000 acres of lush tea plantations and rivers.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-jain-mount-conifer-darjeeling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_tea_gardens_1785681013467.jpg</image:loc>
+      <image:title>Jain Group Hotel Mount Conifer - Darjeeling</image:title>
+      <image:caption>Charming pure vegetarian property near Darjeeling Mall Road featuring dedicated Jain dining and clear snow-cap mountain views.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-rare-himalayas-darjeeling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_tea_gardens_1785681013467.jpg</image:loc>
+      <image:title>Rare Himalayas Pinecrest Manor - Darjeeling</image:title>
+      <image:caption>Restored heritage sanctuary set amid whispering pine groves with clear views of Mt Kanchenjunga and exclusive high-tea experiences.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-trickocity-highpoint-darjeeling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_toy_train_1785681122611.jpg</image:loc>
+      <image:title>Trickocity Highpoint Retreat &amp; Rooftop - Darjeeling</image:title>
+      <image:caption>Stylish contemporary hotel near Darjeeling Mall Road offering expansive sunrise terraces over the Kanchenjunga valley.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-crestora-pineview-darjeeling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_tea_gardens_1785681013467.jpg</image:loc>
+      <image:title>Crestora Pineview Manor Darjeeling - Darjeeling</image:title>
+      <image:caption>Boutique heritage-style hotel nestled along Darjeeling scenic ridges with panoramic sunrise views of Mt Kanchenjunga and luxurious heated rooms.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-summit-dragons-pelling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>Summit Dragon&apos;s Delight - Pelling</image:title>
+      <image:caption>Prime West Sikkim hotel offering front-row vistas of Mt. Kanchenjunga peaks.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-sila-norphel-pelling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>Sila Norphel Resort Pelling - Pelling</image:title>
+      <image:caption>Premier scenic mountain resort in Upper Pelling celebrated for its unobstructed panoramic views of Mt Kanchenjunga, serene pine gardens, and warm local hospital</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-crestora-valley-pelling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>Crestora Valley Retreat Pelling - Pelling</image:title>
+      <image:caption>Tranquil luxury retreat in Pelling offering floor-to-ceiling vistas of the snow-capped Himalayan range and personalized guest pampering.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-udaan-clover-pelling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>Udaan Clover Hotel &amp; Spa - Pelling</image:title>
+      <image:caption>Boutique luxury resort in Pelling featuring pure vegetarian cuisine and lush lawn gardens.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-rufina-pelling-mountain</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>Rufina Pelling Mountain View - Pelling</image:title>
+      <image:caption>Affordable comfort hotel offering unobstructed mountain sunrise views in Pelling.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-voyage-pelling-heights</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>Voyage Pelling Heights - Pelling</image:title>
+      <image:caption>Modern hotel located close to Pemayangtse Monastery and Rabdentse ruins.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-jain-grand-heritage-pelling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_tea_gardens_1785681013467.jpg</image:loc>
+      <image:title>Jain Group Grand Heritage Resort - Pelling</image:title>
+      <image:caption>Luxury 4-star pure vegetarian resort in Pelling offering panoramic views of Mt. Kanchenjunga and custom Jain breakfast &amp; dinner.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-rare-himalayas-pelling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>Rare Himalayas Kanchenjunga Estate - Pelling</image:title>
+      <image:caption>Spectacular luxury estate in Upper Pelling offering uninterrupted 180-degree panoramas of the Himalayan snow range.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-trickocity-alpine-pelling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>Trickocity Alpine Heights - Pelling</image:title>
+      <image:caption>Modern hilltop stay providing comfortable family suites and direct views of Mt Kanchenjunga at competitive pricing.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-lachung-country-house</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/yumthang_zero_point_1785680592273.jpg</image:loc>
+      <image:title>Lachung Country House - North Sikkim</image:title>
+      <image:caption>Iconic boutique alpine country lodge in Lachung valley featuring handcrafted pine wood suites, roaring fireplace lounge, continuous radiator heating, and hearty</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-summit-alpine-lachung</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/yumthang_zero_point_1785680592273.jpg</image:loc>
+      <image:title>Summit Alpine Resort Lachung - North Sikkim</image:title>
+      <image:caption>Warm pine wooden hotel in Lachung village serving hot organic meals before Yumthang &amp; Zero Point trips.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-rufina-lachung-grand</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/yumthang_zero_point_1785680592273.jpg</image:loc>
+      <image:title>Rufina Lachung Grand - North Sikkim</image:title>
+      <image:caption>Popular high-altitude hotel in Lachung with warm generator backup and hot tea service.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-rare-himalayas-lachung</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/yumthang_zero_point_1785680592273.jpg</image:loc>
+      <image:title>Rare Himalayas Alpine Sanctuary Lachung - North Sikkim</image:title>
+      <image:caption>Top-tier luxury alpine stay in Lachung featuring insulated pine-wood suites, radiant heating, and gourmet warm meals.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-trickocity-snowline-lachung</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/yumthang_zero_point_1785680592273.jpg</image:loc>
+      <image:title>Trickocity Snowline Lodge Lachung - North Sikkim</image:title>
+      <image:caption>Cozy wooden lodge in Lachung village offering warm beds, hot meals, and reliable power backup for North Sikkim travelers.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-lachung-residency</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/yumthang_zero_point_1785680592273.jpg</image:loc>
+      <image:title>Lachung Paradise Residency - North Sikkim</image:title>
+      <image:caption>Warm mountain hotel in Lachung village serving organic Sikkimese meals and heated blanket rooms.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-mayfair-kalimpong</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Mayfair Himalayan Retreat - Kalimpong</image:title>
+      <image:caption>Exclusive luxury estate in Kalimpong featuring exotic orchid gardens and colonial bungalow suites.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-summit-barsana-kalimpong</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Summit Barsana Resort &amp; Spa - Kalimpong</image:title>
+      <image:caption>Sprawling resort set across 3 acres of gardens overlooking Kanchenjunga in Kalimpong.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-voyage-kalimpong</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Voyage Kalimpong Retreat - Kalimpong</image:title>
+      <image:caption>Peaceful hilltop hotel near Deolo Hill with mountain breezes and flower gardens.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-udaan-olive-siliguri</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Udaan Olive Hotel - Siliguri</image:title>
+      <image:caption>Modern transit hotel near NJP Station &amp; Bagdogra Airport with delicious vegetarian dining.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#hotel-hotel-jain-seven-seas-siliguri</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_tea_gardens_1785681013467.jpg</image:loc>
+      <image:title>Jain Group Hotel Seven Seas - Siliguri</image:title>
+      <image:caption>Premier pure vegetarian and Jain transit stop in Siliguri near Hill Cart Road.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#blog-dzongu-secret-lepcha-valley-sikkim</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.86</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Dzongu: Entering the Sacred, Untouched Sanctuary of the Mayallyang Lepchas</image:title>
+      <image:caption>Tucked away in the folds of North Sikkim lies Dzongu, a pristine reserve reserved exclusively for the indigenous Lepcha community. Free from urban crowds and co</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#blog-high-altitude-sikkim-packing-checklist-expert-guide</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.86</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/yumthang_zero_point_1785680592273.jpg</image:loc>
+      <image:title>High Altitude Survival &amp; Packing Masterclass: Zero Point, Gurudongmar &amp; Nathula</image:title>
+      <image:caption>Traveling to Gurudongmar Lake (17,800 ft), Zero Point (15,300 ft), or Nathula Pass (14,140 ft) requires meticulous preparation. Learn the golden 3-layer clothin</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#blog-old-silk-route-sikkim-tales-of-zuluk-loops</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.86</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/nathula_pass_snow_1785681052944.jpg</image:loc>
+      <image:title>The Whispering Passes of the Old Silk Route: Zuluk, Gnathang &amp; Kupup Lake</image:title>
+      <image:caption>Centuries ago, mule caravans laden with Tibetan raw wool, silk, musk, and spices negotiated the treacherous, cloud-engulfed passes of East Sikkim. Today, the Si</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#blog-nathula-pass-permit-charges-rules-govt-rates-guide</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.86</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/nathula_pass_snow_1785681052944.jpg</image:loc>
+      <image:title>Nathula Pass &amp; Protected Area Permits: Clear Rules &amp; Government Fee Structure</image:title>
+      <image:caption>Everything you need to know about visiting the Indo-China international border at Nathula Pass (14,140 ft). Learn about military vehicle permit processing, gove</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#blog-ancient-monasteries-sikkim-rumtek-pemayangtse-tashiding</loc>
+    <lastmod>2026-08-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.86</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/ravangla_buddha_park_1785680605794.jpg</image:loc>
+      <image:title>Sacred Chants &amp; Painted Murals: Exploring Sikkim’s Ancient Buddhist Monasteries</image:title>
+      <image:caption>Sikkim is home to over 200 ancient Buddhist monasteries (Gumpas) where butter lamps glow perpetually against intricate silk thangkas. Journey into Rumtek, Pemay</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#blog-pure-veg-jain-food-guide-sikkim-darjeeling-himalayas</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.86</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/darjeeling_tea_gardens_1785681013467.jpg</image:loc>
+      <image:title>A Foodie’s Guide to 100% Pure Vegetarian &amp; Jain Dining in Sikkim &amp; Darjeeling</image:title>
+      <image:caption>Worried about vegetarian and Jain food availability in the Himalayas? Sikkim and Darjeeling have evolved into fantastic destinations for strict pure veg, Marwar</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#dest-gangtok</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.88</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Gangtok - East Sikkim</image:title>
+      <image:caption>The vibrant capital city offering views of Mt. Kanchenjunga, ancient monasteries, and ropeways.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://offbeatdestination.in/#dest-north-sikkim</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.88</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/yumthang_zero_point_1785680592273.jpg</image:loc>
+      <image:title>North Sikkim (Lachung &amp; Yumthang) - North Sikkim</image:title>
+      <image:caption>Snow peaks, hot springs, rhododendron blooms, and high-altitude Zero Point (15,300 ft).</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://offbeatdestination.in/#dest-pelling</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.88</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Pelling &amp; West Sikkim - West Sikkim</image:title>
+      <image:caption>India&apos;s first Glass Skywalk, historic Rabdentse Palace ruins, and closest Kanchenjunga views.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://offbeatdestination.in/#dest-silk-route</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.88</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Old Silk Route &amp; Zuluk - Silk Route</image:title>
+      <image:caption>Historic ancient trade path with 32 hairpin loops at Thambi View Point and high mountain passes.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://offbeatdestination.in/#dest-darjeeling</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.88</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/sikkim_hero_banner_1785680563996.jpg</image:loc>
+      <image:title>Darjeeling &amp; Mirik - Darjeeling</image:title>
+      <image:caption>Queen of the Hills, iconic UNESCO Toy Train, World-famous Tea Gardens, and Tiger Hill Sunrise.</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://offbeatdestination.in/#dest-south-sikkim</loc>
-    <lastmod>2026-08-18</lastmod>
+    <loc>https://offbeatdestination.in/#cab-cab-innova-crysta</loc>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.84</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/innova_crysta_cab_1785680577329.jpg</image:loc>
+      <image:title>Toyota Innova Crysta Cab Rental Gangtok</image:title>
+      <image:caption>Best for Families, Couples, North Sikkim (2N Lachung) &amp; Nathula Pass Army Permits. Daily rate: ₹4500</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://offbeatdestination.in/#dest-bhutan</loc>
-    <lastmod>2026-08-18</lastmod>
+    <loc>https://offbeatdestination.in/#cab-cab-xylo-scorpio</loc>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <!-- Cab Fleet & Taxi Services -->
-  <url>
-    <loc>https://offbeatdestination.in/#cab-innova-crysta</loc>
-    <lastmod>2026-08-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.84</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/innova_crysta_cab_1785680577329.jpg</image:loc>
+      <image:title>Mahindra Xylo / Scorpio 4x4 Cab Rental Gangtok</image:title>
+      <image:caption>Best for North Sikkim 2N Lachung, Zero Point &amp; High Altitude Snow Terrain. Daily rate: ₹4000</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://offbeatdestination.in/#cab-xylo-scorpio</loc>
-    <lastmod>2026-08-18</lastmod>
+    <loc>https://offbeatdestination.in/#cab-cab-tempo-traveller</loc>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.84</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/agency_card_banner_1785772861093.jpg</image:loc>
+      <image:title>Force Urbania / Luxury Tempo Traveller Cab Rental Gangtok</image:title>
+      <image:caption>Best for Large Families, Corporate Groups, College Tours &amp; Destination Weddings. Daily rate: ₹6500</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://offbeatdestination.in/#cab-sedan-dzire</loc>
-    <lastmod>2026-08-18</lastmod>
+    <loc>https://offbeatdestination.in/#cab-cab-bolero-camper</loc>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.84</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/yumthang_zero_point_1785680592273.jpg</image:loc>
+      <image:title>Mahindra Bolero Neo / Mountain 4WD Cab Rental Gangtok</image:title>
+      <image:caption>Best for Offbeat Dzongu, Zuluk Silk Route &amp; Rustic Village Expeditions. Daily rate: ₹3800</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://offbeatdestination.in/#cab-hatchback-wagonr</loc>
-    <lastmod>2026-08-18</lastmod>
+    <loc>https://offbeatdestination.in/#cab-cab-sedan-dzire</loc>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.84</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/innova_mountain_drive_1785681104445.jpg</image:loc>
+      <image:title>Swift Dzire / Toyota Etios Cab Rental Gangtok</image:title>
+      <image:caption>Best for Couples, NJP/IXB transfers, Gangtok &amp; Darjeeling Local (Permit charges applied as per govt rate). Daily rate: ₹3200</image:caption>
+    </image:image>
   </url>
-
-  <!-- Travel Blogs & Route Articles -->
   <url>
-    <loc>https://offbeatdestination.in/#blog-dzongu-secret-lepcha-valley-sikkim</loc>
-    <lastmod>2026-08-18</lastmod>
+    <loc>https://offbeatdestination.in/#cab-cab-hatchback-wagonr</loc>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.84</priority>
+    <image:image>
+      <image:loc>https://offbeatdestination.in/images/innova_mountain_drive_1785681104445.jpg</image:loc>
+      <image:title>WagonR / Swift / Alto Cab Rental Gangtok</image:title>
+      <image:caption>Best for Budget Travelers, Gangtok Town Point Drops (Permit charges applied as per govt rate). Daily rate: ₹2500</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#route-njp-to-gangtok</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.83</priority>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#route-bagdogra-to-gangtok</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.83</priority>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#route-gangtok-to-darjeeling</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.83</priority>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#route-north-sikkim-cabs</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.83</priority>
+  </url>
+  <url>
+    <loc>https://offbeatdestination.in/#route-gangtok-to-nathula</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.83</priority>
   </url>
 </urlset>

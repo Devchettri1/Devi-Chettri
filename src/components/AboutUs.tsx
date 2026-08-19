@@ -86,7 +86,7 @@ export const AboutUs: React.FC = () => {
           <div className="lg:col-span-5 relative space-y-4">
             <div className="relative rounded-xl overflow-hidden border border-[#D6B36A]/30 shadow-2xl group">
               <img
-                src="/src/assets/images/agency_poster_dark_1785772843834.jpg"
+                src="/images/agency_poster_dark_1785772843834.jpg"
                 alt="OffbeatDestination Travels Official Poster"
                 referrerPolicy="no-referrer"
                 className="w-full h-[380px] object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -106,7 +106,7 @@ export const AboutUs: React.FC = () => {
             <div className="grid grid-cols-2 gap-3">
               <div className="rounded-lg overflow-hidden border border-[#D6B36A]/20 h-28 relative group">
                 <img
-                  src="/src/assets/images/gmb_office_photo_1786168516883.jpg"
+                  src="/images/gmb_office_photo_1786168516883.jpg"
                   alt="Google My Business Registered Storefront Office"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -125,7 +125,7 @@ export const AboutUs: React.FC = () => {
                 className="rounded-lg overflow-hidden border border-[#D6B36A]/30 h-28 relative bg-[#111513] p-2 flex flex-col items-center justify-center text-center group hover:border-[#D6B36A] transition-colors shadow-lg"
               >
                 <img
-                  src="/src/assets/images/google_review_badge_1785772879766.jpg"
+                  src="/images/google_review_badge_1785772879766.jpg"
                   alt="Review Us On Google"
                   referrerPolicy="no-referrer"
                   className="max-h-12 object-contain mb-1 group-hover:scale-105 transition-transform"

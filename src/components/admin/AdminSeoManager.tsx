@@ -1210,7 +1210,7 @@ export const AdminSeoManager: React.FC<AdminSeoManagerProps> = ({
               <div className="bg-slate-900 rounded-xl overflow-hidden border border-slate-800 max-w-sm mx-auto shadow-lg">
                 <div className="h-36 bg-slate-800 relative">
                   <img
-                    src="/src/assets/images/sikkim_hero_banner_1785680563996.jpg"
+                    src="/images/sikkim_hero_banner_1785680563996.jpg"
                     alt="OpenGraph Preview"
                     className="w-full h-full object-cover"
                   />

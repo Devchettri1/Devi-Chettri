@@ -29,7 +29,7 @@ export const AdminHotels: React.FC<AdminHotelsProps> = ({ hotels, onRefresh }) =
     amenities: ['Geyser', 'Free Wi-Fi', 'Breakfast', 'Heater', 'Mountain View'],
     roomTypes: ['Deluxe Valley View', 'Executive Suite'],
     contactPhone: '+91 97331 81750',
-    image: '/src/assets/images/sikkim_hero_banner_1785680563996.jpg',
+    image: '/images/sikkim_hero_banner_1785680563996.jpg',
     active: true,
   });
 
@@ -148,7 +148,7 @@ export const AdminHotels: React.FC<AdminHotelsProps> = ({ hotels, onRefresh }) =
               amenities: ['Geyser', 'Free Wi-Fi', 'Breakfast', 'Electric Kettle'],
               roomTypes: ['Deluxe Room', 'Super Deluxe Room'],
               contactPhone: '+91 97331 81750',
-              image: '/src/assets/images/sikkim_hero_banner_1785680563996.jpg',
+              image: '/images/sikkim_hero_banner_1785680563996.jpg',
               active: true,
             });
             setIsNewModalOpen(true);
@@ -239,12 +239,12 @@ export const AdminHotels: React.FC<AdminHotelsProps> = ({ hotels, onRefresh }) =
               {/* Hotel Photo with Replace Button */}
               <div className="relative h-44 overflow-hidden bg-slate-900">
                 <img
-                  src={h.image || '/src/assets/images/sikkim_hero_banner_1785680563996.jpg'}
+                  src={h.image || '/images/sikkim_hero_banner_1785680563996.jpg'}
                   alt={h.name}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = '/src/assets/images/sikkim_hero_banner_1785680563996.jpg';
+                    (e.target as HTMLImageElement).src = '/images/sikkim_hero_banner_1785680563996.jpg';
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />

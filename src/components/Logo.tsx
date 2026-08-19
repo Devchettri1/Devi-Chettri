@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import officialLogoImg from '../assets/images/offbeat_destination_logo.png';
+
+const officialLogoImg = '/images/offbeat_destination_logo.png';
 
 interface LogoProps {
   variant?: 'light' | 'dark' | 'gold';

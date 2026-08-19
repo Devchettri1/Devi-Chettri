@@ -5,7 +5,7 @@
       "name": "Gangtok",
       "slug": "gangtok",
       "region": "East Sikkim",
-      "heroImage": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "heroImage": "/images/sikkim_hero_banner_1785680563996.jpg",
       "shortDescription": "The vibrant capital city offering views of Mt. Kanchenjunga, ancient monasteries, and ropeways.",
       "fullOverview": "Gangtok is the heart of Sikkim, blending modern amenities with traditional Buddhist hospitality. Situated at 5,410 ft, it is the starting gateway for Tsomgo Lake, Nathula Pass, and North Sikkim.",
       "bestTimeToVisit": "March to June & September to December",
@@ -29,7 +29,7 @@
       "name": "North Sikkim (Lachung & Yumthang)",
       "slug": "north-sikkim",
       "region": "North Sikkim",
-      "heroImage": "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+      "heroImage": "/images/yumthang_zero_point_1785680592273.jpg",
       "shortDescription": "Snow peaks, hot springs, rhododendron blooms, and high-altitude Zero Point (15,300 ft).",
       "fullOverview": "North Sikkim is a pristine wilderness accessible via protected area permits. Featuring Lachung village, Yumthang Valley of Flowers, Zero Point, and Lachen with Gurudongmar Lake.",
       "bestTimeToVisit": "April to June & October to December",
@@ -51,7 +51,7 @@
       "name": "Pelling & West Sikkim",
       "slug": "pelling",
       "region": "West Sikkim",
-      "heroImage": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "heroImage": "/images/sikkim_hero_banner_1785680563996.jpg",
       "shortDescription": "India's first Glass Skywalk, historic Rabdentse Palace ruins, and closest Kanchenjunga views.",
       "fullOverview": "Located at 7,200 ft, Pelling offers breathtaking views of Kanchenjunga. Home to Pemayangtse Monastery, Khecheopalri Sacred Lake, and Chenrezig Glass Skywalk.",
       "bestTimeToVisit": "October to May",
@@ -73,7 +73,7 @@
       "name": "Old Silk Route & Zuluk",
       "slug": "silk-route",
       "region": "Silk Route",
-      "heroImage": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "heroImage": "/images/sikkim_hero_banner_1785680563996.jpg",
       "shortDescription": "Historic ancient trade path with 32 hairpin loops at Thambi View Point and high mountain passes.",
       "fullOverview": "The Old Silk Route connects India with Tibet. Known for Zuluk homestays, Nathang Valley at 13,500 ft, Kupup Elephant Lake, and Old Baba Mandir.",
       "bestTimeToVisit": "October to May (Snow in Winter)",
@@ -96,7 +96,7 @@
       "name": "Darjeeling & Mirik",
       "slug": "darjeeling",
       "region": "Darjeeling",
-      "heroImage": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "heroImage": "/images/sikkim_hero_banner_1785680563996.jpg",
       "shortDescription": "Queen of the Hills, iconic UNESCO Toy Train, World-famous Tea Gardens, and Tiger Hill Sunrise.",
       "fullOverview": "Darjeeling is renowned for its panoramic views of Kanchenjunga, colonial architecture, Glenary's Bakery, and aromatic orthodox black tea.",
       "bestTimeToVisit": "October to May",
@@ -128,7 +128,7 @@
       ],
       "basePricePerNight": 8500,
       "seasonalPricePerNight": 10500,
-      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "image": "/images/sikkim_hero_banner_1785680563996.jpg",
       "amenities": [
         "Spa & Wellness",
         "Casino",
@@ -152,7 +152,7 @@
       ],
       "basePricePerNight": 5500,
       "seasonalPricePerNight": 6800,
-      "image": "/src/assets/images/ravangla_buddha_park_1785680605794.jpg",
+      "image": "/images/ravangla_buddha_park_1785680605794.jpg",
       "amenities": [
         "Dzongu Valley View",
         "Kid Zone",
@@ -175,7 +175,7 @@
       ],
       "basePricePerNight": 3500,
       "seasonalPricePerNight": 4200,
-      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "image": "/images/sikkim_hero_banner_1785680563996.jpg",
       "amenities": [
         "Mountain View",
         "Metta Spa",
@@ -198,7 +198,7 @@
       ],
       "basePricePerNight": 4800,
       "seasonalPricePerNight": 5600,
-      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "image": "/images/sikkim_hero_banner_1785680563996.jpg",
       "amenities": [
         "Valley View Terrace",
         "Spa Center",
@@ -220,7 +220,7 @@
       ],
       "basePricePerNight": 4600,
       "seasonalPricePerNight": 5400,
-      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "image": "/images/sikkim_hero_banner_1785680563996.jpg",
       "amenities": [
         "Valley View Dining",
         "100% Pure Veg Options",
@@ -241,7 +241,7 @@
       ],
       "basePricePerNight": 3800,
       "seasonalPricePerNight": 4500,
-      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "image": "/images/sikkim_hero_banner_1785680563996.jpg",
       "amenities": [
         "Pine Forest View",
         "Vegetarian Dining",
@@ -263,7 +263,7 @@
       ],
       "basePricePerNight": 2800,
       "seasonalPricePerNight": 3500,
-      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "image": "/images/sikkim_hero_banner_1785680563996.jpg",
       "amenities": [
         "Central Location",
         "North Indian Dining",
@@ -284,7 +284,7 @@
       ],
       "basePricePerNight": 3400,
       "seasonalPricePerNight": 4100,
-      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "image": "/images/sikkim_hero_banner_1785680563996.jpg",
       "amenities": [
         "MG Marg Proximity",
         "In-House Restaurant",
@@ -306,7 +306,7 @@
       ],
       "basePricePerNight": 3800,
       "seasonalPricePerNight": 4500,
-      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "image": "/images/darjeeling_tea_gardens_1785681013467.jpg",
       "amenities": [
         "100% Pure Veg Restaurant",
         "Strict Jain Kitchen",
@@ -328,7 +328,7 @@
       ],
       "basePricePerNight": 5200,
       "seasonalPricePerNight": 6400,
-      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "image": "/images/sikkim_hero_banner_1785680563996.jpg",
       "amenities": [
         "Pure Veg & Jain Restaurant",
         "Spa Services",
@@ -351,7 +351,7 @@
       ],
       "basePricePerNight": 7200,
       "seasonalPricePerNight": 8800,
-      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "image": "/images/sikkim_hero_banner_1785680563996.jpg",
       "amenities": [
         "Panoramic Kanchenjunga Balcony",
         "Organic Farm Dining",
@@ -374,7 +374,7 @@
       ],
       "basePricePerNight": 4400,
       "seasonalPricePerNight": 5300,
-      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "image": "/images/sikkim_hero_banner_1785680563996.jpg",
       "amenities": [
         "Steps from MG Marg",
         "Rooftop Mountain View Cafe",
@@ -397,7 +397,7 @@
       ],
       "basePricePerNight": 2900,
       "seasonalPricePerNight": 3600,
-      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "image": "/images/sikkim_hero_banner_1785680563996.jpg",
       "amenities": [
         "Sunny Valley View Balcony",
         "Walking Distance to MG Marg",
@@ -421,7 +421,7 @@
       ],
       "basePricePerNight": 4600,
       "seasonalPricePerNight": 5600,
-      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "image": "/images/sikkim_hero_banner_1785680563996.jpg",
       "amenities": [
         "Panoramic Mountain Balconies",
         "Prime Spa & Wellness Center",
@@ -445,7 +445,7 @@
       ],
       "basePricePerNight": 2700,
       "seasonalPricePerNight": 3400,
-      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "image": "/images/sikkim_hero_banner_1785680563996.jpg",
       "amenities": [
         "Famous Multi-Cuisine Restaurant",
         "Prompt Room Service",
@@ -469,7 +469,7 @@
       ],
       "basePricePerNight": 4200,
       "seasonalPricePerNight": 5100,
-      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "image": "/images/sikkim_hero_banner_1785680563996.jpg",
       "amenities": [
         "Floor-to-Ceiling Mountain Glass",
         "Rooftop Sunset Lounge & Bonfire",
@@ -492,7 +492,7 @@
       ],
       "basePricePerNight": 8200,
       "seasonalPricePerNight": 9800,
-      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "image": "/images/darjeeling_tea_gardens_1785681013467.jpg",
       "amenities": [
         "Opposite Governor House",
         "Tea Lounge",
@@ -515,7 +515,7 @@
       ],
       "basePricePerNight": 5400,
       "seasonalPricePerNight": 6600,
-      "image": "/src/assets/images/darjeeling_toy_train_1785681122611.jpg",
+      "image": "/images/darjeeling_toy_train_1785681122611.jpg",
       "amenities": [
         "Highest Elevation View",
         "Toy Train Route",
@@ -536,7 +536,7 @@
       ],
       "basePricePerNight": 7800,
       "seasonalPricePerNight": 9200,
-      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "image": "/images/darjeeling_tea_gardens_1785681013467.jpg",
       "amenities": [
         "Colonial Lounge",
         "Oak Panel Dining",
@@ -558,7 +558,7 @@
       ],
       "basePricePerNight": 3600,
       "seasonalPricePerNight": 4400,
-      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "image": "/images/darjeeling_tea_gardens_1785681013467.jpg",
       "amenities": [
         "Kanchenjunga View",
         "Spa",
@@ -580,7 +580,7 @@
       ],
       "basePricePerNight": 4800,
       "seasonalPricePerNight": 5800,
-      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "image": "/images/darjeeling_tea_gardens_1785681013467.jpg",
       "amenities": [
         "Near Mall Road",
         "Pure Veg Dining",
@@ -602,7 +602,7 @@
       ],
       "basePricePerNight": 2900,
       "seasonalPricePerNight": 3600,
-      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "image": "/images/darjeeling_tea_gardens_1785681013467.jpg",
       "amenities": [
         "Steps from Mall Road",
         "Hot Water 24/7",
@@ -622,7 +622,7 @@
       ],
       "basePricePerNight": 7500,
       "seasonalPricePerNight": 8900,
-      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "image": "/images/darjeeling_tea_gardens_1785681013467.jpg",
       "amenities": [
         "Tea Garden Walks",
         "Private Tea Tasting",
@@ -643,7 +643,7 @@
       ],
       "basePricePerNight": 3600,
       "seasonalPricePerNight": 4200,
-      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "image": "/images/darjeeling_tea_gardens_1785681013467.jpg",
       "amenities": [
         "100% Pure Veg Dining",
         "Near Mall Road",
@@ -665,7 +665,7 @@
       ],
       "basePricePerNight": 6800,
       "seasonalPricePerNight": 8200,
-      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "image": "/images/darjeeling_tea_gardens_1785681013467.jpg",
       "amenities": [
         "Colonial Fireplace",
         "Tea Tasting Salon",
@@ -687,7 +687,7 @@
       ],
       "basePricePerNight": 3700,
       "seasonalPricePerNight": 4500,
-      "image": "/src/assets/images/darjeeling_toy_train_1785681122611.jpg",
+      "image": "/images/darjeeling_toy_train_1785681122611.jpg",
       "amenities": [
         "Rooftop Sunrise Deck",
         "Mall Road Walking Distance",
@@ -710,7 +710,7 @@
       ],
       "basePricePerNight": 4400,
       "seasonalPricePerNight": 5400,
-      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "image": "/images/darjeeling_tea_gardens_1785681013467.jpg",
       "amenities": [
         "Pine Valley & Snow Views",
         "Walking Distance to Chowrasta Mall",
@@ -733,7 +733,7 @@
       ],
       "basePricePerNight": 3700,
       "seasonalPricePerNight": 4500,
-      "image": "/src/assets/images/ravangla_buddha_park_1785680605794.jpg",
+      "image": "/images/ravangla_buddha_park_1785680605794.jpg",
       "amenities": [
         "Glass Skywalk Shuttle",
         "Unobstructed Kanchenjunga View",
@@ -755,7 +755,7 @@
       ],
       "basePricePerNight": 4100,
       "seasonalPricePerNight": 4900,
-      "image": "/src/assets/images/ravangla_buddha_park_1785680605794.jpg",
+      "image": "/images/ravangla_buddha_park_1785680605794.jpg",
       "amenities": [
         "Unobstructed 180° Kanchenjunga View",
         "Private Wooden Balconies",
@@ -778,7 +778,7 @@
       ],
       "basePricePerNight": 3900,
       "seasonalPricePerNight": 4800,
-      "image": "/src/assets/images/ravangla_buddha_park_1785680605794.jpg",
+      "image": "/images/ravangla_buddha_park_1785680605794.jpg",
       "amenities": [
         "Frontal Snow Peak Vista",
         "Glass Balcony Lounge",
@@ -801,7 +801,7 @@
       ],
       "basePricePerNight": 4900,
       "seasonalPricePerNight": 5900,
-      "image": "/src/assets/images/ravangla_buddha_park_1785680605794.jpg",
+      "image": "/images/ravangla_buddha_park_1785680605794.jpg",
       "amenities": [
         "Pure Veg Kitchen",
         "Spa",
@@ -821,7 +821,7 @@
       ],
       "basePricePerNight": 2700,
       "seasonalPricePerNight": 3400,
-      "image": "/src/assets/images/ravangla_buddha_park_1785680605794.jpg",
+      "image": "/images/ravangla_buddha_park_1785680605794.jpg",
       "amenities": [
         "Valley Balcony",
         "Geyser",
@@ -842,7 +842,7 @@
       ],
       "basePricePerNight": 3300,
       "seasonalPricePerNight": 4000,
-      "image": "/src/assets/images/ravangla_buddha_park_1785680605794.jpg",
+      "image": "/images/ravangla_buddha_park_1785680605794.jpg",
       "amenities": [
         "Rooftop Terrace",
         "Restaurant",
@@ -863,7 +863,7 @@
       ],
       "basePricePerNight": 4800,
       "seasonalPricePerNight": 5800,
-      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "image": "/images/darjeeling_tea_gardens_1785681013467.jpg",
       "amenities": [
         "Pure Veg Gourmet Dining",
         "Strict Jain Meal Prep",
@@ -885,7 +885,7 @@
       ],
       "basePricePerNight": 6900,
       "seasonalPricePerNight": 8400,
-      "image": "/src/assets/images/ravangla_buddha_park_1785680605794.jpg",
+      "image": "/images/ravangla_buddha_park_1785680605794.jpg",
       "amenities": [
         "Unobstructed Kanchenjunga Frontal View",
         "Bonfire & Stargazing Lawn",
@@ -907,7 +907,7 @@
       ],
       "basePricePerNight": 3400,
       "seasonalPricePerNight": 4100,
-      "image": "/src/assets/images/ravangla_buddha_park_1785680605794.jpg",
+      "image": "/images/ravangla_buddha_park_1785680605794.jpg",
       "amenities": [
         "Balcony with Peak Views",
         "In-House Dining",
@@ -929,7 +929,7 @@
       ],
       "basePricePerNight": 4500,
       "seasonalPricePerNight": 5500,
-      "image": "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+      "image": "/images/yumthang_zero_point_1785680592273.jpg",
       "amenities": [
         "Central Radiator Heating",
         "Mountain River & Glacier View",
@@ -952,7 +952,7 @@
       ],
       "basePricePerNight": 3800,
       "seasonalPricePerNight": 4500,
-      "image": "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+      "image": "/images/yumthang_zero_point_1785680592273.jpg",
       "amenities": [
         "Heated Blankets",
         "Hot Water 24/7",
@@ -972,7 +972,7 @@
       ],
       "basePricePerNight": 3100,
       "seasonalPricePerNight": 3700,
-      "image": "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+      "image": "/images/yumthang_zero_point_1785680592273.jpg",
       "amenities": [
         "Geyser",
         "Power Backup Generator",
@@ -993,7 +993,7 @@
       ],
       "basePricePerNight": 4800,
       "seasonalPricePerNight": 5800,
-      "image": "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+      "image": "/images/yumthang_zero_point_1785680592273.jpg",
       "amenities": [
         "Centralised Room Heating",
         "Organic Himalayan Buffet",
@@ -1015,7 +1015,7 @@
       ],
       "basePricePerNight": 3300,
       "seasonalPricePerNight": 3900,
-      "image": "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+      "image": "/images/yumthang_zero_point_1785680592273.jpg",
       "amenities": [
         "Heated Blankets",
         "24/7 Hot Water Geyser",
@@ -1036,7 +1036,7 @@
       ],
       "basePricePerNight": 3200,
       "seasonalPricePerNight": 3800,
-      "image": "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+      "image": "/images/yumthang_zero_point_1785680592273.jpg",
       "amenities": [
         "Heater",
         "Hot Water 24/7",
@@ -1057,7 +1057,7 @@
       ],
       "basePricePerNight": 7600,
       "seasonalPricePerNight": 8900,
-      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "image": "/images/sikkim_hero_banner_1785680563996.jpg",
       "amenities": [
         "Orchid Garden",
         "Spa",
@@ -1078,7 +1078,7 @@
       ],
       "basePricePerNight": 4200,
       "seasonalPricePerNight": 5000,
-      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "image": "/images/sikkim_hero_banner_1785680563996.jpg",
       "amenities": [
         "Landscaped Lawn",
         "Metta Spa",
@@ -1098,7 +1098,7 @@
       ],
       "basePricePerNight": 3100,
       "seasonalPricePerNight": 3700,
-      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "image": "/images/sikkim_hero_banner_1785680563996.jpg",
       "amenities": [
         "Quiet Pine Forest",
         "Restaurant",
@@ -1118,7 +1118,7 @@
       ],
       "basePricePerNight": 3200,
       "seasonalPricePerNight": 3800,
-      "image": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "image": "/images/sikkim_hero_banner_1785680563996.jpg",
       "amenities": [
         "Airport & Station Transfer",
         "Pure Veg Restaurant",
@@ -1139,7 +1139,7 @@
       ],
       "basePricePerNight": 3100,
       "seasonalPricePerNight": 3600,
-      "image": "/src/assets/images/darjeeling_tea_gardens_1785681013467.jpg",
+      "image": "/images/darjeeling_tea_gardens_1785681013467.jpg",
       "amenities": [
         "100% Pure Veg Dining",
         "Strict Jain Food",
@@ -1412,14 +1412,14 @@
     {
       "id": "med-1",
       "title": "Sikkim Kanchenjunga Banner",
-      "url": "/src/assets/images/sikkim_hero_banner_1785680563996.jpg",
+      "url": "/images/sikkim_hero_banner_1785680563996.jpg",
       "category": "Banners",
       "uploadedAt": "2026-08-18T10:15:27.629Z"
     },
     {
       "id": "med-2",
       "title": "Yumthang Zero Point",
-      "url": "/src/assets/images/yumthang_zero_point_1785680592273.jpg",
+      "url": "/images/yumthang_zero_point_1785680592273.jpg",
       "category": "Destinations",
       "uploadedAt": "2026-08-18T10:15:27.629Z"
     }

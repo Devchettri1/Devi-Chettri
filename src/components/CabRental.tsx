@@ -14,12 +14,12 @@ interface CabRentalProps {
 }
 
 const CAB_PRESET_PHOTOS = [
-  { title: 'Toyota Innova Crysta Deluxe', url: '/src/assets/images/innova_crysta_cab_1785680577329.jpg' },
-  { title: 'Innova Mountain Highway Drive', url: '/src/assets/images/innova_mountain_drive_1785681104445.jpg' },
-  { title: 'Sikkim Himalayan Route SUV', url: '/src/assets/images/sikkim_hero_banner_1785680563996.jpg' },
-  { title: 'Fleet Mountain Panorama', url: '/src/assets/images/agency_card_banner_1785772861093.jpg' },
-  { title: 'Zero Point High Altitude 4x4', url: '/src/assets/images/yumthang_zero_point_1785680592273.jpg' },
-  { title: 'Nathula Pass Snow Road Drive', url: '/src/assets/images/nathula_pass_snow_1785681052944.jpg' },
+  { title: 'Toyota Innova Crysta Deluxe', url: '/images/innova_crysta_cab_1785680577329.jpg' },
+  { title: 'Innova Mountain Highway Drive', url: '/images/innova_mountain_drive_1785681104445.jpg' },
+  { title: 'Sikkim Himalayan Route SUV', url: '/images/sikkim_hero_banner_1785680563996.jpg' },
+  { title: 'Fleet Mountain Panorama', url: '/images/agency_card_banner_1785772861093.jpg' },
+  { title: 'Zero Point High Altitude 4x4', url: '/images/yumthang_zero_point_1785680592273.jpg' },
+  { title: 'Nathula Pass Snow Road Drive', url: '/images/nathula_pass_snow_1785681052944.jpg' },
 ];
 
 export const CabRental: React.FC<CabRentalProps> = ({
@@ -477,7 +477,7 @@ export const CabRental: React.FC<CabRentalProps> = ({
                   src={previewPhoto}
                   alt="Cab Preview"
                   className="w-full h-full object-cover"
-                  onError={() => setPreviewPhoto('/src/assets/images/innova_crysta_cab_1785680577329.jpg')}
+                  onError={() => setPreviewPhoto('/images/innova_crysta_cab_1785680577329.jpg')}
                 />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center text-[#A9AAA4] text-xs">
