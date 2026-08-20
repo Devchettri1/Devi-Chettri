@@ -3,6 +3,7 @@ import { ShieldCheck, Compass, Sparkles, ArrowRight, CheckCircle2, MessageCircle
 import { AGENCY_DETAILS } from '../data/travelData';
 import { GroupSizeOption, GroupSizeConfig, GROUP_SIZE_CONFIGS } from '../utils/groupPricing';
 import { sikkimHeroBanner } from '../assets/images';
+import { OptimizedImage } from './ui/OptimizedImage';
 
 interface HeroProps {
   onOpenAIChat: () => void;
@@ -261,12 +262,10 @@ export const Hero: React.FC<HeroProps> = ({
               className="group cursor-pointer relative rounded-2xl overflow-hidden border border-slate-800/90 bg-[#0A1128] hover:border-cyan-500/50 shadow-2xl transition-all duration-300 transform hover:-translate-y-0.5"
             >
               <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden">
-                <img
+                <OptimizedImage
                   src={sikkimHeroBanner}
                   alt="The Silk Route Odyssey"
-                  loading="eager"
-                  // @ts-ignore
-                  fetchPriority="high"
+                  priority
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-70"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#060B18] via-[#060B18]/60 to-transparent" />

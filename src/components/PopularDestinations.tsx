@@ -1,6 +1,7 @@
 import React from 'react';
 import { MapPin, Clock, Compass, MessageCircle, ArrowRight, Sparkles } from 'lucide-react';
 import { AGENCY_DETAILS } from '../data/travelData';
+import { OptimizedImage } from './ui/OptimizedImage';
 import {
   sikkimHeroBanner,
   yumthangZeroPoint,
@@ -119,14 +120,11 @@ export const PopularDestinations: React.FC<PopularDestinationsProps> = ({
               >
                 {/* Image & Header */}
                 <div className="relative h-56 overflow-hidden">
-                  <img
+                  <OptimizedImage
                     src={dest.image}
                     alt={dest.name}
-                    loading="lazy"
-                    decoding="async"
-                    width="400"
-                    height="224"
-                    referrerPolicy="no-referrer"
+                    width={400}
+                    height={224}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-80"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/50 to-transparent" />

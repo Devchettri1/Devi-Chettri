@@ -24,6 +24,7 @@ import {
   sikkimHeroBanner,
   agencyPosterDark
 } from '../assets/images';
+import { OptimizedImage } from './ui/OptimizedImage';
 
 interface PhotoEditorModalProps {
   initialImageUrl?: string;
@@ -616,7 +617,7 @@ export const PhotoEditorModal: React.FC<PhotoEditorModalProps> = ({
                             : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-slate-200'
                         }`}
                       >
-                        <img src={p.url} alt={p.name} className="w-8 h-8 rounded-lg object-cover" />
+                        <OptimizedImage src={p.url} alt={p.name} className="w-8 h-8 rounded-lg object-cover" />
                         <span className="truncate text-[11px] font-medium">{p.name}</span>
                       </button>
                     ))}

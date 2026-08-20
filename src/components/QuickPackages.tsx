@@ -5,6 +5,7 @@ import { TourPackage, GroupSizeOption } from '../types';
 import { GROUP_SIZE_CONFIGS, calculateGroupPrice, calculateTotalGroupCost } from '../utils/groupPricing';
 import { GoogleReviewCarousel } from './GoogleReviewCarousel';
 import { RouteMapVisualization } from './RouteMapVisualization';
+import { OptimizedImage } from './ui/OptimizedImage';
 import {
   Calendar,
   MapPin,
@@ -702,14 +703,17 @@ export const QuickPackages: React.FC<QuickPackagesProps> = ({
                 }`}
               >
                 {/* Image Banner */}
-                <div className="relative h-60 overflow-hidden">
-                  <img
+                <div 
+                  className="relative h-60 overflow-hidden cursor-pointer group/img"
+                  onClick={() => setSelectedItineraryPkg(pkg)}
+                  title="Click to view detailed itinerary & photos"
+                >
+                  <OptimizedImage
                     src={pkg.heroImage}
                     alt={pkg.title}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
+                    className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/30 to-transparent pointer-events-none" />
 
                   {/* Duration & Group Badge */}
                   <div className="absolute top-3 left-3 flex flex-col items-start gap-1.5">

@@ -16,6 +16,7 @@ import {
   AuditLogEntry,
   MediaItem,
   NavigationItem,
+  TravelAlert,
 } from '../types';
 
 // Initial Destinations
@@ -906,3 +907,18 @@ export const INITIAL_NAVIGATION: NavigationItem[] = [
   { id: 'nav-about', label: 'About', tabId: 'about', hasDropdown: false, active: true, order: 9 },
   { id: 'nav-contact', label: 'Contact', tabId: 'contact', hasDropdown: false, active: true, order: 10 },
 ];
+
+// Initial Real-time Travel Alert
+export const INITIAL_ALERT: TravelAlert = {
+  id: 'alert-sikkim-live-1',
+  enabled: true,
+  title: 'Nathula Pass & High Altitude Advisory',
+  message: 'Nathula Pass & Tsomgo Lake permits are active today subject to daily Army clearance. 4x4 Snow-Chain vehicles deployed for Zero Point & Gurudongmar. Contact 24/7 Gangtok desk for live road reports.',
+  type: 'warning',
+  locationTag: 'North & East Sikkim',
+  linkText: 'Check Live Weather & Permits',
+  linkAction: 'weather',
+  updatedAt: new Date().toISOString(),
+  isUrgent: true,
+};
+

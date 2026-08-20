@@ -5,6 +5,7 @@ import { Car, ShieldCheck, Users, CheckCircle, ArrowRight, Phone, MessageCircle,
 import { GovtRegistrationBadge } from './GovtRegistrationBadge';
 import { FeaturedVehiclesSection } from './FeaturedVehiclesSection';
 import { useWhatsApp } from '../utils/whatsAppContext';
+import { OptimizedImage } from './ui/OptimizedImage';
 
 import innovaCrystaCab from '../assets/images/innova_crysta_cab_1785680577329.jpg';
 import innovaMountainDrive from '../assets/images/innova_mountain_drive_1785681104445.jpg';
@@ -257,14 +258,11 @@ export const CabRental: React.FC<CabRentalProps> = ({
                 >
                   <div>
                     <div className="relative h-52 overflow-hidden group/img">
-                      <img
+                      <OptimizedImage
                         src={cab.image}
                         alt={cab.model}
-                        referrerPolicy="no-referrer"
+                        fallbackSrc={innovaCrystaCab}
                         className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
-                        onError={(e) => {
-                          (e.currentTarget as HTMLImageElement).src = innovaCrystaCab;
-                        }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F0E] via-[#0B0F0E]/20 to-transparent" />
 
@@ -483,11 +481,11 @@ export const CabRental: React.FC<CabRentalProps> = ({
             {/* Live Preview */}
             <div className="relative h-48 rounded-xl overflow-hidden border border-[#D6B36A]/30 bg-slate-950 shadow-inner">
               {previewPhoto ? (
-                <img
+                <OptimizedImage
                   src={previewPhoto}
                   alt="Cab Preview"
+                  fallbackSrc={innovaCrystaCab}
                   className="w-full h-full object-cover"
-                  onError={() => setPreviewPhoto(innovaCrystaCab)}
                 />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center text-[#A9AAA4] text-xs">
@@ -602,7 +600,7 @@ export const CabRental: React.FC<CabRentalProps> = ({
                           : 'border-[#D6B36A]/20 hover:border-[#D6B36A]/60'
                       }`}
                     >
-                      <img src={preset.url} alt={preset.title} className="w-full h-full object-cover" />
+                      <OptimizedImage src={preset.url} alt={preset.title} className="w-full h-full object-cover" />
                       {previewPhoto === preset.url && (
                         <div className="absolute top-1 right-1 bg-[#D6B36A] text-slate-950 p-0.5 rounded-full">
                           <Check className="w-3 h-3" />

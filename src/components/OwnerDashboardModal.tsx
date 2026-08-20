@@ -2,6 +2,7 @@ import {
   sikkimHeroBanner,
   innovaCrystaCab
 } from '../assets/images';
+import { OptimizedImage } from './ui/OptimizedImage';
 import React, { useState, useEffect } from 'react';
 import { LeadSubmission, TourPackage, CabOption, SeoSettings } from '../types';
 import {
@@ -45,6 +46,8 @@ import {
   Sliders,
   Clock,
   Menu,
+  Radio,
+  AlertTriangle,
 } from 'lucide-react';
 import { Logo } from './Logo';
 import { DEFAULT_SEO_SETTINGS } from '../data/travelData';
@@ -59,6 +62,9 @@ import { AdminMediaLibrary } from './admin/AdminMediaLibrary';
 import { AdminNavigation } from './admin/AdminNavigation';
 import { AdminSeoManager } from './admin/AdminSeoManager';
 import { AdminPerformanceMonitor } from './admin/AdminPerformanceMonitor';
+import { AdminAlertsManager } from './admin/AdminAlertsManager';
+import { TravelAlert } from '../types';
+import { INITIAL_ALERT } from '../data/initialStoreData';
 
 interface OwnerDashboardModalProps {
   leads: LeadSubmission[];
@@ -73,11 +79,14 @@ interface OwnerDashboardModalProps {
   onResetToDefaults: () => void;
   seoSettings?: SeoSettings;
   onSaveSeoSettings?: (updatedSeo: SeoSettings) => void;
+  currentAlert?: TravelAlert;
+  onSaveAlert?: (updatedAlert: TravelAlert) => void;
   initialTab?: any;
 }
 
 export type MainAdminSection =
   | 'dashboard'
+  | 'alerts'
   | 'packages'
   | 'cabs'
   | 'hotels'
@@ -103,6 +112,8 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
   onResetToDefaults,
   seoSettings,
   onSaveSeoSettings,
+  currentAlert,
+  onSaveAlert,
   initialTab,
 }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
@@ -114,9 +125,22 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
   const [activeSection, setActiveSection] = useState<MainAdminSection>('dashboard');
   const [activeSubTab, setActiveSubTab] = useState<string>('enquiries');
 
+  // Real-time Travel Alert State
+  const [localAlert, setLocalAlert] = useState<TravelAlert>(() => {
+    if (currentAlert) return currentAlert;
+    try {
+      const saved = localStorage.getItem('offbeat_travel_alert');
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    return INITIAL_ALERT;
+  });
+
   useEffect(() => {
     if (initialTab) {
-      if (['seo', 'seo-manager', 'keywords', 'metadata'].includes(initialTab)) {
+      if (['alerts', 'alert-banner', 'advisory', 'weather-alert', 'road-closures'].includes(initialTab)) {
+        setActiveSection('alerts');
+        setActiveSubTab('manage');
+      } else if (['seo', 'seo-manager', 'keywords', 'metadata'].includes(initialTab)) {
         setActiveSection('seo');
         setActiveSubTab('metadata');
       } else if (['performance', 'web-vitals', 'speed', 'core-web-vitals'].includes(initialTab)) {
@@ -210,6 +234,24 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
     bannerImage: sikkimHeroBanner,
   });
 
+  const handleSaveAlert = async (updatedAlert: TravelAlert) => {
+    setLocalAlert(updatedAlert);
+    if (onSaveAlert) {
+      onSaveAlert(updatedAlert);
+    }
+    try {
+      localStorage.setItem('offbeat_travel_alert', JSON.stringify(updatedAlert));
+      await fetch('/api/admin/alerts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ alert: updatedAlert }),
+      });
+      window.dispatchEvent(new CustomEvent('offbeat_alert_updated', { detail: updatedAlert }));
+    } catch (err) {
+      console.error('Error broadcasting alert:', err);
+    }
+  };
+
   // Fetch Backend Collections
   const fetchAllBackendData = async () => {
     try {
@@ -223,6 +265,7 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
         usersRes,
         auditRes,
         mediaRes,
+        alertRes,
       ] = await Promise.all([
         fetch('/api/admin/dashboard-stats').then((r) => (r.ok ? r.json() : null)),
         fetch('/api/destinations').then((r) => (r.ok ? r.json() : [])),
@@ -233,6 +276,7 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
         fetch('/api/admin/users').then((r) => (r.ok ? r.json() : [])),
         fetch('/api/admin/audit-logs').then((r) => (r.ok ? r.json() : [])),
         fetch('/api/admin/media').then((r) => (r.ok ? r.json() : [])),
+        fetch('/api/alerts').then((r) => (r.ok ? r.json() : null)),
       ]);
 
       if (statsRes) setStats(statsRes);
@@ -244,6 +288,7 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
       if (Array.isArray(usersRes)) setUsers(usersRes);
       if (Array.isArray(auditRes)) setAuditLogs(auditRes);
       if (Array.isArray(mediaRes)) setMedia(mediaRes);
+      if (alertRes && alertRes.title) setLocalAlert(alertRes);
     } catch (err) {
       console.error('Error fetching backend collections:', err);
     }
@@ -540,6 +585,14 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
       ],
     },
     {
+      key: 'alerts' as MainAdminSection,
+      label: 'Live Alert Banner',
+      icon: Radio,
+      subTabs: [
+        { key: 'manage', label: 'Advisory Broadcast & Presets' },
+      ],
+    },
+    {
       key: 'packages' as MainAdminSection,
       label: 'Tour Packages',
       icon: Package,
@@ -672,6 +725,22 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
           </div>
 
           <div className="flex items-center gap-2">
+            <button
+              onClick={() => {
+                setActiveSection('alerts');
+                setActiveSubTab('manage');
+              }}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold border flex items-center gap-1.5 transition-all ${
+                localAlert?.enabled
+                  ? 'bg-amber-950/80 hover:bg-amber-900/90 text-amber-300 border-amber-500/40 shadow-sm shadow-amber-500/10'
+                  : 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700'
+              }`}
+              title="Toggle or edit real-time travel alert banner"
+            >
+              <Radio className={`w-3.5 h-3.5 ${localAlert?.enabled ? 'text-amber-400 animate-pulse' : 'text-slate-400'}`} />
+              <span>Alert Banner: {localAlert?.enabled ? 'LIVE' : 'OFF'}</span>
+            </button>
+
             <button
               onClick={() => {
                 setActiveSection('settings');
@@ -1049,13 +1118,11 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
 
                         <div className="flex flex-col sm:flex-row items-center gap-4">
                           <div className="relative w-full sm:w-44 h-28 bg-slate-950 rounded-xl overflow-hidden border border-slate-700/80 shrink-0 shadow-md">
-                            <img
+                            <OptimizedImage
                               src={currentPkg.heroImage || sikkimHeroBanner}
                               alt={currentPkg.title}
+                              fallbackSrc={sikkimHeroBanner}
                               className="w-full h-full object-cover"
-                              onError={(e) => {
-                                (e.target as HTMLImageElement).src = sikkimHeroBanner;
-                              }}
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
                             <span className="absolute bottom-1.5 left-2 text-[9px] font-bold text-slate-300 bg-slate-900/90 px-1.5 py-0.5 rounded border border-slate-700">
@@ -1227,7 +1294,7 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
                       {(activeSubTab === 'photos' || activeSubTab === 'vehicles') && (
                         <div className="p-3 bg-slate-900 rounded-xl border border-slate-800 space-y-2 text-xs">
                           <div className="flex items-center gap-3">
-                            <img src={cabImg} alt={cab.model} className="w-20 h-14 object-cover rounded-lg border border-slate-700" />
+                            <OptimizedImage src={cabImg} alt={cab.model} className="w-20 h-14 object-cover rounded-lg border border-slate-700" />
                             <div className="flex-1 space-y-1">
                               <label className="inline-flex items-center gap-1 px-2.5 py-1 bg-teal-800 hover:bg-teal-700 text-white rounded text-[11px] font-bold cursor-pointer">
                                 <Upload className="w-3 h-3" /> Upload Photo

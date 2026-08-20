@@ -1705,6 +1705,45 @@ app.post('/api/admin/navigation', (req, res) => {
   res.status(400).json({ error: 'Invalid navigation payload' });
 });
 
+// REAL-TIME TRAVEL ALERT CRUD (Nathula Pass, Weather, Road Status)
+app.get('/api/alerts', (req, res) => {
+  const store = getBackendStore();
+  res.json(store.alert || {
+    id: 'alert-sikkim-live-1',
+    enabled: true,
+    title: 'Nathula Pass & High Altitude Advisory',
+    message: 'Nathula Pass & Tsomgo Lake permits are active today subject to daily Army clearance. 4x4 Snow-Chain vehicles deployed for Zero Point & Gurudongmar. Contact 24/7 Gangtok desk for live road reports.',
+    type: 'warning',
+    locationTag: 'North & East Sikkim',
+    linkText: 'Check Live Weather & Permits',
+    linkAction: 'weather',
+    updatedAt: new Date().toISOString(),
+    isUrgent: true,
+  });
+});
+
+app.post('/api/admin/alerts', (req, res) => {
+  const { alert } = req.body;
+  if (alert && typeof alert === 'object') {
+    const store = getBackendStore();
+    const updatedAlert = {
+      ...store.alert,
+      ...alert,
+      updatedAt: new Date().toISOString(),
+    };
+    store.alert = updatedAlert;
+    saveBackendStore(store);
+    logAuditAction(
+      'Owner Admin',
+      'ADMIN',
+      'UPDATE_ALERT',
+      `Updated travel advisory alert (${updatedAlert.enabled ? 'ACTIVE' : 'MUTED'}): ${updatedAlert.title}`
+    );
+    return res.json({ success: true, alert: updatedAlert });
+  }
+  res.status(400).json({ error: 'Invalid alert payload' });
+});
+
 // SEO MANAGEMENT
 let seoDatabase: any = { ...DEFAULT_SEO_SETTINGS };
 

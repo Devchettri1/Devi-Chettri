@@ -3,6 +3,7 @@ import { MapPin, Plus, Trash2, Edit2, Save, X, CheckCircle2, Image, Globe, Uploa
 import { DestinationItem } from '../../types';
 import { ImageUploadPicker } from './ImageUploadPicker';
 import { sikkimHeroBanner } from '../../assets/images';
+import { OptimizedImage } from '../ui/OptimizedImage';
 
 interface AdminDestinationsProps {
   destinations: DestinationItem[];
@@ -131,7 +132,7 @@ export const AdminDestinations: React.FC<AdminDestinationsProps> = ({ destinatio
           >
             <div>
               <div className="h-32 relative overflow-hidden bg-slate-900">
-                <img src={d.heroImage} alt={d.name} className="w-full h-full object-cover" />
+                <OptimizedImage src={d.heroImage} alt={d.name} className="w-full h-full object-cover" />
                 <div className="absolute top-2 right-2 bg-slate-900/90 text-[#D9BC7A] text-[10px] font-bold px-2 py-0.5 rounded border border-[#C6A15B]/30">
                   {d.region}
                 </div>

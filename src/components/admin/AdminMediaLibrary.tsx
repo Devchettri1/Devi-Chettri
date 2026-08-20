@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Image, Upload, Plus, Trash2, CheckCircle2, Copy, Link, X } from 'lucide-react';
 import { MediaItem } from '../../types';
 import { sikkimHeroBanner } from '../../assets/images';
+import { OptimizedImage } from '../ui/OptimizedImage';
 
 interface AdminMediaLibraryProps {
   media: MediaItem[];
@@ -80,7 +81,7 @@ export const AdminMediaLibrary: React.FC<AdminMediaLibraryProps> = ({ media, onR
             className="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden shadow-lg space-y-2 p-2 group"
           >
             <div className="h-36 bg-slate-900 rounded-xl overflow-hidden relative">
-              <img src={m.url} alt={m.title} className="w-full h-full object-cover" />
+              <OptimizedImage src={m.url} alt={m.title} className="w-full h-full object-cover" />
               <span className="absolute top-2 left-2 bg-slate-950/80 text-[10px] text-teal-300 font-bold px-2 py-0.5 rounded">
                 {m.category}
               </span>

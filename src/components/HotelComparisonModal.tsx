@@ -36,6 +36,7 @@ import {
   FeaturedStandaloneHotel, 
   AGENCY_DETAILS 
 } from '../data/travelData';
+import { OptimizedImage } from './ui/OptimizedImage';
 
 export type AnyHotelItem = (HotelChainPartner | FeaturedStandaloneHotel) & {
   isStandalone?: boolean;
@@ -364,10 +365,9 @@ export const HotelComparisonModal: React.FC<HotelComparisonModalProps> = ({
 
                 {/* Cover Image & Quick Snapshot */}
                 <div className="relative h-32 rounded-xl overflow-hidden border border-slate-800 group">
-                  <img 
+                  <OptimizedImage 
                     src={hotelA.coverImage} 
                     alt={hotelA.name}
-                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
@@ -449,10 +449,9 @@ export const HotelComparisonModal: React.FC<HotelComparisonModalProps> = ({
 
                 {/* Cover Image & Quick Snapshot */}
                 <div className="relative h-32 rounded-xl overflow-hidden border border-slate-800 group">
-                  <img 
+                  <OptimizedImage 
                     src={hotelB.coverImage} 
                     alt={hotelB.name}
-                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />

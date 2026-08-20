@@ -8,6 +8,7 @@ import {
   innovaCrystaCab,
   agencyPosterDark
 } from '../../assets/images';
+import { OptimizedImage } from '../ui/OptimizedImage';
 
 interface ImageUploadPickerProps {
   currentUrl?: string;
@@ -134,14 +135,11 @@ export const ImageUploadPicker: React.FC<ImageUploadPickerProps> = ({
       <div className="relative group rounded-xl overflow-hidden border border-slate-800 bg-slate-900 min-h-[120px] flex items-center justify-center">
         {currentUrl ? (
           <>
-            <img
+            <OptimizedImage
               src={currentUrl}
               alt="Preview"
-              referrerPolicy="no-referrer"
+              fallbackSrc={sikkimHeroBanner}
               className="w-full h-36 object-cover"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = sikkimHeroBanner;
-              }}
             />
             <div className="absolute inset-0 bg-slate-950/70 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 p-2">
               <button
@@ -273,7 +271,7 @@ export const ImageUploadPicker: React.FC<ImageUploadPickerProps> = ({
               }}
               className="text-left group relative h-14 rounded-md overflow-hidden border border-slate-800 hover:border-amber-400"
             >
-              <img src={p.url} alt={p.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              <OptimizedImage src={p.url} alt={p.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent p-1 flex items-end">
                 <span className="text-[9px] font-bold text-slate-200 line-clamp-1">{p.label}</span>
               </div>

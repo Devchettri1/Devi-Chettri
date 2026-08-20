@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { officialLogo } from '../assets/images';
+import { OptimizedImage } from './ui/OptimizedImage';
 
 const officialLogoImg = officialLogo;
 
@@ -232,12 +233,11 @@ export const Logo: React.FC<LogoProps> = ({
       <div className={`inline-flex items-center select-none ${className}`}>
         <div className={`relative rounded-full overflow-hidden shadow-lg border border-amber-300/40 bg-white ${sizeConfigs.badgePadding} transition-all duration-300 hover:shadow-xl hover:scale-[1.02]`}>
           {currentImgSrc ? (
-            <img
+            <OptimizedImage
               src={currentImgSrc}
               alt="Offbeat Destination Travels — A Better Way to Explore"
               className={`${sizeConfigs.img} object-contain mx-auto block rounded-full`}
-              referrerPolicy="no-referrer"
-              loading="eager"
+              priority={true}
               onError={handleImageError}
             />
           ) : (
@@ -254,12 +254,11 @@ export const Logo: React.FC<LogoProps> = ({
       <div className={`inline-flex items-center select-none ${className}`}>
         <div className={`relative rounded-full overflow-hidden shadow-md border border-slate-700/60 bg-white ${sizeConfigs.badge} flex items-center justify-center`}>
           {currentImgSrc ? (
-            <img
+            <OptimizedImage
               src={currentImgSrc}
               alt="Offbeat Destination Travels"
               className="w-full h-full object-contain p-0.5 rounded-full"
-              referrerPolicy="no-referrer"
-              loading="eager"
+              priority={true}
               onError={handleImageError}
             />
           ) : (
@@ -278,12 +277,11 @@ export const Logo: React.FC<LogoProps> = ({
         className={`relative rounded-full overflow-hidden flex-shrink-0 shadow-md border border-slate-700/60 bg-white ${sizeConfigs.badge} max-h-full flex items-center justify-center transition-all duration-300 ease-in-out group-hover:scale-105 group-hover:border-cyan-400 group-hover:shadow-cyan-500/20`}
       >
         {currentImgSrc ? (
-          <img
+          <OptimizedImage
             src={currentImgSrc}
             alt="Offbeat Destination Travels"
             className="w-full h-full max-h-full object-contain p-0.5 rounded-full transition-all duration-300 ease-in-out"
-            referrerPolicy="no-referrer"
-            loading="eager"
+            priority={true}
             onError={handleImageError}
           />
         ) : (

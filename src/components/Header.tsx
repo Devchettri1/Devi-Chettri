@@ -5,6 +5,7 @@ import { TourPackage, CabOption, NavigationItem, HotelItem } from '../types';
 import { ConsoleTab } from './OwnerDashboardModal';
 import { Logo } from './Logo';
 import { useWishlist } from '../utils/wishlistContext';
+import { OptimizedImage } from './ui/OptimizedImage';
 
 interface HeaderProps {
   activeTab: string;
@@ -255,7 +256,7 @@ export const Header: React.FC<HeaderProps> = ({
                           >
                             <div className="flex items-center gap-2.5 min-w-0 pr-2">
                               {pkg.heroImage ? (
-                                <img
+                                <OptimizedImage
                                   src={pkg.heroImage}
                                   alt={pkg.title}
                                   className="w-9 h-9 rounded object-cover flex-shrink-0 border border-slate-700"
@@ -362,7 +363,7 @@ export const Header: React.FC<HeaderProps> = ({
                           >
                             <div className="flex items-center gap-2.5 min-w-0 pr-2">
                               {cab.image ? (
-                                <img
+                                <OptimizedImage
                                   src={cab.image}
                                   alt={cab.model}
                                   className="w-9 h-9 rounded object-cover flex-shrink-0 border border-slate-700"
@@ -496,7 +497,7 @@ export const Header: React.FC<HeaderProps> = ({
                           >
                             <div className="flex items-center gap-2.5 min-w-0 pr-2">
                               {hotel.image ? (
-                                <img
+                                <OptimizedImage
                                   src={hotel.image}
                                   alt={hotel.name}
                                   className="w-9 h-9 rounded object-cover flex-shrink-0 border border-slate-700"

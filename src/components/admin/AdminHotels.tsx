@@ -3,6 +3,7 @@ import { Building2, Plus, Trash2, Edit2, Save, X, CheckCircle2, Star, MapPin, Fi
 import { HotelItem } from '../../types';
 import { ImageUploadPicker } from './ImageUploadPicker';
 import { sikkimHeroBanner } from '../../assets/images';
+import { OptimizedImage } from '../ui/OptimizedImage';
 
 interface AdminHotelsProps {
   hotels: HotelItem[];
@@ -239,14 +240,11 @@ export const AdminHotels: React.FC<AdminHotelsProps> = ({ hotels, onRefresh }) =
             <div>
               {/* Hotel Photo with Replace Button */}
               <div className="relative h-44 overflow-hidden bg-slate-900">
-                <img
+                <OptimizedImage
                   src={h.image || sikkimHeroBanner}
                   alt={h.name}
-                  referrerPolicy="no-referrer"
+                  fallbackSrc={sikkimHeroBanner}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = sikkimHeroBanner;
-                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
 

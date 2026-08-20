@@ -2,6 +2,7 @@ import React from 'react';
 import { AGENCY_DETAILS, REVIEWS } from '../data/travelData';
 import { ShieldCheck, Star, MapPin, Award, Users, ThumbsUp, Quote, CheckCircle2, Globe } from 'lucide-react';
 import { agencyPosterDark, gmbOfficePhoto, googleReviewBadge } from '../assets/images';
+import { OptimizedImage } from './ui/OptimizedImage';
 
 export const AboutUs: React.FC = () => {
   return (
@@ -86,10 +87,9 @@ export const AboutUs: React.FC = () => {
 
           <div className="lg:col-span-5 relative space-y-4">
             <div className="relative rounded-xl overflow-hidden border border-[#D6B36A]/30 shadow-2xl group">
-              <img
+              <OptimizedImage
                 src={agencyPosterDark}
                 alt="OffbeatDestination Travels Official Poster"
-                referrerPolicy="no-referrer"
                 className="w-full h-[380px] object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F0E] via-[#0B0F0E]/20 to-transparent" />
@@ -106,10 +106,9 @@ export const AboutUs: React.FC = () => {
 
             <div className="grid grid-cols-2 gap-3">
               <div className="rounded-lg overflow-hidden border border-[#D6B36A]/20 h-28 relative group">
-                <img
+                <OptimizedImage
                   src={gmbOfficePhoto}
                   alt="Google My Business Registered Storefront Office"
-                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-[#0B0F0E]/50 flex items-end p-2">
@@ -125,10 +124,9 @@ export const AboutUs: React.FC = () => {
                 rel="noopener noreferrer"
                 className="rounded-lg overflow-hidden border border-[#D6B36A]/30 h-28 relative bg-[#111513] p-2 flex flex-col items-center justify-center text-center group hover:border-[#D6B36A] transition-colors shadow-lg"
               >
-                <img
+                <OptimizedImage
                   src={googleReviewBadge}
                   alt="Review Us On Google"
-                  referrerPolicy="no-referrer"
                   className="max-h-12 object-contain mb-1 group-hover:scale-105 transition-transform"
                 />
                 <span className="text-[10px] font-bold text-[#D6B36A] group-hover:underline flex items-center gap-1">

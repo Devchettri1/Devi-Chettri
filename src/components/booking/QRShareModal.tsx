@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, QrCode, Copy, Check, Share2, ExternalLink, Smartphone } from 'lucide-react';
+import { OptimizedImage } from '../ui/OptimizedImage';
 
 interface QRShareModalProps {
   isOpen: boolean;
@@ -65,7 +66,7 @@ export const QRShareModal: React.FC<QRShareModalProps> = ({
 
         {/* QR Code Container */}
         <div className="p-3 bg-white rounded-2xl inline-block shadow-lg mx-auto">
-          <img
+          <OptimizedImage
             src={qrImageUrl}
             alt="OffbeatDestination QR Code"
             className="w-48 h-48 object-contain rounded-lg mx-auto"

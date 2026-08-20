@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Sparkles, Calendar, Tag, CheckCircle2, Copy, MessageCircle, Clock, Percent, ShieldCheck, Flame, CloudRain, Sun, Leaf, AlertCircle } from 'lucide-react';
 import { AGENCY_DETAILS } from '../data/travelData';
 import { useWhatsApp } from '../utils/whatsAppContext';
+import { OptimizedImage } from './ui/OptimizedImage';
 
 export interface SeasonalOffer {
   id: string;
@@ -223,7 +224,7 @@ export const SeasonalOffers: React.FC<SeasonalOffersProps> = ({
                 {/* Banner & Header */}
                 <div>
                   <div className="relative h-48 sm:h-52 overflow-hidden group">
-                    <img
+                    <OptimizedImage
                       src={offer.bannerImage}
                       alt={offer.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

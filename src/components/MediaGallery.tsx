@@ -31,6 +31,7 @@ import {
   Grid,
   CheckCircle2
 } from 'lucide-react';
+import { OptimizedImage } from './ui/OptimizedImage';
 
 interface MediaGalleryProps {
   onOpenAIChatWithContext?: (context: string) => void;
@@ -73,16 +74,17 @@ const OptimizedGalleryImage: React.FC<{
           <span className="text-xs text-slate-400 font-medium line-clamp-1">{alt}</span>
         </div>
       ) : (
-        <img
+        <OptimizedImage
           src={optimizedSrc}
           alt={alt}
-          loading={highPriority ? 'eager' : 'lazy'}
-          decoding="async"
-          referrerPolicy="no-referrer"
+          priority={highPriority}
           onLoad={() => setLoaded(true)}
-          onError={() => setError(true)}
+          onError={() => {
+            setError(true);
+            setLoaded(true);
+          }}
           className={`w-full h-full object-cover transition-all duration-700 ${
-            loaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+            loaded ? 'opacity-100 scale-100' : 'opacity-90 scale-105'
           } ${className}`}
         />
       )}
@@ -854,11 +856,10 @@ export const MediaGallery: React.FC<MediaGalleryProps> = ({ onOpenAIChatWithCont
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center overflow-auto p-4">
-                  <img
+                  <OptimizedImage
                     src={activeLightboxItem.highResUrl || activeLightboxItem.url}
                     alt={activeLightboxItem.title}
-                    referrerPolicy="no-referrer"
-                    style={{ transform: `scale(${zoomLevel})`, transition: 'transform 0.2s ease-out' }}
+                    priority={true}
                     className="max-h-[72vh] w-auto max-w-full object-contain rounded-lg shadow-2xl"
                   />
                 </div>

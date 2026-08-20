@@ -23,6 +23,7 @@ import {
 import { CabOption } from '../types';
 import { AGENCY_DETAILS } from '../data/travelData';
 import { GovtRegistrationBadge } from './GovtRegistrationBadge';
+import { OptimizedImage } from './ui/OptimizedImage';
 
 import innovaCrystaCab from '../assets/images/innova_crysta_cab_1785680577329.jpg';
 import innovaMountainDrive from '../assets/images/innova_mountain_drive_1785681104445.jpg';
@@ -199,14 +200,11 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
             <div className="space-y-4">
               {/* Main Featured Photo */}
               <div className="relative h-72 sm:h-96 rounded-xl overflow-hidden border border-[#D6B36A]/30 shadow-2xl group">
-                <img
+                <OptimizedImage
                   src={INNOVA_GALLERY[activePhotoIdx].url}
                   alt={INNOVA_GALLERY[activePhotoIdx].title}
-                  referrerPolicy="no-referrer"
+                  fallbackSrc={innovaCrystaCab}
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).src = innovaCrystaCab;
-                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F0E] via-transparent to-black/30" />
 
@@ -259,7 +257,7 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
                         : 'border-[#D6B36A]/20 opacity-70 hover:opacity-100 hover:border-[#D6B36A]/50'
                     }`}
                   >
-                    <img src={img.url} alt={img.title} className="w-full h-full object-cover" />
+                    <OptimizedImage src={img.url} alt={img.title} className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-black/20" />
                     <span className="absolute bottom-1 left-1 bg-slate-950/80 text-[9px] font-bold text-[#D6B36A] px-1 rounded truncate max-w-[90%]">
                       {img.tag}
@@ -601,13 +599,11 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
             <div className="bg-[#111513] border border-[#D6B36A]/30 rounded-xl overflow-hidden shadow-xl flex flex-col justify-between group hover:border-[#D6B36A]/60 transition-all">
               <div>
                 <div className="relative h-48 overflow-hidden">
-                  <img
+                  <OptimizedImage
                     src={innovaCrystaCab}
                     alt="Mahindra Xylo Scorpio 4x4"
+                    fallbackSrc={innovaCrystaCab}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = innovaCrystaCab;
-                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F0E] via-transparent to-transparent" />
                   <span className="absolute top-3 left-3 bg-[#0B0F0E]/90 text-[#D6B36A] font-bold px-2.5 py-1 rounded text-xs border border-[#D6B36A]/30">
@@ -689,13 +685,11 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
 
               <div>
                 <div className="relative h-48 overflow-hidden">
-                  <img
+                  <OptimizedImage
                     src={agencyCardBanner}
                     alt="Force Urbania Luxury Tempo Traveller"
+                    fallbackSrc={innovaCrystaCab}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = innovaCrystaCab;
-                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F0E] via-transparent to-transparent" />
                   <span className="absolute top-3 left-3 bg-[#0B0F0E]/90 text-[#D6B36A] font-bold px-2.5 py-1 rounded text-xs border border-[#D6B36A]/30">
@@ -773,13 +767,11 @@ export const FeaturedVehiclesSection: React.FC<FeaturedVehiclesSectionProps> = (
             <div className="bg-[#111513] border border-[#D6B36A]/30 rounded-xl overflow-hidden shadow-xl flex flex-col justify-between group hover:border-[#D6B36A]/60 transition-all">
               <div>
                 <div className="relative h-48 overflow-hidden">
-                  <img
+                  <OptimizedImage
                     src={yumthangZeroPoint}
                     alt="Mahindra Bolero Neo 4WD"
+                    fallbackSrc={innovaCrystaCab}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = innovaCrystaCab;
-                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F0E] via-transparent to-transparent" />
                   <span className="absolute top-3 left-3 bg-[#0B0F0E]/90 text-[#D6B36A] font-bold px-2.5 py-1 rounded text-xs border border-[#D6B36A]/30">

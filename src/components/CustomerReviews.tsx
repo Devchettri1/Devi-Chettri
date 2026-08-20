@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CustomerReview } from '../types';
 import { REVIEWS, AGENCY_DETAILS } from '../data/travelData';
 import { Star, CheckCircle2, ThumbsUp, MessageSquarePlus, ExternalLink, Filter, X, ShieldCheck, Heart } from 'lucide-react';
+import { OptimizedImage } from './ui/OptimizedImage';
 
 export const CustomerReviews: React.FC = () => {
   const [reviewsList, setReviewsList] = useState<CustomerReview[]>(REVIEWS);
@@ -226,7 +227,7 @@ export const CustomerReviews: React.FC = () => {
                     onClick={() => setLightboxPhoto(rev.photoUrl!)}
                     className="relative h-28 rounded overflow-hidden cursor-pointer border border-[#E6E2D9]"
                   >
-                    <img
+                    <OptimizedImage
                       src={rev.photoUrl}
                       alt="Traveler photo"
                       className="w-full h-full object-cover hover:scale-105 transition-transform"
@@ -366,7 +367,7 @@ export const CustomerReviews: React.FC = () => {
           onClick={() => setLightboxPhoto(null)}
           className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 cursor-pointer"
         >
-          <img src={lightboxPhoto} alt="Review detail" className="max-w-3xl max-h-[85vh] rounded object-contain" />
+          <OptimizedImage src={lightboxPhoto} alt="Review detail" className="max-w-3xl max-h-[85vh] rounded object-contain" />
         </div>
       )}
     </section>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { OptimizedImage } from '../ui/OptimizedImage';
 import {
   Gauge,
   Zap,
@@ -953,13 +954,10 @@ export const AdminPerformanceMonitor: React.FC<AdminPerformanceMonitorProps> = (
             {/* If Image, show preview thumbnail */}
             {selectedAssetForDetails.type === 'image' && (
               <div className="bg-slate-950 p-2 rounded-xl border border-slate-800 flex items-center justify-center max-h-48 overflow-hidden">
-                <img
+                <OptimizedImage
                   src={selectedAssetForDetails.url}
                   alt={selectedAssetForDetails.fileName}
                   className="max-h-44 object-contain rounded-lg"
-                  onError={(e) => {
-                    (e.currentTarget as HTMLElement).style.display = 'none';
-                  }}
                 />
               </div>
             )}

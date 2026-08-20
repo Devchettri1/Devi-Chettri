@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Star, ChevronLeft, ChevronRight, ThumbsUp, ShieldCheck, Quote, ExternalLink, CheckCircle2, MessageCircle } from 'lucide-react';
 import { CustomerReview } from '../types';
 import { REVIEWS } from '../data/travelData';
+import { OptimizedImage } from './ui/OptimizedImage';
 
 // Extended Google Review interface with reviewer avatars & local guide stats
 export interface GoogleReviewItem extends CustomerReview {
@@ -253,7 +254,7 @@ export const GoogleReviewCarousel: React.FC<GoogleReviewCarouselProps> = ({
             <div className="flex items-start justify-between gap-2">
               <div className="flex items-center gap-2.5">
                 <div className="relative">
-                  <img
+                  <OptimizedImage
                     src={currentReview.reviewerAvatar}
                     alt={currentReview.author}
                     className="w-10 h-10 rounded-full object-cover border-2 border-emerald-500/80 shadow-md"
@@ -328,7 +329,7 @@ export const GoogleReviewCarousel: React.FC<GoogleReviewCarouselProps> = ({
                   onClick={() => setPhotoModalUrl(currentReview.tripPhotoUrl || null)}
                   className="flex items-center gap-2 group hover:text-emerald-300 transition-colors"
                 >
-                  <img
+                  <OptimizedImage
                     src={currentReview.tripPhotoUrl}
                     alt="Traveler Trip Photo"
                     className="w-10 h-7 rounded-md object-cover border border-slate-700 group-hover:border-emerald-500 transition-all shadow"
@@ -415,8 +416,8 @@ export const GoogleReviewCarousel: React.FC<GoogleReviewCarouselProps> = ({
                 ✕ Close
               </button>
             </div>
-            <img
-              src={photoModalUrl}
+            <OptimizedImage
+              src={photoModalUrl || ''}
               alt="Traveler Holiday Photo"
               className="w-full max-h-[70vh] object-cover rounded-xl border border-slate-800 shadow"
             />

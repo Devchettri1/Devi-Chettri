@@ -19,6 +19,7 @@ import {
   ArrowLeftRight
 } from 'lucide-react';
 import { HotelPhotoItem, HotelChainPartner, FeaturedStandaloneHotel } from '../data/travelData';
+import { OptimizedImage } from './ui/OptimizedImage';
 import {
   sikkimHeroBanner,
   ravanglaBuddhaPark,
@@ -457,10 +458,9 @@ export const HotelImageCarousel: React.FC<HotelImageCarouselProps> = ({
         onTouchEnd={handleTouchEnd}
       >
         {/* Active Photo */}
-        <img
+        <OptimizedImage
           src={currentPhoto.url}
           alt={currentPhoto.title || hotel.name}
-          referrerPolicy="no-referrer"
           className="w-full h-full object-cover transition-all duration-500 group-hover:scale-102"
         />
 
@@ -566,10 +566,9 @@ export const HotelImageCarousel: React.FC<HotelImageCarouselProps> = ({
                 }`}
                 title={photo.title}
               >
-                <img
+                <OptimizedImage
                   src={photo.url}
                   alt={photo.title}
-                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors" />
@@ -628,10 +627,9 @@ export const HotelImageCarousel: React.FC<HotelImageCarouselProps> = ({
             className="relative flex-1 flex items-center justify-center my-2 max-h-[78vh]"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
+            <OptimizedImage
               src={currentPhoto.url}
               alt={currentPhoto.title}
-              referrerPolicy="no-referrer"
               className="max-h-full max-w-full object-contain rounded-2xl shadow-2xl border border-slate-800/80"
             />
 
@@ -681,10 +679,9 @@ export const HotelImageCarousel: React.FC<HotelImageCarouselProps> = ({
                         : 'border-slate-800 opacity-50 hover:opacity-100'
                     }`}
                   >
-                    <img
+                    <OptimizedImage
                       src={p.url}
                       alt={p.title}
-                      referrerPolicy="no-referrer"
                       className="w-full h-full object-cover"
                     />
                   </button>

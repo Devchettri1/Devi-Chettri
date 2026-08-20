@@ -43,6 +43,7 @@ import { HotelLocationMap } from './HotelLocationMap';
 import { HotelComparisonModal, AnyHotelItem } from './HotelComparisonModal';
 import { HotelImageCarousel } from './HotelImageCarousel';
 import { HotelWeatherForecast } from './HotelWeatherForecast';
+import { OptimizedImage } from './ui/OptimizedImage';
 import { useWhatsApp } from '../utils/whatsAppContext';
 
 type HotelCategoryFilter = 'all' | 'luxury' | 'budget' | 'jain' | 'featured-boutique';
@@ -459,10 +460,9 @@ export const AffiliatedHotelsBanner: React.FC<AffiliatedHotelsBannerProps> = ({
                     <div>
                       {/* Header Image & Badge */}
                       <div className="relative h-48 overflow-hidden">
-                        <img
+                        <OptimizedImage
                           src={chain.coverImage}
                           alt={chain.name}
-                          referrerPolicy="no-referrer"
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
@@ -672,10 +672,9 @@ export const AffiliatedHotelsBanner: React.FC<AffiliatedHotelsBannerProps> = ({
                     <div>
                       {/* Header Image & Badge */}
                       <div className="relative h-48 overflow-hidden">
-                        <img
+                        <OptimizedImage
                           src={hotel.coverImage}
                           alt={hotel.name}
-                          referrerPolicy="no-referrer"
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
@@ -862,10 +861,9 @@ export const AffiliatedHotelsBanner: React.FC<AffiliatedHotelsBannerProps> = ({
           >
             {/* Modal Header Cover */}
             <div className="relative h-64 sm:h-72 flex-shrink-0 overflow-hidden">
-              <img 
+              <OptimizedImage 
                 src={activeModalHotel.coverImage} 
                 alt={activeModalHotel.name}
-                referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-950/40" />

@@ -15,6 +15,7 @@ import {
   AuditLogEntry,
   MediaItem,
   NavigationItem,
+  TravelAlert,
 } from '../types';
 import {
   INITIAL_DESTINATIONS,
@@ -26,6 +27,7 @@ import {
   INITIAL_USERS,
   INITIAL_AUDIT_LOGS,
   INITIAL_NAVIGATION,
+  INITIAL_ALERT,
 } from './initialStoreData';
 
 export {
@@ -38,6 +40,7 @@ export {
   INITIAL_USERS,
   INITIAL_AUDIT_LOGS,
   INITIAL_NAVIGATION,
+  INITIAL_ALERT,
 };
 
 const STORE_FILE_PATH = path.join(process.cwd(), 'data', 'backend_store.json');
@@ -54,6 +57,7 @@ export interface BackendStoreData {
   auditLogs: AuditLogEntry[];
   media: MediaItem[];
   navigation: NavigationItem[];
+  alert?: TravelAlert;
 }
 
 let storeInMemory: BackendStoreData | null = null;
@@ -68,6 +72,9 @@ export function getBackendStore(): BackendStoreData {
       if (storeInMemory) {
         if (!storeInMemory.navigation) {
           storeInMemory.navigation = INITIAL_NAVIGATION;
+        }
+        if (!storeInMemory.alert) {
+          storeInMemory.alert = INITIAL_ALERT;
         }
         // Merge in any newly defined INITIAL_HOTELS that might not exist in an older JSON snapshot
         const existingIds = new Set((storeInMemory.hotels || []).map((h) => h.id));
@@ -94,6 +101,7 @@ export function getBackendStore(): BackendStoreData {
     users: INITIAL_USERS,
     auditLogs: INITIAL_AUDIT_LOGS,
     navigation: INITIAL_NAVIGATION,
+    alert: INITIAL_ALERT,
     media: [
       {
         id: 'med-1',

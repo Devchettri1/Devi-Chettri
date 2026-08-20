@@ -349,4 +349,21 @@ export interface BlogPost {
   likesCount?: number;
 }
 
+export type TravelAlertType = 'warning' | 'critical' | 'weather' | 'info';
+
+export interface TravelAlert {
+  id: string;
+  enabled: boolean;
+  title: string;
+  message: string;
+  type: TravelAlertType;
+  locationTag?: string;
+  linkText?: string;
+  linkAction?: 'weather' | 'permits' | 'whatsapp' | 'cabs' | 'packages' | 'custom';
+  customUrl?: string;
+  updatedAt: string;
+  isUrgent?: boolean;
+}
+
+
 

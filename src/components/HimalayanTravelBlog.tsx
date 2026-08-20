@@ -25,6 +25,7 @@ import { BlogPost } from '../types';
 import { BLOG_POSTS, calculateReadTime } from '../data/blogData';
 import { AGENCY_DETAILS } from '../data/travelData';
 import { useWhatsApp } from '../utils/whatsAppContext';
+import { OptimizedImage } from './ui/OptimizedImage';
 
 interface HimalayanTravelBlogProps {
   onOpenAIChatWithTopic?: (topic: string) => void;
@@ -193,10 +194,9 @@ export const HimalayanTravelBlog: React.FC<HimalayanTravelBlogProps> = ({
             className="group cursor-pointer bg-[#111513] border border-[#D6B36A]/30 hover:border-[#D6B36A] rounded-2xl overflow-hidden shadow-2xl transition-all grid grid-cols-1 lg:grid-cols-12"
           >
             <div className="lg:col-span-7 relative h-72 sm:h-96 lg:h-auto overflow-hidden">
-              <img
+              <OptimizedImage
                 src={featuredArticle.coverImage}
                 alt={featuredArticle.title}
-                referrerPolicy="no-referrer"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-[#0B0F0E] via-[#0B0F0E]/30 to-transparent" />
@@ -243,7 +243,7 @@ export const HimalayanTravelBlog: React.FC<HimalayanTravelBlogProps> = ({
               {/* Author & Read Action */}
               <div className="pt-4 border-t border-[#D6B36A]/20 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <img
+                  <OptimizedImage
                     src={featuredArticle.author.avatarUrl}
                     alt={featuredArticle.author.name}
                     className="w-9 h-9 rounded-full object-cover border border-[#D6B36A]/40"
@@ -279,10 +279,9 @@ export const HimalayanTravelBlog: React.FC<HimalayanTravelBlogProps> = ({
                 <div>
                   {/* Card Image */}
                   <div className="relative h-52 overflow-hidden">
-                    <img
+                    <OptimizedImage
                       src={article.coverImage}
                       alt={article.title}
-                      referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#111513] via-transparent to-transparent" />
@@ -344,7 +343,7 @@ export const HimalayanTravelBlog: React.FC<HimalayanTravelBlogProps> = ({
                 {/* Card Footer: Author + Actions */}
                 <div className="px-5 py-3.5 border-t border-[#D6B36A]/15 bg-[#0B0F0E]/50 flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <img
+                    <OptimizedImage
                       src={article.author.avatarUrl}
                       alt={article.author.name}
                       className="w-7 h-7 rounded-full object-cover border border-[#D6B36A]/30"
@@ -455,10 +454,9 @@ export const HimalayanTravelBlog: React.FC<HimalayanTravelBlogProps> = ({
             <div className="overflow-y-auto p-5 sm:p-8 space-y-8 flex-1">
               {/* Article Hero Banner */}
               <div className="relative h-64 sm:h-80 rounded-xl overflow-hidden border border-[#D6B36A]/20">
-                <img
+                <OptimizedImage
                   src={activeArticle.coverImage}
                   alt={activeArticle.title}
-                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F0E] via-[#0B0F0E]/30 to-transparent" />
@@ -479,7 +477,7 @@ export const HimalayanTravelBlog: React.FC<HimalayanTravelBlogProps> = ({
               {/* Subtitle & Author Meta Box */}
               <div className="bg-[#111513] p-4 sm:p-5 rounded-xl border border-[#D6B36A]/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
-                  <img
+                  <OptimizedImage
                     src={activeArticle.author.avatarUrl}
                     alt={activeArticle.author.name}
                     className="w-12 h-12 rounded-full object-cover border-2 border-[#D6B36A]"

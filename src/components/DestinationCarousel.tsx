@@ -13,6 +13,7 @@ import {
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, MapPin, Camera, Sparkles, Maximize2, X } from 'lucide-react';
+import { OptimizedImage } from './ui/OptimizedImage';
 
 export interface RoutePhoto {
   url: string;
@@ -397,10 +398,9 @@ export const DestinationCarousel: React.FC<DestinationCarouselProps> = ({ select
             </div>
 
             <div className="relative h-72 sm:h-96 rounded-xl overflow-hidden bg-[#0B0F0E] border border-[#D6B36A]/20">
-              <img
+              <OptimizedImage
                 src={currentPhoto.url}
                 alt={currentPhoto.caption}
-                referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
               />
               <div className="absolute bottom-3 left-3 bg-[#0B0F0E]/85 px-3 py-1.5 rounded border border-[#D6B36A]/30 flex items-center gap-2 text-xs font-bold text-[#D6B36A]">

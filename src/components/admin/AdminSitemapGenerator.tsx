@@ -34,8 +34,11 @@ import { INITIAL_DESTINATIONS, INITIAL_HOTELS } from '../../data/initialStoreDat
 import { BLOG_POSTS } from '../../data/blogData';
 
 interface AdminSitemapGeneratorProps {
+  packages?: TourPackage[];
+  cabs?: CabOption[];
   seoSettings?: SeoSettings;
   onUpdateSeo?: (settings: SeoSettings) => void;
+  onRefresh?: () => void;
 }
 
 interface SitemapUrlEntry {
@@ -49,10 +52,14 @@ interface SitemapUrlEntry {
 }
 
 export const AdminSitemapGenerator: React.FC<AdminSitemapGeneratorProps> = ({
+  packages,
+  cabs,
   seoSettings,
-  onUpdateSeo
+  onUpdateSeo,
+  onRefresh
 }) => {
-  const baseUrl = (seoSettings?.siteUrl || 'https://offbeatdestinationtravels.com').replace(/\/$/, '');
+  const rawSiteUrl = typeof seoSettings?.siteUrl === 'string' ? seoSettings.siteUrl : 'https://offbeatdestinationtravels.com';
+  const baseUrl = rawSiteUrl.replace(/\/$/, '');
   const today = new Date().toISOString().split('T')[0];
 
   const [filterCategory, setFilterCategory] = useState<string>('all');
@@ -153,30 +160,31 @@ export const AdminSitemapGenerator: React.FC<AdminSitemapGeneratorProps> = ({
     ];
 
     // Combine all packages
-    const allPackages: TourPackage[] = [...TOUR_PACKAGES, ...ADDITIONAL_PACKAGES];
-    const uniquePackages = Array.from(new Map(allPackages.map(p => [p.id, p])).values());
+    const packageSource: TourPackage[] = packages && packages.length > 0 ? packages : [...TOUR_PACKAGES, ...ADDITIONAL_PACKAGES];
+    const uniquePackages = Array.from(new Map(packageSource.map(p => [p.id, p])).values());
 
     uniquePackages.forEach((pkg) => {
       entries.push({
         loc: `${baseUrl}/package/${pkg.id}`,
         lastmod: today,
         changefreq: 'weekly',
-        priority: pkg.featured ? '0.9' : '0.8',
+        priority: pkg.rating >= 4.9 ? '0.9' : '0.8',
         category: 'package',
-        title: `${pkg.name} (${pkg.duration})`,
+        title: `${pkg.title} (${pkg.duration})`,
         included: true
       });
     });
 
     // Cabs
-    CAB_OPTIONS.forEach((cab: CabOption) => {
+    const cabSource: CabOption[] = cabs && cabs.length > 0 ? cabs : CAB_OPTIONS;
+    cabSource.forEach((cab: CabOption) => {
       entries.push({
         loc: `${baseUrl}/cabs#${cab.id}`,
         lastmod: today,
         changefreq: 'weekly',
         priority: '0.8',
         category: 'cab',
-        title: `${cab.name} (${cab.capacity} Seater Luxury Rental)`,
+        title: `${cab.model} (${cab.capacity} Luxury Rental)`,
         included: true
       });
     });
@@ -202,7 +210,7 @@ export const AdminSitemapGenerator: React.FC<AdminSitemapGeneratorProps> = ({
         changefreq: 'monthly',
         priority: '0.7',
         category: 'hotel',
-        title: `${hotel.name} - ${hotel.location}`,
+        title: `${hotel.name} - ${hotel.destination || hotel.category}`,
         included: true
       });
     });
@@ -211,7 +219,7 @@ export const AdminSitemapGenerator: React.FC<AdminSitemapGeneratorProps> = ({
     BLOG_POSTS.forEach((blog) => {
       entries.push({
         loc: `${baseUrl}/blog/${blog.id}`,
-        lastmod: blog.date ? new Date(blog.date).toISOString().split('T')[0] : today,
+        lastmod: blog.publishedDate ? new Date(blog.publishedDate).toISOString().split('T')[0] : today,
         changefreq: 'monthly',
         priority: '0.7',
         category: 'blog',
