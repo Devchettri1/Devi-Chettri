@@ -25,11 +25,13 @@ import { AGENCY_DETAILS } from '../data/travelData';
 import { GovtRegistrationBadge } from './GovtRegistrationBadge';
 import { OptimizedImage } from './ui/OptimizedImage';
 
-import innovaCrystaCab from '../assets/images/innova_crysta_cab_1785680577329.jpg';
-import innovaMountainDrive from '../assets/images/innova_mountain_drive_1785681104445.jpg';
-import nathulaPassSnow from '../assets/images/nathula_pass_snow_1785681052944.jpg';
-import agencyCardBanner from '../assets/images/agency_card_banner_1785772861093.jpg';
-import yumthangZeroPoint from '../assets/images/yumthang_zero_point_1785680592273.jpg';
+import {
+  innovaCrystaCab,
+  innovaMountainDrive,
+  nathulaPassSnow,
+  agencyCardBanner,
+  yumthangZeroPoint
+} from '../assets/images';
 
 interface FeaturedVehiclesSectionProps {
   onSelectCabForBooking: (cab: CabOption) => void;

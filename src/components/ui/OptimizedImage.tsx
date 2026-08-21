@@ -33,9 +33,10 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const imgRef = useRef<HTMLImageElement>(null);
 
   // Safely resolve the image source
+  const safeFallback = fallbackSrc || DEFAULT_FALLBACK_IMAGE || '/images/placeholder.webp';
   const resolvedSrc = hasError
-    ? resolveImage(fallbackSrc)
-    : resolveImage(src || fallbackSrc);
+    ? resolveImage(safeFallback)
+    : resolveImage(src || safeFallback);
 
   // Check if image is already cached/complete on initial mount or src change
   useEffect(() => {
@@ -55,10 +56,23 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   };
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const target = e.currentTarget;
+    const failedUrl = src || target.src || 'unknown';
+    
+    // Log missing/failed image for developer awareness while keeping UX intact
+    if (process.env.NODE_ENV !== 'production' || !target.src.includes('placeholder')) {
+      console.warn(`[ImageLoadWarning] Image failed to load: ${failedUrl}. Using fallback placeholder.`);
+    }
+
     if (!hasError) {
       setHasError(true);
       setIsLoaded(true);
+      target.src = resolveImage(safeFallback);
+    } else {
+      // If even the fallback failed, use the inline/public SVG placeholder
+      target.src = '/images/placeholder.svg';
     }
+
     if (onError) {
       onError(e);
     }

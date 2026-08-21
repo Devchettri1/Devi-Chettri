@@ -61,7 +61,7 @@ export const HimalayanTravelBlog: React.FC<HimalayanTravelBlogProps> = ({
       setPageContext({
         type: 'general',
         title: activeArticle.title,
-        subtitle: `Himalayan Blog: ${activeArticle.category} (${calculateReadTime(activeArticle.content)})`,
+        subtitle: `Himalayan Blog: ${activeArticle.category} (${calculateReadTime(activeArticle.content, activeArticle.summary, activeArticle.keyTakeaways)})`,
         location: activeArticle.location || 'Sikkim & Himalayas',
       });
     }
@@ -207,15 +207,18 @@ export const HimalayanTravelBlog: React.FC<HimalayanTravelBlogProps> = ({
 
             <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6">
               <div className="space-y-4">
-                <div className="flex flex-wrap items-center gap-3 text-xs">
+                <div className="flex flex-wrap items-center gap-2.5 text-xs">
                   <span className="bg-[#18352D] text-[#D6B36A] border border-[#D6B36A]/30 px-2.5 py-1 rounded-md font-bold">
                     {featuredArticle.category}
                   </span>
-                  <span className="flex items-center gap-1.5 text-[#D6B36A] font-bold">
-                    <Clock className="w-3.5 h-3.5" />
-                    <span>{calculateReadTime(featuredArticle.content)}</span>
+                  <span className="flex items-center gap-1.5 text-[#D6B36A] font-bold bg-[#18352D] border border-[#D6B36A]/30 px-2.5 py-1 rounded-md shadow-sm">
+                    <Clock className="w-3.5 h-3.5 text-[#D6B36A]" />
+                    <span>{calculateReadTime(featuredArticle.content, featuredArticle.summary, featuredArticle.keyTakeaways)}</span>
                   </span>
-                  <span className="text-[#A9AAA4] text-[11px]">{featuredArticle.publishedDate}</span>
+                  <span className="flex items-center gap-1 text-[#A9AAA4] text-[11px]">
+                    <Calendar className="w-3.5 h-3.5 text-[#D6B36A]" />
+                    <span>{featuredArticle.publishedDate}</span>
+                  </span>
                 </div>
 
                 <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#F5F1E8] group-hover:text-[#D6B36A] transition-colors leading-tight">
@@ -241,16 +244,23 @@ export const HimalayanTravelBlog: React.FC<HimalayanTravelBlogProps> = ({
               </div>
 
               {/* Author & Read Action */}
-              <div className="pt-4 border-t border-[#D6B36A]/20 flex items-center justify-between">
+              <div className="pt-4 border-t border-[#D6B36A]/20 flex items-center justify-between flex-wrap gap-3">
                 <div className="flex items-center gap-3">
                   <OptimizedImage
                     src={featuredArticle.author.avatarUrl}
                     alt={featuredArticle.author.name}
-                    className="w-9 h-9 rounded-full object-cover border border-[#D6B36A]/40"
+                    className="w-10 h-10 rounded-full object-cover border-2 border-[#D6B36A]/50 shadow-md"
                   />
                   <div>
                     <span className="text-xs font-bold text-[#F5F1E8] block">{featuredArticle.author.name}</span>
-                    <span className="text-[10px] text-[#A9AAA4] block">{featuredArticle.author.role}</span>
+                    <div className="flex items-center gap-2 text-[11px] text-[#A9AAA4] mt-0.5">
+                      <span>{featuredArticle.author.role}</span>
+                      <span className="text-[#D6B36A]/40">•</span>
+                      <span className="flex items-center gap-1 text-[#D6B36A] font-bold">
+                        <Clock className="w-3 h-3 text-[#D6B36A]" />
+                        <span>{calculateReadTime(featuredArticle.content, featuredArticle.summary, featuredArticle.keyTakeaways)}</span>
+                      </span>
+                    </div>
                   </div>
                 </div>
 
@@ -268,7 +278,7 @@ export const HimalayanTravelBlog: React.FC<HimalayanTravelBlogProps> = ({
           {filteredArticles.map((article) => {
             const isLiked = likedPosts[article.id];
             const isBookmarked = bookmarkedPosts[article.id];
-            const readTimeText = calculateReadTime(article.content);
+            const readTimeText = calculateReadTime(article.content, article.summary, article.keyTakeaways);
 
             return (
               <article
@@ -308,10 +318,20 @@ export const HimalayanTravelBlog: React.FC<HimalayanTravelBlogProps> = ({
 
                   {/* Card Content */}
                   <div className="p-5 space-y-3">
-                    <div className="flex items-center justify-between text-[11px] text-[#A9AAA4]">
-                      <span>{article.publishedDate}</span>
+                    <div className="flex items-center justify-between text-[11px] text-[#A9AAA4] border-b border-[#D6B36A]/10 pb-2.5">
+                      <div className="flex items-center gap-2">
+                        <span className="flex items-center gap-1">
+                          <Calendar className="w-3.5 h-3.5 text-[#D6B36A]" />
+                          <span>{article.publishedDate}</span>
+                        </span>
+                        <span className="text-[#D6B36A]/40">•</span>
+                        <span className="flex items-center gap-1 text-[#D6B36A] font-bold bg-[#18352D] px-2 py-0.5 rounded border border-[#D6B36A]/30">
+                          <Clock className="w-3 h-3 text-[#D6B36A]" />
+                          <span>{readTimeText}</span>
+                        </span>
+                      </div>
                       {article.elevation && (
-                        <span className="flex items-center gap-1 text-[#D6B36A] font-semibold">
+                        <span className="flex items-center gap-1 text-[#D6B36A] font-semibold text-[10px]">
                           <Mountain className="w-3 h-3" />
                           <span>{article.elevation}</span>
                         </span>
@@ -342,13 +362,19 @@ export const HimalayanTravelBlog: React.FC<HimalayanTravelBlogProps> = ({
 
                 {/* Card Footer: Author + Actions */}
                 <div className="px-5 py-3.5 border-t border-[#D6B36A]/15 bg-[#0B0F0E]/50 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2.5">
                     <OptimizedImage
                       src={article.author.avatarUrl}
                       alt={article.author.name}
-                      className="w-7 h-7 rounded-full object-cover border border-[#D6B36A]/30"
+                      className="w-8 h-8 rounded-full object-cover border border-[#D6B36A]/40 shadow-sm"
                     />
-                    <span className="text-xs font-semibold text-[#F5F1E8]">{article.author.name}</span>
+                    <div>
+                      <span className="text-xs font-bold text-[#F5F1E8] block leading-tight">{article.author.name}</span>
+                      <div className="flex items-center gap-1 text-[10px] text-[#D6B36A] font-semibold mt-0.5">
+                        <Clock className="w-2.5 h-2.5 text-[#D6B36A]" />
+                        <span>{readTimeText}</span>
+                      </div>
+                    </div>
                   </div>
 
                   <div className="flex items-center gap-2">
@@ -425,9 +451,9 @@ export const HimalayanTravelBlog: React.FC<HimalayanTravelBlogProps> = ({
                 <span className="bg-[#18352D] text-[#D6B36A] border border-[#D6B36A]/30 text-[10px] sm:text-xs font-extrabold uppercase px-2.5 py-1 rounded">
                   {activeArticle.category}
                 </span>
-                <span className="flex items-center gap-1 text-[#D6B36A] font-bold text-xs">
-                  <Clock className="w-3.5 h-3.5" />
-                  <span>{calculateReadTime(activeArticle.content)}</span>
+                <span className="flex items-center gap-1.5 text-[#D6B36A] font-bold text-xs bg-[#18352D] px-2.5 py-1 rounded border border-[#D6B36A]/30 shadow-sm">
+                  <Clock className="w-3.5 h-3.5 text-[#D6B36A]" />
+                  <span>{calculateReadTime(activeArticle.content, activeArticle.summary, activeArticle.keyTakeaways)}</span>
                 </span>
               </div>
 
@@ -475,24 +501,34 @@ export const HimalayanTravelBlog: React.FC<HimalayanTravelBlogProps> = ({
               </div>
 
               {/* Subtitle & Author Meta Box */}
-              <div className="bg-[#111513] p-4 sm:p-5 rounded-xl border border-[#D6B36A]/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
+              <div className="bg-[#111513] p-4 sm:p-5 rounded-xl border border-[#D6B36A]/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg">
+                <div className="flex items-center gap-3.5">
                   <OptimizedImage
                     src={activeArticle.author.avatarUrl}
                     alt={activeArticle.author.name}
-                    className="w-12 h-12 rounded-full object-cover border-2 border-[#D6B36A]"
+                    className="w-12 h-12 rounded-full object-cover border-2 border-[#D6B36A] shadow-md"
                   />
                   <div>
                     <span className="font-bold text-[#F5F1E8] text-sm sm:text-base block">
                       {activeArticle.author.name}
                     </span>
-                    <span className="text-xs text-[#D6B36A] block">{activeArticle.author.role}</span>
-                    <span className="text-[11px] text-[#A9AAA4] block">Published {activeArticle.publishedDate}</span>
+                    <span className="text-xs text-[#D6B36A] font-medium block">{activeArticle.author.role}</span>
+                    <div className="flex flex-wrap items-center gap-2.5 text-xs text-[#A9AAA4] mt-1">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-3.5 h-3.5 text-[#D6B36A]" />
+                        <span>Published {activeArticle.publishedDate}</span>
+                      </span>
+                      <span className="text-[#D6B36A]/40">•</span>
+                      <span className="flex items-center gap-1.5 text-[#D6B36A] font-bold bg-[#18352D] px-2.5 py-0.5 rounded-full border border-[#D6B36A]/30 shadow-sm">
+                        <Clock className="w-3.5 h-3.5 text-[#D6B36A]" />
+                        <span>{calculateReadTime(activeArticle.content, activeArticle.summary, activeArticle.keyTakeaways)}</span>
+                      </span>
+                    </div>
                   </div>
                 </div>
 
                 {activeArticle.bestSeason && (
-                  <div className="bg-[#18352D] px-3.5 py-2 rounded-lg border border-[#D6B36A]/30 text-xs">
+                  <div className="bg-[#18352D] px-4 py-2 rounded-xl border border-[#D6B36A]/30 text-xs shadow-sm">
                     <span className="text-[#A9AAA4] block text-[10px] uppercase font-bold">Best Season:</span>
                     <span className="font-extrabold text-[#D6B36A]">{activeArticle.bestSeason}</span>
                   </div>

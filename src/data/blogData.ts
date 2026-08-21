@@ -7,11 +7,15 @@ import {
   darjeelingTeaGardens
 } from '../assets/images';
 
-export const calculateReadTime = (content: string): string => {
-  if (!content) return '3 min read';
-  const cleanText = content.replace(/[#*`_\[\]()>-]/g, ' ');
+export const calculateReadTime = (content: string, summary?: string, takeaways?: string[]): string => {
+  const combined = `${content || ''} ${summary || ''} ${(takeaways || []).join(' ')}`;
+  if (!combined.trim()) return '3 min read';
+  // Strip Markdown syntax and formatting symbols
+  const cleanText = combined.replace(/[#*`_\[\]()>-]/g, ' ');
+  // Count words
   const words = cleanText.trim().split(/\s+/).filter(Boolean).length;
-  const minutes = Math.max(2, Math.ceil(words / 200));
+  // Standard reading speed: 200 words/minute
+  const minutes = Math.max(1, Math.ceil(words / 200));
   return `${minutes} min read`;
 };
 

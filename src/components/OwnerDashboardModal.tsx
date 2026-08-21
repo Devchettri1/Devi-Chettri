@@ -1900,7 +1900,7 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
                       <div className="flex gap-2">
                         <input
                           type="url"
-                          placeholder="https://your-domain.com/assets/logo.png"
+                          placeholder="https://example.com/logo.png"
                           value={logoInputUrl}
                           onChange={(e) => setLogoInputUrl(e.target.value)}
                           className="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-slate-100 text-xs font-mono"

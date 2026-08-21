@@ -141,7 +141,7 @@ export const VEHICLE_OPTIONS: VehicleOption[] = [
     pricePerDay: 3200,
     isPermittedNorthSikkim: false,
     isPermittedNathula: false,
-    image: 'https://images.unsplash.com/photo-1590362891988-f7780470208b?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80',
     description: 'Economical sedan for couple travel across Gangtok, Darjeeling, and Kalimpong (Note: Not permitted for North Sikkim/Nathula).',
   },
   {

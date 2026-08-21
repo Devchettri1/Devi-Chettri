@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" fill="none">
+  <rect width="800" height="600" fill="#111827"/>
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1F2937"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#grad)"/>
+  <circle cx="400" cy="250" r="80" fill="#1E293B" stroke="#334155" stroke-width="2"/>
+  <!-- Mountain icon -->
+  <path d="M350 290 L400 210 L450 290 Z" fill="url(#gold)" opacity="0.9"/>
+  <path d="M380 290 L420 230 L460 290 Z" fill="#CBD5E1" opacity="0.8"/>
+  <path d="M390 226 L400 210 L410 226 L405 230 L395 230 Z" fill="#FFFFFF"/>
+  <!-- Text -->
+  <text x="400" y="380" text-anchor="middle" fill="#F3F4F6" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="bold" letter-spacing="1">OFFBEAT DESTINATION TRAVELS</text>
+  <text x="400" y="415" text-anchor="middle" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="500">Himalayan Travel &amp; Tour Experiences</text>
+</svg>
