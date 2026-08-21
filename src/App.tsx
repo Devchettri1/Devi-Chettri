@@ -7,9 +7,10 @@ import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import type { ConsoleTab } from './components/OwnerDashboardModal';
 import { Logo } from './components/Logo';
 import { AGENCY_DETAILS, TOUR_PACKAGES, CAB_OPTIONS, DEFAULT_SEO_SETTINGS, SIKKIM_TOUR_FAQS } from './data/travelData';
-import { INITIAL_HOTELS } from './data/initialStoreData';
-import { CabOption, LeadSubmission, TourPackage, SeoSettings, HotelItem } from './types';
+import { INITIAL_HOTELS, INITIAL_ALERT } from './data/initialStoreData';
+import { CabOption, LeadSubmission, TourPackage, SeoSettings, HotelItem, TravelAlert } from './types';
 import { Phone, MapPin, Mail, ShieldCheck, Heart, FileText, Lock, AlertTriangle, CreditCard } from 'lucide-react';
+import { TravelAlertBanner } from './components/TravelAlertBanner';
 
 import { SikkimWeatherWidget } from './components/SikkimWeatherWidget';
 import { HimalayanTravelCalculator } from './components/HimalayanTravelCalculator';
@@ -277,45 +278,71 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [activeTab]);
 
-  // Packages, Cabs, Agency state with localStorage fallback
+  // Packages, Cabs, Agency, Hotels, and SEO state
   const [packages, setPackages] = useState<TourPackage[]>(() => {
-    const saved = localStorage.getItem('offbeat_packages');
-    if (saved) {
-      try { return JSON.parse(saved); } catch (e) {}
-    }
+    try {
+      const saved = localStorage.getItem('offbeat_packages');
+      if (saved && !saved.includes('/src/assets/')) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch (e) {}
     return TOUR_PACKAGES;
   });
 
   const [cabs, setCabs] = useState<CabOption[]>(() => {
-    const saved = localStorage.getItem('offbeat_cabs');
-    if (saved) {
-      try { return JSON.parse(saved); } catch (e) {}
-    }
+    try {
+      const saved = localStorage.getItem('offbeat_cabs');
+      if (saved && !saved.includes('/src/assets/')) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch (e) {}
     return CAB_OPTIONS;
   });
 
   const [hotels, setHotels] = useState<HotelItem[]>(() => {
-    const saved = localStorage.getItem('offbeat_hotels');
-    if (saved) {
-      try { return JSON.parse(saved); } catch (e) {}
-    }
+    try {
+      const saved = localStorage.getItem('offbeat_hotels');
+      if (saved && !saved.includes('/src/assets/')) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch (e) {}
     return INITIAL_HOTELS;
   });
 
   const [agencyDetails, setAgencyDetails] = useState<any>(() => {
-    const saved = localStorage.getItem('offbeat_agency');
-    if (saved) {
-      try { return JSON.parse(saved); } catch (e) {}
-    }
+    try {
+      const saved = localStorage.getItem('offbeat_agency');
+      if (saved && !saved.includes('/src/assets/')) {
+        const parsed = JSON.parse(saved);
+        if (parsed && parsed.name) return parsed;
+      }
+    } catch (e) {}
     return AGENCY_DETAILS;
   });
 
   const [seoSettings, setSeoSettings] = useState<SeoSettings>(() => {
-    const saved = localStorage.getItem('offbeat_seo');
-    if (saved) {
-      try { return JSON.parse(saved); } catch (e) {}
-    }
+    try {
+      const saved = localStorage.getItem('offbeat_seo');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed && parsed.home) return parsed;
+      }
+    } catch (e) {}
     return DEFAULT_SEO_SETTINGS;
+  });
+
+  const [travelAlert, setTravelAlert] = useState<TravelAlert>(() => {
+    try {
+      const saved = localStorage.getItem('offbeat_travel_alert');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed && parsed.title) return parsed;
+      }
+    } catch (e) {}
+    return INITIAL_ALERT;
   });
 
   const [isHostingerGuideOpen, setIsHostingerGuideOpen] = useState<boolean>(false);
@@ -366,118 +393,117 @@ export default function App() {
     setIsPhotoEditorOpen(true);
   };
 
-  const handleApplyPhotoToPackage = (pkgId: string, newPhotoUrl: string) => {
+  const handleApplyPhotoToPackage = async (pkgId: string, newPhotoUrl: string) => {
     const updated = packages.map((pkg) => (pkg.id === pkgId ? { ...pkg, heroImage: newPhotoUrl } : pkg));
     setPackages(updated);
-    localStorage.setItem('offbeat_packages', JSON.stringify(updated));
-    fetchWithRetry('/api/admin/packages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updated),
-    }).catch(() => {});
+    try {
+      localStorage.setItem('offbeat_packages', JSON.stringify(updated));
+    } catch {}
+    try {
+      await fetchWithRetry('/api/admin/packages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ packages: updated }),
+      });
+      await fetchAllData();
+    } catch (e) {}
   };
 
-  const handleApplyPhotoToCab = (cabId: string, newPhotoUrl: string) => {
+  const handleApplyPhotoToCab = async (cabId: string, newPhotoUrl: string) => {
     const updated = cabs.map((cab) => (cab.id === cabId ? { ...cab, image: newPhotoUrl } : cab));
     setCabs(updated);
-    localStorage.setItem('offbeat_cabs', JSON.stringify(updated));
-    fetchWithRetry('/api/admin/cabs', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updated),
-    }).catch(() => {});
+    try {
+      localStorage.setItem('offbeat_cabs', JSON.stringify(updated));
+    } catch {}
+    try {
+      await fetchWithRetry('/api/admin/cabs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cabs: updated }),
+      });
+      await fetchAllData();
+    } catch (e) {}
+  };
+
+  // Centralized Data Refetching Engine for Instant React State Synchronization
+  const fetchAllData = async () => {
+    try {
+      const [leadsRes, pkgsRes, cabsRes, hotelsRes, agencyRes, seoRes, alertRes] = await Promise.all([
+        fetchWithRetry('/api/leads'),
+        fetchWithRetry('/api/packages'),
+        fetchWithRetry('/api/cabs'),
+        fetchWithRetry('/api/hotels'),
+        fetchWithRetry('/api/agency'),
+        fetchWithRetry('/api/seo'),
+        fetchWithRetry('/api/alerts'),
+      ]);
+
+      if (leadsRes.ok) {
+        const data = await leadsRes.json();
+        if (Array.isArray(data)) setLeads(data);
+      }
+      if (pkgsRes.ok) {
+        const data = await pkgsRes.json();
+        if (Array.isArray(data) && data.length > 0) {
+          setPackages(data);
+          try {
+            localStorage.setItem('offbeat_packages', JSON.stringify(data));
+          } catch {}
+        }
+      }
+      if (cabsRes.ok) {
+        const data = await cabsRes.json();
+        if (Array.isArray(data) && data.length > 0) {
+          setCabs(data);
+          try {
+            localStorage.setItem('offbeat_cabs', JSON.stringify(data));
+          } catch {}
+        }
+      }
+      if (hotelsRes.ok) {
+        const data = await hotelsRes.json();
+        if (Array.isArray(data) && data.length > 0) {
+          setHotels(data);
+          try {
+            localStorage.setItem('offbeat_hotels', JSON.stringify(data));
+          } catch {}
+        }
+      }
+      if (agencyRes.ok) {
+        const data = await agencyRes.json();
+        if (data && typeof data === 'object' && data.name) {
+          setAgencyDetails(data);
+          try {
+            localStorage.setItem('offbeat_agency', JSON.stringify(data));
+          } catch {}
+        }
+      }
+      if (seoRes.ok) {
+        const data = await seoRes.json();
+        if (data && typeof data === 'object' && data.home) {
+          setSeoSettings(data);
+          try {
+            localStorage.setItem('offbeat_seo', JSON.stringify(data));
+          } catch {}
+        }
+      }
+      if (alertRes.ok) {
+        const data = await alertRes.json();
+        if (data && typeof data === 'object' && data.title) {
+          setTravelAlert(data);
+          try {
+            localStorage.setItem('offbeat_travel_alert', JSON.stringify(data));
+          } catch {}
+        }
+      }
+    } catch (err) {
+      console.error('Failed to sync backend data:', err);
+    }
   };
 
   // Fetch initial leads, packages, cabs from server with exponential backoff retry logic
   useEffect(() => {
-    fetchWithRetry('/api/leads')
-      .then((res) => {
-        if (res.ok && res.headers.get('content-type')?.includes('application/json')) {
-          return res.json();
-        }
-        return null;
-      })
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setLeads(data);
-        }
-      })
-      .catch((err) => console.error('Failed to load leads:', err));
-
-    fetchWithRetry('/api/packages')
-      .then((res) => {
-        if (res.ok && res.headers.get('content-type')?.includes('application/json')) {
-          return res.json();
-        }
-        return null;
-      })
-      .then((data) => {
-        if (Array.isArray(data) && data.length > 0) {
-          setPackages(data);
-          localStorage.setItem('offbeat_packages', JSON.stringify(data));
-        }
-      })
-      .catch(() => {});
-
-    fetchWithRetry('/api/cabs')
-      .then((res) => {
-        if (res.ok && res.headers.get('content-type')?.includes('application/json')) {
-          return res.json();
-        }
-        return null;
-      })
-      .then((data) => {
-        if (Array.isArray(data) && data.length > 0) {
-          setCabs(data);
-          localStorage.setItem('offbeat_cabs', JSON.stringify(data));
-        }
-      })
-      .catch(() => {});
-
-    fetchWithRetry('/api/hotels')
-      .then((res) => {
-        if (res.ok && res.headers.get('content-type')?.includes('application/json')) {
-          return res.json();
-        }
-        return null;
-      })
-      .then((data) => {
-        if (Array.isArray(data) && data.length > 0) {
-          setHotels(data);
-          localStorage.setItem('offbeat_hotels', JSON.stringify(data));
-        }
-      })
-      .catch(() => {});
-
-    fetchWithRetry('/api/agency')
-      .then((res) => {
-        if (res.ok && res.headers.get('content-type')?.includes('application/json')) {
-          return res.json();
-        }
-        return null;
-      })
-      .then((data) => {
-        if (data && typeof data === 'object' && data.name) {
-          setAgencyDetails(data);
-          localStorage.setItem('offbeat_agency', JSON.stringify(data));
-        }
-      })
-      .catch(() => {});
-
-    fetchWithRetry('/api/seo')
-      .then((res) => {
-        if (res.ok && res.headers.get('content-type')?.includes('application/json')) {
-          return res.json();
-        }
-        return null;
-      })
-      .then((data) => {
-        if (data && typeof data === 'object') {
-          setSeoSettings(data);
-          localStorage.setItem('offbeat_seo', JSON.stringify(data));
-        }
-      })
-      .catch(() => {});
+    fetchAllData();
 
     if (window.location.pathname.includes('/admin') || window.location.hash.includes('admin')) {
       setIsOwnerDashboardOpen(true);
@@ -663,54 +689,134 @@ export default function App() {
     });
   }, [activeTab, packages, agencyDetails, seoSettings]);
 
-  const handleSavePackages = (updatedPackages: TourPackage[]) => {
+  const handleSavePackages = async (updatedPackages: TourPackage[]) => {
     setPackages(updatedPackages);
-    localStorage.setItem('offbeat_packages', JSON.stringify(updatedPackages));
-    fetchWithRetry('/api/admin/packages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ packages: updatedPackages }),
-    }).catch((err) => console.error('Failed to post updated packages:', err));
+    try {
+      localStorage.setItem('offbeat_packages', JSON.stringify(updatedPackages));
+    } catch {}
+    try {
+      const res = await fetchWithRetry('/api/admin/packages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ packages: updatedPackages }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.packages && Array.isArray(data.packages)) {
+          setPackages(data.packages);
+          try {
+            localStorage.setItem('offbeat_packages', JSON.stringify(data.packages));
+          } catch {}
+        }
+      }
+      await fetchAllData();
+    } catch (err) {
+      console.error('Failed to post updated packages:', err);
+    }
   };
 
-  const handleSaveCabs = (updatedCabs: CabOption[]) => {
+  const handleSaveCabs = async (updatedCabs: CabOption[]) => {
     setCabs(updatedCabs);
-    localStorage.setItem('offbeat_cabs', JSON.stringify(updatedCabs));
-    fetchWithRetry('/api/admin/cabs', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ cabs: updatedCabs }),
-    }).catch((err) => console.error('Failed to post updated cabs:', err));
+    try {
+      localStorage.setItem('offbeat_cabs', JSON.stringify(updatedCabs));
+    } catch {}
+    try {
+      const res = await fetchWithRetry('/api/admin/cabs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cabs: updatedCabs }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.cabs && Array.isArray(data.cabs)) {
+          setCabs(data.cabs);
+          try {
+            localStorage.setItem('offbeat_cabs', JSON.stringify(data.cabs));
+          } catch {}
+        }
+      }
+      await fetchAllData();
+    } catch (err) {
+      console.error('Failed to post updated cabs:', err);
+    }
   };
 
-  const handleSaveAgencyDetails = (updatedAgency: any) => {
+  const handleSaveAgencyDetails = async (updatedAgency: any) => {
     setAgencyDetails(updatedAgency);
-    localStorage.setItem('offbeat_agency', JSON.stringify(updatedAgency));
-    fetchWithRetry('/api/admin/agency', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ agency: updatedAgency }),
-    }).catch((err) => console.error('Failed to post updated agency details:', err));
+    try {
+      localStorage.setItem('offbeat_agency', JSON.stringify(updatedAgency));
+    } catch {}
+    try {
+      const res = await fetchWithRetry('/api/admin/agency', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ agency: updatedAgency }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.agency) {
+          setAgencyDetails(data.agency);
+          try {
+            localStorage.setItem('offbeat_agency', JSON.stringify(data.agency));
+          } catch {}
+        }
+      }
+      await fetchAllData();
+    } catch (err) {
+      console.error('Failed to post updated agency details:', err);
+    }
   };
 
-  const handleResetToDefaults = () => {
-    localStorage.removeItem('offbeat_packages');
-    localStorage.removeItem('offbeat_cabs');
-    localStorage.removeItem('offbeat_agency');
+  const handleSaveAlert = async (updatedAlert: TravelAlert) => {
+    setTravelAlert(updatedAlert);
+    try {
+      localStorage.setItem('offbeat_travel_alert', JSON.stringify(updatedAlert));
+    } catch {}
+    try {
+      await fetchWithRetry('/api/admin/alerts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ alert: updatedAlert }),
+      });
+      await fetchAllData();
+    } catch (err) {
+      console.error('Failed to post updated alert:', err);
+    }
+  };
+
+  const handleResetToDefaults = async () => {
+    try {
+      localStorage.removeItem('offbeat_packages');
+      localStorage.removeItem('offbeat_cabs');
+      localStorage.removeItem('offbeat_agency');
+      localStorage.removeItem('offbeat_travel_alert');
+    } catch {}
     setPackages(TOUR_PACKAGES);
     setCabs(CAB_OPTIONS);
     setAgencyDetails(AGENCY_DETAILS);
-    fetchWithRetry('/api/admin/reset-defaults', { method: 'POST' }).catch(() => {});
+    setTravelAlert(INITIAL_ALERT);
+    try {
+      await fetchWithRetry('/api/admin/reset-defaults', { method: 'POST' });
+      await fetchAllData();
+    } catch {}
   };
 
   const handleLeadCaptured = (newLead: LeadSubmission) => {
     setLeads((prev) => [newLead, ...prev]);
   };
 
-  const handleUpdateLeadStatus = (leadId: string, newStatus: any) => {
+  const handleUpdateLeadStatus = async (leadId: string, newStatus: any) => {
     setLeads((prev) =>
       prev.map((l) => (l.id === leadId ? { ...l, status: newStatus } : l))
     );
+    try {
+      await fetchWithRetry('/api/admin/leads/status', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ leadId, status: newStatus }),
+      });
+      await fetchAllData();
+    } catch {}
   };
 
   const handleOpenChatWithContext = (contextTitle?: string) => {
@@ -737,6 +843,21 @@ export default function App() {
         hotels={hotels}
         agencyDetails={agencyDetails}
         onOpenChatWithContext={handleOpenChatWithContext}
+      />
+
+      {/* Real-time Emergency / Road Status Travel Alert Banner */}
+      <TravelAlertBanner
+        alert={travelAlert}
+        onNavigateAction={(action) => {
+          if (action === 'packages') setActiveTab('packages');
+          if (action === 'cabs') setActiveTab('cabs');
+          if (action === 'weather') {
+            const el = document.getElementById('calculator-section');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }}
+        onOpenOwnerDashboardAlerts={() => handleOpenOwnerDashboard('alerts')}
+        whatsappNumber={agencyDetails?.phone || '+916296102341'}
       />
 
       {/* Main Page View Renderer */}
@@ -1175,11 +1296,14 @@ export default function App() {
             agencyDetails={agencyDetails}
             seoSettings={seoSettings}
             initialTab={ownerDashboardTab}
+            currentAlert={travelAlert}
             onClose={() => setIsOwnerDashboardOpen(false)}
             onUpdateStatus={handleUpdateLeadStatus}
             onSavePackages={handleSavePackages}
             onSaveCabs={handleSaveCabs}
             onSaveAgencyDetails={handleSaveAgencyDetails}
+            onSaveAlert={handleSaveAlert}
+            onRefreshAllData={fetchAllData}
             onSaveSeoSettings={(updatedSeo) => {
               setSeoSettings(updatedSeo);
               localStorage.setItem('offbeat_seo', JSON.stringify(updatedSeo));

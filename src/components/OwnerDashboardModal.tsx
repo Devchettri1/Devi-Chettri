@@ -48,6 +48,8 @@ import {
   Menu,
   Radio,
   AlertTriangle,
+  LogOut,
+  User,
 } from 'lucide-react';
 import { Logo } from './Logo';
 import { DEFAULT_SEO_SETTINGS } from '../data/travelData';
@@ -82,6 +84,7 @@ interface OwnerDashboardModalProps {
   currentAlert?: TravelAlert;
   onSaveAlert?: (updatedAlert: TravelAlert) => void;
   initialTab?: any;
+  onRefreshAllData?: () => Promise<void> | void;
 }
 
 export type MainAdminSection =
@@ -115,11 +118,20 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
   currentAlert,
   onSaveAlert,
   initialTab,
+  onRefreshAllData,
 }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    try {
+      return Boolean(sessionStorage.getItem('odt_admin_token') || localStorage.getItem('odt_admin_token'));
+    } catch {
+      return false;
+    }
+  });
+  const [adminIdInput, setAdminIdInput] = useState<string>('admin');
+  const [passwordInput, setPasswordInput] = useState<string>('');
   const [pinInput, setPinInput] = useState<string>('');
   const [authError, setAuthError] = useState<string>('');
-  const [currentUser, setCurrentUser] = useState<any>({ name: 'Owner Admin', role: 'OWNER' });
+  const [currentUser, setCurrentUser] = useState<any>({ name: 'Devi Charan Chettri', role: 'OWNER' });
 
   // Main Section & Sub Tab State
   const [activeSection, setActiveSection] = useState<MainAdminSection>('dashboard');
@@ -234,6 +246,34 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
     bannerImage: sikkimHeroBanner,
   });
 
+  // Keep local editor states in sync with props from server
+  useEffect(() => {
+    if (packages && packages.length > 0) {
+      setLocalPackages(packages);
+      if (!selectedPkgId || !packages.some((p) => p.id === selectedPkgId)) {
+        setSelectedPkgId(packages[0]?.id || '');
+      }
+    }
+  }, [packages]);
+
+  useEffect(() => {
+    if (cabs && cabs.length > 0) {
+      setLocalCabs(cabs);
+    }
+  }, [cabs]);
+
+  useEffect(() => {
+    if (agencyDetails && agencyDetails.name) {
+      setLocalAgency(agencyDetails);
+    }
+  }, [agencyDetails]);
+
+  useEffect(() => {
+    if (seoSettings) {
+      setLocalSeo(seoSettings);
+    }
+  }, [seoSettings]);
+
   const handleSaveAlert = async (updatedAlert: TravelAlert) => {
     setLocalAlert(updatedAlert);
     if (onSaveAlert) {
@@ -304,37 +344,122 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
       const res = await fetch('/api/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ pin: pinInput, password: pinInput }),
+        body: JSON.stringify({
+          username: adminIdInput,
+          email: adminIdInput,
+          password: passwordInput,
+          pin: passwordInput,
+        }),
       });
       const data = await res.json();
       if (res.ok && data.success) {
         setIsAuthenticated(true);
-        setCurrentUser(data.user);
+        setCurrentUser(data.user || { name: 'Devi Charan Chettri', role: 'OWNER' });
+        try {
+          sessionStorage.setItem('odt_admin_token', data.token || 'authenticated');
+          localStorage.setItem('odt_admin_token', data.token || 'authenticated');
+        } catch {}
         setAuthError('');
+        fetchAllBackendData();
+        if (onRefreshAllData) onRefreshAllData();
       } else {
-        setAuthError(data.error || 'Invalid PIN code. Default PIN: 1750');
+        setAuthError(data.error || 'Invalid Admin ID or Password. Default ID: admin | Password: Sikkim@123');
       }
     } catch (err) {
       setAuthError('Connection error to backend login endpoint.');
     }
   };
 
-  const handleSaveAllPackages = () => {
-    onSavePackages(localPackages);
-    setPkgSaveStatus('Saved & Published Live!');
-    setTimeout(() => setPkgSaveStatus(''), 3000);
+  const handleLogout = () => {
+    try {
+      sessionStorage.removeItem('odt_admin_token');
+      localStorage.removeItem('odt_admin_token');
+    } catch {}
+    setIsAuthenticated(false);
   };
 
-  const handleSaveAllCabs = () => {
-    onSaveCabs(localCabs);
-    setCabSaveStatus('Cab Rates Updated!');
-    setTimeout(() => setCabSaveStatus(''), 3000);
+  const handleSaveAllPackages = async () => {
+    setPkgSaveStatus('Saving & Publishing Live...');
+    try {
+      onSavePackages(localPackages);
+      const res = await fetch('/api/admin/packages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ packages: localPackages }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.packages && Array.isArray(data.packages)) {
+          setLocalPackages(data.packages);
+          onSavePackages(data.packages);
+        }
+        if (onRefreshAllData) await onRefreshAllData();
+        fetchAllBackendData();
+        setPkgSaveStatus('Saved & Published Live! (Synced across all pages)');
+      } else {
+        setPkgSaveStatus('Saved to local session');
+      }
+    } catch (err) {
+      console.error('Error saving packages:', err);
+      setPkgSaveStatus('Saved locally');
+    }
+    setTimeout(() => setPkgSaveStatus(''), 3500);
   };
 
-  const handleSaveAgency = () => {
-    onSaveAgencyDetails(localAgency);
-    setAgencySaveStatus('Agency Info Saved!');
-    setTimeout(() => setAgencySaveStatus(''), 3000);
+  const handleSaveAllCabs = async () => {
+    setCabSaveStatus('Saving Cab Fleet Rates...');
+    try {
+      onSaveCabs(localCabs);
+      const res = await fetch('/api/admin/cabs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cabs: localCabs }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.cabs && Array.isArray(data.cabs)) {
+          setLocalCabs(data.cabs);
+          onSaveCabs(data.cabs);
+        }
+        if (onRefreshAllData) await onRefreshAllData();
+        fetchAllBackendData();
+        setCabSaveStatus('Cab Rates Updated & Synchronized Live!');
+      } else {
+        setCabSaveStatus('Saved to local session');
+      }
+    } catch (err) {
+      console.error('Error saving cabs:', err);
+      setCabSaveStatus('Saved locally');
+    }
+    setTimeout(() => setCabSaveStatus(''), 3500);
+  };
+
+  const handleSaveAgency = async () => {
+    setAgencySaveStatus('Saving Agency Info...');
+    try {
+      onSaveAgencyDetails(localAgency);
+      const res = await fetch('/api/admin/agency', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ agency: localAgency }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.agency) {
+          setLocalAgency(data.agency);
+          onSaveAgencyDetails(data.agency);
+        }
+        if (onRefreshAllData) await onRefreshAllData();
+        fetchAllBackendData();
+        setAgencySaveStatus('Agency Info Saved & Broadcast Live!');
+      } else {
+        setAgencySaveStatus('Saved to local session');
+      }
+    } catch (err) {
+      console.error('Error saving agency:', err);
+      setAgencySaveStatus('Saved locally');
+    }
+    setTimeout(() => setAgencySaveStatus(''), 3500);
   };
 
   const handleLogoFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -530,38 +655,81 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
 
   if (!isAuthenticated) {
     return (
-      <div className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4">
+      <div className="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md flex items-center justify-center p-4">
         <div className="bg-slate-900 border border-emerald-700/60 rounded-2xl max-w-md w-full p-6 text-slate-100 space-y-6 shadow-2xl">
           <div className="text-center space-y-2">
-            <Logo variant="light" size="md" showText={true} />
-            <h2 className="text-lg font-bold text-slate-100">Agency Admin Console Security</h2>
-            <p className="text-xs text-slate-400">Enter Admin PIN or password to gain access</p>
+            <div className="flex justify-center">
+              <Logo variant="light" size="md" showText={true} />
+            </div>
+            <h2 className="text-lg font-bold text-slate-100">Agency Admin Console Login</h2>
+            <p className="text-xs text-slate-400">
+              Sign in with your Admin ID and Password to manage tour packages, cab rates, hotels, and leads.
+            </p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Security PIN / Password</label>
-              <input
-                type="password"
-                placeholder="Enter PIN (Default: 1750)"
-                value={pinInput}
-                onChange={(e) => setPinInput(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-100 text-center font-mono tracking-widest"
-              />
+              <label className="block text-xs font-semibold text-slate-300 mb-1">Admin ID / Email</label>
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="admin"
+                  value={adminIdInput}
+                  onChange={(e) => setAdminIdInput(e.target.value)}
+                  className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500 rounded-xl px-4 py-2.5 text-sm text-slate-100 font-medium pl-10"
+                  required
+                />
+                <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
+              </div>
             </div>
 
-            {authError && <div className="p-2.5 bg-rose-950/80 text-rose-300 border border-rose-800 rounded-xl text-xs text-center font-semibold">{authError}</div>}
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 mb-1">Password</label>
+              <div className="relative">
+                <input
+                  type="password"
+                  placeholder="Enter password (Sikkim@123)"
+                  value={passwordInput}
+                  onChange={(e) => setPasswordInput(e.target.value)}
+                  className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500 rounded-xl px-4 py-2.5 text-sm text-slate-100 font-medium pl-10"
+                  required
+                />
+                <Lock className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
+              </div>
+            </div>
 
-            <div className="flex gap-2">
+            <div className="p-2.5 bg-slate-950/80 border border-slate-800 rounded-xl flex items-center justify-between text-xs">
+              <div className="text-slate-400 text-[11px]">
+                <span>ID: <strong className="text-emerald-400 font-mono">admin</strong></span> | <span>Pass: <strong className="text-amber-400 font-mono">Sikkim@123</strong></span>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setAdminIdInput('admin');
+                  setPasswordInput('Sikkim@123');
+                }}
+                className="text-[11px] text-emerald-400 hover:text-emerald-300 font-semibold underline"
+              >
+                Auto-fill
+              </button>
+            </div>
+
+            {authError && (
+              <div className="p-2.5 bg-rose-950/80 text-rose-300 border border-rose-800 rounded-xl text-xs text-center font-semibold">
+                {authError}
+              </div>
+            )}
+
+            <div className="flex gap-2 pt-2">
               <button
                 type="button"
                 onClick={onClose}
-                className="w-1/3 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-bold"
+                className="w-1/3 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-bold transition-colors"
               >
                 Cancel
               </button>
               <button type="submit" className="w-2/3 btn-luxury-gold text-xs !py-2.5">
-                <span>Authenticate</span>
+                <span>Sign In to Admin</span>
               </button>
             </div>
           </form>
@@ -772,6 +940,15 @@ export const OwnerDashboardModal: React.FC<OwnerDashboardModalProps> = ({
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Reset Defaults</span>
+            </button>
+
+            <button
+              onClick={handleLogout}
+              className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-semibold border border-slate-700 flex items-center gap-1.5 transition-colors"
+              title="Log out of Admin Console"
+            >
+              <LogOut className="w-3.5 h-3.5 text-slate-400" />
+              <span className="hidden sm:inline">Logout</span>
             </button>
 
             <button

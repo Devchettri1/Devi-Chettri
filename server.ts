@@ -4,7 +4,7 @@ import fs from 'fs';
 import dotenv from 'dotenv';
 import { GoogleGenAI } from '@google/genai';
 import { DEFAULT_SEO_SETTINGS } from './src/data/travelData';
-import { getBackendStore, saveBackendStore, logAuditAction } from './src/data/backendStore';
+import { getBackendStore, saveBackendStore, logAuditAction, INITIAL_RATES_CONFIG } from './src/data/backendStore';
 import { BLOG_POSTS, calculateReadTime } from './src/data/blogData';
 import { generateCrawlerSitemap } from './src/utils/sitemapGenerator';
 
@@ -18,7 +18,6 @@ app.use(express.json());
 // Enterprise Security Headers Middleware
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
   res.setHeader('X-XSS-Protection', '1; mode=block');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   next();
@@ -626,36 +625,40 @@ function buildFallbackItinerary(params: any) {
   const interests = Array.isArray(params.interests) ? params.interests.join(', ') : (params.interests || 'Popular Spots & Offbeat Locations');
   const isNorthSikkimRequested = (params.destination && params.destination.toLowerCase().includes('north')) || (typeof interests === 'string' && interests.toLowerCase().includes('zero point')) || durationDays >= 5;
 
-  // 1. Look up Cab Rate from backend cabsDatabase
-  let matchedCab = cabsDatabase.find(c => c.id === 'cab-innova-crysta');
+  const store = getBackendStore();
+  const cabsList = store.cabs || [];
+  const ratesConfig = store.rates || INITIAL_RATES_CONFIG;
+
+  // 1. Look up Cab Rate from backend cabs
+  let matchedCab = cabsList.find((c: any) => c.id === 'cab-innova-crysta');
   if (budget.includes('Budget') || budget.includes('Sedan')) {
-    matchedCab = cabsDatabase.find(c => c.id === 'cab-sedan-dzire') || cabsDatabase[0];
+    matchedCab = cabsList.find((c: any) => c.id === 'cab-sedan-dzire') || cabsList[0];
   } else if (isNorthSikkimRequested || budget.includes('4x4') || budget.includes('Scorpio')) {
-    matchedCab = cabsDatabase.find(c => c.id === 'cab-xylo-scorpio') || matchedCab;
+    matchedCab = cabsList.find((c: any) => c.id === 'cab-xylo-scorpio') || matchedCab;
   }
   const cabRatePerDay = matchedCab ? matchedCab.ratePerDay : 4500;
   const vehicle = matchedCab ? `${matchedCab.model}` : "Toyota Innova Crysta";
 
-  // 2. Look up Hotel Night Rate from backend ratesConfigDatabase
-  let hotelNightRate = ratesConfigDatabase.hotelNightRates.premium3Star;
+  // 2. Look up Hotel Night Rate from backend ratesConfig
+  let hotelNightRate = ratesConfig.hotelNightRates.premium3Star;
   if (budget.includes('Budget') || budget.includes('Deluxe')) {
-    hotelNightRate = ratesConfigDatabase.hotelNightRates.budgetDeluxe;
+    hotelNightRate = ratesConfig.hotelNightRates.budgetDeluxe;
   } else if (budget.includes('Luxury') || budget.includes('5★')) {
-    hotelNightRate = ratesConfigDatabase.hotelNightRates.luxury5Star;
+    hotelNightRate = ratesConfig.hotelNightRates.luxury5Star;
   }
 
-  // 3. Look up Permit Fees from backend ratesConfigDatabase
+  // 3. Look up Permit Fees from backend ratesConfig
   const permitFee = isNorthSikkimRequested
-    ? ratesConfigDatabase.permitFees.northSikkimPermit
-    : ratesConfigDatabase.permitFees.tsomgoPermit;
+    ? ratesConfig.permitFees.northSikkimPermit
+    : ratesConfig.permitFees.tsomgoPermit;
 
   // 4. Calculate total cost using Backend Rates Matrix & Seasonal Multiplier
   const totalVehicleCost = cabRatePerDay * durationDays;
   const hotelNights = Math.max(1, durationDays - 1);
   const roomsNeeded = Math.ceil(travelers / 2);
   const totalHotelCost = hotelNightRate * hotelNights * roomsNeeded;
-  const subtotal = (totalVehicleCost + totalHotelCost + permitFee) * ratesConfigDatabase.seasonalMultiplier;
-  const totalTax = subtotal * (ratesConfigDatabase.gstTaxPercentage / 100);
+  const subtotal = (totalVehicleCost + totalHotelCost + permitFee) * ratesConfig.seasonalMultiplier;
+  const totalTax = subtotal * (ratesConfig.gstTaxPercentage / 100);
   const totalCost = Math.round(subtotal + totalTax);
   const costPerPerson = Math.round(totalCost / travelers);
 
@@ -1025,6 +1028,7 @@ Return a JSON object with this exact structure:
 
 // API Endpoint: Capture Lead (Stores lead & sends instant notification payload)
 app.post('/api/leads', (req, res) => {
+  const store = getBackendStore();
   const {
     customerName,
     whatsappNumber,
@@ -1056,7 +1060,9 @@ app.post('/api/leads', (req, res) => {
     status: 'New'
   };
 
-  leadsDatabase.unshift(newLead);
+  store.leads = store.leads || [];
+  store.leads.unshift(newLead);
+  saveBackendStore(store);
 
   // Return lead record + instant notification metadata simulation
   res.json({
@@ -1069,7 +1075,7 @@ app.post('/api/leads', (req, res) => {
   });
 });
 
-// In-Memory Reviews Database
+// Reviews Database Interfaces
 interface ServerReview {
   id: string;
   author: string;
@@ -1086,89 +1092,20 @@ interface ServerReview {
   helpfulCount: number;
 }
 
-const reviewsDatabase: ServerReview[] = [
-  {
-    id: "rev-1",
-    author: "Anand Verma & Family",
-    location: "Mumbai, Maharashtra",
-    rating: 5,
-    date: "July 2026",
-    comment: "Flawless arrangement! We booked the 5N/6D Sikkim & Darjeeling tour with an Innova Crysta. Driver Passang was punctual, extremely safe on mountain bends, and recommended fantastic pure veg thali spots in Gangtok. Permits for Nathula were issued effortlessly!",
-    packageTaken: "5N/6D Sikkim & Darjeeling Tour",
-    externalPlatform: "Google",
-    photoUrl: "/images/sikkim_hero_banner_1785680563996.jpg",
-    approved: true,
-    createdAt: new Date(Date.now() - 3600000 * 120).toISOString(),
-    helpfulCount: 24
-  },
-  {
-    id: "rev-2",
-    author: "Priya & Rohan Das",
-    location: "Kolkata, West Bengal",
-    rating: 5,
-    date: "June 2026",
-    comment: "The AI chat assistant on OffbeatDestination's site helped us tailor our North Sikkim Zero Point trip within minutes! We dropped our WhatsApp number and got the exact quote on WhatsApp in 2 minutes. The homestay in Lachung was warm and hospitable. 10/10 service!",
-    packageTaken: "North Sikkim 3N/4D Tour",
-    externalPlatform: "WhatsApp",
-    photoUrl: "/images/yumthang_zero_point_1785680592273.jpg",
-    approved: true,
-    createdAt: new Date(Date.now() - 3600000 * 300).toISOString(),
-    helpfulCount: 31
-  },
-  {
-    id: "rev-3",
-    author: "Dr. K. Swaminathan",
-    location: "Chennai, Tamil Nadu",
-    rating: 5,
-    date: "May 2026",
-    comment: "Top-notch professionalism. Being elderly travelers, pure vegetarian meal timing was crucial for us. OffbeatDestination arranged perfect AP meal plans and provided an exceptionally smooth Innova Crysta for NJP airport pickup.",
-    packageTaken: "Cab Rental & Custom Sikkim Package",
-    externalPlatform: "TripAdvisor",
-    photoUrl: "/images/innova_crysta_cab_1785680577329.jpg",
-    approved: true,
-    createdAt: new Date(Date.now() - 3600000 * 500).toISOString(),
-    helpfulCount: 18
-  },
-  {
-    id: "rev-4",
-    author: "Meenakshi & Rahul Roy",
-    location: "Bengaluru, Karnataka",
-    rating: 5,
-    date: "August 2026",
-    comment: "Bhutan Tour was magical! OffbeatDestination handled all SDF fees, permits, and assigned a super polite Bhutanese guide. Hiking Tiger's Nest was a dream come true. Highly recommended local Gangtok agency!",
-    packageTaken: "Custom Bhutan Cultural Odyssey",
-    externalPlatform: "Google",
-    photoUrl: "/images/bhutan_tigers_nest_1785681037397.jpg",
-    approved: true,
-    createdAt: new Date(Date.now() - 3600000 * 24).toISOString(),
-    helpfulCount: 15
-  },
-  {
-    id: "rev-5",
-    author: "Amitabh Banerjee",
-    location: "Siliguri, West Bengal",
-    rating: 5,
-    date: "July 2026",
-    comment: "Booked Bagdogra to Gangtok Innova Crysta pickup. Driver was waiting at the exit with name board. Clean leather captain seats and smooth driving down Teesta valley.",
-    packageTaken: "Bagdogra IXB to Gangtok Private Cab",
-    externalPlatform: "Direct",
-    approved: true,
-    createdAt: new Date(Date.now() - 3600000 * 72).toISOString(),
-    helpfulCount: 9
-  }
-];
-
 // API Endpoint: Fetch Reviews
 app.get('/api/reviews', (req, res) => {
+  const store = getBackendStore();
+  const reviewsList = store.reviews || [];
   const { all } = req.query;
   if (all === 'true') {
-    return res.json(reviewsDatabase);
+    return res.json(reviewsList);
   }
-  res.json(reviewsDatabase.filter((r) => r.approved));
+  res.json(reviewsList.filter((r: any) => r.approved !== false));
 });
 
 // API Endpoint: Add New Review
 app.post('/api/reviews', (req, res) => {
+  const store = getBackendStore();
   const { author, location, rating, comment, packageTaken, photoUrl, externalPlatform } = req.body;
 
   if (!author || !comment || !rating) {
@@ -1190,86 +1127,52 @@ app.post('/api/reviews', (req, res) => {
     helpfulCount: 0
   };
 
-  reviewsDatabase.unshift(newReview);
-  res.json({ success: true, review: newReview });
+  store.reviews = store.reviews || [];
+  store.reviews.unshift(newReview);
+  saveBackendStore(store);
+  res.json({ success: true, review: newReview, reviews: store.reviews });
 });
 
 // API Endpoint: Approve/Toggle Review Status (for Owner Console)
 app.put('/api/reviews/:id/approve', (req, res) => {
+  const store = getBackendStore();
   const { id } = req.params;
   const { approved } = req.body;
-  const rev = reviewsDatabase.find((r) => r.id === id);
+  const reviewsList = store.reviews || [];
+  const rev = reviewsList.find((r: any) => r.id === id);
   if (!rev) return res.status(404).json({ error: 'Review not found' });
 
   rev.approved = approved !== undefined ? Boolean(approved) : !rev.approved;
+  saveBackendStore(store);
   res.json({ success: true, review: rev });
 });
 
 // API Endpoint: Delete Review (for Owner Console)
 app.delete('/api/reviews/:id', (req, res) => {
+  const store = getBackendStore();
   const { id } = req.params;
-  const idx = reviewsDatabase.findIndex((r) => r.id === id);
+  const reviewsList = store.reviews || [];
+  const idx = reviewsList.findIndex((r: any) => r.id === id);
   if (idx === -1) return res.status(404).json({ error: 'Review not found' });
 
-  reviewsDatabase.splice(idx, 1);
+  reviewsList.splice(idx, 1);
+  saveBackendStore(store);
   res.json({ success: true });
 });
 
 // API Endpoint: Helpful count increment
 app.post('/api/reviews/:id/helpful', (req, res) => {
+  const store = getBackendStore();
   const { id } = req.params;
-  const rev = reviewsDatabase.find((r) => r.id === id);
+  const reviewsList = store.reviews || [];
+  const rev = reviewsList.find((r: any) => r.id === id);
   if (rev) {
     rev.helpfulCount = (rev.helpfulCount || 0) + 1;
+    saveBackendStore(store);
     return res.json({ success: true, helpfulCount: rev.helpfulCount });
   }
   res.status(404).json({ error: 'Review not found' });
 });
-
-// In-memory databases for Packages, Cabs, Agency Info, and Rates Matrix
-let packagesDatabase = [...TOUR_PACKAGES_INITIAL];
-let cabsDatabase = [...CAB_OPTIONS_INITIAL];
-let agencyInfoDatabase = { ...AGENCY_DETAILS_INITIAL };
-
-interface BackendRatesConfig {
-  hotelNightRates: {
-    budgetDeluxe: number;
-    premium3Star: number;
-    luxury5Star: number;
-  };
-  permitFees: {
-    northSikkimPermit: number;
-    nathulaArmyPermit: number;
-    tsomgoPermit: number;
-    silkRoutePermit: number;
-  };
-  seasonalMultiplier: number;
-  extraAdultPerNight: number;
-  extraChildPerNight: number;
-  driverAllowancePerDay: number;
-  gstTaxPercentage: number;
-}
-
-const RATES_CONFIG_INITIAL: BackendRatesConfig = {
-  hotelNightRates: {
-    budgetDeluxe: 2200,
-    premium3Star: 3500,
-    luxury5Star: 8500,
-  },
-  permitFees: {
-    northSikkimPermit: 1500,
-    nathulaArmyPermit: 1500,
-    tsomgoPermit: 500,
-    silkRoutePermit: 800,
-  },
-  seasonalMultiplier: 1.0,
-  extraAdultPerNight: 1200,
-  extraChildPerNight: 800,
-  driverAllowancePerDay: 500,
-  gstTaxPercentage: 5,
-};
-
-let ratesConfigDatabase: BackendRatesConfig = { ...RATES_CONFIG_INITIAL };
 
 // ==========================================
 // FULL BACKEND CONTROL CMS API ENDPOINTS
@@ -1277,12 +1180,29 @@ let ratesConfigDatabase: BackendRatesConfig = { ...RATES_CONFIG_INITIAL };
 
 // Admin Auth Login
 app.post('/api/admin/login', (req, res) => {
-  const { email, password, pin } = req.body;
+  const { email, username, id, password, pin } = req.body;
   const store = getBackendStore();
   
-  if (pin === '1750' || password === 'offbeat2026' || password === 'admin') {
-    const user = store.users.find((u) => u.email === email) || store.users[0];
-    logAuditAction(user.name, user.role, 'LOGIN', 'Admin authenticated into backend console.');
+  const enteredId = (email || username || id || '').trim().toLowerCase();
+  const enteredPass = (password || pin || '').trim();
+
+  const validPasswords = ['Sikkim@123', 'sikkim@123', '1750', 'offbeat2026', 'admin'];
+  const isValidPass = validPasswords.includes(enteredPass);
+
+  if (isValidPass) {
+    const user = store.users.find(
+      (u) =>
+        u.email?.toLowerCase() === enteredId ||
+        u.id?.toLowerCase() === enteredId ||
+        (enteredId === 'admin' && (u.role === 'OWNER' || u.role === 'ADMIN'))
+    ) || store.users[0] || {
+      id: 'usr-101',
+      name: 'Devi Charan Chettri',
+      email: 'chettridev12@gmail.com',
+      role: 'OWNER',
+    };
+
+    logAuditAction(user.name, user.role, 'LOGIN', `Admin authenticated with ID "${enteredId || 'admin'}".`);
     return res.json({
       success: true,
       token: `odt-auth-${Date.now()}`,
@@ -1295,17 +1215,18 @@ app.post('/api/admin/login', (req, res) => {
     });
   }
 
-  res.status(401).json({ error: 'Invalid PIN or credentials. (Default PIN: 1750)' });
+  res.status(401).json({ error: 'Invalid Login Credentials. Default ID: admin | Password: Sikkim@123' });
 });
 
 // Admin Dashboard KPI Stats
 app.get('/api/admin/dashboard-stats', (req, res) => {
   const store = getBackendStore();
-  const totalLeads = leadsDatabase.length;
-  const newLeads = leadsDatabase.filter((l) => l.status === 'New').length;
-  const bookedLeads = leadsDatabase.filter((l) => l.status === 'Booked').length;
-  const totalPackages = packagesDatabase.length;
-  const totalQuotationValue = store.quotations.reduce((acc, q) => acc + q.totalFinalAmount, 0);
+  const leadsList = store.leads || [];
+  const totalLeads = leadsList.length;
+  const newLeads = leadsList.filter((l: any) => l.status === 'New').length;
+  const bookedLeads = leadsList.filter((l: any) => l.status === 'Booked').length;
+  const totalPackages = (store.packages || []).length;
+  const totalQuotationValue = (store.quotations || []).reduce((acc, q) => acc + q.totalFinalAmount, 0);
 
   res.json({
     totalLeads,
@@ -1313,71 +1234,86 @@ app.get('/api/admin/dashboard-stats', (req, res) => {
     bookedLeads,
     totalPackages,
     totalQuotationValue,
-    totalCustomers: store.customers.length,
-    totalDestinations: store.destinations.length,
-    recentAuditLogs: store.auditLogs.slice(0, 10),
+    totalCustomers: (store.customers || []).length,
+    totalDestinations: (store.destinations || []).length,
+    recentAuditLogs: (store.auditLogs || []).slice(0, 10),
   });
 });
 
 // API Endpoint: Fetch Captured Leads for Owner Console
 app.get('/api/leads', (req, res) => {
-  res.json(leadsDatabase);
+  const store = getBackendStore();
+  res.json(store.leads || []);
 });
 
 app.put('/api/admin/leads/:id', (req, res) => {
+  const store = getBackendStore();
   const { id } = req.params;
   const { status, notes } = req.body;
-  const lead = leadsDatabase.find((l) => l.id === id);
+  const leadsList = store.leads || [];
+  const lead = leadsList.find((l: any) => l.id === id);
   if (!lead) return res.status(404).json({ error: 'Lead not found' });
 
   if (status) lead.status = status;
   if (notes !== undefined) lead.notes = notes;
 
+  saveBackendStore(store);
   logAuditAction('Owner Admin', 'ADMIN', 'UPDATE_LEAD', `Updated lead ${id} status to ${lead.status}`);
   res.json({ success: true, lead });
 });
 
 // API Endpoints for Rates Matrix (Backend Rate Management)
 app.get('/api/rates', (req, res) => {
-  res.json(ratesConfigDatabase);
+  const store = getBackendStore();
+  res.json(store.rates || INITIAL_RATES_CONFIG);
 });
 
 app.post('/api/admin/rates', (req, res) => {
-  const { rates } = req.body;
-  if (rates && typeof rates === 'object') {
-    ratesConfigDatabase = { ...ratesConfigDatabase, ...rates };
+  const store = getBackendStore();
+  const ratesData = req.body.rates || req.body;
+  if (ratesData && typeof ratesData === 'object') {
+    store.rates = { ...store.rates, ...ratesData };
+    saveBackendStore(store);
     logAuditAction('Owner Admin', 'ADMIN', 'UPDATE_RATES', 'Updated pricing rates matrix.');
-    return res.json({ success: true, rates: ratesConfigDatabase });
+    return res.json({ success: true, rates: store.rates });
   }
   res.status(400).json({ error: 'Invalid rates payload' });
 });
 
 // API Endpoints for Packages CRUD
 app.get('/api/packages', (req, res) => {
-  res.json(packagesDatabase);
+  const store = getBackendStore();
+  res.json(store.packages || []);
 });
 
 app.post('/api/admin/packages', (req, res) => {
-  const { packages } = req.body;
-  if (Array.isArray(packages)) {
-    packagesDatabase = packages;
-    logAuditAction('Owner Admin', 'ADMIN', 'UPDATE_PACKAGES', `Updated ${packages.length} tour packages.`);
-    return res.json({ success: true, count: packagesDatabase.length });
+  const store = getBackendStore();
+  const raw = req.body;
+  const packagesList = Array.isArray(raw) ? raw : (Array.isArray(raw?.packages) ? raw.packages : null);
+  if (packagesList) {
+    store.packages = packagesList;
+    saveBackendStore(store);
+    logAuditAction('Owner Admin', 'ADMIN', 'UPDATE_PACKAGES', `Updated ${packagesList.length} tour packages.`);
+    return res.json({ success: true, count: store.packages.length, packages: store.packages });
   }
   res.status(400).json({ error: 'Invalid packages payload' });
 });
 
 // API Endpoints for Cabs/Vehicles CRUD
 app.get('/api/cabs', (req, res) => {
-  res.json(cabsDatabase);
+  const store = getBackendStore();
+  res.json(store.cabs || []);
 });
 
 app.post('/api/admin/cabs', (req, res) => {
-  const { cabs } = req.body;
-  if (Array.isArray(cabs)) {
-    cabsDatabase = cabs;
-    logAuditAction('Owner Admin', 'ADMIN', 'UPDATE_CABS', `Updated ${cabs.length} cab vehicle options.`);
-    return res.json({ success: true, count: cabsDatabase.length });
+  const store = getBackendStore();
+  const raw = req.body;
+  const cabsList = Array.isArray(raw) ? raw : (Array.isArray(raw?.cabs) ? raw.cabs : null);
+  if (cabsList) {
+    store.cabs = cabsList;
+    saveBackendStore(store);
+    logAuditAction('Owner Admin', 'ADMIN', 'UPDATE_CABS', `Updated ${cabsList.length} cab vehicle options.`);
+    return res.json({ success: true, count: store.cabs.length, cabs: store.cabs });
   }
   res.status(400).json({ error: 'Invalid cabs payload' });
 });
@@ -1745,18 +1681,19 @@ app.post('/api/admin/alerts', (req, res) => {
 });
 
 // SEO MANAGEMENT
-let seoDatabase: any = { ...DEFAULT_SEO_SETTINGS };
-
 app.get('/api/seo', (req, res) => {
-  res.json(seoDatabase);
+  const store = getBackendStore();
+  res.json(store.seo || DEFAULT_SEO_SETTINGS);
 });
 
 app.post('/api/admin/seo', (req, res) => {
-  const { seo } = req.body;
-  if (seo && typeof seo === 'object') {
-    seoDatabase = { ...seoDatabase, ...seo };
+  const store = getBackendStore();
+  const seoData = req.body.seo || req.body;
+  if (seoData && typeof seoData === 'object') {
+    store.seo = { ...store.seo, ...seoData };
+    saveBackendStore(store);
     logAuditAction('Owner Admin', 'ADMIN', 'UPDATE_SEO', 'Updated SEO metadata across site tabs.');
-    return res.json({ success: true, seo: seoDatabase });
+    return res.json({ success: true, seo: store.seo });
   }
   res.status(400).json({ error: 'Invalid SEO payload' });
 });
@@ -2144,40 +2081,46 @@ Return ONLY a valid JSON array of 4 objects with this exact structure:
 });
 
 app.get('/api/agency', (req, res) => {
-  res.json(agencyInfoDatabase);
+  const store = getBackendStore();
+  res.json(store.agency || AGENCY_DETAILS_INITIAL);
 });
 
 app.post('/api/admin/agency', (req, res) => {
-  const { agency } = req.body;
-  if (agency && typeof agency === 'object') {
-    agencyInfoDatabase = { ...agencyInfoDatabase, ...agency };
+  const store = getBackendStore();
+  const agencyData = req.body.agency || req.body;
+  if (agencyData && typeof agencyData === 'object') {
+    store.agency = { ...store.agency, ...agencyData };
+    saveBackendStore(store);
     logAuditAction('Owner Admin', 'ADMIN', 'UPDATE_AGENCY_DETAILS', 'Updated agency business credentials and details.');
-    return res.json({ success: true, agency: agencyInfoDatabase });
+    return res.json({ success: true, agency: store.agency });
   }
   res.status(400).json({ error: 'Invalid agency payload' });
 });
 
 app.post('/api/admin/reset-defaults', (req, res) => {
-  packagesDatabase = [...TOUR_PACKAGES_INITIAL];
-  cabsDatabase = [...CAB_OPTIONS_INITIAL];
-  agencyInfoDatabase = { ...AGENCY_DETAILS_INITIAL };
-  ratesConfigDatabase = { ...RATES_CONFIG_INITIAL };
-  seoDatabase = { ...DEFAULT_SEO_SETTINGS };
+  const store = getBackendStore();
+  store.packages = [...TOUR_PACKAGES_INITIAL] as any;
+  store.cabs = [...CAB_OPTIONS_INITIAL];
+  store.agency = { ...AGENCY_DETAILS_INITIAL };
+  store.rates = { ...INITIAL_RATES_CONFIG };
+  store.seo = { ...DEFAULT_SEO_SETTINGS };
+  saveBackendStore(store);
   logAuditAction('Owner Admin', 'OWNER', 'RESET_DEFAULTS', 'Reset factory defaults.');
   res.json({ success: true, message: 'Reset all packages, cabs, rates, agency details, and SEO settings to factory defaults.' });
 });
 
-
-
 // API Endpoint: Quick Quote Estimator
 app.post('/api/calculate-quote', (req, res) => {
   const { route, vehicle, days, travelers } = req.body;
+  const store = getBackendStore();
+  const cabsList = store.cabs || [];
+  const ratesConfig = store.rates || INITIAL_RATES_CONFIG;
   
-  // Look up cab rate from backend cabsDatabase
-  const matchedCab = cabsDatabase.find(c =>
-    c.model.toLowerCase().includes(String(vehicle).toLowerCase()) ||
-    c.id.toLowerCase().includes(String(vehicle).toLowerCase())
-  ) || cabsDatabase.find(c => c.id === 'cab-innova-crysta') || cabsDatabase[0];
+  // Look up cab rate from backend cabs
+  const matchedCab = cabsList.find((c: any) =>
+    c.model?.toLowerCase().includes(String(vehicle).toLowerCase()) ||
+    c.id?.toLowerCase().includes(String(vehicle).toLowerCase())
+  ) || cabsList.find((c: any) => c.id === 'cab-innova-crysta') || cabsList[0];
 
   const cabRatePerDay = matchedCab ? matchedCab.ratePerDay : 4500;
   const numDays = Number(days) || 5;
@@ -2186,12 +2129,12 @@ app.post('/api/calculate-quote', (req, res) => {
   const totalVehicleCost = cabRatePerDay * numDays;
   const hotelNights = Math.max(1, numDays - 1);
   const roomsNeeded = Math.ceil(numTravelers / 2);
-  const hotelNightRate = ratesConfigDatabase.hotelNightRates.premium3Star;
+  const hotelNightRate = ratesConfig.hotelNightRates?.premium3Star || 3500;
   const totalHotelCost = hotelNightRate * hotelNights * roomsNeeded;
-  const permitFee = ratesConfigDatabase.permitFees.tsomgoPermit;
+  const permitFee = ratesConfig.permitFees?.tsomgoPermit || 500;
   
-  const subtotal = (totalVehicleCost + totalHotelCost + permitFee) * ratesConfigDatabase.seasonalMultiplier;
-  const totalTax = subtotal * (ratesConfigDatabase.gstTaxPercentage / 100);
+  const subtotal = (totalVehicleCost + totalHotelCost + permitFee) * (ratesConfig.seasonalMultiplier || 1.0);
+  const totalTax = subtotal * ((ratesConfig.gstTaxPercentage || 5) / 100);
   const totalPackageEstimate = Math.round(subtotal + totalTax);
 
   res.json({
@@ -2206,35 +2149,10 @@ app.post('/api/calculate-quote', (req, res) => {
     backendRatesApplied: {
       cabRatePerDay,
       hotelNightRate,
-      seasonalMultiplier: ratesConfigDatabase.seasonalMultiplier,
-      gstTaxPercentage: ratesConfigDatabase.gstTaxPercentage
+      seasonalMultiplier: ratesConfig.seasonalMultiplier || 1.0,
+      gstTaxPercentage: ratesConfig.gstTaxPercentage || 5
     }
   });
-});
-
-// Agency Details & Branding API
-let agencyDatabase: any = {
-  name: 'OffbeatDestination Travels',
-  tagline: 'A Better Way to Explore',
-  location: 'Gangtok, Sikkim, India',
-  phone: '+91 62961 02341',
-  whatsappNumber: '916296102341',
-  govtRegistration: 'Reg No: 1750/DoT&CAv/Gtk/25/TA',
-  logoUrl: '',
-};
-
-app.get('/api/agency', (req, res) => {
-  res.json(agencyDatabase);
-});
-
-app.post('/api/admin/agency', (req, res) => {
-  const { agency } = req.body;
-  if (agency && typeof agency === 'object') {
-    agencyDatabase = { ...agencyDatabase, ...agency };
-    logAuditAction('Owner Admin', 'ADMIN', 'UPDATE_AGENCY', 'Updated agency profile, branding & logo details.');
-    return res.json({ success: true, agency: agencyDatabase });
-  }
-  res.status(400).json({ error: 'Invalid agency payload' });
 });
 
 // Health Endpoint
